@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include "windows.h"
 
 namespace Debug 
 {
@@ -22,11 +23,17 @@ namespace Debug
 	void LogError(std::string output);
 
 
-	/// <summary>f
+	/// <summary>
 	/// Returns the current time as a string.
 	/// </summary>
 	/// <returns>Format: YEAR-MONTH-DAY HOUR:MINUTE:SECOND</returns>
 	std::string GetTime();
+
+	/// <summary>
+	/// Changes the colour of text.
+	/// </summary>
+	/// <param name="colour">The colour to change it into.</param>
+	void SetColour(int colour);
 }
 #endif // !DEBUG
 
