@@ -8,5 +8,4 @@ namespace Input
 	/// </summary>
 	void DoInput();
 }
-
 #endif

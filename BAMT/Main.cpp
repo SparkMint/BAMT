@@ -6,6 +6,7 @@
 // Temporary Function Declarations
 void RenderBackground();
 void RenderSquare();
+void Update();
 
 // Global Variables
 SDL_Window* window;
@@ -32,16 +33,7 @@ int main(int argc, char* argv[])
 	Debug::LogWarn("Warning Test");
 	Debug::LogError("Error Test");
 
-	while (1)
-	{
-		Input::DoInput();
-	
-		RenderBackground();
-
-		RenderSquare();
-
-		SDL_Delay(16);
-	}
+	Update();
 	// Quits SQL. Remember to do this!
 	SDL_Quit();
 
@@ -74,4 +66,18 @@ void RenderSquare()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 	SDL_RenderPresent(renderer);
+}
+
+void Update()
+{
+	while (1)
+	{
+		Input::DoInput();
+
+		RenderBackground();
+
+		RenderSquare();
+
+		SDL_Delay(16);
+	}
 }
