@@ -36,4 +36,3 @@ namespace Debug
 	void SetColour(int colour);
 }
 #endif // !DEBUG
-
