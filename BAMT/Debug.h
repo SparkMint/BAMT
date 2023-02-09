@@ -2,17 +2,31 @@
 #define DEBUG
 
 #include <iostream>
-#include <chrono>
 #include <sstream>
 
 namespace Debug 
 {
-	void DebugLog(std::string output);
-	void DebugLogWarn(std::string output);
-	void DebugLogError(std::string output);
+	/// <summary>
+	/// Logs information on the console.
+	/// </summary>
+	void Log(std::string output);
 
+	/// <summary>
+	/// Logs a warning on the console.
+	/// </summary>
+	void LogWarn(std::string output);
+
+	/// <summary>
+	/// Logs a error on the console.
+	/// </summary>
+	void LogError(std::string output);
+
+
+	/// <summary>f
+	/// Returns the current time as a string.
+	/// </summary>
+	/// <returns>Format: YEAR-MONTH-DAY HOUR:MINUTE:SECOND</returns>
 	std::string GetTime();
 }
-
 #endif // !DEBUG
 
