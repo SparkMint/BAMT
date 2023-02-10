@@ -14,7 +14,7 @@ class GameManager
 		SDL_Renderer* renderer;
 
 	public:
-		void Initialise(const char* windowName = "BAMT ENGINE", int windowWidth = 640, int windowHeight = 480, bool fullscreen = false);
+		void Initialize(const char* windowName = "BAMT ENGINE", int windowWidth = 640, int windowHeight = 480, bool fullscreen = false);
 		void Update();
 		void Render();
 		void Clean();

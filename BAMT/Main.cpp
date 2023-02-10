@@ -12,10 +12,9 @@ GameManager* gameManager;
 int main(int argc, char* argv[])
 {
 	gameManager = new GameManager();
+	gameManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_WIDTH, false);
 
-	gameManager->Initialise(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_WIDTH, false);
-
-	//Debug::ShowWarnings(false);
+	Debug::ShowWarnings(false);
 
 	while (gameManager->IsActive())
 	{

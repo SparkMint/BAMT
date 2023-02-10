@@ -20,8 +20,8 @@ namespace Debug
 
     void ShowLogs(bool show)
     {
-        std::string showString = show ? "Enabled" : "Disabled";
-        std::cout << "[Logs " << showString << "]" << std::endl;
+        std::string showString = show ? "ENABLED" : "DISABLED";
+        std::cout << "[LOGS " << showString << "]" << std::endl;
         showLogs = show;
     }
     #pragma endregion LogFunctions
@@ -40,8 +40,8 @@ namespace Debug
     }
     void Debug::ShowWarnings(bool show)
     {
-        std::string showString = show ? "Enabled" : "Disabled";
-        std::cout << "[Warnings " << showString << "]" << std::endl;
+        std::string showString = show ? "ENABLED" : "DISABLED";
+        std::cout << "[WARNINGS " << showString << "]" << std::endl;
         showWarnings = show;
     }
     #pragma endregion WarningFunctions
@@ -60,8 +60,8 @@ namespace Debug
     }
     void ShowErrors(bool show)
     {
-        std::string showString = show ? "Enabled" : "Disabled";
-        std::cout << "[Errors " << showString << "]" << std::endl;
+        std::string showString = show ? "ENABLED" : "DISABLED";
+        std::cout << "[ERRORS " << showString << "]" << std::endl;
         showErrors = show;
     }
     #pragma endregion ErrorFunctions

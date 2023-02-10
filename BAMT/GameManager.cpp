@@ -16,7 +16,7 @@ GameManager::~GameManager()
 }
 
 
-void GameManager::Initialise(const char* windowName, int windowWidth, int windowHeight, bool fullscreen)
+void GameManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen)
 {
 	SDL_WindowFlags windowFlag = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
 
