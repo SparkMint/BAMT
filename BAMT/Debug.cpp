@@ -33,7 +33,7 @@ namespace Debug
         if (!showWarnings) return;
 
         Debug::SetColour(YELLOW);
-        std::cout << "[" << GetTime() << "]" << " WARNING - " << output << std::endl;
+        std::cout << "[" << GetTime() << "]" << " WARN - " << output << std::endl;
 
         // Set it to white again to prevent things that should be white from not being so.
         Debug::SetColour(WHITE);

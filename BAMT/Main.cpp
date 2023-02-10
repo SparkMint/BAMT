@@ -14,12 +14,13 @@ int main(int argc, char* argv[])
 	gameManager = new GameManager();
 	gameManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_WIDTH, false);
 
-	Debug::ShowWarnings(false);
+	//Debug::ShowWarnings(false);
 
 	while (gameManager->IsActive())
 	{
 		gameManager->Update();
 
+		// Sets a delay of 16 milliseconds. AKA 60 FPS.
 		SDL_Delay(16);
 	}
 

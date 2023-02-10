@@ -2,7 +2,7 @@
 
 GameManager::GameManager()
 {
-	Debug::Log("Game Instance Created!");
+	Debug::Log("GameManager Instance Created!");
 
 	// Initialize variables.
 	isActive = false;
@@ -12,7 +12,7 @@ GameManager::GameManager()
 
 GameManager::~GameManager() 
 {
-	Debug::Log("Game Instance Destroyed!");
+	Debug::Log("GameManager Instance Destroyed!");
 }
 
 
@@ -31,10 +31,13 @@ void GameManager::Initialize(const char* windowName, int windowWidth, int window
 	renderer = SDL_CreateRenderer(window, -1, 0);
 
 	// Check if the window was successfully created.
-	if (window == NULL) Debug::LogError("Window was not created successfully.");
+	if (window) Debug::Log("GameManager Window Instance Created Successfully!");
+	else Debug::LogError("GameManager Window Instance is Null!");
+	
 
 	// Check if the renderer was successfully created.
-	if (renderer == NULL) Debug::LogError("Renderer was not created successfully.");
+	if (renderer) Debug::Log("GameManager Renderer Instance Created Successfully!");
+	else Debug::LogError("GameManager Renderer Instance is Null!");
 
 	// Sets this GameManager to being Active.
 	isActive = true;
@@ -61,7 +64,7 @@ void GameManager::Render()
 
 void GameManager::Clean()
 {
-	Debug::LogWarn("Clean function has not been implemented yet.");
+	Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
 }
 
 bool GameManager::IsActive() 
