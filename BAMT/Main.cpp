@@ -6,6 +6,7 @@
 auto WINDOW_NAME = "BAMT ENGINE";
 auto RESOLUTION_WIDTH = 640;
 auto RESOLUTION_HEIGHT = 480;
+auto TICK = 0;
 
 GameManager* gameManager;
 
@@ -14,11 +15,15 @@ int main(int argc, char* argv[])
 	gameManager = new GameManager();
 	gameManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_WIDTH, false);
 
-	//Debug::ShowWarnings(false);
-
 	while (gameManager->IsActive())
 	{
+		TICK++;
+
 		gameManager->Update();
+
+		// Testing Warning Log Showing.
+		if (TICK == 1)
+			Debug::ShowWarnings(false);
 
 		// Sets a delay of 16 milliseconds. AKA 60 FPS.
 		SDL_Delay(16);
