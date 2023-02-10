@@ -130,12 +130,14 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
