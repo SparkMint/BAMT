@@ -139,6 +139,8 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="BAMT.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

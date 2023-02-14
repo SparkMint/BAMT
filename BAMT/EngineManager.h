@@ -8,10 +8,10 @@
 class EngineManager
 {
 	private:
-		bool isActive;
-		SDL_Window* window;
-		SDL_Renderer* renderer;
-		int tick = 0;
+		bool _isActive;
+		SDL_Window* _window;
+		SDL_Renderer* _renderer;
+		int _tick = 0;
 
 	public:
 		/// <summary>

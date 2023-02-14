@@ -13,5 +13,7 @@
 #include "Debug.h"
 #include "Input.h"
 #include "EngineManager.h"
+#include "Entity.h"
+#include "Component.h"
 
 #endif // !BAMT_ENGINE
