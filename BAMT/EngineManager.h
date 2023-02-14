@@ -1,11 +1,11 @@
-#ifndef GAME_MANAGER
-#define GAME_MANAGER
+#ifndef BAMT_ENGINE_MANAGER
+#define BAMT_ENGINE_MANAGER
 
 #include "SDL.h"
 #include "BAMT.h"
 #include <iostream>
 
-class GameManager
+class EngineManager
 {
 	private:
 		bool isActive;
@@ -47,11 +47,11 @@ class GameManager
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		GameManager();
+		EngineManager();
 
 		/// <summary>
 		/// Default Destructor.
 		/// </summary>
-		~GameManager();
+		~EngineManager();
 };
 #endif // !GAME_MANAGER

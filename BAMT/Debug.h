@@ -1,5 +1,5 @@
-#ifndef DEBUG
-#define DEBUG
+#ifndef BAMT_DEBUG
+#define BAMT_DEBUG
 
 #include <iostream>
 #include <sstream>

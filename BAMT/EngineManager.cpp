@@ -1,8 +1,8 @@
-#include "GameManager.h"
+#include "EngineManager.h"
 
-GameManager::GameManager()
+EngineManager::EngineManager()
 {
-	Debug::Log("GameManager Instance Created!");
+	Debug::Log("BAMT Engine Instance Created!");
 
 	// Initialize variables.
 	isActive = false;
@@ -10,9 +10,9 @@ GameManager::GameManager()
 	renderer = NULL;
 }
 
-GameManager::~GameManager() 
+EngineManager::~EngineManager() 
 {
-	Debug::Log("GameManager Instance Destroyed!");
+	Debug::Log("BAMT Engine Instance Destroyed!");
 
 	// Initialize variables.
 	isActive = false;
@@ -24,7 +24,7 @@ GameManager::~GameManager()
 }
 
 
-void GameManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen)
+void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen)
 {
 	SDL_WindowFlags windowFlag = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
 
@@ -39,25 +39,25 @@ void GameManager::Initialize(const char* windowName, int windowWidth, int window
 	renderer = SDL_CreateRenderer(window, -1, 0);
 
 	// Check if the window was successfully created.
-	if (window) Debug::Log("GameManager Window Instance Created Successfully!");
-	else Debug::LogError("GameManager Window Instance is Null!");
+	if (window) Debug::Log("BAMT Engine Window Instance Created Successfully!");
+	else Debug::LogError("BAMT Engine Window Instance is Null!");
 	
 
 	// Check if the renderer was successfully created.
-	if (renderer) Debug::Log("GameManager Renderer Instance Created Successfully!");
-	else Debug::LogError("GameManager Renderer Instance is Null!");
+	if (renderer) Debug::Log("BAMT Engine Renderer Instance Created Successfully!");
+	else Debug::LogError("BAMT Engine Renderer Instance is Null!");
 
 	// Sets this GameManager to being Active.
 	isActive = true;
 }
 
-void GameManager::Update()
+void EngineManager::Update()
 {
 	Input::DoInput();
 	tick++;
 }
 
-void GameManager::Render()
+void EngineManager::Render()
 {
 	// Sets the colour of the renderer to black.
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -69,12 +69,12 @@ void GameManager::Render()
 	SDL_RenderPresent(renderer);
 }
 
-void GameManager::Clean()
+void EngineManager::Clean()
 {
 	//Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
 }
 
-bool GameManager::IsActive() 
+bool EngineManager::IsActive() 
 {
 	return isActive;
 }

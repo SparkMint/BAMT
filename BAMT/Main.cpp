@@ -6,11 +6,11 @@ auto WINDOW_NAME = "BAMT ENGINE";
 auto RESOLUTION_WIDTH = 640;
 auto RESOLUTION_HEIGHT = 480;
 
-GameManager* gameManager;
+EngineManager* gameManager;
 
 int main(int argc, char* argv[])
 {
-	gameManager = new GameManager();
+	gameManager = new EngineManager();
 	gameManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
 	// Game Loop. TODO: Move this into its own thing.

@@ -1,5 +1,5 @@
-#ifndef INPUT
-#define INPUT
+#ifndef BAMT_INPUT
+#define BAMT_INPUT
 
 #include "SDL.h"
 

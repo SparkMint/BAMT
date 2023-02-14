@@ -12,6 +12,6 @@
 
 #include "Debug.h"
 #include "Input.h"
-#include "GameManager.h"
+#include "EngineManager.h"
 
 #endif // !BAMT_ENGINE
