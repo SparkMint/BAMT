@@ -13,6 +13,14 @@ GameManager::GameManager()
 GameManager::~GameManager() 
 {
 	Debug::Log("GameManager Instance Destroyed!");
+
+	// Initialize variables.
+	isActive = false;
+
+	window = nullptr;
+	renderer = nullptr;
+	delete window;
+	delete renderer;
 }
 
 
@@ -45,9 +53,8 @@ void GameManager::Initialize(const char* windowName, int windowWidth, int window
 
 void GameManager::Update()
 {
-	Render();
-	Clean();
 	Input::DoInput();
+	tick++;
 }
 
 void GameManager::Render()
@@ -64,7 +71,7 @@ void GameManager::Render()
 
 void GameManager::Clean()
 {
-	Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
+	//Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
 }
 
 bool GameManager::IsActive() 

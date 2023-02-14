@@ -1,6 +1,8 @@
 #ifndef INPUT
 #define INPUT
 
+#include "SDL.h"
+
 namespace Input 
 {
 	/// <summary>

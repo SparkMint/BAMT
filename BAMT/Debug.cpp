@@ -5,64 +5,67 @@
 int WHITE = 15;
 int YELLOW = 14;
 int RED = 12;
+int GREEN = 10;
+int GRAY = 6;
 
 namespace Debug 
 {
     #pragma region LogFunctions
-    bool showLogs = true;
+    bool logsEnabled = true;
     void Debug::Log(std::string output)
     {
-        if (!showLogs) return;
+        if (!logsEnabled) return;
 
         Debug::SetColour(WHITE);
         std::cout << "[" << GetTime() << "]" << " LOG - " << output << std::endl;
     }
-
     void ShowLogs(bool show)
     {
+        Debug::SetColour(GRAY);
         std::string showString = show ? "ENABLED" : "DISABLED";
         std::cout << "[LOGS " << showString << "]" << std::endl;
-        showLogs = show;
+        logsEnabled = show;
+        Debug::SetColour(WHITE);
     }
     #pragma endregion LogFunctions
 
     #pragma region WarningFunctions
-    bool showWarnings = true;
+    bool warningsEnabled = true;
     void Debug::LogWarn(std::string output)
     {
-        if (!showWarnings) return;
+        if (!warningsEnabled) return;
 
         Debug::SetColour(YELLOW);
         std::cout << "[" << GetTime() << "]" << " WARN - " << output << std::endl;
-
-        // Set it to white again to prevent things that should be white from not being so.
         Debug::SetColour(WHITE);
     }
-    void Debug::ShowWarnings(bool show)
+    void Debug::ShowWarns(bool show)
     {
+        Debug::SetColour(GRAY);
         std::string showString = show ? "ENABLED" : "DISABLED";
         std::cout << "[WARNINGS " << showString << "]" << std::endl;
-        showWarnings = show;
+        warningsEnabled = show;
+        Debug::SetColour(WHITE);
     }
     #pragma endregion WarningFunctions
 
     #pragma region ErrorFunctions
-    bool showErrors = true;
+    bool errorsEnabled = true;
     void Debug::LogError(std::string output)
     {
-        if (!showErrors) return;
+        if (!errorsEnabled) return;
 
         Debug::SetColour(RED);
         std::cout << "[" << GetTime() << "]" << " ERROR - " << output << std::endl;
-
-        // Set it to white again to prevent things that should be white from not being so.
         Debug::SetColour(WHITE);
     }
     void ShowErrors(bool show)
     {
+        Debug::SetColour(GRAY);
         std::string showString = show ? "ENABLED" : "DISABLED";
         std::cout << "[ERRORS " << showString << "]" << std::endl;
-        showErrors = show;
+        errorsEnabled = show;
+        Debug::SetColour(WHITE);
     }
     #pragma endregion ErrorFunctions
 

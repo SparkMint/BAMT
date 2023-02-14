@@ -1,5 +1,4 @@
 #include "Input.h"
-#include "SDL.h"
 
 void Input::DoInput()
 {
