@@ -2,7 +2,7 @@
 
 EngineManager::EngineManager()
 {
-	Debug::Log("BAMT Engine Instance Created!");
+	Debug::Log("Engine Instance Created!");
 
 	// Initialize variables.
 	isActive = false;
@@ -12,7 +12,7 @@ EngineManager::EngineManager()
 
 EngineManager::~EngineManager() 
 {
-	Debug::Log("BAMT Engine Instance Destroyed!");
+	Debug::Log("Engine Instance Destroyed!");
 
 	// Initialize variables.
 	isActive = false;
@@ -39,13 +39,13 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	renderer = SDL_CreateRenderer(window, -1, 0);
 
 	// Check if the window was successfully created.
-	if (window) Debug::Log("BAMT Engine Window Instance Created Successfully!");
-	else Debug::LogError("BAMT Engine Window Instance is Null!");
+	if (window) Debug::Log("Engine Window Instance Created Successfully!");
+	else Debug::LogError("Engine Window Instance is Null!");
 	
 
 	// Check if the renderer was successfully created.
-	if (renderer) Debug::Log("BAMT Engine Renderer Instance Created Successfully!");
-	else Debug::LogError("BAMT Engine Renderer Instance is Null!");
+	if (renderer) Debug::Log("Engine Renderer Instance Created Successfully!");
+	else Debug::LogError("Engine Renderer Instance is Null!");
 
 	// Sets this GameManager to being Active.
 	isActive = true;
