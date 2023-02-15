@@ -17,6 +17,7 @@
 #include "Component.h"
 #include "Renderer.h"
 #include "RectRenderer.h"
+#include "TriRenderer.h"
 
 
 #endif // !BAMT_ENGINE

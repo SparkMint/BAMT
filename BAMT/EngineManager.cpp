@@ -61,20 +61,20 @@ void EngineManager::Update()
 
 void EngineManager::Render()
 {
-	// Clears the entire screen to be this colour.
-	SDL_RenderClear(_renderer);
-
 	// Sets the colour of the renderer to black.
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
-	// Show the result of the Renderer stuff from before.
-	SDL_RenderPresent(_renderer);
+	// Clears the entire screen to be this colour.
+	SDL_RenderClear(_renderer);
 
 	for (int i = 0; i < _drawTargets.size(); i++)
 	{
 		// Clears the entire screen to be this colour.
 		_drawTargets[i]->Render(_renderer);
 	}
+
+	// Show the result of the Renderer stuff from before.
+	SDL_RenderPresent(_renderer);
 }
 
 void EngineManager::Clean()

@@ -30,6 +30,7 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TriRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -54,6 +55,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RectRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TriRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
