@@ -16,7 +16,6 @@ namespace Debug
     void Debug::Log(std::string output)
     {
         if (!logsEnabled) return;
-
         Debug::SetColour(WHITE);
         std::cout << "[" << GetTime() << "]" << " LOG - " << output << std::endl;
     }
@@ -35,7 +34,6 @@ namespace Debug
     void Debug::LogWarn(std::string output)
     {
         if (!warningsEnabled) return;
-
         Debug::SetColour(YELLOW);
         std::cout << "[" << GetTime() << "]" << " WARN - " << output << std::endl;
         Debug::SetColour(WHITE);

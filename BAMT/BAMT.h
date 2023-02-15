@@ -19,5 +19,4 @@
 #include "RectRenderer.h"
 #include "TriRenderer.h"
 
-
 #endif // !BAMT_ENGINE
