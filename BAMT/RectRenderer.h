@@ -1,9 +1,8 @@
-#ifndef BAMT_RECTANGLE
-#define BAMT_RECTANGLE
+#ifndef BAMT_RECTANGLE_RENDERER
+#define BAMT_RECTANGLE_RENDERER
 
-#include "Renderer.h"
+#include "BAMT.h"
 #include "SDL.h"
-
 
 class RectRenderer : public Renderer 
 {
@@ -12,10 +11,7 @@ class RectRenderer : public Renderer
 		void Render(SDL_Renderer* renderer) override;
 
 	private:
-		float x;
-		float y;
-		float w;
-		float h;
+		SDL_Rect* rect;
 };
-#endif // !BAMT_RECTANGLE
+#endif // !BAMT_RECTANGLE_RENDERER
 

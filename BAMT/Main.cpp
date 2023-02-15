@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
 	engineManager->AddDrawTarget(new RectRenderer(250,250,250,250));
+	engineManager->AddDrawTarget(new RectRenderer(200, 150, 250, 250));
 
 	Debug::ShowWarns(false);
 	// Game Loop. TODO: Move this into its own thing.

@@ -1,7 +1,6 @@
 #ifndef BAMT_RENDERER
 #define BAMT_RENDERER
 
-#include "BAMT.h"
 #include "SDL.h"
 
 class Renderer 

@@ -3,8 +3,11 @@
 
 #include "SDL.h"
 #include "BAMT.h"
+
 #include <iostream>
 #include <vector>
+
+class Renderer;
 
 class EngineManager
 {
@@ -46,7 +49,7 @@ class EngineManager
 		/// <summary>
 		/// Checks if this instance is active.
 		/// </summary>
-		/// <returns>Active state of the GameManager.</returns>
+		/// <returns>Active state of the EngineManager.</returns>
 		bool IsActive();
 
 		/// <summary>
