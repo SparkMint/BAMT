@@ -1,6 +1,1 @@
-﻿  EngineManager.cpp
-C:\BAMT\BAMT\EngineManager.cpp(22,2): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
-C:\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_video.h(90): message : see declaration of 'SDL_Window'
-C:\BAMT\BAMT\EngineManager.cpp(23,2): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
-C:\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_render.h(121): message : see declaration of 'SDL_Renderer'
-  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe
+﻿  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

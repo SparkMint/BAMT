@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Debug.h"
+#include "SDL.h"
 
 // Text Colour
 int WHITE = 15;
@@ -69,6 +70,7 @@ namespace Debug
     }
     #pragma endregion ErrorFunctions
 
+    #pragma region LogExtras
     std::string Debug::GetTime()
     {
         // TODO: Look into getting this to work without the _CRT_SECURE_NO_WARNINGS flag.
@@ -92,4 +94,34 @@ namespace Debug
 
         SetConsoleTextAttribute(handle, colour);
     }
+    #pragma endregion LogExtras
+
+    #pragma region CommandFunctions
+    SDL_Thread* ConsoleThread;
+    void CreateCommandThread()
+    {
+        Debug::Log("Starting Command Input Thread...");
+        // Null data to make SDL_CreateThread work.
+        int data = 0;
+        ConsoleThread = SDL_CreateThread(Debug::ConsoleGetCommandInput, "Console Thread", (void*)data);
+    }
+    void StopCommandThread()
+    {
+        Debug::Log("Waiting for Console Thread to finish before closing...");
+        SDL_WaitThread(ConsoleThread, NULL);
+        Debug::Log("Console Thread Stopped!");
+    }
+    int ConsoleGetCommandInput(void* data)
+    {
+        Debug::Log("Command Thread Started!");
+        // Runs until the Engine Stops running.
+        while (true)
+        {
+            std::string command;
+            std::cin >> command;
+            Debug::Log("Command Entered: " + command);
+        }
+        return 0;
+    }
+    #pragma endregion CommandFunctions
 }

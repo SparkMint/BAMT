@@ -18,7 +18,7 @@ class Entity
 		/// <summary>
 		/// Collects the ID of this object.
 		/// </summary>
-		/// <returns>ID Value</returns>
+		/// <returns>- ID Value</returns>
 		int GetID();
 
 };

@@ -15,5 +15,9 @@
 #include "EngineManager.h"
 #include "Entity.h"
 #include "Component.h"
+#include "Renderer.h"
+#include "RectRenderer.h"
+#include "TriRenderer.h"
+
 
 #endif // !BAMT_ENGINE
