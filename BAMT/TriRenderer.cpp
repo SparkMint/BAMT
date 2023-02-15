@@ -1,5 +1,12 @@
 #include "TriRenderer.h"
 
+TriRenderer::TriRenderer(SDL_Point* position, int size)
+{
+	point1 = new SDL_Point{ position->x, position->y - (size / 2)};
+	point2 = new SDL_Point{ position->x - (size / 2), position->y + (size / 2) };
+	point3 = new SDL_Point{ position->x + (size / 2), position->y + (size / 2) };
+}
+
 TriRenderer::TriRenderer(SDL_Point* p1, SDL_Point* p2, SDL_Point* p3)
 {
 	point1 = p1;

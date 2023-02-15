@@ -67,10 +67,10 @@ void EngineManager::Render()
 	// Clears the entire screen to be this colour.
 	SDL_RenderClear(_renderer);
 
-	for (int i = 0; i < _drawTargets.size(); i++)
+	for (int i = 0; i < _renderTargets.size(); i++)
 	{
 		// Clears the entire screen to be this colour.
-		_drawTargets[i]->Render(_renderer);
+		_renderTargets[i]->Render(_renderer);
 	}
 
 	// Show the result of the Renderer stuff from before.
@@ -82,10 +82,10 @@ void EngineManager::Clean()
 	Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
 }
 
-void EngineManager::AddDrawTarget(Renderer* drawTarget)
+void EngineManager::AddRenderTarget(Renderer* renderTarget)
 {
 	Debug::Log("Render Target Added.");
-	_drawTargets.push_back(drawTarget);
+	_renderTargets.push_back(renderTarget);
 }
 
 bool EngineManager::IsActive() 

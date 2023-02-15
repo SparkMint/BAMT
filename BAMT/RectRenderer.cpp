@@ -21,5 +21,4 @@ void RectRenderer::Render(SDL_Renderer* renderer)
 	// Fill the inside of the Rectangle.
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(renderer, rect);
-
 }

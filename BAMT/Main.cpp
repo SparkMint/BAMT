@@ -14,8 +14,9 @@ int main(int argc, char* argv[])
 	engineManager = new EngineManager();
 	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
-	engineManager->AddDrawTarget(new RectRenderer(200, 150, 250, 250, false));
-	engineManager->AddDrawTarget(new TriRenderer(new SDL_Point{ 250,200 }, new SDL_Point{ 300,300 }, new SDL_Point{ 200,300 }));
+	engineManager->AddRenderTarget(new RectRenderer(200, 150, 250, 250, false));
+	//engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, new SDL_Point{ 300,300 }, new SDL_Point{ 200,300 }));
+	engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, 50));
 
 	Debug::ShowWarns(false);
 	// Game Loop. TODO: Move this into its own thing.

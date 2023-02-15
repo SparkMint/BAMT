@@ -15,7 +15,7 @@ class EngineManager
 		bool _isActive;
 		SDL_Window* _window;
 		SDL_Renderer* _renderer;
-		std::vector<Renderer*> _drawTargets;
+		std::vector<Renderer*> _renderTargets;
 		int _tick = 0;
 
 	public:
@@ -44,7 +44,7 @@ class EngineManager
 		/// </summary>
 		void Clean();
 
-		void AddDrawTarget(Renderer* drawTarget);
+		void AddRenderTarget(Renderer* renderTarget);
 
 		/// <summary>
 		/// Checks if this instance is active.

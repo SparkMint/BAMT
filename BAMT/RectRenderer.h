@@ -24,4 +24,3 @@ class RectRenderer : public Renderer
 		bool fillRect;
 };
 #endif // !BAMT_RECTANGLE_RENDERER
-
