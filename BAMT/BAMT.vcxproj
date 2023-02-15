@@ -128,12 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="DrawRect.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="EngineManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -141,7 +140,12 @@
     <ClInclude Include="BAMT.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Draw.h" />
+    <ClInclude Include="DrawRect.h" />
     <ClInclude Include="Input.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

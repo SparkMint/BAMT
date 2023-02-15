@@ -1,5 +1,7 @@
 #include "EngineManager.h"
 
+std::vector<Draw*> _drawTargets;
+
 EngineManager::EngineManager()
 {
 	Debug::Log("Engine Instance Created!");
@@ -47,6 +49,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully!");
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
+
+
 	// Sets this GameManager to being Active.
 	_isActive = true;
 }
@@ -59,6 +63,7 @@ void EngineManager::Update()
 
 void EngineManager::Render()
 {
+	
 	// Sets the colour of the renderer to black.
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
@@ -67,11 +72,21 @@ void EngineManager::Render()
 
 	// Show the result of the Renderer stuff from before.
 	SDL_RenderPresent(_renderer);
+
+	for (int i = 0; i < _drawTargets.size() - 1; i++)
+	{
+		_drawTargets[i]->Render(_renderer);
+	}
 }
 
 void EngineManager::Clean()
 {
-	//Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
+	Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
+}
+
+void EngineManager::AddDrawTarget(Draw* drawTarget)
+{
+	_drawTargets.push_back(drawTarget);
 }
 
 bool EngineManager::IsActive() 

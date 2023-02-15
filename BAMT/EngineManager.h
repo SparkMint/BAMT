@@ -4,6 +4,9 @@
 #include "SDL.h"
 #include "BAMT.h"
 #include <iostream>
+#include <vector>
+
+class Draw;
 
 class EngineManager
 {
@@ -11,9 +14,11 @@ class EngineManager
 		bool _isActive;
 		SDL_Window* _window;
 		SDL_Renderer* _renderer;
+		std::vector<Draw*> _drawTargets;
 		int _tick = 0;
 
 	public:
+
 		/// <summary>
 		/// Creates an SDL Window and Renderer and configures them.
 		/// </summary>
@@ -37,6 +42,8 @@ class EngineManager
 		/// 
 		/// </summary>
 		void Clean();
+
+		void AddDrawTarget(Draw* drawTarget);
 
 		/// <summary>
 		/// Checks if this instance is active.
