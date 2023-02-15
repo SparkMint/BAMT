@@ -18,10 +18,10 @@ int main(int argc, char* argv[])
 	//engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, new SDL_Point{ 300,300 }, new SDL_Point{ 200,300 }));
 	engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, 50));
 
-	Debug::ShowWarns(false);
 	// Game Loop. TODO: Move this into its own thing.
 	while (engineManager->IsActive()) 
 	{
+
 		// Call update method on the GameManager
 		engineManager->Update();
 
@@ -35,23 +35,10 @@ int main(int argc, char* argv[])
 		SDL_Delay(16);
 	}
 
-	// Quits SQL. Remember to do this!
+	engineManager->Stop();
+
+	// Stops all SQL Related stuff.
 	SDL_Quit();
 
 	return 0;
 }
-/*void RenderSquare()
-{
-	SDL_Rect rect;
-	rect.x = 250;
-	rect.y = 150;
-	rect.w = 200;
-	rect.h = 200;
-
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_RenderDrawRect(renderer, &rect);
-
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-	SDL_RenderPresent(renderer);
-}*/

@@ -15,4 +15,3 @@ class Component
 		void Update();
 };
 #endif // !BAMT_COMPONENT
-

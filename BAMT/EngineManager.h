@@ -19,7 +19,6 @@ class EngineManager
 		int _tick = 0;
 
 	public:
-
 		/// <summary>
 		/// Creates an SDL Window and Renderer and configures them.
 		/// </summary>
@@ -44,6 +43,15 @@ class EngineManager
 		/// </summary>
 		void Clean();
 
+		/// <summary>
+		/// Stops Stuff attached to the EngineManager.
+		/// </summary>
+		void Stop();
+
+		/// <summary>
+		/// Adds a specified Render object to the RenderTargets List.
+		/// </summary>
+		/// <param name="renderTarget">- The object to render.</param>
 		void AddRenderTarget(Renderer* renderTarget);
 
 		/// <summary>

@@ -7,28 +7,34 @@
 
 namespace Debug
 {
+	#pragma region LogDeclarations
 	/// <summary>
 	/// Logs information on the console.
 	/// </summary>
 	void Log(std::string output);
 
 	void ShowLogs(bool showLogs);
+	#pragma endregion LogDeclarations
 
+	#pragma region WarnDeclarations
 	/// <summary>
 	/// Logs a warning on the console.
 	/// </summary>
 	void LogWarn(std::string output);
 
 	void ShowWarns(bool showWarnings);
+	#pragma endregion WarnDeclarations
 
+	#pragma region ErrorDeclarations
 	/// <summary>
 	/// Logs a error on the console.
 	/// </summary>
 	void LogError(std::string output);
 
 	void ShowErrors(bool showErrors);
+	#pragma endregion ErrorDeclarations
 
-
+	#pragma region LogExtras
 	/// <summary>
 	/// Returns the current time as a string.
 	/// </summary>
@@ -40,5 +46,23 @@ namespace Debug
 	/// </summary>
 	/// <param name="colour">The colour to change it into.</param>
 	void SetColour(int colour);
+	#pragma endregion LogExtras
+
+	#pragma region CommandInputs
+	/// <summary>
+	/// Creates a new thread that handles console inputs.
+	/// </summary>
+	void CreateCommandThread();
+
+	/// <summary>
+	/// Stops a Command Thread after the program is finished.
+	/// </summary>
+	void StopCommandThread();
+
+	/// <summary>
+	/// Called to get commands from the user.
+	/// </summary>
+	int ConsoleGetCommandInput(void* data);
+	#pragma endregion CommandInputs
 }
 #endif // !DEBUG
