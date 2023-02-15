@@ -128,8 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Draw.cpp" />
-    <ClCompile Include="DrawRect.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RectRenderer.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="EngineManager.cpp" />
@@ -140,8 +140,8 @@
     <ClInclude Include="BAMT.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="Draw.h" />
-    <ClInclude Include="DrawRect.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RectRenderer.h" />
     <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>

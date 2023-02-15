@@ -6,15 +6,13 @@
 #include <iostream>
 #include <vector>
 
-class Draw;
-
 class EngineManager
 {
 	private:
 		bool _isActive;
 		SDL_Window* _window;
 		SDL_Renderer* _renderer;
-		std::vector<Draw*> _drawTargets;
+		std::vector<Renderer*> _drawTargets;
 		int _tick = 0;
 
 	public:
@@ -43,7 +41,7 @@ class EngineManager
 		/// </summary>
 		void Clean();
 
-		void AddDrawTarget(Draw* drawTarget);
+		void AddDrawTarget(Renderer* drawTarget);
 
 		/// <summary>
 		/// Checks if this instance is active.

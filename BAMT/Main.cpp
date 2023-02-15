@@ -1,32 +1,33 @@
-#include <iostream>
 #include "SDL.h"
 #include "BAMT.h"
+
+#include <iostream>
 
 auto WINDOW_NAME = "BAMT ENGINE";
 auto RESOLUTION_WIDTH = 640;
 auto RESOLUTION_HEIGHT = 480;
 
-EngineManager* gameManager;
+EngineManager* engineManager;
 
 int main(int argc, char* argv[])
 {
-	gameManager = new EngineManager();
-	gameManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
+	engineManager = new EngineManager();
+	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
-	gameManager->AddDrawTarget(new DrawRect(250, 250, 250, 250));
+	engineManager->AddDrawTarget(new RectRenderer(250,250,250,250));
 
 	Debug::ShowWarns(false);
 	// Game Loop. TODO: Move this into its own thing.
-	while (gameManager->IsActive())
+	while (engineManager->IsActive())
 	{
 		// Call update method on the GameManager
-		gameManager->Update();
+		engineManager->Update();
 
 		// Call the render method.
-		gameManager->Render();
+		engineManager->Render();
 
 		// Cleans any garbage data. TODO: Implement this.
-		gameManager->Clean();
+		engineManager->Clean();
 
 		// Sets a delay of 16 milliseconds. AKA 60 FPS.
 		SDL_Delay(16);

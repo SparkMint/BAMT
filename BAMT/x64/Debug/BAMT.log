@@ -1,11 +1,14 @@
 ﻿  Draw.cpp
-C:\Users\Computing\Documents\BAMT\BAMT\DrawRect.h(11,1): error C2504: 'Draw': base class undefined
-C:\Users\Computing\Documents\BAMT\BAMT\DrawRect.h(14,8): error C3668: 'DrawRect::Render': method with override specifier 'override' did not override any base class methods
+C:\BAMT\BAMT\DrawRect.h(9,1): error C2504: 'Draw': base class undefined
+C:\BAMT\BAMT\DrawRect.h(12,8): error C3668: 'DrawRect::Render': method with override specifier 'override' did not override any base class methods
+C:\BAMT\BAMT\EngineManager.h(15,15): error C2065: 'Draw': undeclared identifier
+C:\BAMT\BAMT\EngineManager.h(15,20): error C2059: syntax error: '>'
+C:\BAMT\BAMT\EngineManager.h(44,22): error C2061: syntax error: identifier 'Draw'
   DrawRect.cpp
   Main.cpp
   EngineManager.cpp
-C:\Users\Computing\Documents\BAMT\BAMT\EngineManager.cpp(24,2): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
-C:\Users\Computing\Documents\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_video.h(90,16): message : see declaration of 'SDL_Window'
-C:\Users\Computing\Documents\BAMT\BAMT\EngineManager.cpp(25,2): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
-C:\Users\Computing\Documents\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_render.h(121,8): message : see declaration of 'SDL_Renderer'
+C:\BAMT\BAMT\EngineManager.cpp(22,2): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
+C:\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_video.h(90): message : see declaration of 'SDL_Window'
+C:\BAMT\BAMT\EngineManager.cpp(23,2): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+C:\BAMT\packages\sdl2.2.0.5\build\native\include\SDL_render.h(121): message : see declaration of 'SDL_Renderer'
   Generating Code...

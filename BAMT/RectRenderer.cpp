@@ -1,6 +1,6 @@
-#include "DrawRect.h"
+#include "RectRenderer.h"
 
-DrawRect::DrawRect(float xPos, float yPos, float width, float height)
+RectRenderer::RectRenderer(float xPos, float yPos, float width, float height) : Renderer()
 {
 	x = xPos;
 	y = yPos;
@@ -8,7 +8,7 @@ DrawRect::DrawRect(float xPos, float yPos, float width, float height)
 	h = height;
 }
 
-void DrawRect::Render(SDL_Renderer* renderer)
+void RectRenderer::Render(SDL_Renderer* renderer)
 {
 	SDL_Rect rect;
 	rect.x = 250;

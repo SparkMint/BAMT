@@ -1,13 +1,13 @@
-#ifndef DRAW
-#define DRAW
+#ifndef BAMT_RENDERER
+#define BAMT_RENDERER
 
 #include "BAMT.h"
 #include "SDL.h"
 
-class Draw 
+class Renderer 
 {
 	public:
-		Draw();
+		Renderer();
 		virtual void Render(SDL_Renderer* renderer);
 };
-#endif // !DRAW
+#endif // !BAMT_RENDERER

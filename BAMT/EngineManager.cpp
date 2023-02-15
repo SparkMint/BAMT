@@ -1,7 +1,5 @@
 #include "EngineManager.h"
 
-std::vector<Draw*> _drawTargets;
-
 EngineManager::EngineManager()
 {
 	Debug::Log("Engine Instance Created!");
@@ -84,7 +82,7 @@ void EngineManager::Clean()
 	Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
 }
 
-void EngineManager::AddDrawTarget(Draw* drawTarget)
+void EngineManager::AddDrawTarget(Renderer* drawTarget)
 {
 	_drawTargets.push_back(drawTarget);
 }

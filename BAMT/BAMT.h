@@ -15,7 +15,8 @@
 #include "EngineManager.h"
 #include "Entity.h"
 #include "Component.h"
-#include "Draw.h"
-#include "DrawRect.h"
+#include "Renderer.h"
+#include "RectRenderer.h"
+
 
 #endif // !BAMT_ENGINE
