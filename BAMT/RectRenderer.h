@@ -15,7 +15,7 @@ class RectRenderer : public Renderer
 		/// <param name="width">- The width of the Rectangle.</param>
 		/// <param name="height">- The width of the Rectangle.</param>
 		/// <param name="fill">- Should the rectangle be filled?</param>
-		RectRenderer(float xPos = 0, float yPos = 0, float width = 0, float height = 0, bool fill = false);
+		RectRenderer(int xPos = 0, int yPos = 0, int width = 0, int height = 0, bool fill = false);
 
 		void Render(SDL_Renderer* renderer) override;
 

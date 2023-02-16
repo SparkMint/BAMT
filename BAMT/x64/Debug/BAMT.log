@@ -1,2 +1,42 @@
-﻿  Main.cpp
-  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe
+﻿  Component.cpp
+C:\BAMT\BAMT\Entity.h(15,15): error C2065: 'Component': undeclared identifier
+C:\BAMT\BAMT\Entity.h(15,25): error C2059: syntax error: '>'
+C:\BAMT\BAMT\Entity.h(39,7): error C2065: 'Component': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,18): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,20): error C3878: syntax error: unexpected token ':' following 'condition'
+C:\BAMT\BAMT\Entity.h(39,20): message : missing one of:  ')' ';' ?
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,20): message : error recovery skipped: ': identifier'
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,32): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(41,24): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(44,27): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+  EngineManager.cpp
+  Entity.cpp
+  Main.cpp
+  RectRenderer.cpp
+  TestComponent.cpp
+C:\BAMT\BAMT\Entity.h(15,15): error C2065: 'Component': undeclared identifier
+C:\BAMT\BAMT\Entity.h(15,25): error C2059: syntax error: '>'
+C:\BAMT\BAMT\Entity.h(39,7): error C2065: 'Component': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,18): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,20): error C3878: syntax error: unexpected token ':' following 'condition'
+C:\BAMT\BAMT\Entity.h(39,20): message : missing one of:  ')' ';' ?
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,20): message : error recovery skipped: ': identifier'
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(39,32): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(41,24): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+C:\BAMT\BAMT\Entity.h(44,27): error C2065: 'c': undeclared identifier
+C:\BAMT\BAMT\Entity.h(26,6): message : This diagnostic occurred in the compiler generated function 'T *Entity::GetComponent(void)'
+  TriRenderer.cpp
+  Generating Code...

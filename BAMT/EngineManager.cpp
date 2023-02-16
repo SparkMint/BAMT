@@ -17,11 +17,6 @@ EngineManager::~EngineManager()
 
 	// Initialize variables.
 	_isActive = false;
-
-	_window = nullptr;
-	_renderer = nullptr;
-	delete _window;
-	delete _renderer;
 }
 #pragma endregion Constructors
 

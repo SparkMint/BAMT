@@ -1,6 +1,6 @@
 #include "RectRenderer.h"
 
-RectRenderer::RectRenderer(float xPos, float yPos, float width, float height, bool fill) : Renderer()
+RectRenderer::RectRenderer(int xPos, int yPos, int width, int height, bool fill) : Renderer()
 {
 	rect = new SDL_Rect();
 	rect->x = xPos;

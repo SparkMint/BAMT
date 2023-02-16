@@ -7,11 +7,11 @@ class Component
 		/// <summary>
 		/// Called when this instance is loaded.
 		/// </summary>
-		void Start();
+		virtual void Start() = 0;
 
 		/// <summary>
 		/// Called every tick.
 		/// </summary>
-		void Update();
+		virtual void Update() = 0;
 };
 #endif // !BAMT_COMPONENT

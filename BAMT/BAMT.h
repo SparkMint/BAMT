@@ -10,13 +10,21 @@
 
 //----------------------\\
 
+#include "EngineManager.h"
 #include "Debug.h"
 #include "Input.h"
-#include "EngineManager.h"
-#include "Entity.h"
-#include "Component.h"
+
+
+// RENDERING 
 #include "Renderer.h"
 #include "RectRenderer.h"
 #include "TriRenderer.h"
+
+
+//ENTITY COMPONENT SYSTEM \\
+
+#include "Entity.h"
+#include "Component.h"
+#include "TestComponent.h"
 
 #endif // !BAMT_ENGINE

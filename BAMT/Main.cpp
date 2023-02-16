@@ -19,10 +19,14 @@ int main(int argc, char* argv[])
 	//engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, new SDL_Point{ 300,300 }, new SDL_Point{ 200,300 }));
 	engineManager->AddRenderTarget(new TriRenderer(new SDL_Point{ 250,200 }, 50));
 
+	Entity* ent = new Entity();
+	ent->AddComponent<TestComponent>();
+	ent->GetComponent<TestComponent>()->Start();
+
+
 	// Game Loop. TODO: Move this into its own thing.
 	while (engineManager->IsActive()) 
 	{
-
 		// Call update method on the GameManager
 		engineManager->Update();
 
