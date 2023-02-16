@@ -6,8 +6,12 @@
 
 #include <vector>
 
+class Component;
+
 class Entity 
 {
+
+
 	private:
 		/// <summary>
 		/// The list of components attached to this entity.
@@ -29,8 +33,23 @@ class Entity
 template<class T>
 inline void Entity::AddComponent()
 {
-	components.push_back(new T);
-	Debug::Log("Component Added to Entity!");
+	// Create a new instance of this Type.
+	T* c = new T();
+
+	// Try use Dynamic Casting to get the base component.
+	Component* componentBase = dynamic_cast<Component*>(c);
+	if (componentBase != nullptr)
+	{
+		componentBase->entity = this;
+		components.push_back(componentBase);
+		Debug::Log("Component Added to Entity!");
+	}
+	else
+	{
+		Debug::Log("Invalid component type!");
+		delete(c);
+	}
+
 }
 
 template<class T>

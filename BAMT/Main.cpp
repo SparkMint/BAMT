@@ -21,7 +21,9 @@ int main(int argc, char* argv[])
 
 	Entity* ent = new Entity();
 	ent->AddComponent<TestComponent>();
-	ent->GetComponent<TestComponent>()->Start();
+	TestComponent* t = ent->GetComponent<TestComponent>();
+	t->entity->GetComponent<TestComponent2>();
+
 
 
 	// Game Loop. TODO: Move this into its own thing.
