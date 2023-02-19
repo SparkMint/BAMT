@@ -2,23 +2,30 @@
 #define BAMT_ENGINE_MANAGER
 
 #include "SDL.h"
-#include "BAMT.h"
+#include "Renderer.h"
+#include "Debug.h"
+#include "TickTimer.h"
 
 #include <iostream>
 #include <vector>
 
-class Renderer;
 
+/// <summary>
+/// Responsible for running the game loop and creating a SDL Window/Renderer to be used elsewhere.
+/// </summary>
 class EngineManager
 {
 	private:
-		bool _isActive;
 		SDL_Window* _window;
 		SDL_Renderer* _renderer;
-		std::vector<Renderer*> _renderTargets;
-		int _tick = 0;
+		std::vector<Entity*> entityList;
+
+		bool _isActive;
 
 	public:
+		TickTimer* tickTimer;
+
+
 		/// <summary>
 		/// Creates an SDL Window and Renderer and configures them.
 		/// </summary>
@@ -49,16 +56,15 @@ class EngineManager
 		void Stop();
 
 		/// <summary>
-		/// Adds a specified Render object to the RenderTargets List.
-		/// </summary>
-		/// <param name="renderTarget">- The object to render.</param>
-		void AddRenderTarget(Renderer* renderTarget);
-
-		/// <summary>
 		/// Checks if this instance is active.
 		/// </summary>
 		/// <returns>- Active state of the EngineManager.</returns>
 		bool IsActive();
+
+		Entity* AddEntity();
+		void RemoveEntity(Entity* ent);
+		void UpdateEntities();
+		void LateUpdateEntities();
 
 		/// <summary>
 		/// Default Constructor.

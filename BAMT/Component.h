@@ -8,7 +8,11 @@ class Entity;
 class Component 
 {
 	public:
+		/// <summary>
+		/// The entity we are attached to.
+		/// </summary>
 		Entity* entity;
+
 		/// <summary>
 		/// Called when this instance is loaded.
 		/// </summary>
@@ -18,5 +22,10 @@ class Component
 		/// Called every tick.
 		/// </summary>
 		virtual void Update() = 0;
+
+		/// <summary>
+		/// Called last on every tick, useful for rendering.
+		/// </summary>
+		virtual void LateUpdate() = 0;
 };
 #endif // !BAMT_COMPONENT

@@ -1,10 +1,10 @@
 #ifndef BAMT_RECTANGLE_RENDERER
 #define BAMT_RECTANGLE_RENDERER
 
-#include "BAMT.h"
+#include "Renderer.h"
 #include "SDL.h"
 
-class RectRenderer : public Renderer 
+class RectRenderer : public Component
 {
 	public:
 		/// <summary>
@@ -17,7 +17,11 @@ class RectRenderer : public Renderer
 		/// <param name="fill">- Should the rectangle be filled?</param>
 		RectRenderer(int xPos = 0, int yPos = 0, int width = 0, int height = 0, bool fill = false);
 
-		void Render(SDL_Renderer* renderer) override;
+		void Start() override;
+		void Update() override;
+		void LateUpdate() override;
+
+		void Render(SDL_Renderer* renderer);
 
 	private:
 		SDL_Rect* rect;

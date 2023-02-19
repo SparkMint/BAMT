@@ -2,8 +2,9 @@
 #define BAMT_RENDERER
 
 #include "SDL.h"
+#include "Component.h"
 
-class Renderer 
+class Renderer : public Component
 {
 	public:
 		Renderer();

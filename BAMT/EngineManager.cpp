@@ -9,8 +9,8 @@ EngineManager::EngineManager()
 	_isActive = false;
 	_window = NULL;
 	_renderer = NULL;
+	tickTimer = NULL;
 }
-
 EngineManager::~EngineManager() 
 {
 	Debug::Log("Engine Instance Destroyed!");
@@ -34,6 +34,9 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	// Create an instance of a Renderer.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
 
+	// Create a new TickTimer.
+	tickTimer = new TickTimer();
+
 	// Check if the window was successfully created.
 	if (_window) Debug::Log("Engine Window Instance Created Successfully!");
 	else Debug::LogError("Engine Window Instance is Null!");
@@ -51,8 +54,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 
 void EngineManager::Update()
 {
-	Input::DoInput();
-	_tick++;
+
 }
 
 void EngineManager::Render()
@@ -62,12 +64,6 @@ void EngineManager::Render()
 
 	// Clears the entire screen to be this colour.
 	SDL_RenderClear(_renderer);
-
-	for (int i = 0; i < _renderTargets.size(); i++)
-	{
-		// Clears the entire screen to be this colour.
-		_renderTargets[i]->Render(_renderer);
-	}
 
 	// Show the result of the Renderer stuff from before.
 	SDL_RenderPresent(_renderer);
@@ -84,13 +80,40 @@ void EngineManager::Stop()
 	Debug::StopCommandThread();
 }
 
-void EngineManager::AddRenderTarget(Renderer* renderTarget)
-{
-	Debug::Log("Render Target Added.");
-	_renderTargets.push_back(renderTarget);
-}
-
 bool EngineManager::IsActive() 
 {
 	return _isActive;
+}
+
+Entity* EngineManager::AddEntity()
+{
+	Entity* ent = new Entity(_renderer);
+	entityList.push_back(ent);
+	Debug::Log("Entity Created!");
+	return ent;
+}
+
+void EngineManager::RemoveEntity(Entity* ent)
+{
+	remove(entityList.begin(), entityList.end(), ent);
+	delete(ent);
+	Debug::Log("Entity Destroyed!");
+}
+
+void EngineManager::UpdateEntities()
+{
+	for (Entity* ent : entityList)
+	{
+		if (ent->active)
+			ent->ComponentsCallUpdate();
+	}
+}
+
+void EngineManager::LateUpdateEntities()
+{
+	for (Entity* ent : entityList)
+	{
+		if (ent->active)
+			ent->ComponentsCallLateUpdate();
+	}
 }

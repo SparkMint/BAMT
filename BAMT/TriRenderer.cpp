@@ -14,6 +14,21 @@ TriRenderer::TriRenderer(SDL_Point* p1, SDL_Point* p2, SDL_Point* p3)
 	point3 = p3;
 }
 
+void TriRenderer::Start()
+{
+
+}
+
+void TriRenderer::Update()
+{
+	Render(entity->renderer);
+}
+
+void TriRenderer::LateUpdate()
+{
+	Render(entity->renderer);
+}
+
 void TriRenderer::Render(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

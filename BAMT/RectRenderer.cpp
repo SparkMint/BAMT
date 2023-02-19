@@ -1,6 +1,6 @@
 #include "RectRenderer.h"
 
-RectRenderer::RectRenderer(int xPos, int yPos, int width, int height, bool fill) : Renderer()
+RectRenderer::RectRenderer(int xPos, int yPos, int width, int height, bool fill)
 {
 	rect = new SDL_Rect();
 	rect->x = xPos;
@@ -10,6 +10,18 @@ RectRenderer::RectRenderer(int xPos, int yPos, int width, int height, bool fill)
 	fillRect = fill;
 }
 
+void RectRenderer::Start()
+{
+}
+
+void RectRenderer::Update()
+{
+}
+
+void RectRenderer::LateUpdate()
+{
+	Render(entity->renderer);
+}
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
 	// Draw the outline for the Rectangle.

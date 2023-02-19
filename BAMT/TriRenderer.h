@@ -1,12 +1,17 @@
 #ifndef BAMT_TRIANGLE_RENDERER
 #define BAMT_TRIANGLE_RENDERER
 
-#include "BAMT.h"
+#include "Renderer.h"
+#include "Debug.h"
 #include "SDL.h"
 
-class TriRenderer : public Renderer
+class TriRenderer : public Component
 {
 public:
+	SDL_Point* point1;
+	SDL_Point* point2;
+	SDL_Point* point3;
+
 	/// <summary>
 	/// Draws an Equilateral triangle.
 	/// </summary>
@@ -22,15 +27,14 @@ public:
 	/// <param name="p3"></param>
 	TriRenderer(SDL_Point* p1 = new SDL_Point{ 100,100 }, SDL_Point* p2 = new SDL_Point{ 200,200 }, SDL_Point* p3 = new SDL_Point{ 100,200 });
 
+	void Start() override;
+	void Update() override;
+	void LateUpdate() override;
+
 	/// <summary>
 	/// Renders the Triangle.
 	/// </summary>
 	/// <param name="renderer">- The renderer that should render this triangle.</param>
-	void Render(SDL_Renderer* renderer) override;
-
-private:
-	SDL_Point* point1;
-	SDL_Point* point2;
-	SDL_Point* point3;
+	void Render(SDL_Renderer* renderer);
 };
 #endif // !BAMT_TRIANGLE_RENDERER

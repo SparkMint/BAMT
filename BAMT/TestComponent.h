@@ -3,16 +3,16 @@
 
 #include "Component.h"
 #include "Debug.h"
+#include "TriRenderer.h"
 
 class TestComponent : public Component
 {
 	public:
 		void Start() override;
 		void Update() override;
-};
-
-class TestComponent2 : public Component
-{
+		void LateUpdate() override;
+		bool bamting;
+		void DoTheBamt();
 };
 
 #endif // !BAMT_TEST_COMPONENT
