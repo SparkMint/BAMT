@@ -1,32 +1,24 @@
 #ifndef BAMT_TRIANGLE_RENDERER
 #define BAMT_TRIANGLE_RENDERER
 
-#include "Renderer.h"
+#include "Component.h"
 #include "Debug.h"
 #include "SDL.h"
+#include "Transform.h"
 
 class TriRenderer : public Component
 {
 public:
-	SDL_Point* point1;
-	SDL_Point* point2;
-	SDL_Point* point3;
+	Transform* transform;
+	int size = 0;
 
 	/// <summary>
 	/// Draws an Equilateral triangle.
 	/// </summary>
-	/// <param name="position">- Center Position of the Triangle.</param>
 	/// <param name="size">- Size of the triangle.</param>
-	TriRenderer(SDL_Point* position, int size);
+	TriRenderer(int size = 0);
 
-	/// <summary>
-	/// Draws a Triangle with specific points.
-	/// </summary>
-	/// <param name="p1"></param>
-	/// <param name="p2"></param>
-	/// <param name="p3"></param>
-	TriRenderer(SDL_Point* p1 = new SDL_Point{ 100,100 }, SDL_Point* p2 = new SDL_Point{ 200,200 }, SDL_Point* p3 = new SDL_Point{ 100,200 });
-
+	// Component overrides.
 	void Start() override;
 	void Update() override;
 	void LateUpdate() override;

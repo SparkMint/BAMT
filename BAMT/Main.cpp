@@ -9,7 +9,6 @@
 
 
 // RENDERING 
-#include "Renderer.h"
 #include "RectRenderer.h"
 #include "TriRenderer.h"
 
@@ -20,6 +19,8 @@
 #include "TestComponent.h"
 
 #include <iostream>
+
+#include "GameObject.h"
 
 auto WINDOW_NAME = "BAMT ENGINE";
 auto RESOLUTION_WIDTH = 640;
@@ -35,9 +36,7 @@ int main(int argc, char* argv[])
 	engineManager = new EngineManager();
 	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
-	Entity* entTest = engineManager->AddEntity();
-	entTest->AddComponent<TriRenderer>(new SDL_Point{ 250,200 }, 50);
-	entTest->AddComponent<TestComponent>();
+	engineManager->AddEntity<GameObject>();
 
 	while (engineManager->IsActive()) 
 	{
@@ -46,11 +45,12 @@ int main(int argc, char* argv[])
 		// Get Input from the User.
 		Input::DoInput();
 
-		engineManager->UpdateEntities();
+		engineManager->Update();
 
+		// currently renders the background for the scene.
 		engineManager->Render();
 
-		engineManager->LateUpdateEntities();
+		engineManager->LateUpdate();
 
 		// Cleans any garbage data. TODO: Implement this.
 		engineManager->Clean();

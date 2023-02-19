@@ -51,7 +51,7 @@ class Entity
 template<class T, typename... TArgs>
 inline void Entity::AddComponent(TArgs&&... mArgs)
 {
-	// Create a new instance of this Type.
+	// Create a new instance of this type and pass its arguments.
 	T* c = (new T(std::forward<TArgs>(mArgs)...));
 
 	// Try use Dynamic Casting to get the base component.

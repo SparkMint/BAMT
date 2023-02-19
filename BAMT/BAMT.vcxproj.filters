@@ -24,21 +24,24 @@
     <Filter Include="Source Files\CORE">
       <UniqueIdentifier>{b91966c1-fe41-48eb-916d-ab08f78471e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{6a65175c-cccc-42aa-a6f5-edd3a2b1d0d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Custom Components">
+      <UniqueIdentifier>{d0b0aa46-7972-4e49-ba36-ebffa2553ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\CustomComponents">
+      <UniqueIdentifier>{e06fe11d-f4c6-4483-89c0-d4a044b9fca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Prefab Entities">
+      <UniqueIdentifier>{0a6ba610-32e5-420d-bbcd-9db8681156a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Prefab Entities">
+      <UniqueIdentifier>{de1df573-abbc-418e-85dc-1b017a6a37de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="RectRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TriRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
@@ -57,20 +60,23 @@
     <ClCompile Include="TickTimer.cpp">
       <Filter>Source Files\CORE</Filter>
     </ClCompile>
+    <ClCompile Include="RectRenderer.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TestComponent.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TriRenderer.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\ECS\Prefab Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RectRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TriRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
@@ -88,6 +94,21 @@
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Header Files\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="TestComponent.h">
+      <Filter>Header Files\ECS\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RectRenderer.h">
+      <Filter>Header Files\ECS\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TriRenderer.h">
+      <Filter>Header Files\ECS\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\ECS\Prefab Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\ECS\Custom Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

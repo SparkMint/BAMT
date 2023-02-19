@@ -1,7 +1,7 @@
 #ifndef BAMT_RECTANGLE_RENDERER
 #define BAMT_RECTANGLE_RENDERER
 
-#include "Renderer.h"
+#include "Component.h"
 #include "SDL.h"
 
 class RectRenderer : public Component

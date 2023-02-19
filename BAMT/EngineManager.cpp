@@ -46,15 +46,10 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
 	// Create a command thread.
-	Debug::CreateCommandThread();
+	//Debug::CreateCommandThread();
 
 	// Sets this GameManager to being Active.
 	_isActive = true;
-}
-
-void EngineManager::Update()
-{
-
 }
 
 void EngineManager::Render()
@@ -85,14 +80,6 @@ bool EngineManager::IsActive()
 	return _isActive;
 }
 
-Entity* EngineManager::AddEntity()
-{
-	Entity* ent = new Entity(_renderer);
-	entityList.push_back(ent);
-	Debug::Log("Entity Created!");
-	return ent;
-}
-
 void EngineManager::RemoveEntity(Entity* ent)
 {
 	remove(entityList.begin(), entityList.end(), ent);
@@ -100,7 +87,7 @@ void EngineManager::RemoveEntity(Entity* ent)
 	Debug::Log("Entity Destroyed!");
 }
 
-void EngineManager::UpdateEntities()
+void EngineManager::Update()
 {
 	for (Entity* ent : entityList)
 	{
@@ -109,7 +96,7 @@ void EngineManager::UpdateEntities()
 	}
 }
 
-void EngineManager::LateUpdateEntities()
+void EngineManager::LateUpdate()
 {
 	for (Entity* ent : entityList)
 	{
