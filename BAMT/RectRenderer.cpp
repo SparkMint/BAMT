@@ -22,14 +22,14 @@ void RectRenderer::Update()
 {
 }
 
-void RectRenderer::LateUpdate()
+void RectRenderer::Render()
 {
-	Render(entity->renderer);
+	DrawRectangle(entity->renderer);
 }
-void RectRenderer::Render(SDL_Renderer* renderer)
+void RectRenderer::DrawRectangle(SDL_Renderer* renderer)
 {
-	rect->x = transform->x() - rect->w / 2;
-	rect->y = transform->y() - rect->h / 2;
+	rect->x = transform->GetX() - rect->w / 2;
+	rect->y = transform->GetY() - rect->h / 2;
 	// Draw the outline for the Rectangle.
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(renderer, rect);
@@ -40,5 +40,4 @@ void RectRenderer::Render(SDL_Renderer* renderer)
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		SDL_RenderFillRect(renderer, rect);
 	}
-	SDL_RenderPresent(renderer);
 }

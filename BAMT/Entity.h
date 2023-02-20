@@ -20,9 +20,14 @@ class Entity
 		Entity(SDL_Renderer* renderer = nullptr);
 
 		/// <summary>
-		/// Should this entity run any logic?
+		/// Should this Entity run any logic?
 		/// </summary>
 		bool active = true;
+
+		/// <summary>
+		/// What layer should this Entity Draw on?
+		/// </summary>
+		int renderLayer = 0;
 
 		/// <summary>
 		/// Reference to an SDL Renderer.
@@ -32,13 +37,12 @@ class Entity
 		/// <summary>
 		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
-		void Update();
+		void Update() const;
 
 		/// <summary>
-		/// Runs LateUpdate on all Components attached to this Entity.
-		///	Typically used by rendering stuff.
+		/// Runs Render on all Components attached to this Entity.
 		/// </summary>
-		void LateUpdate();
+		void Render() const;
 
 		/// <summary>
 		/// Adds a specified Component to this Entity.

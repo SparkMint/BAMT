@@ -2,34 +2,29 @@
 
 Transform::Transform(int x, int y)
 {
-	_x = x;
-	_y = y;
+	SetPosition(x, y);
 }
 
-void Transform::Start()
+void Transform::Start(){}
+void Transform::Update(){}
+void Transform::Render(){}
+
+void Transform::SetX(short int x) const { position->x = x; }
+
+void Transform::SetY(short int y) const { position->y = y; }
+
+short int Transform::GetX() const { return position->x; }
+
+short int Transform::GetY() const { return position->y; }
+
+void Transform::Translate(short int x, short int y) const
 {
-	
-}
-void Transform::Update()
-{
-	
-}
-void Transform::LateUpdate()
-{
-	
+	position->x += x;
+	position->y += y;
 }
 
-int Transform::x() const { return _x; }
-int Transform::y() const { return _y; }
-
-void Transform::Translate(int x, int y)
+void Transform::SetPosition(short int x, short int y) const
 {
-	_x += x;
-	_y += y;
-}
-
-void Transform::Position(int x, int y)
-{
-	_x = x;
-	_y = y;
+	position->x = x;
+	position->y = y;
 }

@@ -35,13 +35,19 @@ int main(int argc, char* argv[])
 
 	Player* p = engineManager->AddEntity<Player>();
 	p->GetComponent<Transform>()->Translate(250, 250);
+	p->renderLayer = 1;
 
-	/*Entity* h = engineManager->AddEntity<Entity>();
+	Player* l = engineManager->AddEntity<Player>();
+	l->GetComponent<Transform>()->Translate(300, 250);
+	l->renderLayer = 3;
+
+
+
+	Entity* h = engineManager->AddEntity<Entity>();
+	h->renderLayer = 2;
 	h->AddComponent<Transform>();
 	h->GetComponent<Transform>()->Translate(250, 250);
 	h->AddComponent<RectRenderer>(51, 51, true);
-	h->AddComponent<PlayerInput>();
-	h->GetComponent<PlayerInput>()->movementSpeed = -2;*/
 
 	while (engineManager->IsActive()) 
 	{
@@ -53,8 +59,6 @@ int main(int argc, char* argv[])
 		engineManager->Update();
 
 		engineManager->Render();
-
-		engineManager->LateUpdate();
 
 		// Cleans any garbage data. TODO: Implement this.
 		engineManager->Clean();

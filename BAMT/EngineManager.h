@@ -1,12 +1,13 @@
 #ifndef BAMT_ENGINE_MANAGER
 #define BAMT_ENGINE_MANAGER
 
+#include "Entity.h"
 #include "SDL.h"
 #include "Debug.h"
 #include "TickTimer.h"
-#include <vector>
 
-#include "Entity.h"
+#include <vector>
+#include <algorithm>
 
 class EngineManager
 {
@@ -35,14 +36,9 @@ class EngineManager
 		void Update();
 
 		/// <summary>
-		/// Renders the scene. TODO: Change how rendering as a whole works.
+		/// Renders the scene.
 		/// </summary>
 		void Render();
-
-		/// <summary>
-		/// Calls the LateUpdate function on all Entities attached to the Engine.
-		/// </summary>
-		void LateUpdate();
 
 		/// <summary>
 		/// Cleans any unused data from the Engine. TODO: Get this functioning.
@@ -67,6 +63,11 @@ class EngineManager
 		/// Destroys a specified Entity and removes it from the Entity List.
 		/// </summary>
 		void RemoveEntity(Entity* ent);
+
+		/// <summary>
+		/// Sorts all Entities in the entityList by its renderLayer number.
+		/// </summary>
+		void SortEntities();
 
 
 		//Constructor/Destructor

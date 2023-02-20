@@ -1,5 +1,12 @@
-﻿  Debug.cpp
-C:\BAMT\BAMT\Debug.cpp(104,25): warning C4312: 'type cast': conversion from 'int' to 'void *' of greater size
+﻿  Component.cpp
+  EngineManager.cpp
+C:\BAMT\BAMT\EngineManager.cpp(93,8): warning C4834: discarding return value of function with 'nodiscard' attribute
+  Entity.cpp
   Main.cpp
+  Player.cpp
+  PlayerInput.cpp
+  RectRenderer.cpp
+  Transform.cpp
+  TriRenderer.cpp
   Generating Code...
   BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

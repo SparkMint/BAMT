@@ -24,8 +24,8 @@ class Component
 		virtual void Update() = 0;
 
 		/// <summary>
-		/// Called last on every tick, useful for rendering.
+		/// Used for rendering.
 		/// </summary>
-		virtual void LateUpdate() = 0;
+		virtual void Render() = 0;
 };
 #endif

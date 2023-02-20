@@ -7,36 +7,42 @@
 class Entity;
 class Component;
 
+
+struct Vector2
+{
+	short int x = 0;
+	short int y = 0;
+};
+
 class Transform : public Component
 {
-	int _x = 0;
-	int _y = 0;
+	Vector2* position = new Vector2{0, 0};
 
 	public:
 		Transform(int x = 0, int y = 0);
 
 		void Start() override;
 		void Update() override;
-		void LateUpdate() override;
+		void Render() override;
 
-		/// <summary>
-		/// Returns X position of this transform.
-		/// </summary>
-		int x() const;
 
-		/// <summary>
-		/// Returns Y position of this transform.
-		/// </summary>
-		int y() const;
+		// Getter / Setter Functions
+
+		void SetX(short int x) const;
+		void SetY(short int y) const;
+
+		short int GetX() const;
+		short int GetY() const;
+
 
 		/// <summary>
 		/// Moves this transform by X and Y.
 		/// </summary>
-		void Translate(int x, int y);
+		void Translate(short int x, short int y) const;
 
 		/// <summary>
 		/// Sets the position of the Transform to a specified location.
 		/// </summary>
-		void Position(int x = 0, int y = 0);
+		void SetPosition(short int x = 0, short int y = 0) const;
 };
 #endif

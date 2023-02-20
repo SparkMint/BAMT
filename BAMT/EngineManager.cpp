@@ -60,6 +60,14 @@ void EngineManager::Render()
 	// Clears the entire screen to be this colour.
 	SDL_RenderClear(_renderer);
 
+	// TODO: Have this run only when needed.
+	SortEntities();
+
+	for (const Entity* ent : entityList)
+	{
+		if (ent->active)
+			ent->Render();
+	}
 	// Show the result of the Renderer stuff from before.
 	SDL_RenderPresent(_renderer);
 }
@@ -87,20 +95,17 @@ void EngineManager::RemoveEntity(Entity* ent)
 	Debug::Log("Entity Destroyed!");
 }
 
+void EngineManager::SortEntities()
+{
+	std::sort(entityList.begin(), entityList.end(), [](const Entity* a, const Entity* b)
+	{return a->renderLayer < b->renderLayer;});
+}
+
 void EngineManager::Update()
 {
 	for (Entity* ent : entityList)
 	{
 		if (ent->active)
 			ent->Update();
-	}
-}
-
-void EngineManager::LateUpdate()
-{
-	for (Entity* ent : entityList)
-	{
-		if (ent->active)
-			ent->LateUpdate();
 	}
 }

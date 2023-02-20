@@ -20,6 +20,6 @@ class PlayerInput : public Component
 
 		void Update() override;
 
-		void LateUpdate() override;
+		void Render() override;
 };
 #endif

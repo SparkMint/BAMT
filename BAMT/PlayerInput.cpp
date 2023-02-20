@@ -30,6 +30,6 @@ void PlayerInput::Update()
     }
 }
 
-void PlayerInput::LateUpdate()
+void PlayerInput::Render()
 {
 }

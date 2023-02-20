@@ -9,7 +9,7 @@
 class TriRenderer : public Component
 {
 	public:
-		TriRenderer(int size = 0);
+		TriRenderer(short int size = 0);
 
 		/// <summary>
 		/// Transform of the entity we are attached to.
@@ -19,17 +19,17 @@ class TriRenderer : public Component
 		/// <summary>
 		/// Size of the Triangle.
 		/// </summary>
-		int size = 0;
+		short int size = 0;
 
 		// Component overrides.
 		void Start() override;
 		void Update() override;
-		void LateUpdate() override;
+		void Render() override;
 
 		/// <summary>
 		/// Renders the Triangle.
 		/// </summary>
 		/// <param name="renderer">- The renderer that should render this triangle.</param>
-		void Render(SDL_Renderer* renderer);
+		void DrawTriangle(SDL_Renderer* renderer) const;
 };
 #endif

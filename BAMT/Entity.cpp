@@ -9,12 +9,13 @@ Entity::Entity(SDL_Renderer* SDLRenderer)
 	//transform = GetComponent<Transform>();
 }
 
-void Entity::Update()
+
+void Entity::Update() const
 {
 	for (Component* c : _components) c->Update();
 }
 
-void Entity::LateUpdate()
+void Entity::Render() const
 {
-	for (Component* c : _components) c->LateUpdate();
+	for (Component* c : _components) c->Render();
 }
