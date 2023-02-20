@@ -9,8 +9,7 @@
 /// </summary>
 class TickTimer 
 {
-	private:
-		int startTicks;
+	int startTicks;
 
 	public:
 		TickTimer();
@@ -20,9 +19,7 @@ class TickTimer
 		/// </summary>
 		void ResetTimer();
 
-		/// <returns>Amount of ticks that has passed since the timer was reset.</returns>
+		///<returns>Amount of ticks that has passed since the timer was reset.</returns>
 		int GetTicks();
 };
-
-#endif // !BAMT_TICK_TIMER
-
+#endif

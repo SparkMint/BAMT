@@ -28,4 +28,4 @@ class Component
 		/// </summary>
 		virtual void LateUpdate() = 0;
 };
-#endif // !BAMT_COMPONENT
+#endif

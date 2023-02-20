@@ -92,7 +92,7 @@ void EngineManager::Update()
 	for (Entity* ent : entityList)
 	{
 		if (ent->active)
-			ent->ComponentsCallUpdate();
+			ent->Update();
 	}
 }
 
@@ -101,6 +101,6 @@ void EngineManager::LateUpdate()
 	for (Entity* ent : entityList)
 	{
 		if (ent->active)
-			ent->ComponentsCallLateUpdate();
+			ent->LateUpdate();
 	}
 }

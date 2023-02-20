@@ -11,42 +11,51 @@ class Component;
 
 class Entity 
 {
-	private:
-		/// <summary>
-		/// The list of components attached to this entity.
-		/// </summary>
-		std::vector<Component*> components;
+	/// <summary>
+	/// The list of Components attached to this entity.
+	/// </summary>
+	std::vector<Component*> _components;
 
 	public:
-		Entity();
-		Entity(SDL_Renderer* renderer);
+		Entity(SDL_Renderer* renderer = nullptr);
 
 		/// <summary>
-		/// If active, components on this entity will call their respective logic.
+		/// Should this entity run any logic?
 		/// </summary>
-		bool active;
-
-		// Pointer reference to the renderer.
-		SDL_Renderer* renderer;
+		bool active = true;
 
 		/// <summary>
-		/// Runs all component logic on this entity.
+		/// Reference to an SDL Renderer.
 		/// </summary>
-		void ComponentsCallUpdate();
+		SDL_Renderer* renderer = nullptr;
 
 		/// <summary>
-		/// Runs all component logic on this entity.
+		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
-		void ComponentsCallLateUpdate();
+		void Update();
 
-		// Having to put implementation into a header file is annoying, but its
-		// the only way for this to work. Fun.
+		/// <summary>
+		/// Runs LateUpdate on all Components attached to this Entity.
+		///	Typically used by rendering stuff.
+		/// </summary>
+		void LateUpdate();
+
+		/// <summary>
+		/// Adds a specified Component to this Entity.
+		/// </summary>
+		/// <typeparam name="T">- The Component to add.</typeparam>
 		template<class T, typename... TArgs>
 		void AddComponent(TArgs&&... mArgs);
 
+		/// <summary>
+		/// Tries to get a Component from this Entity.
+		/// </summary>
 		template<class T>
 		T* GetComponent();
 };
+
+// Implementation for Templates is easiest within the header file.
+// Its annoying, but its the only way I can get this to work.
 
 template<class T, typename... TArgs>
 inline void Entity::AddComponent(TArgs&&... mArgs)
@@ -59,7 +68,7 @@ inline void Entity::AddComponent(TArgs&&... mArgs)
 	if (componentBase != nullptr)
 	{
 		componentBase->entity = this;
-		components.push_back(componentBase);
+		_components.push_back(componentBase);
 		Debug::Log("Component Added to Entity!");
 
 		// Run the start function on the newly created component.
@@ -67,7 +76,7 @@ inline void Entity::AddComponent(TArgs&&... mArgs)
 	}
 	else
 	{
-		Debug::Log("Invalid component type!");
+		Debug::Log("Invalid Component type!");
 		delete(c);
 	}
 }
@@ -75,17 +84,15 @@ inline void Entity::AddComponent(TArgs&&... mArgs)
 template<class T>
 inline T* Entity::GetComponent() 
 {
-	for (Component* c : components)
+	for (Component* c : _components)
 	{
 		if (dynamic_cast<T*>(c))
 		{
-			//Debug::Log("Component Found on Entity.");
+			Debug::Log("Component Found on Entity!");
 			return static_cast<T*>(c);
 		}
 	}
-	Debug::LogError("Component could not be found on this entity.");
+	Debug::LogError("Component could not be found on this Entity!");
 	return nullptr;
 }
-
-
-#endif // !BAMT_ENTITY
+#endif

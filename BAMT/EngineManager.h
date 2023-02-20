@@ -8,47 +8,64 @@
 
 #include "Entity.h"
 
-
-/// <summary>
-/// Responsible for running the game loop and creating a SDL Window/Renderer to be used elsewhere.
-/// </summary>
 class EngineManager
 {
-	private:
-		SDL_Window* _window;
-		SDL_Renderer* _renderer;
-		std::vector<Entity*> entityList;
+	SDL_Window* _window;
+	SDL_Renderer* _renderer;
+	std::vector<Entity*> entityList;
 
-		bool _isActive;
+	bool _isActive;
 
 	public:
 		TickTimer* tickTimer;
 
+		/// <summary>
+		/// Returns if the Engine is active or not.
+		/// </summary>
 		bool IsActive();
 
 		/// <summary>
-		/// Creates an SDL Window and Renderer and configures them.
+		/// Creates an SDL Window and SDL Renderer and configures them.
 		/// </summary>
-		/// <param name="windowName">- The name of the window.</param>
-		/// <param name="windowWidth">- The size of the window in width.</param>
-		/// <param name="windowHeight">- The size of the window in height.</param>
-		/// <param name="fullscreen">- Should the window be in fullscreen?</param>
 		void Initialize(const char* windowName = "BAMT ENGINE", int windowWidth = 640, int windowHeight = 480, bool fullscreen = false);
 
+		/// <summary>
+		/// Calls the Update function on all Entities attached to the Engine.
+		/// </summary>
 		void Update();
 
+		/// <summary>
+		/// Renders the scene. TODO: Change how rendering as a whole works.
+		/// </summary>
 		void Render();
 
+		/// <summary>
+		/// Calls the LateUpdate function on all Entities attached to the Engine.
+		/// </summary>
 		void LateUpdate();
 
+		/// <summary>
+		/// Cleans any unused data from the Engine. TODO: Get this functioning.
+		/// </summary>
 		void Clean();
 
+		/// <summary>
+		/// Stops the Engine.
+		/// </summary>
 		void Stop();
 
 
-		// ECS Stuff.
+		// ENTITY COMPONENT SYSTEM STUFF
+		
+		/// <summary>
+		/// Creates an Entity of the specified type and adds it to the Entity List.
+		/// </summary>
 		template<class T, typename... TArgs>
 		T* AddEntity(TArgs&&... mArgs);
+
+		/// <summary>
+		/// Destroys a specified Entity and removes it from the Entity List.
+		/// </summary>
 		void RemoveEntity(Entity* ent);
 
 
@@ -57,21 +74,26 @@ class EngineManager
 		~EngineManager();
 };
 
-// Implementation for AddEntity here because templates are stupid and seem to never work
-// where I want them to.
+// Implementation for Templates is easiest within the header file.
+// Its annoying, but its the only way I can get this to work.
+
 template<class T, typename... TArgs>
 inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 {
 	Debug::Log("Creating Entity...");
 	// Create a new instance of this type and pass its arguments.
-	T* ent = (new T(std::forward<TArgs>(mArgs)...));
+	T* ent = new T(std::forward<TArgs>(mArgs)...);
 
-	// Try use Dynamic Casting to get the base component.
+	// Use Dynamic Casting to find if the type given is derived from Entity.
 	Entity* entityBase = dynamic_cast<Entity*>(ent);
 	if (entityBase != nullptr)
 	{
+		// Add the entity to our entity list.
 		entityList.push_back(entityBase);
+
+		// Give the entity stuff required to run.
 		entityBase->renderer = _renderer;
+
 		Debug::Log("Entity Successfully Created!");
 		return ent;
 	}
@@ -81,4 +103,4 @@ inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 	delete(ent);
 	return nullptr;
 }
-#endif // !GAME_MANAGER
+#endif

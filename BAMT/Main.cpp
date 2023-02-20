@@ -16,17 +16,14 @@
 //ENTITY COMPONENT SYSTEM
 #include "Entity.h"
 #include "Component.h"
-#include "TestComponent.h"
 
-#include <iostream>
-
-#include "GameObject.h"
+#include "Player.h"
 
 auto WINDOW_NAME = "BAMT ENGINE";
-auto RESOLUTION_WIDTH = 640;
-auto RESOLUTION_HEIGHT = 480;
+auto RESOLUTION_WIDTH = 1280;
+auto RESOLUTION_HEIGHT = 720;
 
-int DELTA_TIME = 20;
+int DELTA_TIME = 16;
 
 EngineManager* engineManager;
 
@@ -36,7 +33,15 @@ int main(int argc, char* argv[])
 	engineManager = new EngineManager();
 	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
-	engineManager->AddEntity<GameObject>();
+	Player* p = engineManager->AddEntity<Player>();
+	p->GetComponent<Transform>()->Translate(250, 250);
+
+	/*Entity* h = engineManager->AddEntity<Entity>();
+	h->AddComponent<Transform>();
+	h->GetComponent<Transform>()->Translate(250, 250);
+	h->AddComponent<RectRenderer>(51, 51, true);
+	h->AddComponent<PlayerInput>();
+	h->GetComponent<PlayerInput>()->movementSpeed = -2;*/
 
 	while (engineManager->IsActive()) 
 	{
@@ -47,7 +52,6 @@ int main(int argc, char* argv[])
 
 		engineManager->Update();
 
-		// currently renders the background for the scene.
 		engineManager->Render();
 
 		engineManager->LateUpdate();
@@ -68,7 +72,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
 
 // Old Renderer Examples.
 //engineManager->AddRenderTarget(new RectRenderer(200, 150, 250, 250, false));

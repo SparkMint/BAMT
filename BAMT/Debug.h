@@ -1,9 +1,10 @@
 #ifndef BAMT_DEBUG
 #define BAMT_DEBUG
 
+#include "windows.h"
+
 #include <iostream>
 #include <sstream>
-#include "windows.h"
 
 namespace Debug
 {
@@ -38,7 +39,7 @@ namespace Debug
 	/// <summary>
 	/// Returns the current time as a string.
 	/// </summary>
-	/// <returns>Format: YEAR-MONTH-DAY HOUR:MINUTE:SECOND</returns>
+	/// <returns>Format: [YEAR-MONTH-DAY HOUR:MINUTE:SECOND]</returns>
 	std::string GetTime();
 
 	/// <summary>
@@ -65,4 +66,4 @@ namespace Debug
 	int ConsoleGetCommandInput(void* data);
 	#pragma endregion CommandInputs
 }
-#endif // !DEBUG
+#endif

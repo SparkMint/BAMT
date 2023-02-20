@@ -1,4 +1,5 @@
-﻿  Main.cpp
-  TriRenderer.cpp
+﻿  Debug.cpp
+C:\BAMT\BAMT\Debug.cpp(104,25): warning C4312: 'type cast': conversion from 'int' to 'void *' of greater size
+  Main.cpp
   Generating Code...
   BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

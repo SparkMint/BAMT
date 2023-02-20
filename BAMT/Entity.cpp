@@ -1,23 +1,20 @@
 #include "Entity.h"
 
-Entity::Entity()
-{
-	active = true;
-	renderer = NULL;
-}
-
 Entity::Entity(SDL_Renderer* SDLRenderer)
 {
 	active = true;
 	renderer = SDLRenderer;
+
+	//AddComponent<Transform>();
+	//transform = GetComponent<Transform>();
 }
 
-void Entity::ComponentsCallUpdate()
+void Entity::Update()
 {
-	for (Component* c : components) c->Update();
+	for (Component* c : _components) c->Update();
 }
 
-void Entity::ComponentsCallLateUpdate()
+void Entity::LateUpdate()
 {
-	for (Component* c : components) c->LateUpdate();
+	for (Component* c : _components) c->LateUpdate();
 }

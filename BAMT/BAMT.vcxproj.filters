@@ -63,17 +63,17 @@
     <ClCompile Include="RectRenderer.cpp">
       <Filter>Source Files\ECS\CustomComponents</Filter>
     </ClCompile>
-    <ClCompile Include="TestComponent.cpp">
-      <Filter>Source Files\ECS\CustomComponents</Filter>
-    </ClCompile>
     <ClCompile Include="TriRenderer.cpp">
       <Filter>Source Files\ECS\CustomComponents</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\ECS\CustomComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files\ECS\Prefab Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,19 +95,19 @@
     <ClInclude Include="Debug.h">
       <Filter>Header Files\CORE</Filter>
     </ClInclude>
-    <ClInclude Include="TestComponent.h">
-      <Filter>Header Files\ECS\Custom Components</Filter>
-    </ClInclude>
     <ClInclude Include="RectRenderer.h">
       <Filter>Header Files\ECS\Custom Components</Filter>
     </ClInclude>
     <ClInclude Include="TriRenderer.h">
       <Filter>Header Files\ECS\Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
+    <ClInclude Include="Player.h">
       <Filter>Header Files\ECS\Prefab Entities</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Header Files\ECS\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
       <Filter>Header Files\ECS\Custom Components</Filter>
     </ClInclude>
   </ItemGroup>
