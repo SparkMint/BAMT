@@ -20,8 +20,8 @@
 #include "Player.h"
 
 auto WINDOW_NAME = "BAMT ENGINE";
-auto RESOLUTION_WIDTH = 1280;
-auto RESOLUTION_HEIGHT = 720;
+auto RESOLUTION_WIDTH = 640;
+auto RESOLUTION_HEIGHT = 480;
 
 int DELTA_TIME = 16;
 
@@ -38,9 +38,9 @@ int main(int argc, char* argv[])
 	p->renderLayer = 1;
 
 	Player* l = engineManager->AddEntity<Player>();
-	l->GetComponent<Transform>()->Translate(300, 250);
+	l->GetComponent<Transform>()->Translate(250, 250);
+	l->GetComponent<PlayerInput>()->movementSpeed = -2;
 	l->renderLayer = 3;
-
 
 
 	Entity* h = engineManager->AddEntity<Entity>();

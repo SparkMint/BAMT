@@ -4,9 +4,6 @@ Entity::Entity(SDL_Renderer* SDLRenderer)
 {
 	active = true;
 	renderer = SDLRenderer;
-
-	//AddComponent<Transform>();
-	//transform = GetComponent<Transform>();
 }
 
 
