@@ -7,47 +7,47 @@
 #include "Debug.h"
 #include "Input.h"
 
-
-// RENDERING 
-#include "RectRenderer.h"
-#include "TriRenderer.h"
-
-
 //ENTITY COMPONENT SYSTEM
 #include "Entity.h"
 #include "Component.h"
 
 #include "Player.h"
 
+#include "PlayerMoveMouse.h"
+
+
+// RENDERING 
+#include "RectRenderer.h"
+#include "TriRenderer.h"
+
 auto WINDOW_NAME = "BAMT ENGINE";
-auto RESOLUTION_WIDTH = 640;
-auto RESOLUTION_HEIGHT = 480;
+auto RESOLUTION_WIDTH = 1280;
+auto RESOLUTION_HEIGHT = 720;
 
 int DELTA_TIME = 16;
+int HOW_MANY_SNAKE_SEGMENTS = 500;
 
 EngineManager* engineManager;
 
 int main(int argc, char* argv[])
 {
+	//srand(time(0));
+
+	std::vector<Player*> SnekSegments;
 	// Create and initialize our Engine.
 	engineManager = new EngineManager();
 	engineManager->Initialize(WINDOW_NAME, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, false);
 
-	Player* p = engineManager->AddEntity<Player>();
-	p->GetComponent<Transform>()->Translate(250, 250);
-	p->renderLayer = 1;
+	for (int i = 0; i < HOW_MANY_SNAKE_SEGMENTS; i++)
+	{
+		SnekSegments.push_back(engineManager->AddEntity<Player>());
+	}
 
-	Player* l = engineManager->AddEntity<Player>();
-	l->GetComponent<Transform>()->Translate(250, 250);
-	l->GetComponent<PlayerInput>()->movementSpeed = -2;
-	l->renderLayer = 3;
+	for (int i = 0; i <= SnekSegments.size() - 1; i++)
+	{
+		SnekSegments[i]->GetComponent<PlayerMoveMouse>()->movementdelay = i;
+	}
 
-
-	Entity* h = engineManager->AddEntity<Entity>();
-	h->renderLayer = 2;
-	h->AddComponent<Transform>();
-	h->GetComponent<Transform>()->Translate(250, 250);
-	h->AddComponent<RectRenderer>(51, 51, true);
 
 	while (engineManager->IsActive()) 
 	{
@@ -65,6 +65,7 @@ int main(int argc, char* argv[])
 
 		if (engineManager->tickTimer->GetTicks() < DELTA_TIME)
 		{
+
 			SDL_Delay(DELTA_TIME - engineManager->tickTimer->GetTicks());
 		}
 	}

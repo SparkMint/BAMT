@@ -10,8 +10,8 @@ class Component;
 
 struct Vector2
 {
-	short int x = 0;
-	short int y = 0;
+	int x = 0;
+	int y = 0;
 };
 
 class Transform : public Component
@@ -28,21 +28,21 @@ class Transform : public Component
 
 		// Getter / Setter Functions
 
-		void SetX(short int x) const;
-		void SetY(short int y) const;
+		void SetX(int x) const;
+		void SetY(int y) const;
 
-		short int GetX() const;
-		short int GetY() const;
+		int GetX() const;
+		int GetY() const;
 
 
 		/// <summary>
 		/// Moves this transform by X and Y.
 		/// </summary>
-		void Translate(short int x, short int y) const;
+		void Translate(int x, int y) const;
 
 		/// <summary>
 		/// Sets the position of the Transform to a specified location.
 		/// </summary>
-		void SetPosition(short int x = 0, short int y = 0) const;
+		void SetPosition(int x = 0, int y = 0) const;
 };
 #endif

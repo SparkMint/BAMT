@@ -32,5 +32,7 @@ class RectRenderer : public Component
 		/// Renders the Rectangle using an SDL Renderer.
 		/// </summary>
 		void DrawRectangle(SDL_Renderer* renderer);
+
+		void UpdateSize(int x, int y);
 };
 #endif

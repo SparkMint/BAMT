@@ -22,7 +22,7 @@ void TriRenderer::Render()
 
 void TriRenderer::DrawTriangle(SDL_Renderer* renderer) const
 {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 
 	//point1 = transform->GetX(), transform->SetY() - size / 2;
 	//point2 = transform->GetX() - size / 2, transform->SetY() + size / 2 ;

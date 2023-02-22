@@ -1,8 +1,6 @@
 #ifndef BAMT_COMPONENT
 #define BAMT_COMPONENT
 
-#include "Entity.h"
-
 class Entity;
 
 class Component 

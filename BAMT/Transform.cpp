@@ -9,21 +9,21 @@ void Transform::Start(){}
 void Transform::Update(){}
 void Transform::Render(){}
 
-void Transform::SetX(short int x) const { position->x = x; }
+void Transform::SetX(int x) const { position->x = x; }
 
-void Transform::SetY(short int y) const { position->y = y; }
+void Transform::SetY(int y) const { position->y = y; }
 
-short int Transform::GetX() const { return position->x; }
+int Transform::GetX() const { return position->x; }
 
-short int Transform::GetY() const { return position->y; }
+int Transform::GetY() const { return position->y; }
 
-void Transform::Translate(short int x, short int y) const
+void Transform::Translate(int x, int y) const
 {
 	position->x += x;
 	position->y += y;
 }
 
-void Transform::SetPosition(short int x, short int y) const
+void Transform::SetPosition(int x, int y) const
 {
 	position->x = x;
 	position->y = y;

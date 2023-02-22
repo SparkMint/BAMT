@@ -3,6 +3,7 @@
 Player::Player()
 {
 	AddComponent<Transform>();
-	AddComponent<PlayerInput>();
-	AddComponent<TriRenderer>(50);
+	AddComponent<PlayerMoveMouse>();
+	AddComponent<TriRenderer>(30);
+	//AddComponent<RectRenderer>(30,30,true);
 }
