@@ -24,8 +24,8 @@ auto WINDOW_NAME = "BAMT ENGINE";
 auto RESOLUTION_WIDTH = 1280;
 auto RESOLUTION_HEIGHT = 720;
 
-int DELTA_TIME = 16;
-int HOW_MANY_SNAKE_SEGMENTS = 500;
+int DELTA_TIME = 10;
+int HOW_MANY_SNAKE_SEGMENTS = 100;
 
 EngineManager* engineManager;
 
@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
 	for (int i = 0; i <= SnekSegments.size() - 1; i++)
 	{
 		SnekSegments[i]->GetComponent<PlayerMoveMouse>()->movementdelay = i;
+		SnekSegments[i]->GetComponent<RectRenderer>()->UpdateSize(i, i);
 	}
 
 
