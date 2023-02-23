@@ -1,9 +1,8 @@
 #include "Entity.h"
 
-Entity::Entity(SDL_Renderer* SDLRenderer)
+Entity::Entity()
 {
 	active = true;
-	renderer = SDLRenderer;
 }
 
 
@@ -12,7 +11,7 @@ void Entity::Update() const
 	for (Component* c : _components) c->Update();
 }
 
-void Entity::Render() const
+void Entity::Render(SDL_Renderer* renderer) const
 {
-	for (Component* c : _components) c->Render();
+	for (Component* c : _components) c->Render(renderer);
 }

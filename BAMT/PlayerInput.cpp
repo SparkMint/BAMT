@@ -30,6 +30,6 @@ void PlayerInput::Update()
     }
 }
 
-void PlayerInput::Render()
+void PlayerInput::Render(SDL_Renderer* renderer)
 {
 }

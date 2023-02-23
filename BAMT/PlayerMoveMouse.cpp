@@ -24,6 +24,6 @@ void PlayerMoveMouse::Update()
     }
 }
 
-void PlayerMoveMouse::Render()
+void PlayerMoveMouse::Render(SDL_Renderer* renderer)
 {
 }

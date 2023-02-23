@@ -11,15 +11,16 @@
 
 class EngineManager
 {
-	SDL_Window* _window;
-	SDL_Renderer* _renderer;
+	SDL_Window* _window = nullptr;
+	SDL_Renderer* _renderer = nullptr;
+	TickTimer* _tickTimer = nullptr;
+
 	std::vector<Entity*> entityList;
 
-	bool _isActive;
+	bool _isActive = false;
+	int _deltaTime = 16;
 
 	public:
-		TickTimer* tickTimer;
-
 		/// <summary>
 		/// Returns if the Engine is active or not.
 		/// </summary>
@@ -28,7 +29,15 @@ class EngineManager
 		/// <summary>
 		/// Creates an SDL Window and SDL Renderer and configures them.
 		/// </summary>
-		void Initialize(const char* windowName = "BAMT ENGINE", int windowWidth = 640, int windowHeight = 480, bool fullscreen = false);
+		void Initialize(const char* windowName = "BAMT ENGINE",
+			int windowWidth = 640, int windowHeight = 480,
+			bool fullscreen = false,
+			int deltaTime = 16);
+
+		/// <summary>
+		/// Runs the engine loop.
+		/// </summary>
+		void RunLoop();
 
 		/// <summary>
 		/// Calls the Update function on all Entities attached to the Engine.
@@ -91,9 +100,6 @@ inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 	{
 		// Add the entity to our entity list.
 		entityList.push_back(entityBase);
-
-		// Give the entity stuff required to run.
-		entityBase->renderer = _renderer;
 
 		Debug::Log("Entity Successfully Created!");
 		return ent;

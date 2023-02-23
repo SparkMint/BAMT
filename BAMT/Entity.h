@@ -17,7 +17,7 @@ class Entity
 	std::vector<Component*> _components;
 
 	public:
-		Entity(SDL_Renderer* renderer = nullptr);
+		Entity();
 
 		/// <summary>
 		/// Should this Entity run any logic?
@@ -30,11 +30,6 @@ class Entity
 		int renderLayer = 0;
 
 		/// <summary>
-		/// Reference to an SDL Renderer.
-		/// </summary>
-		SDL_Renderer* renderer = nullptr;
-
-		/// <summary>
 		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
 		void Update() const;
@@ -42,7 +37,7 @@ class Entity
 		/// <summary>
 		/// Runs Render on all Components attached to this Entity.
 		/// </summary>
-		void Render() const;
+		void Render(SDL_Renderer* renderer) const;
 
 		/// <summary>
 		/// Adds a specified Component to this Entity.

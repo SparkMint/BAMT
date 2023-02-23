@@ -7,7 +7,7 @@ Transform::Transform(int x, int y)
 
 void Transform::Start(){}
 void Transform::Update(){}
-void Transform::Render(){}
+void Transform::Render(SDL_Renderer* renderer){}
 
 void Transform::SetX(int x) const { position->x = x; }
 

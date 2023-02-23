@@ -6,6 +6,7 @@ RectRenderer::RectRenderer(int width, int height, bool fill)
 	rect->w = width;
 	rect->h = height;
 	fillRect = fill;
+	transform = nullptr;
 }
 
 void RectRenderer::Start()
@@ -20,14 +21,9 @@ void RectRenderer::Start()
 
 void RectRenderer::Update()
 {
-
 }
 
-void RectRenderer::Render()
-{
-	DrawRectangle(entity->renderer);
-}
-void RectRenderer::DrawRectangle(SDL_Renderer* renderer)
+void RectRenderer::Render(SDL_Renderer* renderer)
 {
 	rect->x = transform->GetX() - rect->w / 2;
 	rect->y = transform->GetY() - rect->h / 2;
@@ -43,7 +39,7 @@ void RectRenderer::DrawRectangle(SDL_Renderer* renderer)
 	if (fillRect)
 	{
 		// Fill the inside of the Rectangle.
-		SDL_SetRenderDrawColor(renderer,  r, g, b, a);
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 		SDL_RenderFillRect(renderer, rect);
 	}
 }

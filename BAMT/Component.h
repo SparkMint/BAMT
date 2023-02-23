@@ -1,5 +1,6 @@
 #ifndef BAMT_COMPONENT
 #define BAMT_COMPONENT
+#include <SDL_render.h>
 
 class Entity;
 
@@ -24,6 +25,6 @@ class Component
 		/// <summary>
 		/// Used for rendering.
 		/// </summary>
-		virtual void Render() = 0;
+		virtual void Render(SDL_Renderer* renderer) = 0;
 };
 #endif

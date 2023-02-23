@@ -78,7 +78,9 @@
     <ClCompile Include="PlayerMoveMouse.h">
       <Filter>Header Files\ECS\Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoveMouse.cpp" />
+    <ClCompile Include="PlayerMoveMouse.cpp">
+      <Filter>Source Files\ECS\CustomComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">

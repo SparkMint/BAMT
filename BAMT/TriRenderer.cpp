@@ -15,12 +15,7 @@ void TriRenderer::Update()
 {
 }
 
-void TriRenderer::Render()
-{
-	DrawTriangle(entity->renderer);
-}
-
-void TriRenderer::DrawTriangle(SDL_Renderer* renderer) const
+void TriRenderer::Render(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 

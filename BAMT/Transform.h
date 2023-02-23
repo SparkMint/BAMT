@@ -23,7 +23,7 @@ class Transform : public Component
 
 		void Start() override;
 		void Update() override;
-		void Render() override;
+		void Render(SDL_Renderer* renderer) override;
 
 
 		// Getter / Setter Functions

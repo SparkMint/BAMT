@@ -26,12 +26,7 @@ class RectRenderer : public Component
 
 		void Start() override;
 		void Update() override;
-		void Render() override;
-
-		/// <summary>
-		/// Renders the Rectangle using an SDL Renderer.
-		/// </summary>
-		void DrawRectangle(SDL_Renderer* renderer);
+		void Render(SDL_Renderer* renderer) override;
 
 		void UpdateSize(int x, int y);
 };

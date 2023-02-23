@@ -1,28 +1,22 @@
 #include "EngineManager.h"
 
+#include "Input.h"
+
 #pragma region Constructors
 EngineManager::EngineManager()
 {
 	Debug::Log("Engine Instance Created!");
-
-	// Initialize variables.
-	_isActive = false;
-	_window = NULL;
-	_renderer = NULL;
-	tickTimer = NULL;
 }
 EngineManager::~EngineManager() 
 {
 	Debug::Log("Engine Instance Destroyed!");
-
-	// Initialize variables.
 	_isActive = false;
 }
 #pragma endregion Constructors
 
-void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen)
+void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullScreen, int deltaTime)
 {
-	SDL_WindowFlags windowFlag = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
+	SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
 
 	// Create an instance of a window.
 	_window = SDL_CreateWindow(
@@ -35,7 +29,9 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
 
 	// Create a new TickTimer.
-	tickTimer = new TickTimer();
+	_tickTimer = new TickTimer();
+
+	_deltaTime = deltaTime;
 
 	// Check if the window was successfully created.
 	if (_window) Debug::Log("Engine Window Instance Created Successfully!");
@@ -52,6 +48,32 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	_isActive = true;
 }
 
+void EngineManager::RunLoop()
+{
+	while (IsActive())
+	{
+		_tickTimer->ResetTimer();
+
+		// Get Input from the User.
+		Input::DoInput();
+
+		Update();
+
+		Render();
+
+		// Cleans any garbage data. TODO: Implement this.
+		Clean();
+
+		if (_tickTimer->GetTicks() < _deltaTime)
+		{
+
+			SDL_Delay(_deltaTime - _tickTimer->GetTicks());
+		}
+	}
+
+	Stop();
+}
+
 void EngineManager::Render()
 {
 	// Sets the colour of the renderer to black.
@@ -66,7 +88,7 @@ void EngineManager::Render()
 	for (const Entity* ent : entityList)
 	{
 		if (ent->active)
-			ent->Render();
+			ent->Render(_renderer);
 	}
 	// Show the result of the Renderer stuff from before.
 	SDL_RenderPresent(_renderer);

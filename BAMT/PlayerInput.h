@@ -20,6 +20,6 @@ class PlayerInput : public Component
 
 		void Update() override;
 
-		void Render() override;
+		void Render(SDL_Renderer* renderer) override;
 };
 #endif

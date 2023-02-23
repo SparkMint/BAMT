@@ -46,32 +46,10 @@ int main(int argc, char* argv[])
 	for (int i = 0; i <= SnekSegments.size() - 1; i++)
 	{
 		SnekSegments[i]->GetComponent<PlayerMoveMouse>()->movementdelay = i;
-		SnekSegments[i]->GetComponent<RectRenderer>()->UpdateSize(i, i);
+		SnekSegments[i]->GetComponent<RectRenderer>()->UpdateSize(i / 2, i / 2);
 	}
 
-
-	while (engineManager->IsActive()) 
-	{
-		engineManager->tickTimer->ResetTimer();
-
-		// Get Input from the User.
-		Input::DoInput();
-
-		engineManager->Update();
-
-		engineManager->Render();
-
-		// Cleans any garbage data. TODO: Implement this.
-		engineManager->Clean();
-
-		if (engineManager->tickTimer->GetTicks() < DELTA_TIME)
-		{
-
-			SDL_Delay(DELTA_TIME - engineManager->tickTimer->GetTicks());
-		}
-	}
-
-	engineManager->Stop();
+	engineManager->RunLoop();
 
 	// Stops all SQL Related stuff.
 	SDL_Quit();

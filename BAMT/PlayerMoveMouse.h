@@ -10,7 +10,7 @@ public:
 	/// <summary>
 	/// Transform of the entity we are attached to.
 	/// </summary>
-	Transform* transform;
+	Transform* transform = nullptr;
 
 	std::vector<Vector2*> positions;
 
@@ -20,6 +20,6 @@ public:
 
 	void Update() override;
 
-	void Render() override;
+	void Render(SDL_Renderer* renderer) override;
 };
 #endif

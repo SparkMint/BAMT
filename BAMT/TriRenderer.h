@@ -24,12 +24,6 @@ class TriRenderer : public Component
 		// Component overrides.
 		void Start() override;
 		void Update() override;
-		void Render() override;
-
-		/// <summary>
-		/// Renders the Triangle.
-		/// </summary>
-		/// <param name="renderer">- The renderer that should render this triangle.</param>
-		void DrawTriangle(SDL_Renderer* renderer) const;
+		void Render(SDL_Renderer* renderer) override;
 };
 #endif
