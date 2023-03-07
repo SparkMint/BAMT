@@ -1,18 +1,24 @@
 #include "Entity.h"
 
-Entity::Entity(SDL_Renderer* SDLRenderer)
+Entity::Entity()
 {
 	active = true;
-	renderer = SDLRenderer;
 }
 
-
-void Entity::Update() const
+void Entity::Update(float* timeStep) const
 {
-	for (Component* c : _components) c->Update();
+	for (Component* c : _components)
+	{
+		if(c->enabled)
+			c->Update(timeStep);
+	}
 }
 
-void Entity::Render() const
+void Entity::Render(SDL_Renderer* renderer) const
 {
-	for (Component* c : _components) c->Render();
+	for (Component* c : _components)
+	{
+		if (c->enabled)
+			c->Render(renderer);
+	}
 }

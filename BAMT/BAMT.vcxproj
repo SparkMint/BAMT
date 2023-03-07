@@ -131,7 +131,8 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerInput.cpp" />
+    <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TickTimer.cpp" />
     <ClCompile Include="RectRenderer.cpp" />
@@ -146,7 +147,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerInput.h" />
+    <ClInclude Include="PlayerMovement.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="TickTimer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TriRenderer.h" />

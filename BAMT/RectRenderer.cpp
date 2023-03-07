@@ -11,26 +11,22 @@ RectRenderer::RectRenderer(int width, int height, bool fill)
 void RectRenderer::Start()
 {
 	// Try get a transform
-	transform = entity->GetComponent<Transform>();
-	if (!transform)
+	_transform = entity->GetComponent<Transform>();
+	if (_transform == nullptr)
 	{
 		Debug::LogError("No Transform found on this entity!");
 	}
 }
 
-void RectRenderer::Update()
+void RectRenderer::Update(float* timeStep)
 {
 }
 
-void RectRenderer::Render()
+void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	DrawRectangle(entity->renderer);
-}
-void RectRenderer::DrawRectangle(SDL_Renderer* renderer)
-{
-	rect->x = transform->GetX() - rect->w / 2;
-	rect->y = transform->GetY() - rect->h / 2;
-	// Draw the outline for the Rectangle.
+	rect->x = (int)_transform->GetX() - rect->w;
+	rect->y = (int)_transform->GetY() - rect->h;
+
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(renderer, rect);
 
@@ -40,4 +36,10 @@ void RectRenderer::DrawRectangle(SDL_Renderer* renderer)
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		SDL_RenderFillRect(renderer, rect);
 	}
+}
+
+void RectRenderer::UpdateSize(int width, int height)
+{
+	rect->w = width;
+	rect->h = height;
 }

@@ -12,7 +12,7 @@ void TickTimer::ResetTimer()
 	startTicks = SDL_GetTicks();
 }
 
-int TickTimer::GetTicks()
+int TickTimer::GetTicks() const
 {
 	return (SDL_GetTicks() - startTicks);
 }

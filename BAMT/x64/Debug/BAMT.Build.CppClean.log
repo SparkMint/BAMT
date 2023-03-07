@@ -7,13 +7,13 @@ c:\bamt\bamt\x64\debug\input.obj
 c:\bamt\bamt\x64\debug\rectrenderer.obj
 c:\bamt\bamt\x64\debug\ticktimer.obj
 c:\bamt\bamt\x64\debug\transform.obj
-c:\bamt\bamt\x64\debug\playerinput.obj
+c:\bamt\bamt\x64\debug\playermovement.obj
 c:\bamt\bamt\x64\debug\player.obj
 c:\bamt\bamt\x64\debug\entity.obj
 c:\bamt\bamt\x64\debug\debug.obj
 c:\bamt\bamt\x64\debug\component.obj
-c:\bamt\bamt\x64\debug\bamt.ilk
 c:\bamt\x64\debug\bamt.exe
+c:\bamt\bamt\x64\debug\bamt.ilk
 c:\bamt\x64\debug\bamt.pdb
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.command.1.tlog
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.read.1.tlog

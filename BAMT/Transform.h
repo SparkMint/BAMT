@@ -2,7 +2,6 @@
 #define BAMT_TRANSFORM
 
 #include "Component.h"
-#include "Entity.h"
 
 class Entity;
 class Component;
@@ -10,8 +9,12 @@ class Component;
 
 struct Vector2
 {
-	short int x = 0;
-	short int y = 0;
+	float x = 0;
+	float y = 0;
+
+	Vector2 Normalize();
+
+	bool operator ==(const Vector2* vector) const;
 };
 
 class Transform : public Component
@@ -19,30 +22,35 @@ class Transform : public Component
 	Vector2* position = new Vector2{0, 0};
 
 	public:
-		Transform(int x = 0, int y = 0);
+		Transform(float x = 0, float y = 0);
 
 		void Start() override;
-		void Update() override;
-		void Render() override;
+		void Update(float* timeStep) override;
+		void Render(SDL_Renderer* renderer) override;
 
 
 		// Getter / Setter Functions
 
-		void SetX(short int x) const;
-		void SetY(short int y) const;
+		void SetX(float x) const;
+		void SetY(float y) const;
 
-		short int GetX() const;
-		short int GetY() const;
+		float GetX() const;
+		float GetY() const;
 
 
 		/// <summary>
 		/// Moves this transform by X and Y.
 		/// </summary>
-		void Translate(short int x, short int y) const;
+		void Translate(int x, int y) const;
+
+		/// <summary>
+		/// Moves this transform by X and Y.
+		/// </summary>
+		void Translate(float x, float y) const;
 
 		/// <summary>
 		/// Sets the position of the Transform to a specified location.
 		/// </summary>
-		void SetPosition(short int x = 0, short int y = 0) const;
+		void SetPosition(float x = 0, float y = 0) const;
 };
 #endif

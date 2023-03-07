@@ -2,9 +2,9 @@
 #define BAMT_GAMEOBJECT
 
 #include "Entity.h"
-#include "PlayerInput.h"
+#include "PlayerMovement.h"
 #include "Transform.h"
-#include "TriRenderer.h"
+#include "RectRenderer.h"
 
 class Player : public Entity
 {

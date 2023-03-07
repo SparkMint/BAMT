@@ -1,7 +1,6 @@
 #ifndef BAMT_COMPONENT
 #define BAMT_COMPONENT
-
-#include "Entity.h"
+#include <SDL_render.h>
 
 class Entity;
 
@@ -11,7 +10,12 @@ class Component
 		/// <summary>
 		/// The entity we are attached to.
 		/// </summary>
-		Entity* entity;
+		Entity* entity = nullptr;
+
+		/// <summary>
+		/// Should this component run its logic?
+		/// </summary>
+		bool enabled = true;
 
 		/// <summary>
 		/// Called when this instance is loaded.
@@ -21,11 +25,11 @@ class Component
 		/// <summary>
 		/// Called every tick.
 		/// </summary>
-		virtual void Update() = 0;
+		virtual void Update(float* timeStep) = 0;
 
 		/// <summary>
 		/// Used for rendering.
 		/// </summary>
-		virtual void Render() = 0;
+		virtual void Render(SDL_Renderer* renderer) = 0;
 };
 #endif

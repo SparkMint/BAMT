@@ -11,15 +11,18 @@
 
 class EngineManager
 {
-	SDL_Window* _window;
-	SDL_Renderer* _renderer;
-	std::vector<Entity*> entityList;
+	SDL_Window* _window = nullptr;
+	SDL_Renderer* _renderer = nullptr;
+	TickTimer* _tickTimer = nullptr;
 
-	bool _isActive;
+	std::vector<Entity*> _entityList;
+
+	std::string _windowTitle;
+	bool _isActive = false;
+	int _deltaTime = 16;
+	float _timeStep = 0;
 
 	public:
-		TickTimer* tickTimer;
-
 		/// <summary>
 		/// Returns if the Engine is active or not.
 		/// </summary>
@@ -28,12 +31,20 @@ class EngineManager
 		/// <summary>
 		/// Creates an SDL Window and SDL Renderer and configures them.
 		/// </summary>
-		void Initialize(const char* windowName = "BAMT ENGINE", int windowWidth = 640, int windowHeight = 480, bool fullscreen = false);
+		void Initialize(const char* windowName = "BAMT ENGINE",
+			int windowWidth = 640, int windowHeight = 480,
+			bool fullscreen = false,
+			int deltaTime = 16);
+
+		/// <summary>
+		/// Runs the engine loop.
+		/// </summary>
+		void RunLoop();
 
 		/// <summary>
 		/// Calls the Update function on all Entities attached to the Engine.
 		/// </summary>
-		void Update();
+		void Update(float* timeStep);
 
 		/// <summary>
 		/// Renders the scene.
@@ -50,6 +61,8 @@ class EngineManager
 		/// </summary>
 		void Stop();
 
+		void SetWindowTitle();
+
 
 		// ENTITY COMPONENT SYSTEM STUFF
 		
@@ -65,7 +78,7 @@ class EngineManager
 		void RemoveEntity(Entity* ent);
 
 		/// <summary>
-		/// Sorts all Entities in the entityList by its renderLayer number.
+		/// Sorts all Entities in the _entityList by its renderLayer number.
 		/// </summary>
 		void SortEntities();
 
@@ -90,10 +103,9 @@ inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 	if (entityBase != nullptr)
 	{
 		// Add the entity to our entity list.
-		entityList.push_back(entityBase);
+		_entityList.push_back(entityBase);
 
-		// Give the entity stuff required to run.
-		entityBase->renderer = _renderer;
+		entityBase->engine = this;
 
 		Debug::Log("Entity Successfully Created!");
 		return ent;
