@@ -11,7 +11,7 @@ void TriRenderer::Start()
 	transform = entity->GetComponent<Transform>();
 }
 
-void TriRenderer::Update()
+void TriRenderer::Update(float* timeStep)
 {
 }
 

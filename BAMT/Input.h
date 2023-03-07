@@ -6,8 +6,12 @@
 namespace Input 
 {
 	/// <summary>
-	/// Recieves Inputs.
+	/// Receives Inputs.
 	/// </summary>
-	void DoInput();
+	void GetInputs();
+
+	bool GetKeyDown(SDL_Keycode key);
+
+	bool CheckIfShouldQuit();
 }
 #endif

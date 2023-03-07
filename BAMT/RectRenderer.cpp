@@ -1,45 +1,39 @@
 #include "RectRenderer.h"
-#include <time.h>
+
 RectRenderer::RectRenderer(int width, int height, bool fill)
 {
 	rect = new SDL_Rect();
 	rect->w = width;
 	rect->h = height;
 	fillRect = fill;
-	transform = nullptr;
 }
 
 void RectRenderer::Start()
 {
 	// Try get a transform
-	transform = entity->GetComponent<Transform>();
-	if (!transform)
+	_transform = entity->GetComponent<Transform>();
+	if (_transform == nullptr)
 	{
 		Debug::LogError("No Transform found on this entity!");
 	}
 }
 
-void RectRenderer::Update()
+void RectRenderer::Update(float* timeStep)
 {
 }
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->x = transform->GetX() - rect->w / 2;
-	rect->y = transform->GetY() - rect->h / 2;
+	rect->x = (int)_transform->GetX() - rect->w;
+	rect->y = (int)_transform->GetY() - rect->h;
 
-	// Draw the outline for the Rectangle.
-	int r = rand() % 255;
-	int g = rand() % 255;
-	int b = rand() % 255;
-	int a = rand() % 255;
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(renderer, rect);
 
 	if (fillRect)
 	{
 		// Fill the inside of the Rectangle.
-		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		SDL_RenderFillRect(renderer, rect);
 	}
 }

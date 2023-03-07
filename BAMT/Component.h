@@ -10,7 +10,12 @@ class Component
 		/// <summary>
 		/// The entity we are attached to.
 		/// </summary>
-		Entity* entity;
+		Entity* entity = nullptr;
+
+		/// <summary>
+		/// Should this component run its logic?
+		/// </summary>
+		bool enabled = true;
 
 		/// <summary>
 		/// Called when this instance is loaded.
@@ -20,7 +25,7 @@ class Component
 		/// <summary>
 		/// Called every tick.
 		/// </summary>
-		virtual void Update() = 0;
+		virtual void Update(float* timeStep) = 0;
 
 		/// <summary>
 		/// Used for rendering.
