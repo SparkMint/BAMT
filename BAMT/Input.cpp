@@ -1,19 +1,55 @@
 #include "Input.h"
 
-void Input::DoInput()
+#include "Debug.h"
+
+namespace Input
 {
-	SDL_Event event;
+	/// <summary>
+	/// All Keys that SDL supports.
+	/// </summary>
+	bool Keys[512];
 
-	while (SDL_PollEvent(&event))
+	bool shouldQuit = false;
+
+	void GetInputs()
 	{
-		switch (event.type)
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
 		{
-		case SDL_QUIT:
-			exit(0);
-			break;
+			switch (event.type)
+			{
+				case SDL_QUIT:
+					shouldQuit = true;
 
-		default:
-			break;
+				case SDL_KEYDOWN:
+					if (event.key.keysym.sym >= 0 && event.key.keysym.sym <= 512) 
+						Keys[event.key.keysym.sym] = true;
+					break;
+
+				case SDL_KEYUP:
+					if (event.key.keysym.sym >= 0 && event.key.keysym.sym <= 512)
+						Keys[event.key.keysym.sym] = false;
+					break;
+
+				default: 
+					break;
+			}
 		}
+	}
+
+	bool GetKeyDown(const SDL_Keycode key)
+	{
+		if (key >= 0 && key <= 512)
+		{
+			return Keys[key];
+		}
+		Debug::LogError("The Key: " + std::to_string(key) + " is not valid.");
+		return false;
+		
+	}
+
+	bool CheckIfShouldQuit()
+	{
+		return shouldQuit;
 	}
 }

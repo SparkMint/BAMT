@@ -7,6 +7,7 @@
 
 #include <vector>
 
+class EngineManager;
 class Component;
 
 class Entity 
@@ -18,6 +19,11 @@ class Entity
 
 	public:
 		Entity();
+
+		/// <summary>
+		/// Pointer to the engine this entity is attached to.
+		/// </summary>
+		EngineManager* engine = nullptr;
 
 		/// <summary>
 		/// Should this Entity run any logic?
@@ -32,7 +38,7 @@ class Entity
 		/// <summary>
 		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
-		void Update() const;
+		void Update(float* timeStep) const;
 
 		/// <summary>
 		/// Runs Render on all Components attached to this Entity.
@@ -44,7 +50,7 @@ class Entity
 		/// </summary>
 		/// <typeparam name="T">- The Component to add.</typeparam>
 		template<class T, typename... TArgs>
-		void AddComponent(TArgs&&... mArgs);
+		T* AddComponent(TArgs&&... mArgs);
 
 		/// <summary>
 		/// Tries to get a Component from this Entity.
@@ -57,7 +63,7 @@ class Entity
 // Its annoying, but its the only way I can get this to work.
 
 template<class T, typename... TArgs>
-inline void Entity::AddComponent(TArgs&&... mArgs)
+inline T* Entity::AddComponent(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
 	T* c = (new T(std::forward<TArgs>(mArgs)...));
@@ -72,11 +78,13 @@ inline void Entity::AddComponent(TArgs&&... mArgs)
 
 		// Run the start function on the newly created component.
 		componentBase->Start();
+		return c;
 	}
 	else
 	{
 		Debug::Log("Invalid Component type!");
 		delete(c);
+		return nullptr;
 	}
 }
 

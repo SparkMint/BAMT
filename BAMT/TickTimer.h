@@ -20,6 +20,6 @@ class TickTimer
 		void ResetTimer();
 
 		///<returns>Amount of ticks that has passed since the timer was reset.</returns>
-		int GetTicks();
+		int GetTicks() const;
 };
 #endif
