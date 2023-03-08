@@ -10,15 +10,17 @@ class RigidBody : public Component
 	Transform* _transform = nullptr;
 	Vector2 _velocity;
 
+	/// <summary>
+	/// Simulates the next _position this RigidBody will move to.
+	/// </summary>
+	Vector2 Simulate(const float* timeStep, Vector2 velocity, Vector2 position);
+
 	public:
 		void Start() override;
 		void Update(float* timeStep) override;
 		void Render(SDL_Renderer* renderer) override;
 
-		/// <summary>
-		/// Simulates the next position this RigidBody will move to.
-		/// </summary>
-		void Simulate();
+
 
 		/// <summary>
 		/// Pushes this RigidBody in a specified direction.
@@ -26,6 +28,7 @@ class RigidBody : public Component
 		void AddForce(Vector2 direction, float force);
 
 		Vector2 gravity;
-		float linearDrag;
+		float maxVelocity;
+		float drag;
 };
 #endif
