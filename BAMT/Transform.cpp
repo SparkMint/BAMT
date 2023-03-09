@@ -32,28 +32,39 @@ void Transform::Start(){}
 void Transform::Update(float* timeStep){}
 void Transform::Render(SDL_Renderer* renderer){}
 
-void Transform::SetX(float x) const { position->x = x; }
+void Transform::SetX(float x) const { _position->x = x; }
 
-void Transform::SetY(float y) const { position->y = y; }
+void Transform::SetY(float y) const { _position->y = y; }
 
-float Transform::GetX() const { return position->x; }
+float Transform::GetX() const { return _position->x; }
 
-float Transform::GetY() const { return position->y; }
+float Transform::GetY() const { return _position->y; }
 
 void Transform::Translate(int x, int y) const
 {
-	position->x += x;
-	position->y += y;
+	_position->x += x;
+	_position->y += y;
 }
 
 void Transform::Translate(float x, float y) const
 {
-	position->x += x;
-	position->y += y;
+	_position->x += x;
+	_position->y += y;
 }
 
 void Transform::SetPosition(float x, float y) const
 {
-	position->x = x;
-	position->y = y;
+	_position->x = x;
+	_position->y = y;
+}
+
+void Transform::SetPosition(const Vector2* position) const
+{
+	_position->x = position->x;
+	_position->y = position->y;
+}
+
+Vector2* Transform::GetPosition() const
+{
+	return _position;
 }

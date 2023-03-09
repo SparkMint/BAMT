@@ -12,9 +12,14 @@ c:\bamt\bamt\x64\debug\player.obj
 c:\bamt\bamt\x64\debug\entity.obj
 c:\bamt\bamt\x64\debug\debug.obj
 c:\bamt\bamt\x64\debug\component.obj
+c:\bamt\bamt\x64\debug\rigidbody.obj
+c:\bamt\bamt\x64\debug\lifecell.obj
+c:\bamt\bamt\x64\debug\gameoflife.obj
+c:\bamt\bamt\x64\debug\celllogic.obj
 c:\bamt\x64\debug\bamt.exe
 c:\bamt\bamt\x64\debug\bamt.ilk
 c:\bamt\x64\debug\bamt.pdb
+c:\bamt\bamt\x64\debug\playerinput.obj
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.command.1.tlog
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.read.1.tlog
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.write.1.tlog

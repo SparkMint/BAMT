@@ -1,16 +1,20 @@
 #ifndef BAMT_TRANSFORM
 #define BAMT_TRANSFORM
 
+#define VECTOR2_UP {0, -1}
+#define VECTOR2_LEFT {-1, 0}
+
 #include "Component.h"
 
 class Entity;
 class Component;
 
-
 struct Vector2
 {
 	float x = 0;
 	float y = 0;
+
+
 
 	Vector2 Normalize();
 
@@ -19,7 +23,7 @@ struct Vector2
 
 class Transform : public Component
 {
-	Vector2* position = new Vector2{0, 0};
+	Vector2* _position = new Vector2{0, 0};
 
 	public:
 		Transform(float x = 0, float y = 0);
@@ -49,8 +53,18 @@ class Transform : public Component
 		void Translate(float x, float y) const;
 
 		/// <summary>
-		/// Sets the position of the Transform to a specified location.
+		/// Sets the _position of the Transform to a specified X and Y location.
 		/// </summary>
 		void SetPosition(float x = 0, float y = 0) const;
+
+		/// <summary>
+		/// Sets the _position of the Transform to a specified Vector2 location.
+		/// </summary>
+		void SetPosition(const Vector2* position) const;
+
+		/// <summary>
+		/// Gets the _position of this Transform.
+		/// </summary>
+		Vector2* GetPosition() const;
 };
 #endif
