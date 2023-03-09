@@ -62,9 +62,6 @@ class EngineManager
 		void Stop();
 
 		void SetWindowTitle();
-
-
-		// ENTITY COMPONENT SYSTEM STUFF
 		
 		/// <summary>
 		/// Creates an Entity of the specified type and adds it to the Entity List.
@@ -94,7 +91,6 @@ class EngineManager
 template<class T, typename... TArgs>
 inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 {
-	Debug::Log("Creating Entity...");
 	// Create a new instance of this type and pass its arguments.
 	T* ent = new T(std::forward<TArgs>(mArgs)...);
 
@@ -108,13 +104,11 @@ inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 		entityBase->engine = this;
 
 		entityBase->Start();
-
-		Debug::Log("Entity Successfully Created!");
 		return ent;
 	}
 
 	// If it got here, the type we got wasn't an entity type.
-	Debug::Log("Entity was not created!");
+	Debug::LogError("This entity could not be created successfully!", ent);
 	delete(ent);
 	return nullptr;
 }

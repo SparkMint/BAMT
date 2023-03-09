@@ -3,8 +3,13 @@
 
 TickTimer::TickTimer()
 {
-	Debug::Log("Tick Timer Instance Created.");
+	Debug::Log("Tick Timer Created.", this);
 	startTicks = 0;
+}
+
+TickTimer::~TickTimer()
+{
+	Debug::Log("Tick Timer Destroyed.", this);
 }
 
 void TickTimer::ResetTimer()

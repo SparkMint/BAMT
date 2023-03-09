@@ -13,11 +13,17 @@ namespace Debug
 {
     #pragma region LogFunctions
     bool logsEnabled = true;
-    void Debug::Log(std::string output)
+    void Log(std::string output)
     {
         if (!logsEnabled) return;
         Debug::SetColour(WHITE);
         std::cout << "[" << GetTime() << "]" << " LOG - " << output << std::endl;
+    }
+    void Log(std::string output, void* pointer)
+    {
+        if (!logsEnabled) return;
+        Debug::SetColour(WHITE);
+        std::cout << "[" << GetTime() << "]" << " LOG - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
     }
     void ShowLogs(bool show)
     {
@@ -31,14 +37,21 @@ namespace Debug
 
     #pragma region WarningFunctions
     bool warningsEnabled = true;
-    void Debug::LogWarn(std::string output)
+    void LogWarn(std::string output)
     {
         if (!warningsEnabled) return;
         Debug::SetColour(YELLOW);
         std::cout << "[" << GetTime() << "]" << " WARN - " << output << std::endl;
         Debug::SetColour(WHITE);
     }
-    void Debug::ShowWarns(bool show)
+    void LogWarn(std::string output, void* pointer)
+    {
+        if (!warningsEnabled) return;
+        Debug::SetColour(YELLOW);
+        std::cout << "[" << GetTime() << "]" << " WARN - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
+        Debug::SetColour(WHITE);
+    }
+    void ShowWarns(bool show)
     {
         Debug::SetColour(GRAY);
         std::string showString = show ? "ENABLED" : "DISABLED";
@@ -50,12 +63,20 @@ namespace Debug
 
     #pragma region ErrorFunctions
     bool errorsEnabled = true;
-    void Debug::LogError(std::string output)
+    void LogError(std::string output)
     {
         if (!errorsEnabled) return;
 
         Debug::SetColour(RED);
         std::cout << "[" << GetTime() << "]" << " ERROR - " << output << std::endl;
+        Debug::SetColour(WHITE);
+    }
+    void LogError(std::string output, void* pointer)
+    {
+        if (!errorsEnabled) return;
+
+        Debug::SetColour(RED);
+        std::cout << "[" << GetTime() << "]" << " ERROR - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
         Debug::SetColour(WHITE);
     }
     void ShowErrors(bool show)
@@ -69,7 +90,7 @@ namespace Debug
     #pragma endregion ErrorFunctions
 
     #pragma region LogExtras
-    std::string Debug::GetTime()
+    std::string GetTime()
     {
         // TODO: Look into getting this to work without the _CRT_SECURE_NO_WARNINGS flag.
         std::ostringstream outputStream;
@@ -85,7 +106,14 @@ namespace Debug
         return outputStream.str();
     }
 
-    void Debug::SetColour(int colour)
+    std::string GetPointerAddress(void* pointer)
+    {
+        std::ostringstream address;
+        address << pointer;
+        return address.str();
+    }
+
+    void SetColour(int colour)
     {
         HANDLE handle;
         handle = GetStdHandle(STD_OUTPUT_HANDLE);

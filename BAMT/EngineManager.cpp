@@ -6,11 +6,11 @@
 #pragma region Constructors
 EngineManager::EngineManager()
 {
-	Debug::Log("Engine Instance Created!");
+	Debug::Log("Engine Created.", this);
 }
 EngineManager::~EngineManager() 
 {
-	Debug::Log("Engine Instance Destroyed!");
+	Debug::Log("Engine Destroyed.", this);
 	_isActive = false;
 }
 #pragma endregion Constructors
@@ -38,11 +38,11 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Debug::Log("Delta Time = " + std::to_string(deltaTime));
 
 	// Check if the window was successfully created.
-	if (_window) Debug::Log("Engine Window Instance Created Successfully!");
+	if (_window) Debug::Log("Engine Window Instance Created Successfully.", _window);
 	else Debug::LogError("Engine Window Instance is Null!");
 	
 	// Check if the renderer was successfully created.
-	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully!");
+	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully.", _renderer);
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
 	// Create a command thread.
@@ -50,6 +50,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 
 	// Sets this GameManager to being Active.
 	_isActive = true;
+	Debug::Log("Engine Successfully Started.", this);
 }
 
 void EngineManager::RunLoop()
@@ -111,8 +112,15 @@ void EngineManager::Clean()
 
 void EngineManager::Stop()
 {
-	Debug::Log("Engine Stopping...");
+	Debug::Log("Engine Stopping...", this);
+
+	for (auto* ent : _entityList)
+	{
+		delete(ent);
+	}
 	SDL_Quit();
+	delete(_tickTimer);
+	delete(this);
 }
 
 void EngineManager::SetWindowTitle()
@@ -131,7 +139,6 @@ void EngineManager::RemoveEntity(Entity* ent)
 {
 	auto entity = remove(_entityList.begin(), _entityList.end(), ent);
 	delete(ent);
-	Debug::Log("Entity Destroyed!");
 }
 
 void EngineManager::SortEntities()

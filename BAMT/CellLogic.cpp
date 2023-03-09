@@ -35,7 +35,7 @@ void CellLogic::Update(float* timeStep)
 	// DOWN-RIGHT
 	if (CheckNeighbor(x - 1, y - 1)) livingNeighbors++;
 
-	Debug::Log(std::to_string(livingNeighbors));
+	//Debug::Log(std::to_string(livingNeighbors));
 
 		
 }

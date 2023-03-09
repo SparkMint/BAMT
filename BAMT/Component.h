@@ -1,5 +1,7 @@
 #ifndef BAMT_COMPONENT
 #define BAMT_COMPONENT
+
+#include "Debug.h"
 #include <SDL_render.h>
 
 class Entity;
@@ -7,6 +9,8 @@ class Entity;
 class Component 
 {
 	public:
+		Component();
+		~Component();
 		/// <summary>
 		/// The entity we are attached to.
 		/// </summary>
