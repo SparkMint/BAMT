@@ -5,113 +5,139 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="CORE">
+      <UniqueIdentifier>{a964c117-6298-431a-bdc4-2bba4f5b5683}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{3de4465e-369e-4e6b-bac2-8be34249bc75}</UniqueIdentifier>
+    <Filter Include="CORE\ECS">
+      <UniqueIdentifier>{daa747bb-78dd-4985-af44-ac92c152319f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ECS">
-      <UniqueIdentifier>{8a812d67-9bc2-414e-b140-e377a462af39}</UniqueIdentifier>
+    <Filter Include="CORE\ENGINE">
+      <UniqueIdentifier>{28577eb0-2313-4243-a5a0-d35097ef4dbd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\CORE">
-      <UniqueIdentifier>{50b81064-f9bf-4a8e-9dcd-7c7604f79d0a}</UniqueIdentifier>
+    <Filter Include="CORE\DEBUG">
+      <UniqueIdentifier>{b69c9577-90e1-4aa3-b7f9-4dc0c7d0c697}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ECS">
-      <UniqueIdentifier>{233cfed0-5aab-4032-a383-6660a44bdef5}</UniqueIdentifier>
+    <Filter Include="CORE\INPUT">
+      <UniqueIdentifier>{520a7eb6-81bc-46cc-8f32-9c2c2c97125b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\CORE">
-      <UniqueIdentifier>{b91966c1-fe41-48eb-916d-ab08f78471e5}</UniqueIdentifier>
+    <Filter Include="CORE\COMPONENTS">
+      <UniqueIdentifier>{965fdec2-7f9d-4ee1-a19b-b3ef286b4e3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Custom Components">
-      <UniqueIdentifier>{d0b0aa46-7972-4e49-ba36-ebffa2553ca9}</UniqueIdentifier>
+    <Filter Include="CORE\ENTITIES">
+      <UniqueIdentifier>{0bef143a-4037-4396-86db-6f2bde31652f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Custom Entities">
-      <UniqueIdentifier>{0a6ba610-32e5-420d-bbcd-9db8681156a1}</UniqueIdentifier>
+    <Filter Include="ASSIGNMENT">
+      <UniqueIdentifier>{8d150467-698b-4c95-b552-6da5216636a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Custom Components">
-      <UniqueIdentifier>{e06fe11d-f4c6-4483-89c0-d4a044b9fca8}</UniqueIdentifier>
+    <Filter Include="ASSIGNMENT\COMPONENTS">
+      <UniqueIdentifier>{7e1d7943-dd88-479d-aeb6-41bf5e7a55f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Custom Entities">
-      <UniqueIdentifier>{de1df573-abbc-418e-85dc-1b017a6a37de}</UniqueIdentifier>
+    <Filter Include="ASSIGNMENT\ENTITIES">
+      <UniqueIdentifier>{9ce8bfd6-a7e0-45a1-8f72-5e097968ca9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WORKSHOP">
+      <UniqueIdentifier>{0548a9f1-861c-4dd9-a68d-09a12c59638c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WORKSHOP\COMPONENTS">
+      <UniqueIdentifier>{30d3c45b-c202-4a9e-af90-c26c13d99ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WORKSHOP\ENTITIES">
+      <UniqueIdentifier>{45199b2a-c0f5-4b1d-8eb6-2ee89ad3dd4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>CORE\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>CORE\ECS</Filter>
     </ClCompile>
     <ClCompile Include="EngineManager.cpp">
-      <Filter>Source Files\CORE</Filter>
+      <Filter>CORE\ENGINE</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
-      <Filter>Source Files\CORE</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\CORE</Filter>
+      <Filter>CORE\DEBUG</Filter>
     </ClCompile>
     <ClCompile Include="TickTimer.cpp">
-      <Filter>Source Files\CORE</Filter>
+      <Filter>CORE\ENGINE</Filter>
     </ClCompile>
-    <ClCompile Include="RectRenderer.cpp">
-      <Filter>Source Files\Custom Components</Filter>
+    <ClCompile Include="Input.cpp">
+      <Filter>CORE\INPUT</Filter>
     </ClCompile>
     <ClCompile Include="TriRenderer.cpp">
-      <Filter>Source Files\Custom Components</Filter>
+      <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Custom Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Custom Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMovement.cpp">
-      <Filter>Source Files\Custom Components</Filter>
+      <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
-      <Filter>Source Files\Custom Components</Filter>
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="RectRenderer.cpp">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="CellLogic.cpp">
+      <Filter>WORKSHOP\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOfLife.cpp">
+      <Filter>WORKSHOP\ENTITIES</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeCell.cpp">
+      <Filter>WORKSHOP\ENTITIES</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMovement.cpp">
+      <Filter>ASSIGNMENT\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ASSIGNMENT\ENTITIES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Header Files\ECS</Filter>
+      <Filter>CORE\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>CORE\ECS</Filter>
     </ClInclude>
     <ClInclude Include="EngineManager.h">
-      <Filter>Header Files\CORE</Filter>
-    </ClInclude>
-    <ClInclude Include="TickTimer.h">
-      <Filter>Header Files\CORE</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files\CORE</Filter>
+      <Filter>CORE\ENGINE</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
-      <Filter>Header Files\CORE</Filter>
+      <Filter>CORE\DEBUG</Filter>
     </ClInclude>
-    <ClInclude Include="RectRenderer.h">
-      <Filter>Header Files\Custom Components</Filter>
+    <ClInclude Include="TickTimer.h">
+      <Filter>CORE\ENGINE</Filter>
     </ClInclude>
-    <ClInclude Include="TriRenderer.h">
-      <Filter>Header Files\Custom Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Custom Entities</Filter>
+    <ClInclude Include="Input.h">
+      <Filter>CORE\INPUT</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Header Files\Custom Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMovement.h">
-      <Filter>Header Files\Custom Components</Filter>
+      <Filter>CORE\COMPONENTS</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
-      <Filter>Header Files\Custom Components</Filter>
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="RectRenderer.h">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="TriRenderer.h">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="CellLogic.h">
+      <Filter>WORKSHOP\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOfLife.h">
+      <Filter>WORKSHOP\ENTITIES</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeCell.h">
+      <Filter>WORKSHOP\ENTITIES</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovement.h">
+      <Filter>ASSIGNMENT\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ASSIGNMENT\ENTITIES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -103,9 +103,11 @@ inline T* EngineManager::AddEntity(TArgs&&... mArgs)
 	if (entityBase != nullptr)
 	{
 		// Add the entity to our entity list.
-		_entityList.push_back(entityBase);
+		_entityList.emplace_back(entityBase);
 
 		entityBase->engine = this;
+
+		entityBase->Start();
 
 		Debug::Log("Entity Successfully Created!");
 		return ent;

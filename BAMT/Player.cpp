@@ -1,9 +1,9 @@
 ﻿#include "Player.h"
 
-Player::Player()
+void Player::Start()
 {
 	AddComponent<Transform>();
 	AddComponent<RigidBody>();
 	AddComponent<PlayerMovement>();
-	AddComponent<RectRenderer>(30,30,true);
+	AddComponent<RectRenderer>(30, 30, true);
 }

@@ -35,9 +35,6 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 		velocity.x -= (velocity.x / speed) * dragForce * *timeStep;
 		velocity.y -= (velocity.y / speed) * dragForce * *timeStep;
 	}
-
-	// Limit speed to maximum velocity.
-	speed = sqrt(body.vx * body.vx + body.vy * body.vy);
 	if (speed > maxVelocity) 
 	{
 		velocity.x = (velocity.x / speed) * maxVelocity;

@@ -9,7 +9,7 @@
 
 class RectRenderer : public Component
 {
-	bool fillRect = false;
+
 	SDL_Rect* rect = nullptr;
 	Transform* _transform = nullptr;
 
@@ -21,6 +21,8 @@ class RectRenderer : public Component
 		/// <param name="height">- The width of the Rectangle.</param>
 		/// <param name="fill">- Should the rectangle be filled?</param>
 		RectRenderer(int width = 0, int height = 0, bool fill = false);
+
+		bool fillRect = false;
 
 		void Start() override;
 		void Update(float* timeStep) override;

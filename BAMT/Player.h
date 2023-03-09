@@ -10,6 +10,6 @@
 class Player : public Entity
 {
 	public:
-		Player();
+		void Start() override;
 };
 #endif
