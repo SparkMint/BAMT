@@ -31,10 +31,15 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	// If we are moving, apply drag to the body. 
 	if (speed > 0) 
 	{
-		const float dragForce = drag * speed * speed;
+		const float dragForce = drag * speed;
 		velocity.x -= (velocity.x / speed) * dragForce * *timeStep;
 		velocity.y -= (velocity.y / speed) * dragForce * *timeStep;
 	}
+	
+	// Apply Gravity.
+	velocity.x += gravity.x * *timeStep;
+	velocity.y += gravity.y * *timeStep;
+
 	if (speed > maxVelocity) 
 	{
 		velocity.x = (velocity.x / speed) * maxVelocity;
@@ -47,8 +52,7 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 
 	// Set the new velocity to be the velocity we calculated in here.
 	_velocity = velocity;
-
-	// Return the position.
+	// Return the position
 	return position;
 }
 

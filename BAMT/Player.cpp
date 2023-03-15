@@ -2,7 +2,7 @@
 
 void Player::Start()
 {
-	AddComponent<Transform>();
+	AddComponent<Transform>()->SetPosition(250,250);
 	AddComponent<RigidBody>();
 	AddComponent<PlayerMovement>();
 	AddComponent<RectRenderer>(30, 30, true);

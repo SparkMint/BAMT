@@ -5,6 +5,10 @@
 void PlayerMovement::Start()
 {
 	 _transform = entity->GetComponent<Transform>();
+	 _rigidBody = entity->AddComponent<RigidBody>();
+	 _rigidBody->maxVelocity = 100000;
+	 _rigidBody->drag = 1;
+	 _rigidBody->gravity = { 0, 1000};
 
 	// If we don't have a transform on this object for some reason.
 	// Disable this component to prevent errors.
@@ -14,59 +18,33 @@ void PlayerMovement::Start()
 
 		 enabled = false;
 	 }
+
+	 if (_rigidBody == nullptr)
+	 {
+		 Debug::LogError("PlayerMovement Component Disabled. RigidBody Missing!");
+
+		 enabled = false;
+	 }
 }
 
 void PlayerMovement::Update(float* timeStep)
 {
-	const Vector2 previousVelocity = velocity;
-	Accelerate(timeStep);
-	DoDrag(&previousVelocity, timeStep);
-
-	//Debug::Log("Velocity: " + std::to_string(velocity.x) + " " + std::to_string(velocity.y));
-	_transform->Translate(velocity.x * *timeStep, velocity.y * *timeStep);
-}
-
-
-
-void PlayerMovement::Accelerate(const float* timeStep)
-{
-	if (Input::GetKeyDown(SDLK_w) && velocity.y > -maxSpeed)
+	if (Input::GetKeyDown(SDLK_w))
 	{
-		velocity.y += -accelerationSpeed * *timeStep;
+		_rigidBody->AddForce(VECTOR2_UP, accelerationSpeed);
 	}
-	if (Input::GetKeyDown(SDLK_s) && velocity.y < maxSpeed)
+	if (Input::GetKeyDown(SDLK_s))
 	{
-		velocity.y += accelerationSpeed * *timeStep;
+		_rigidBody->AddForce(VECTOR2_DOWN, accelerationSpeed);
 	}
-
-	if (Input::GetKeyDown(SDLK_a) && velocity.x > -maxSpeed)
+	if (Input::GetKeyDown(SDLK_a))
 	{
-		velocity.x += -accelerationSpeed * *timeStep;
+		_rigidBody->AddForce(VECTOR2_LEFT, accelerationSpeed);
 	}
-	if (Input::GetKeyDown(SDLK_d) && velocity.x < maxSpeed)
+	if (Input::GetKeyDown(SDLK_d))
 	{
-		velocity.x += accelerationSpeed * *timeStep;
+		_rigidBody->AddForce(VECTOR2_RIGHT, accelerationSpeed);
 	}
 }
 
-void PlayerMovement::DoDrag(const Vector2* previousVelocity, const float* timeStep)
-{
-	const Vector2 normalizedVelocity = velocity.Normalize();
-	if(previousVelocity->x == velocity.x)
-		velocity.x += (normalizedVelocity.x * -drag) * *timeStep;
-	if (previousVelocity->y == velocity.y)
-		velocity.y += (normalizedVelocity.y * -drag) * *timeStep;
-
-	if (velocity.x < stopThreshold && velocity.x > -stopThreshold)
-	{
-		velocity.x = 0;
-	}
-	if(velocity.y < stopThreshold && velocity.y > -stopThreshold)
-	{
-		velocity.y = 0;
-	}
-}
-
-void PlayerMovement::Render(SDL_Renderer* renderer)
-{
-}
+void PlayerMovement::Render(SDL_Renderer* renderer) {}

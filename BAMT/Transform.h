@@ -3,6 +3,8 @@
 
 #define VECTOR2_UP {0, -1}
 #define VECTOR2_LEFT {-1, 0}
+#define VECTOR2_DOWN {0, 1}
+#define VECTOR2_RIGHT {1, 0}
 
 #include "Component.h"
 
