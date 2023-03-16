@@ -45,12 +45,12 @@ class Transform : public Component
 
 
 		/// <summary>
-		/// Moves this transform by X and Y.
+		/// Moves this _transform by X and Y.
 		/// </summary>
 		void Translate(int x, int y) const;
 
 		/// <summary>
-		/// Moves this transform by X and Y.
+		/// Moves this _transform by X and Y.
 		/// </summary>
 		void Translate(float x, float y) const;
 

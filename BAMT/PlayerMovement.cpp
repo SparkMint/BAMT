@@ -14,7 +14,7 @@ void PlayerMovement::Start()
 	 _distanceTest->GetComponent<RectRenderer>()->fillRect = true;
 
 
-	// If we don't have a transform on this object for some reason.
+	// If we don't have a _transform on this object for some reason.
 	// Disable this component to prevent errors.
 	 if (_transform == nullptr)
 	 {
@@ -42,19 +42,19 @@ void PlayerMovement::Update(float* timeStep)
 	Debug::Log("Distance: " + std::to_string(VectorMath::Distance(*_transform->GetPosition(),
 		*_distanceTest->GetComponent<Transform>()->GetPosition())));
 
-	if (Input::GetKeyDown(SDLK_w))
+	if (Input::GetKeyHold(SDLK_w))
 	{
 		_rigidBody->AddForce(VECTOR2_UP, accelerationSpeed * *timeStep);
 	}
-	if (Input::GetKeyDown(SDLK_s))
+	if (Input::GetKeyHold(SDLK_s))
 	{
 		_rigidBody->AddForce(VECTOR2_DOWN, accelerationSpeed * *timeStep);
 	}
-	if (Input::GetKeyDown(SDLK_a))
+	if (Input::GetKeyHold(SDLK_a))
 	{
 		_rigidBody->AddForce(VECTOR2_LEFT, accelerationSpeed * *timeStep);
 	}
-	if (Input::GetKeyDown(SDLK_d))
+	if (Input::GetKeyHold(SDLK_d))
 	{
 		_rigidBody->AddForce(VECTOR2_RIGHT, accelerationSpeed * *timeStep);
 	}

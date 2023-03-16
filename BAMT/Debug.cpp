@@ -16,22 +16,22 @@ namespace Debug
     void Log(std::string output)
     {
         if (!logsEnabled) return;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
         std::cout << "[" << GetTime() << "]" << " LOG - " << output << std::endl;
     }
     void Log(std::string output, void* pointer)
     {
         if (!logsEnabled) return;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
         std::cout << "[" << GetTime() << "]" << " LOG - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
     }
-    void ShowLogs(bool show)
+    void ToggleLogs()
     {
-        Debug::SetColour(GRAY);
-        std::string showString = show ? "ENABLED" : "DISABLED";
+        SetColour(GRAY);
+        logsEnabled = !logsEnabled;
+        std::string showString = logsEnabled ? "ENABLED" : "DISABLED";
         std::cout << "[LOGS " << showString << "]" << std::endl;
-        logsEnabled = show;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
     #pragma endregion LogFunctions
 
@@ -40,24 +40,24 @@ namespace Debug
     void LogWarn(std::string output)
     {
         if (!warningsEnabled) return;
-        Debug::SetColour(YELLOW);
+        SetColour(YELLOW);
         std::cout << "[" << GetTime() << "]" << " WARN - " << output << std::endl;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
     void LogWarn(std::string output, void* pointer)
     {
         if (!warningsEnabled) return;
-        Debug::SetColour(YELLOW);
+        SetColour(YELLOW);
         std::cout << "[" << GetTime() << "]" << " WARN - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
-    void ShowWarns(bool show)
+    void ToggleWarns()
     {
-        Debug::SetColour(GRAY);
-        std::string showString = show ? "ENABLED" : "DISABLED";
+        SetColour(GRAY);
+        warningsEnabled = !warningsEnabled;
+        std::string showString = warningsEnabled ? "ENABLED" : "DISABLED";
         std::cout << "[WARNINGS " << showString << "]" << std::endl;
-        warningsEnabled = show;
-        Debug::SetColour(WHITE);
+		SetColour(WHITE);
     }
     #pragma endregion WarningFunctions
 
@@ -67,25 +67,25 @@ namespace Debug
     {
         if (!errorsEnabled) return;
 
-        Debug::SetColour(RED);
+        SetColour(RED);
         std::cout << "[" << GetTime() << "]" << " ERROR - " << output << std::endl;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
     void LogError(std::string output, void* pointer)
     {
         if (!errorsEnabled) return;
 
-        Debug::SetColour(RED);
+        SetColour(RED);
         std::cout << "[" << GetTime() << "]" << " ERROR - " << output << " Address: (" << GetPointerAddress(pointer) << ")" << std::endl;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
-    void ShowErrors(bool show)
+    void ToggleErrors()
     {
-        Debug::SetColour(GRAY);
-        std::string showString = show ? "ENABLED" : "DISABLED";
+        SetColour(GRAY);
+        errorsEnabled = !errorsEnabled;
+        std::string showString = errorsEnabled ? "ENABLED" : "DISABLED";
         std::cout << "[ERRORS " << showString << "]" << std::endl;
-        errorsEnabled = show;
-        Debug::SetColour(WHITE);
+        SetColour(WHITE);
     }
     #pragma endregion ErrorFunctions
 
@@ -147,7 +147,6 @@ namespace Debug
             std::cin >> command;
             Log("Command Entered: " + command);
         }
-        return 0;
     }
     #pragma endregion CommandFunctions
 }

@@ -15,10 +15,10 @@ EngineManager::~EngineManager()
 }
 #pragma endregion Constructors
 
-void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullScreen, int deltaTime)
+void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen, int deltaTime)
 {
 	const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
-
+	fullScreen = fullscreen;
 	_windowTitle = windowName;
 
 	// Create an instance of a window.
@@ -30,6 +30,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 
 	// Create an instance of a Renderer.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
+
+	SDL_RenderSetLogicalSize(_renderer, windowWidth, windowHeight);
 
 	// Create a new TickTimer.
 	_tickTimer = new TickTimer();
@@ -59,21 +61,11 @@ void EngineManager::RunLoop()
 	{
 		_tickTimer->ResetTimer();
 
-		Input::GetInputs();
-
-		// If the player has given the command to stop. Stop the engine.
-		if (Input::CheckIfShouldQuit())
-		{
-			Stop();
-			break;
-		}
+		CheckEngineInputs();
 
 		Update(&_timeStep);
 
 		Render();
-
-		// TODO: Implement this.
-		Clean();
 
 		SetWindowTitle();
 
@@ -82,6 +74,40 @@ void EngineManager::RunLoop()
 			SDL_Delay(_deltaTime - _tickTimer->GetTicks());
 		}
 		_timeStep = _tickTimer->GetTicks() / 1000.f;
+	}
+	// After the loop has been broken out of, clear all memory.
+	Stop();
+}
+
+void EngineManager::CheckEngineInputs()
+{
+	// Get all Inputs for this frame.
+	Input::GetInputs();
+
+	// If the player has given the command to stop. Stop the engine.
+	if (Input::GetKeyHold(SDL_QUIT)) { _isActive = false; }
+
+	// Fullscreen Toggle
+	if(Input::GetKeyDown(SDLK_F11))
+	{
+		fullScreen = !fullScreen;
+		const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
+		SDL_SetWindowFullscreen(_window, windowFlag);
+	}
+	// Toggle Logs
+	if (Input::GetKeyDown(SDLK_F6)){ Debug::ToggleLogs(); }
+	// Toggle Warnings
+	if (Input::GetKeyDown(SDLK_F7)){ Debug::ToggleWarns(); }
+	// Toggle Errors
+	if (Input::GetKeyDown(SDLK_F8)){ Debug::ToggleErrors(); }
+}
+
+void EngineManager::Update(float* timeStep) const
+{
+	for (const Entity* ent : _entityList)
+	{
+		if (ent->active)
+			ent->Update(timeStep);
 	}
 }
 
@@ -145,13 +171,4 @@ void EngineManager::SortEntities()
 {
 	std::sort(_entityList.begin(), _entityList.end(), [](const Entity* a, const Entity* b)
 	{return a->renderLayer < b->renderLayer;});
-}
-
-void EngineManager::Update(float* timeStep)
-{
-	for (Entity* ent : _entityList)
-	{
-		if (ent->active)
-			ent->Update(timeStep);
-	}
 }

@@ -19,6 +19,7 @@ class EngineManager
 
 	std::string _windowTitle;
 	bool _isActive = false;
+	bool fullScreen = false;
 	int _deltaTime = 16;
 	float _timeStep = 0;
 
@@ -42,9 +43,14 @@ class EngineManager
 		void RunLoop();
 
 		/// <summary>
+		/// Checks for special engine specific inputs.
+		/// </summary>
+		void CheckEngineInputs();
+
+		/// <summary>
 		/// Calls the Update function on all Entities attached to the Engine.
 		/// </summary>
-		void Update(float* timeStep);
+		void Update(float* timeStep) const;
 
 		/// <summary>
 		/// Renders the scene.

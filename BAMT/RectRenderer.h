@@ -1,33 +1,34 @@
 #ifndef BAMT_RECTANGLE_RENDERER
 #define BAMT_RECTANGLE_RENDERER
 
-#include "Component.h"
+#include "Colour.h"
 #include "SDL.h"
-#include "Transform.h"
-#include "Entity.h"
 #include "Debug.h"
+#include "Renderer.h"
 
-class RectRenderer : public Component
+class Component;
+
+class RectRenderer : public Renderer
 {
-
 	SDL_Rect* rect = nullptr;
-	Transform* _transform = nullptr;
 
 	public:
+		bool fillRect = false;
+		int width = 10;
+		int height = 10;
+
 		/// <summary>
 		/// Constructs a rectangle with specified inputs.
 		/// </summary>
-		/// <param name="width">- The width of the Rectangle.</param>
-		/// <param name="height">- The width of the Rectangle.</param>
-		/// <param name="fill">- Should the rectangle be filled?</param>
-		RectRenderer(int width = 0, int height = 0, bool fill = false);
+		/// <param name="Width">- The width of the Rectangle.</param>
+		/// <param name="Height">- The width of the Rectangle.</param>
+		/// <param name="Fill">- Should the rectangle be filled?</param>
+		RectRenderer(int Width = 0, int Height = 0, bool Fill = false);
 
-		bool fillRect = false;
+
 
 		void Start() override;
-		void Update(float* timeStep) override;
 		void Render(SDL_Renderer* renderer) override;
-
-		void UpdateSize(int x, int y);
+		void UpdateSize(int x, int y) const;
 };
 #endif

@@ -1,9 +1,9 @@
 #ifndef BAMT_PLAYER_MOVEMENT
 #define BAMT_PLAYER_MOVEMENT
 
-#include "Entity.h"
-#include "Component.h"
 #include "Input.h"
+#include "Component.h"
+
 #include "Transform.h"
 #include "RigidBody.h"
 

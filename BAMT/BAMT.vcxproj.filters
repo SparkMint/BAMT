@@ -88,6 +88,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Colour.cpp">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -134,6 +140,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
+    </ClInclude>
+    <ClInclude Include="Colour.h">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>CORE\COMPONENTS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace Debug
 	void Log(std::string output);
 	void Log(std::string output, void* pointer);
 
-	void ShowLogs(bool showLogs);
+	void ToggleLogs();
 	#pragma endregion LogDeclarations
 
 	#pragma region WarnDeclarations
@@ -25,7 +25,7 @@ namespace Debug
 	void LogWarn(std::string output);
 	void LogWarn(std::string output, void* pointer);
 
-	void ShowWarns(bool showWarnings);
+	void ToggleWarns();
 
 	#pragma endregion WarnDeclarations
 
@@ -36,7 +36,7 @@ namespace Debug
 	void LogError(std::string output);
 	void LogError(std::string output, void* pointer);
 
-	void ShowErrors(bool showErrors);
+	void ToggleErrors();
 	#pragma endregion ErrorDeclarations
 
 	#pragma region LogExtras
