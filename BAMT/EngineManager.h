@@ -26,7 +26,7 @@ class EngineManager
 		/// <summary>
 		/// Returns if the Engine is active or not.
 		/// </summary>
-		bool IsActive();
+		bool IsActive() const;
 
 		/// <summary>
 		/// Creates an SDL Window and SDL Renderer and configures them.
@@ -61,7 +61,7 @@ class EngineManager
 		/// </summary>
 		void Stop();
 
-		void SetWindowTitle();
+		void SetWindowTitle() const;
 		
 		/// <summary>
 		/// Creates an Entity of the specified type and adds it to the Entity List.

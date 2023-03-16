@@ -34,10 +34,6 @@ bool Vector2::operator==(const Vector2& vector) const
 
 Transform::Transform(float x, float y) : _position(new Vector2{ x, y }){ }
 
-void Transform::Start(){}
-void Transform::Update(float* timeStep){}
-void Transform::Render(SDL_Renderer* renderer){}
-
 void Transform::SetX(float x) const { _position->x = x; }
 
 void Transform::SetY(float y) const { _position->y = y; }

@@ -18,7 +18,6 @@ class RigidBody : public Component
 	public:
 		void Start() override;
 		void Update(float* timeStep) override;
-		void Render(SDL_Renderer* renderer) override;
 
 		/// <summary>
 		/// Pushes this RigidBody in a specified direction.

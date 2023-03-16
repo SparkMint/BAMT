@@ -35,11 +35,6 @@ class Transform : public Component
 	public:
 		Transform(float x = 0, float y = 0);
 
-		void Start() override;
-		void Update(float* timeStep) override;
-		void Render(SDL_Renderer* renderer) override;
-
-
 		// Getter / Setter Functions
 
 		void SetX(float x) const;

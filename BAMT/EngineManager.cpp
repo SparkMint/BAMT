@@ -123,14 +123,14 @@ void EngineManager::Stop()
 	delete(this);
 }
 
-void EngineManager::SetWindowTitle()
+void EngineManager::SetWindowTitle() const
 {
 	const int framesPerSecond = 1000 / _deltaTime - _tickTimer->GetTicks();
 	const std::string windowString = _windowTitle + " | FPS : " + std::to_string(framesPerSecond);
 	SDL_SetWindowTitle(_window, windowString.c_str());
 }
 
-bool EngineManager::IsActive() 
+bool EngineManager::IsActive() const
 {
 	return _isActive;
 }

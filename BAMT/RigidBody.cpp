@@ -23,8 +23,6 @@ void RigidBody::Update(float* timeStep)
 	_transform->SetPosition(&stepPosition);
 }
 
-void RigidBody::Render(SDL_Renderer* renderer){}
-
 Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 position)
 {
 	const float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);

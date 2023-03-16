@@ -14,7 +14,7 @@ class PlayerMovement : public Component
 		RigidBody* _rigidBody = nullptr;
 		Entity* _distanceTest = nullptr;
 	public:
-		float accelerationSpeed = 100;
+		float accelerationSpeed = 1000;
 
 		void Start() override;
 		void Update(float* timeStep) override;

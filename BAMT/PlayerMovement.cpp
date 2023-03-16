@@ -31,8 +31,8 @@ void PlayerMovement::Start()
 	 }
 	 else
 	 {
-		 _rigidBody->maxVelocity = 10000;
-		 _rigidBody->drag = 25;
+		 _rigidBody->maxVelocity = 5000;
+		 _rigidBody->drag = 5;
 		 _rigidBody->gravity = { 0, 0 };
 	 }
 }
@@ -44,19 +44,19 @@ void PlayerMovement::Update(float* timeStep)
 
 	if (Input::GetKeyDown(SDLK_w))
 	{
-		_rigidBody->AddForce(VECTOR2_UP, accelerationSpeed);
+		_rigidBody->AddForce(VECTOR2_UP, accelerationSpeed * *timeStep);
 	}
 	if (Input::GetKeyDown(SDLK_s))
 	{
-		_rigidBody->AddForce(VECTOR2_DOWN, accelerationSpeed);
+		_rigidBody->AddForce(VECTOR2_DOWN, accelerationSpeed * *timeStep);
 	}
 	if (Input::GetKeyDown(SDLK_a))
 	{
-		_rigidBody->AddForce(VECTOR2_LEFT, accelerationSpeed);
+		_rigidBody->AddForce(VECTOR2_LEFT, accelerationSpeed * *timeStep);
 	}
 	if (Input::GetKeyDown(SDLK_d))
 	{
-		_rigidBody->AddForce(VECTOR2_RIGHT, accelerationSpeed);
+		_rigidBody->AddForce(VECTOR2_RIGHT, accelerationSpeed * *timeStep);
 	}
 
 }

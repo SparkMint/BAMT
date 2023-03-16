@@ -8,7 +8,7 @@
 #define WINDOW_NAME "BAMT ENGINE"
 #define RESOLUTION_WIDTH 1280
 #define RESOLUTION_HEIGHT 720
-#define TARGET_FRAME_RATE 60
+#define TARGET_FRAME_RATE 120
 
 EngineManager* engineManager;
 
