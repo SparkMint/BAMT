@@ -66,7 +66,7 @@ class EngineManager
 		/// <summary>
 		/// Creates an Entity of the specified type and adds it to the Entity List.
 		/// </summary>
-		template<class T, typename... TArgs>
+		template<class T = Entity, typename... TArgs>
 		T* AddEntity(TArgs&&... mArgs);
 
 		/// <summary>

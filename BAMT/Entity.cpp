@@ -16,6 +16,10 @@ Entity::~Entity()
 	Debug::Log("Entity Destroyed.", this);
 }
 
+void Entity::Start()
+{
+}
+
 void Entity::Update(float* timeStep) const
 {
 	for (Component* c : _components)

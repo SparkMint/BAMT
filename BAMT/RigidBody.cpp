@@ -27,7 +27,8 @@ void RigidBody::Render(SDL_Renderer* renderer){}
 
 Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 position)
 {
-	float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+	const float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+
 	// If we are moving, apply drag to the body. 
 	if (speed > 0) 
 	{
@@ -40,6 +41,7 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	velocity.x += gravity.x * *timeStep;
 	velocity.y += gravity.y * *timeStep;
 
+	// Slow us down if we are going too fast.
 	if (speed > maxVelocity) 
 	{
 		velocity.x = (velocity.x / speed) * maxVelocity;

@@ -24,8 +24,8 @@ void RectRenderer::Update(float* timeStep)
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->x = (int)_transform->GetX() - rect->w;
-	rect->y = (int)_transform->GetY() - rect->h;
+	rect->x = (int)_transform->GetX() - rect->w / 2;
+	rect->y = (int)_transform->GetY() - rect->h / 2;
 
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(renderer, rect);

@@ -50,7 +50,7 @@ class Entity
 		/// <summary>
 		/// Used to let the entity perform initialization when created.
 		/// </summary>
-		virtual void Start() = 0;
+		virtual void Start();
 
 		/// <summary>
 		/// Runs Update on all Components attached to this Entity.

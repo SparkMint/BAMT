@@ -12,6 +12,7 @@ class PlayerMovement : public Component
 	private:
 		Transform* _transform = nullptr;
 		RigidBody* _rigidBody = nullptr;
+		Entity* _distanceTest = nullptr;
 	public:
 		float accelerationSpeed = 100;
 

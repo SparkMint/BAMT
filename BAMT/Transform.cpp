@@ -2,31 +2,37 @@
 
 #include <cmath>
 
-Vector2 Vector2::Normalize()
+namespace VectorMath
 {
-	const float magnitude = sqrt(x * x + y * y);
-	Vector2 normalizedVector = *this;
-	if (magnitude == 0)
+	float Distance(const Vector2& v1, const Vector2& v2)
 	{
-		normalizedVector.x = 0;
-		normalizedVector.y = 0;
-		return normalizedVector;
+		const float x = pow(v2.x - v1.x, 2);
+		const float y = pow(v2.y - v1.y, 2);
+		return sqrt(x + y);
 	}
 
-	normalizedVector.x /= magnitude;
-	normalizedVector.y /= magnitude;
-	return normalizedVector;
+	Vector2 Normalize(const Vector2& vector)
+	{
+		const float magnitude = Magnitude(vector);
+
+		// If the Magnitude is zero. Return Zero.
+		if (magnitude == 0)	return { 0,0 };
+
+		return { vector.x / magnitude, vector.y / magnitude };
+	}
+
+	float Magnitude(const Vector2& vector)
+	{
+		return sqrt(vector.x * vector.x + vector.y * vector.y);
+	}
 }
 
-bool Vector2::operator==(const Vector2* vector) const
+bool Vector2::operator==(const Vector2& vector) const
 {
-	return this->x == vector->x && this->y == vector->y;
+	return this->x == vector.x && this->y == vector.y;
 }
 
-Transform::Transform(float x, float y)
-{
-	SetPosition(x, y);
-}
+Transform::Transform(float x, float y) : _position(new Vector2{ x, y }){ }
 
 void Transform::Start(){}
 void Transform::Update(float* timeStep){}

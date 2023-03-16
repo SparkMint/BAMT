@@ -1,5 +1,10 @@
-﻿  Main.cpp
-  Player.cpp
+﻿  CellLogic.cpp
+  EngineManager.cpp
+  GameOfLife.cpp
+C:\BAMT\BAMT\GameOfLife.cpp(13,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\BAMT\BAMT\GameOfLife.cpp(13,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  LifeCell.cpp
+  Main.cpp
   PlayerMovement.cpp
   Generating Code...
-  BAMT.vcxproj -> C:\Users\Computing\Documents\GitHub\BAMT\x64\Debug\BAMT.exe
+  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

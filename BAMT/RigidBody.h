@@ -11,7 +11,7 @@ class RigidBody : public Component
 	Vector2 _velocity;
 
 	/// <summary>
-	/// Simulates the next _position this RigidBody will move to.
+	/// Simulates the next position this RigidBody will move to.
 	/// </summary>
 	Vector2 Simulate(const float* timeStep, Vector2 velocity, Vector2 position);
 
@@ -19,8 +19,6 @@ class RigidBody : public Component
 		void Start() override;
 		void Update(float* timeStep) override;
 		void Render(SDL_Renderer* renderer) override;
-
-
 
 		/// <summary>
 		/// Pushes this RigidBody in a specified direction.

@@ -16,12 +16,17 @@ struct Vector2
 	float x = 0;
 	float y = 0;
 
-
-
-	Vector2 Normalize();
-
-	bool operator ==(const Vector2* vector) const;
+	bool operator ==(const Vector2& vector) const;
 };
+
+namespace VectorMath
+{
+	Vector2 Normalize(const Vector2& vector);
+
+	float Magnitude(const Vector2& vector);
+
+	float Distance(const Vector2& v1, const Vector2& v2);
+}
 
 class Transform : public Component
 {
