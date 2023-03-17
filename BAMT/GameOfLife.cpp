@@ -9,7 +9,7 @@ void GameOfLife::Start()
 	{
 		for (int j = 0; j < LIFEGRID_HEIGHT - 1; ++j)
 		{
-			auto* cell = engine->AddEntity<LifeCell>();
+			auto* cell = scene->AddEntity<LifeCell>();
 			cell->GetComponent<Transform>()->SetPosition(i * 25, j * 25);
 			cell->GetComponent<CellLogic>()->gameOfLife = this;
 			cell->GetComponent<CellLogic>()->x = i;

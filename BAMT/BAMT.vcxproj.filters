@@ -40,6 +40,9 @@
     <Filter Include="WORKSHOP PALLET\ENTITIES">
       <UniqueIdentifier>{45199b2a-c0f5-4b1d-8eb6-2ee89ad3dd4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES">
+      <UniqueIdentifier>{e87e5d8d-8541-4099-a4ff-3681313796f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -94,6 +97,15 @@
     <ClCompile Include="Colour.cpp">
       <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>CORE\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGame.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGameLevel.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -146,6 +158,15 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>CORE\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGame.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGameLevel.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

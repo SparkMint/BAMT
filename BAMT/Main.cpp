@@ -2,7 +2,7 @@
 #include "Debug.h"
 
 #include "EngineManager.h"
-#include "Player.h"
+#include "PinballGame.h"
 
 #define BAMT_WINDOW_NAME "BAMT ENGINE"
 #define BAMT_RESOLUTION_WIDTH 1280
@@ -17,7 +17,9 @@ int main(int argc, char* argv[])
 	engineManager = new EngineManager();
 	engineManager->Initialize(BAMT_WINDOW_NAME, BAMT_RESOLUTION_WIDTH, BAMT_RESOLUTION_HEIGHT, false, 1000/BAMT_TARGET_FRAME_RATE);
 
-	auto* ent1 = engineManager->AddEntity<Player>();
+	// GAME PALLET GOES HERE
+	auto* loadedGame = engineManager->AddScene<PinballGame>();
+	loadedGame->active = true;
 
 	engineManager->RunLoop();
 	return 0;

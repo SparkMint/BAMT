@@ -61,11 +61,11 @@ void EngineManager::RunLoop()
 	{
 		_tickTimer->ResetTimer();
 
-		CheckEngineInputs();
+		DoInputLogic();
 
 		Update(&_timeStep);
 
-		Render();
+		Render(_renderer);
 
 		SetWindowTitle();
 
@@ -79,12 +79,12 @@ void EngineManager::RunLoop()
 	Stop();
 }
 
-void EngineManager::CheckEngineInputs()
+void EngineManager::DoInputLogic()
 {
 	// Get all Inputs for this frame.
 	Input::GetInputs();
 
-	// If the player has given the command to stop. Stop the engine.
+	// If the player has given the command to stop. Stop the scene.
 	if (Input::GetKeyHold(SDL_QUIT)) { _isActive = false; }
 
 	// Fullscreen Toggle
@@ -104,45 +104,38 @@ void EngineManager::CheckEngineInputs()
 
 void EngineManager::Update(float* timeStep) const
 {
-	for (const Entity* ent : _entityList)
+	for(const auto* scene : _sceneList)
 	{
-		if (ent->active)
-			ent->Update(timeStep);
+		if(scene->active || scene->alwaysActive)
+			scene->Update(timeStep);
 	}
 }
 
-void EngineManager::Render()
+void EngineManager::Render(SDL_Renderer* renderer) const
 {
 	// Sets the colour of the renderer to black.
-	SDL_SetRenderDrawColor(_renderer, 0,0,0,255);
+	SDL_SetRenderDrawColor(renderer, 0,0,0,255);
 
 	// Clears the entire screen to be this colour.
-	SDL_RenderClear(_renderer);
+	SDL_RenderClear(renderer);
 
-	// TODO: Have this run only when needed.
-	SortEntities();
-
-	for (const Entity* ent : _entityList)
+	for (const auto* scene : _sceneList)
 	{
-		if (ent->active)
-			ent->Render(_renderer);
+		if (scene->active || scene->alwaysActive)
+			scene->Render(renderer);
 	}
-	// Show the result of the Renderer stuff from before.
-	SDL_RenderPresent(_renderer);
-}
 
-void EngineManager::Clean()
-{
-	//Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
+	// Show the result of the Renderer stuff from before.
+	SDL_RenderPresent(renderer);
 }
 
 void EngineManager::Stop()
 {
 	Debug::Log("Engine Stopping...", this);
 
-	for (auto* ent : _entityList)
+	for (auto* scene : _sceneList)
 	{
-		delete(ent);
+		delete(scene);
 	}
 	SDL_Quit();
 	delete(_tickTimer);
@@ -159,16 +152,4 @@ void EngineManager::SetWindowTitle() const
 bool EngineManager::IsActive() const
 {
 	return _isActive;
-}
-
-void EngineManager::RemoveEntity(Entity* ent)
-{
-	auto entity = remove(_entityList.begin(), _entityList.end(), ent);
-	delete(ent);
-}
-
-void EngineManager::SortEntities()
-{
-	std::sort(_entityList.begin(), _entityList.end(), [](const Entity* a, const Entity* b)
-	{return a->renderLayer < b->renderLayer;});
 }

@@ -8,7 +8,7 @@ void PlayerMovement::Start()
 	 _transform = entity->GetComponent<Transform>();
 	 _rigidBody = entity->AddComponent<RigidBody>();
 
-	 _distanceTest = entity->engine->AddEntity<>();
+	 _distanceTest = entity->scene->AddEntity<>();
 	 _distanceTest->AddComponent<Transform>()->Translate(200, 200);
 	 _distanceTest->AddComponent<RectRenderer>()->UpdateSize(10, 10);
 	 _distanceTest->GetComponent<RectRenderer>()->fillRect = true;

@@ -7,7 +7,9 @@
 
 #include <vector>
 
+
 class EngineManager;
+class Scene;
 class Component;
 
 class Entity 
@@ -22,9 +24,9 @@ class Entity
 		~Entity();
 
 		/// <summary>
-		/// Pointer to the engine this entity is attached to.
+		/// Pointer to the scene this entity is attached to.
 		/// </summary>
-		EngineManager* engine = nullptr;
+		Scene* scene = nullptr;
 
 
 		/// <summary>
