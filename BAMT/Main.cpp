@@ -24,11 +24,3 @@ int main(int argc, char* argv[])
 	engineManager->RunLoop();
 	return 0;
 }
-
-// Left over garbage
-
-//auto* ent2 = engineManager->AddEntity<Player>();
-
-//ent1->SetParent(ent2);
-//Debug::LogWarn("Ent2 should have a child. ", ent2->children[0]);
-//Debug::LogWarn("Ent1 should have a parent. ", ent1->parent);

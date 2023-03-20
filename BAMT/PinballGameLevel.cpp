@@ -33,9 +33,9 @@ void PinballGameLevel::Start()
 	collisionTest3->GetComponent<RigidBody>()->colliderHeight = 720;
 	collisionTest3->GetComponent<RigidBody>()->isKinematic = true;
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 30; ++i)
 	{
-		for (int j = 0; j < 10; ++j)
+		for (int j = 0; j < 30; ++j)
 		{
 			const auto thing = AddEntity<Player>();
 			thing->GetComponent<Transform>()->SetPosition(50 + (j * 21), 50 + (i * 21));
