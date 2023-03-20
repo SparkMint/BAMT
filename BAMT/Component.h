@@ -6,6 +6,7 @@
 #include <SDL_render.h>
 
 class Entity;
+class Transform;
 
 class Component 
 {

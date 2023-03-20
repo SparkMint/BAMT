@@ -8,10 +8,10 @@ class EngineManager;
 
 class Scene
 {
-	std::vector<Entity*> _entityList;
-
 	public:
 		EngineManager* engine = nullptr;
+
+		std::vector<Entity*> entityList;
 
 		// Determines if scene logic should run.
 		bool active = false;
@@ -66,7 +66,7 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 	if (entityBase != nullptr)
 	{
 		// Add the entity to our entity list.
-		_entityList.emplace_back(entityBase);
+		entityList.emplace_back(entityBase);
 
 		entityBase->scene = this;
 
@@ -82,7 +82,7 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 
 inline void Scene::RemoveEntity(Entity* ent)
 {
-	auto entityToRemove = remove(_entityList.begin(), _entityList.end(), ent);
+	auto entityToRemove = remove(entityList.begin(), entityList.end(), ent);
 	delete(ent);
 }
 #endif

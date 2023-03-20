@@ -12,9 +12,9 @@ class PlayerMovement : public Component
 	private:
 		Transform* _transform = nullptr;
 		RigidBody* _rigidBody = nullptr;
-		Entity* _distanceTest = nullptr;
+
 	public:
-		float accelerationSpeed = 1000;
+		float movementSpeed;
 
 		void Start() override;
 		void Update(float* timeStep) override;

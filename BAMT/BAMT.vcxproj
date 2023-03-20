@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CellLogic.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="TriRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CellLogic.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Debug.h" />

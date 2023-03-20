@@ -2,9 +2,25 @@
 
 void Player::Start()
 {
-	AddComponent<Transform>()->SetPosition(250,250);
-	AddComponent<RigidBody>();
-	AddComponent<PlayerMovement>();
-	AddComponent<RectRenderer>(30, 30, true)->colour = BAMT_COLOUR_BLUE;
-	//renderLayer = 1;
+	// Transform Setup
+	transform = AddComponent<Transform>();
+	transform->SetPosition(&initialPosition);
+
+	// Collider Setup
+	boxCollider = AddComponent<BoxCollider>(rendererWidth, rendererHeight);
+	boxCollider->DebugMode(true);
+
+	// RigidBody Setup
+	rigidBody = AddComponent<RigidBody>();
+	rigidBody->maxVelocity = maxSpeed;
+	rigidBody->drag = dragForce;
+	rigidBody->gravity = gravity;
+	rigidBody->debugMode = true;
+	// Player Movement Setup
+	playerMovement = AddComponent<PlayerMovement>();
+	playerMovement->movementSpeed = movementSpeed;
+
+	// Renderer Setup
+	rectRenderer = AddComponent<RectRenderer>(rendererWidth, rendererHeight, fillRect);
+	rectRenderer->enabled = false;
 }

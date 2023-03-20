@@ -8,15 +8,14 @@
 
 #include "Component.h"
 
-class Entity;
-class Component;
-
 struct Vector2
 {
 	float x = 0;
 	float y = 0;
 
 	bool operator ==(const Vector2& vector) const;
+
+	Vector2 operator -(const Vector2& vector);
 };
 
 namespace VectorMath
@@ -26,6 +25,8 @@ namespace VectorMath
 	float Magnitude(const Vector2& vector);
 
 	float Distance(const Vector2& v1, const Vector2& v2);
+
+	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2);
 }
 
 class Transform : public Component

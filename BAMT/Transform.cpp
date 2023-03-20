@@ -25,11 +25,31 @@ namespace VectorMath
 	{
 		return sqrt(vector.x * vector.x + vector.y * vector.y);
 	}
+
+	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2)
+	{
+		const auto pos1Min = pos1 - bounds1 / 2;
+		const auto pos1Max = pos1 + bounds1 / 2;
+
+		const auto pos2Min = pos2 - bounds2 / 2;
+		const auto pos2Max = pos2 + bounds2 / 2;
+
+		if(pos1Min > pos2Max || pos1Max < pos2Min)
+		{
+			return false;
+		}
+		return true;
+	}
 }
 
 bool Vector2::operator==(const Vector2& vector) const
 {
 	return this->x == vector.x && this->y == vector.y;
+}
+
+Vector2 Vector2::operator-(const Vector2& vector)
+{
+	return {this->x - vector.x, this->y - vector.y};
 }
 
 Transform::Transform(float x, float y) : _position(new Vector2{ x, y }){ }

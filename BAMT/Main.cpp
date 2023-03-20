@@ -7,7 +7,7 @@
 #define BAMT_WINDOW_NAME "BAMT ENGINE"
 #define BAMT_RESOLUTION_WIDTH 1280
 #define BAMT_RESOLUTION_HEIGHT 720
-#define BAMT_TARGET_FRAME_RATE 120
+#define BAMT_TARGET_FRAME_RATE 60
 
 EngineManager* engineManager;
 
@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 
 	// GAME PALLET GOES HERE
 	auto* loadedGame = engineManager->AddScene<PinballGame>();
-	loadedGame->active = true;
+	loadedGame->alwaysActive = true;
 
 	engineManager->RunLoop();
 	return 0;

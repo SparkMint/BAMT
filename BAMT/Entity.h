@@ -7,7 +7,6 @@
 
 #include <vector>
 
-
 class EngineManager;
 class Scene;
 class Component;
@@ -27,8 +26,7 @@ class Entity
 		/// Pointer to the scene this entity is attached to.
 		/// </summary>
 		Scene* scene = nullptr;
-
-
+		
 		/// <summary>
 		/// What Entity owns this one?
 		/// </summary>
@@ -124,7 +122,7 @@ T* Entity::GetComponent()
 			return static_cast<T*>(c);
 		}
 	}
-	Debug::LogError("Component could not be found on this Entity!", this);
+	//Debug::LogError("Component could not be found on this Entity!", this);
 	return nullptr;
 }
 
@@ -160,27 +158,6 @@ void Entity::SetParent(T* entity)
 		Debug::LogError("Entity given was not a type of entity!", entity);
 	}
 }
-
-// old method. keeping just incase.
-/*
-template <class T>
-void Entity::SetParent(T* entity)
-{
-	Entity* entityBase = dynamic_cast<Entity*>(entity);
-
-	// If it isnt null, its a valid Entity.
-	if (entityBase != nullptr)
-	{
-		parent = entityBase;
-
-		// Tell the parent it now has a child.
-		auto entityInChildren = std::find(entityBase->children.begin(), entityBase->children.end(), this);
-
-		// If we cant find the entity in the parents children list, add it.
-		if(entityInChildren == entityBase->children.end())
-			entityBase->AddChild(this);
-	}
-}*/
 
 template <class T>
 void Entity::AddChild(T* entity)

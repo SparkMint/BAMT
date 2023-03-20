@@ -25,8 +25,6 @@ class RectRenderer : public Renderer
 		/// <param name="Fill">- Should the rectangle be filled?</param>
 		RectRenderer(int Width = 0, int Height = 0, bool Fill = false);
 
-
-
 		void Start() override;
 		void Render(SDL_Renderer* renderer) override;
 		void UpdateSize(int x, int y) const;

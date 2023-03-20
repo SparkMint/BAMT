@@ -6,59 +6,44 @@
 void PlayerMovement::Start()
 {
 	 _transform = entity->GetComponent<Transform>();
-	 _rigidBody = entity->AddComponent<RigidBody>();
-
-	 _distanceTest = entity->scene->AddEntity<>();
-	 _distanceTest->AddComponent<Transform>()->Translate(200, 200);
-	 _distanceTest->AddComponent<RectRenderer>()->UpdateSize(10, 10);
-	 _distanceTest->GetComponent<RectRenderer>()->fillRect = true;
+	 _rigidBody = entity->GetComponent<RigidBody>();
 
 
 	// If we don't have a _transform on this object for some reason.
 	// Disable this component to prevent errors.
 	 if (_transform == nullptr)
 	 {
-		 Debug::LogError("PlayerMovement Component Disabled. Transform Missing!");
-
-		 enabled = false;
+		 Debug::LogError("PlayerMovement cannot detect a Transform! Adding one now...", this);
+		 _transform = entity->AddComponent<Transform>();
+		 //enabled = false;
 	 }
 
 	 if (_rigidBody == nullptr)
 	 {
-		 Debug::LogError("PlayerMovement Component Disabled. RigidBody Missing!");
-
-		 enabled = false;
-	 }
-	 else
-	 {
-		 _rigidBody->maxVelocity = 5000;
-		 _rigidBody->drag = 5;
-		 _rigidBody->gravity = { 0, 0 };
+		 Debug::LogError("PlayerMovement cannot detect a RigidBody! Adding one now...", this);
+		 _rigidBody = entity->GetComponent<RigidBody>();
+		 //enabled = false;
 	 }
 }
 
 void PlayerMovement::Update(float* timeStep)
 {
-	Debug::Log("Distance: " + std::to_string(VectorMath::Distance(*_transform->GetPosition(),
-		*_distanceTest->GetComponent<Transform>()->GetPosition())));
-
 	if (Input::GetKeyHold(SDLK_w))
 	{
-		_rigidBody->AddForce(VECTOR2_UP, accelerationSpeed * *timeStep);
+		_rigidBody->AddForce(VECTOR2_UP, movementSpeed * *timeStep);
 	}
 	if (Input::GetKeyHold(SDLK_s))
 	{
-		_rigidBody->AddForce(VECTOR2_DOWN, accelerationSpeed * *timeStep);
+		_rigidBody->AddForce(VECTOR2_DOWN, movementSpeed * *timeStep);
 	}
 	if (Input::GetKeyHold(SDLK_a))
 	{
-		_rigidBody->AddForce(VECTOR2_LEFT, accelerationSpeed * *timeStep);
+		_rigidBody->AddForce(VECTOR2_LEFT, movementSpeed * *timeStep);
 	}
 	if (Input::GetKeyHold(SDLK_d))
 	{
-		_rigidBody->AddForce(VECTOR2_RIGHT, accelerationSpeed * *timeStep);
+		_rigidBody->AddForce(VECTOR2_RIGHT, movementSpeed * *timeStep);
 	}
-
 }
 
 void PlayerMovement::Render(SDL_Renderer* renderer) {}
