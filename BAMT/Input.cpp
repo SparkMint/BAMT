@@ -24,6 +24,10 @@ namespace Input
 					_keyStates[SDL_QUIT] = true;
 					break;
 
+				case SDL_WINDOWEVENT_MOVED:
+					_keyStates[SDL_WINDOWEVENT_MOVED] = true;
+					break;
+
 				case SDL_KEYDOWN:
 						_keyStates[event.key.keysym.sym] = true;
 					break;

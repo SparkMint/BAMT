@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include <algorithm>
 
+#include "RigidBody.h"
+
 class EngineManager;
 
 class Scene
@@ -12,6 +14,7 @@ class Scene
 		EngineManager* engine = nullptr;
 
 		std::vector<Entity*> entityList;
+		std::vector<RigidBody*> rigidBodiesList;
 
 		// Determines if scene logic should run.
 		bool active = false;
@@ -24,7 +27,7 @@ class Scene
 		/// <summary>
 		/// Updates all active Entities.
 		/// </summary>
-		void Update(float* timeStep) const;
+		void Update(float* timeStep);
 
 		/// <summary>
 		/// Renders all active Entities.
@@ -48,6 +51,8 @@ class Scene
 		/// Sorts all entities in the scene for rendering purposes.
 		/// </summary>
 		void SortEntities();
+
+		void SortRigidBodies();
 
 		Scene();
 		~Scene();

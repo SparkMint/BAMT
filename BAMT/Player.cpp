@@ -6,12 +6,10 @@ void Player::Start()
 	transform = AddComponent<Transform>();
 	transform->SetPosition(&initialPosition);
 
-	// Collider Setup
-	boxCollider = AddComponent<BoxCollider>(rendererWidth, rendererHeight);
-	boxCollider->DebugMode(true);
-
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
+	rigidBody->colliderWidth = rendererWidth;
+	rigidBody->colliderHeight = rigidBody->colliderWidth;
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
 	rigidBody->gravity = gravity;
@@ -21,6 +19,6 @@ void Player::Start()
 	playerMovement->movementSpeed = movementSpeed;
 
 	// Renderer Setup
-	rectRenderer = AddComponent<RectRenderer>(rendererWidth, rendererHeight, fillRect);
-	rectRenderer->enabled = false;
+	rectRenderer = AddComponent<RectRenderer>(rendererWidth, rendererWidth, fillRect);
+	//rectRenderer->enabled = false;
 }

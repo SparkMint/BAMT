@@ -74,6 +74,14 @@ void EngineManager::RunLoop()
 			SDL_Delay(_deltaTime - _tickTimer->GetTicks());
 		}
 		_timeStep = _tickTimer->GetTicks() / 1000.f;
+
+		if(_timeStep > BAMT_TIMESTEP_LIMIT)
+		{
+			Debug::LogWarn("Timestep too high! Value: " + std::to_string(_timeStep) + ". Clamping to " + std::to_string(BAMT_TIMESTEP_LIMIT));
+			Debug::LogWarn("Physics and other features might not work as intended!");
+
+			_timeStep = BAMT_TIMESTEP_LIMIT;
+		}
 	}
 	// After the loop has been broken out of, clear all memory.
 	Stop();
@@ -104,7 +112,8 @@ void EngineManager::DoInputLogic()
 
 void EngineManager::Update(float* timeStep) const
 {
-	for(const auto* scene : _sceneList)
+	//Debug::Log("TimeStep: " + std::to_string(*timeStep));
+	for(auto* scene : _sceneList)
 	{
 		if(scene->active || scene->alwaysActive)
 			scene->Update(timeStep);

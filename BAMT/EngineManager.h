@@ -1,6 +1,8 @@
 #ifndef BAMT_ENGINE_MANAGER
 #define BAMT_ENGINE_MANAGER
 
+#define BAMT_TIMESTEP_LIMIT 0.05f
+
 #include "Entity.h"
 #include "SDL.h"
 #include "Debug.h"

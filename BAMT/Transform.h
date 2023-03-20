@@ -41,8 +41,8 @@ class Transform : public Component
 		void SetX(float x) const;
 		void SetY(float y) const;
 
-		float GetX() const;
-		float GetY() const;
+		float GetX();
+		float GetY();
 
 
 		/// <summary>

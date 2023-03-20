@@ -1,43 +1,49 @@
 #include "PinballGameLevel.h"
 void PinballGameLevel::Start()
 {
-	_player = AddEntity<Player>();
 	auto* collisionTest = AddEntity<Entity>();
 
 	collisionTest->AddComponent<Transform>(640, 720);
-	collisionTest->AddComponent<BoxCollider>(1280, 50);
-	collisionTest->GetComponent<BoxCollider>()->DebugMode(true);
 	collisionTest->AddComponent<RigidBody>();
+	collisionTest->GetComponent<RigidBody>()->colliderWidth = 1280;
+	collisionTest->GetComponent<RigidBody>()->colliderHeight = 50;
 	collisionTest->GetComponent<RigidBody>()->isKinematic = true;
-
 
 	auto* collisionTest1= AddEntity<Entity>();
 
 	collisionTest1->AddComponent<Transform>(0, 360);
-	collisionTest1->AddComponent<BoxCollider>(50, 720);
-	collisionTest1->GetComponent<BoxCollider>()->DebugMode(true);
 	collisionTest1->AddComponent<RigidBody>();
+	collisionTest1->GetComponent<RigidBody>()->colliderWidth = 50;
+	collisionTest1->GetComponent<RigidBody>()->colliderHeight = 720;
 	collisionTest1->GetComponent<RigidBody>()->isKinematic = true;
 
 	auto* collisionTest2 = AddEntity<Entity>();
 
 	collisionTest2->AddComponent<Transform>(640, 0);
-	collisionTest2->AddComponent<BoxCollider>(1280, 50);
-	collisionTest2->GetComponent<BoxCollider>()->DebugMode(true);
 	collisionTest2->AddComponent<RigidBody>();
+	collisionTest2->GetComponent<RigidBody>()->colliderWidth = 1280;
+	collisionTest2->GetComponent<RigidBody>()->colliderHeight = 50;
 	collisionTest2->GetComponent<RigidBody>()->isKinematic = true;
 
 	auto* collisionTest3 = AddEntity<Entity>();
 
 	collisionTest3->AddComponent<Transform>(1280, 360);
-	collisionTest3->AddComponent<BoxCollider>(50, 720);
-	collisionTest3->GetComponent<BoxCollider>()->DebugMode(true);
 	collisionTest3->AddComponent<RigidBody>();
+	collisionTest3->GetComponent<RigidBody>()->colliderWidth = 50;
+	collisionTest3->GetComponent<RigidBody>()->colliderHeight = 720;
 	collisionTest3->GetComponent<RigidBody>()->isKinematic = true;
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
-		auto thing = AddEntity<Player>();
-		thing->GetComponent<Transform>()->SetPosition(50 + (i * 20), 100 + (i * 5));
+		for (int j = 0; j < 10; ++j)
+		{
+			const auto thing = AddEntity<Player>();
+			thing->GetComponent<Transform>()->SetPosition(50 + (j * 21), 50 + (i * 21));
+
+			int r = rand() & 255;
+			int g = rand() & 255;
+			int b = rand() & 255;
+			thing->rectRenderer->colour = { r, g ,b, 255 };
+		}
 	}
 }

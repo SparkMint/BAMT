@@ -12,7 +12,6 @@ class Player : public Entity
 {
 	public:
 		Transform* transform = nullptr;
-		BoxCollider* boxCollider = nullptr;
 		RigidBody* rigidBody = nullptr;
 		PlayerMovement* playerMovement = nullptr;
 		RectRenderer* rectRenderer = nullptr;
@@ -23,7 +22,7 @@ class Player : public Entity
 		// RigidBody Values
 		int maxSpeed = 500;
 		int dragForce = 0;
-		Vector2 gravity = {0, 250};
+		Vector2 gravity = {0, 0};
 
 		// Player Movement Values
 		float movementSpeed = 1000;

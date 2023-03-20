@@ -28,11 +28,11 @@ namespace VectorMath
 
 	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2)
 	{
-		const auto pos1Min = pos1 - bounds1 / 2;
-		const auto pos1Max = pos1 + bounds1 / 2;
+		const auto pos1Min = pos1 - bounds1 * 0.5f;
+		const auto pos1Max = pos1 + bounds1 * 0.5f;
 
-		const auto pos2Min = pos2 - bounds2 / 2;
-		const auto pos2Max = pos2 + bounds2 / 2;
+		const auto pos2Min = pos2 - bounds2 * 0.5f;
+		const auto pos2Max = pos2 + bounds2 * 0.5f;
 
 		if(pos1Min > pos2Max || pos1Max < pos2Min)
 		{
@@ -58,9 +58,9 @@ void Transform::SetX(float x) const { _position->x = x; }
 
 void Transform::SetY(float y) const { _position->y = y; }
 
-float Transform::GetX() const { return _position->x; }
+float Transform::GetX() { return _position->x; }
 
-float Transform::GetY() const { return _position->y; }
+float Transform::GetY() { return _position->y; }
 
 void Transform::Translate(int x, int y) const
 {

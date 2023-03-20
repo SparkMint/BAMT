@@ -11,7 +11,6 @@ class PinballGame : public Scene
 	//Scene* pauseMenu;
 	PinballGameLevel* _gameLevel = nullptr;
 
-
 	public:
 		void Start() override;
 };
