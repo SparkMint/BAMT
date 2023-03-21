@@ -6,7 +6,7 @@ void Renderer::Start()
 
 	if (_transform == nullptr)
 	{
-		Debug::LogWarn("RectRenderer couldn't find Transform in this Entity, Adding one now.", entity);
+		Debug::LogWarn("Renderer couldn't find Transform in this Entity, Adding one now.", entity);
 		_transform = entity->AddComponent<Transform>();
 	}
 }

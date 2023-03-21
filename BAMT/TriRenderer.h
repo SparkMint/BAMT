@@ -1,10 +1,10 @@
 #ifndef BAMT_TRIANGLE_RENDERER
 #define BAMT_TRIANGLE_RENDERER
 
+#include "Entity.h"
 #include "Component.h"
 #include "SDL.h"
 #include "Transform.h"
-#include "Entity.h"
 #include "Debug.h"
 
 class TriRenderer : public Component

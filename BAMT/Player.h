@@ -20,8 +20,8 @@ class Player : public Entity
 
 		// RigidBody Values
 		float maxSpeed = 500;
-		float dragForce = 1;
-		float mass = 3;
+		float dragForce = 0;
+		float mass = 1;
 		float bounciness = 1;
 
 		// Player Movement Values

@@ -1,12 +1,10 @@
 #ifndef BAMT_COMPONENT
 #define BAMT_COMPONENT
 
-#include "Entity.h"
 #include "Debug.h"
 #include <SDL_render.h>
 
 class Entity;
-class Transform;
 
 class Component 
 {

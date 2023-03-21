@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Debug.cpp" />
@@ -149,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineSettings.h" />
-    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EngineManager.h" />

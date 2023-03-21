@@ -7,5 +7,5 @@
 #define BAMT_TARGET_FRAME_RATE 60
 
 // PHYSICS
-#define BAMT_PHYSICS_STEPS 20
+#define BAMT_PHYSICS_STEPS 7
 #endif

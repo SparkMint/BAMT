@@ -8,6 +8,8 @@
 
 #include "Component.h"
 
+class Component;
+
 struct Vector2
 {
 	float x = 0;

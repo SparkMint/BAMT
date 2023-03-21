@@ -1,25 +1,14 @@
-﻿  Main.cpp
-  PinballGame.cpp
-  PinballGameLevel.cpp
-C:\BAMT\BAMT\PinballGameLevel.cpp(51,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\BAMT\BAMT\PinballGameLevel.cpp(51,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\BAMT\BAMT\Entity.h(92,34): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+﻿  PinballGameLevel.cpp
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\PinballGameLevel.cpp(48,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\PinballGameLevel.cpp(48,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Entity.h(92,34): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\BAMT\BAMT\PinballGameLevel.cpp(6): message : see reference to function template instantiation 'T *Entity::AddComponent<Transform,int,int>(int &&,int &&)' being compiled
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\PinballGameLevel.cpp(6,49): message : see reference to function template instantiation 'T *Entity::AddComponent<Transform,int,int>(int &&,int &&)' being compiled
           with
           [
               T=Transform
           ]
-  Player.cpp
-C:\BAMT\BAMT\Entity.h(92,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Player.cpp(22): message : see reference to function template instantiation 'T *Entity::AddComponent<RectRenderer,float&,float&,bool&>(float &,float &,bool &)' being compiled
-          with
-          [
-              T=RectRenderer
-          ]
-  RigidBody.cpp
-  Generating Code...
-  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe
+  BAMT.vcxproj -> C:\Users\Computing\Documents\GitHub\BAMT\x64\Debug\BAMT.exe

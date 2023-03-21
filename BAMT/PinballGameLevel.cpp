@@ -38,18 +38,20 @@ void PinballGameLevel::Start()
 	thing->GetComponent<RigidBody>()->mass = 5;
 	thing->playerMovement->enabled = true;
 
-	int r = rand() & 255;
-	int g = rand() & 255;
-	int b = rand() & 255;
-	thing->rectRenderer->colour = { r, g ,b, 255 };
 
-	for (int i = 0; i < 10; ++i)
+
+	for (int i = 0; i < 30; ++i)
 	{
-		for (int j = 0; j < 10; ++j)
+		for (int j = 0; j < 30; ++j)
 		{
 			const auto thing = AddEntity<Player>();
 			thing->GetComponent<Transform>()->SetPosition(75 + (j * 21), 75 + (i * 21));
 			thing->playerMovement->enabled = false;
+
+			int r = rand() & 255;
+			int g = rand() & 255;
+			int b = rand() & 255;
+			thing->rectRenderer->colour = { r, g ,b, 255 };
 		}
 	}
 }
