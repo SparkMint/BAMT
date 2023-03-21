@@ -9,12 +9,11 @@
 
 class PlayerMovement : public Component
 {
-	private:
-		Transform* _transform = nullptr;
-		RigidBody* _rigidBody = nullptr;
+	Transform* _transform = nullptr;
+	RigidBody* _rigidBody = nullptr;
 
-		Vector2 _zeroGravity{ 0,0 };
-		Vector2 _Gravity{ 0,250 };
+	Vector2 _zeroGravity{ 0,0 };
+	Vector2 _Gravity{ 0,2 };
 
 	public:
 		float movementSpeed;

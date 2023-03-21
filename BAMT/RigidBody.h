@@ -67,9 +67,6 @@ class RigidBody : public Component
 		/// </summary>
 		float maxVelocity = 0;
 
-		void Start() override;
-		void Update(float* timeStep) override;
-
 		/// <summary>
 		/// Calculates which direction the RigidBody should be pushed.
 		///	And with how much force.
@@ -80,5 +77,8 @@ class RigidBody : public Component
 		/// Pushes this RigidBody in a specified direction.
 		/// </summary>
 		void AddForce(Vector2 direction, float force);
+
+		void Start() override;
+		void Update(float* timeStep) override;
 };
 #endif

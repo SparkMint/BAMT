@@ -1,6 +1,6 @@
 #include "RectRenderer.h"
 
-RectRenderer::RectRenderer(int Width, int Height, bool Fill)
+RectRenderer::RectRenderer(float Width, float Height, bool Fill)
 {
 	width = Width;
 	height = Height;
@@ -18,8 +18,8 @@ void RectRenderer::Start()
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->x = (int)_transform->GetX() - rect->w / 2;
-	rect->y = (int)_transform->GetY() - rect->h / 2;
+	rect->x = roundf((_transform->GetX() * scaleMultiplier - rect->w / 2) * 100) / 100;
+	rect->y = roundf((_transform->GetY() * scaleMultiplier - rect->h / 2) * 100) / 100;
 
 	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderDrawRect(renderer, rect);
@@ -32,8 +32,8 @@ void RectRenderer::Render(SDL_Renderer* renderer)
 	}
 }
 
-void RectRenderer::UpdateSize(const int width, const int height) const
+void RectRenderer::UpdateSize(const float width, const float height) const
 {
-	rect->w = width;
-	rect->h = height;
-}
+	rect->w = width * scaleMultiplier;
+	rect->h = height * scaleMultiplier;
+}	

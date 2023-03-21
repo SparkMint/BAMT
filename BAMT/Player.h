@@ -16,20 +16,20 @@ class Player : public Entity
 		RectRenderer* rectRenderer = nullptr;
 
 		//Transform Values
-		Vector2 initialPosition = { 100, 100 };
+		Vector2 initialPosition = { 1, 1 };
 
 		// RigidBody Values
-		float maxSpeed = 500;
-		float dragForce = 0;
+		float maxSpeed = 10;
+		float dragForce = 1;
 		float mass = 1;
 		float bounciness = 1;
 
 		// Player Movement Values
-		float movementSpeed = 500000;
+		float movementSpeed = 1000;
 
 		// RectRenderer Values
-		float rendererWidth = 20;
-		float rendererHeight = 20;
+		float rendererWidth = 0.2f;
+		float rendererHeight = 0.2f;
 		bool fillRect = true;
 		
 

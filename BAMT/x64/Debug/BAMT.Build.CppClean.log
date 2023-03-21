@@ -1,3 +1,5 @@
+c:\users\computing\documents\github\bamt\bamt\x64\debug\vc143.pdb
+c:\users\computing\documents\github\bamt\bamt\x64\debug\vc143.idb
 c:\bamt\bamt\x64\debug\vc143.pdb
 c:\bamt\bamt\x64\debug\vc143.idb
 c:\bamt\bamt\x64\debug\trirenderer.obj
@@ -18,10 +20,10 @@ c:\bamt\bamt\x64\debug\entity.obj
 c:\bamt\bamt\x64\debug\debug.obj
 c:\bamt\bamt\x64\debug\component.obj
 c:\bamt\bamt\x64\debug\colour.obj
-c:\bamt\bamt\x64\debug\boxcollider.obj
-c:\bamt\bamt\x64\debug\bamt.ilk
 c:\bamt\x64\debug\bamt.exe
+c:\bamt\bamt\x64\debug\bamt.ilk
 c:\bamt\x64\debug\bamt.pdb
+c:\bamt\bamt\x64\debug\boxcollider.obj
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.command.1.tlog
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.read.1.tlog
 c:\bamt\bamt\x64\debug\bamt.tlog\cl.write.1.tlog

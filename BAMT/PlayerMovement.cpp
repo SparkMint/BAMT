@@ -48,10 +48,12 @@ void PlayerMovement::Update(float* timeStep)
 	{
 		if(entity->scene->gravity == _zeroGravity)
 		{
+			Debug::Log("Gravity Enabled!", this);
 			entity->scene->gravity = _Gravity;
 		}
 		else
 		{
+			Debug::Log("Gravity Disabled!", this);
 			entity->scene->gravity = _zeroGravity;
 		}
 	}

@@ -64,8 +64,8 @@ void Scene::HandleCollisionLogic()
 			{
 				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->colliderHeight, activeInterval[j]->transform->GetY(), activeInterval[j]->colliderHeight))
 				{
-					i->ReactToCollisions(activeInterval[j]);
 					activeInterval[j]->ReactToCollisions(i);
+					i->ReactToCollisions(activeInterval[j]);
 
 					if (!i->collisionList.empty())
 					{

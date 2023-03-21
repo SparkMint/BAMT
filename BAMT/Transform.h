@@ -5,6 +5,7 @@
 #define VECTOR2_LEFT {-1, 0}
 #define VECTOR2_DOWN {0, 1}
 #define VECTOR2_RIGHT {1, 0}
+#define VECTOR2_ZERO {0,0}
 
 #include "Component.h"
 
@@ -18,6 +19,16 @@ struct Vector2
 	bool operator ==(const Vector2& vector) const;
 
 	Vector2 operator -(const Vector2& vector) const;
+
+	Vector2 operator *(const Vector2& vector) const;
+
+	Vector2 operator *(const float multiplier) const;
+
+	friend Vector2 operator*(const float multiplier, const Vector2& vec);
+
+	Vector2 operator/(const float divider) const;
+
+	Vector2 operator+(const Vector2& vector) const;
 };
 
 namespace VectorMath
