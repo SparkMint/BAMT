@@ -3,6 +3,7 @@
 
 #define BAMT_TIMESTEP_LIMIT 0.05f
 
+#include "EngineSettings.h"
 #include "Entity.h"
 #include "SDL.h"
 #include "Debug.h"

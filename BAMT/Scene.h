@@ -5,8 +5,10 @@
 #include <algorithm>
 
 #include "RigidBody.h"
+#include "Transform.h"
 
 class EngineManager;
+class RigidBody;
 
 class Scene
 {
@@ -14,7 +16,9 @@ class Scene
 		EngineManager* engine = nullptr;
 
 		std::vector<Entity*> entityList;
+
 		std::vector<RigidBody*> rigidBodiesList;
+		Vector2 gravity {0,0};
 
 		// Determines if scene logic should run.
 		bool active = false;
@@ -53,6 +57,8 @@ class Scene
 		void SortEntities();
 
 		void SortRigidBodies();
+
+		void HandleCollisionLogic();
 
 		Scene();
 		~Scene();

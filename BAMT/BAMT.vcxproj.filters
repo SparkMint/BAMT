@@ -76,15 +76,6 @@
     <ClCompile Include="RectRenderer.cpp">
       <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
-    <ClCompile Include="CellLogic.cpp">
-      <Filter>WORKSHOP PALLET\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOfLife.cpp">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="LifeCell.cpp">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClCompile>
@@ -141,15 +132,6 @@
     <ClInclude Include="TriRenderer.h">
       <Filter>CORE\COMPONENTS</Filter>
     </ClInclude>
-    <ClInclude Include="CellLogic.h">
-      <Filter>WORKSHOP PALLET\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOfLife.h">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeCell.h">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMovement.h">
       <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClInclude>
@@ -173,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="BoxCollider.h">
       <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSettings.h">
+      <Filter>CORE\ENGINE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

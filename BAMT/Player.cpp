@@ -10,10 +10,10 @@ void Player::Start()
 	rigidBody = AddComponent<RigidBody>();
 	rigidBody->colliderWidth = rendererWidth;
 	rigidBody->colliderHeight = rigidBody->colliderWidth;
+	rigidBody->mass = mass;
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
-	rigidBody->gravity = gravity;
-	rigidBody->debugMode = true;
+	rigidBody->bounciness = bounciness;
 	// Player Movement Setup
 	playerMovement = AddComponent<PlayerMovement>();
 	playerMovement->movementSpeed = movementSpeed;

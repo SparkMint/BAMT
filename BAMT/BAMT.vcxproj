@@ -128,13 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
-    <ClCompile Include="CellLogic.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GameOfLife.cpp" />
-    <ClCompile Include="LifeCell.cpp" />
     <ClCompile Include="PinballGame.cpp" />
     <ClCompile Include="PinballGameLevel.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -151,16 +148,14 @@
     <ClCompile Include="TriRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EngineSettings.h" />
     <ClInclude Include="BoxCollider.h" />
-    <ClInclude Include="CellLogic.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="GameOfLife.h" />
     <ClInclude Include="PinballGame.h" />
-    <ClInclude Include="LifeCell.h" />
     <ClInclude Include="PinballGameLevel.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMovement.h" />

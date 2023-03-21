@@ -1,6 +1,6 @@
 #include "RigidBody.h"
 
-#include "Scene.h"
+#include "EngineSettings.h"
 
 RigidBody::RigidBody()
 {
@@ -27,10 +27,15 @@ void RigidBody::Start()
 
 void RigidBody::Update(float* timeStep)
 {
-	// Simulate the next position for our RigidBody.
-	const Vector2 stepPosition = Simulate(timeStep, _velocity, *transform->GetPosition());
+	if (isKinematic) return;
+	_timeStep = *timeStep / BAMT_PHYSICS_STEPS;
+	for (int i = 0; i < BAMT_PHYSICS_STEPS; ++i)
+	{
+		// Simulate the next position for our RigidBody.
+		const Vector2 stepPosition = Simulate(&_timeStep, _velocity, *transform->GetPosition());
 
-	transform->SetPosition(&stepPosition);
+		transform->SetPosition(&stepPosition);
+	}
 }
 
 Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 position)
@@ -51,8 +56,8 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 			velocity.y = (velocity.y / speed) * maxVelocity;
 		}
 
-		velocity.x += gravity.x * *timeStep;
-		velocity.y += gravity.y * *timeStep;
+		velocity.x += entity->scene->gravity.x * *timeStep;
+		velocity.y += entity->scene->gravity.y * *timeStep;
 
 		// Apply the newly made velocity to the position we are going to return.
 		position.x += velocity.x * *timeStep;
@@ -66,48 +71,57 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	return position;
 }
 
-
-
 void RigidBody::AddForce(Vector2 direction, float force)
 {
+	// Use F = ma to get the acceleration force.
+	// Acceleration = Force / Mass
+	float acceleration = force / mass;
+
 	// We should assume that the direction we are given is already normalized.
-	_velocity.x += direction.x * force;
-	_velocity.y += direction.y * force;
+	_velocity.x += direction.x * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
+	_velocity.y += direction.y * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
 }
 
 void RigidBody::ReactToCollisions(const RigidBody* otherRigidBody)
 {
+	// Kinematic objects do not get moved outside of code.
 	if (isKinematic) return;
-	// Calculate the collision normal vector
-	Vector2 normal;
+
+	// The overall direction the object was hit from.
+	Vector2 normalForce;
+
 	const float xOverlap = (colliderWidth + otherRigidBody->colliderWidth) * 0.5f - fabs(transform->GetX() - otherRigidBody->transform->GetX());
 	const float yOverlap = (colliderHeight + otherRigidBody->colliderHeight) * 0.5f - fabs(transform->GetY() - otherRigidBody->transform->GetY());
 
+
 	// How far is this object in the other one? Use more force to get it out!
-	const float penetration = fmax(xOverlap, yOverlap);
-	//_velocity = { _velocity.x * .8f, _velocity.y * .8f };
+	const float penetrationForce = fmax(xOverlap, yOverlap);
 
 	if (xOverlap < yOverlap)
 	{
 		if (transform->GetX() < otherRigidBody->transform->GetX())
 		{
-			normal = Vector2{ -1, 0 };
+			normalForce = Vector2{ -bounciness, 0 };
+			transform->Translate(-xOverlap * .25f, 0.0f);
 		}
 		else
 		{
-			normal = Vector2{ 1, 0 };
+			normalForce = Vector2{ bounciness, 0 };
+			transform->Translate(xOverlap * .25f, 0.0f);
 		}
 	}
 	else
 	{
 		if (transform->GetY() < otherRigidBody->transform->GetY())
 		{
-			normal = Vector2{ 0, -1 };
+			normalForce = Vector2{ 0, -bounciness };
+			transform->Translate(0.0f, -yOverlap * .25f);
 		}
 		else
 		{
-			normal = Vector2{ 0, 1 };
+			normalForce = Vector2{ 0, bounciness };
+			transform->Translate(0.0f, yOverlap * .25f);
 		}
 	}
-	AddForce(normal, penetration * 2);
+	AddForce(normalForce, penetrationForce);
 }

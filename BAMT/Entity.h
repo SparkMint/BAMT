@@ -89,7 +89,7 @@ template<class T, typename... TArgs>
 T* Entity::AddComponent(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
-	T* c = (new T(std::forward<TArgs>(mArgs)...));
+	T* c = new T(std::forward<TArgs>(mArgs)...);
 
 	// Try use Dynamic Casting to get the base component.
 	Component* componentBase = dynamic_cast<Component*>(c);
@@ -97,18 +97,16 @@ T* Entity::AddComponent(TArgs&&... mArgs)
 	{
 		componentBase->entity = this;
 		_components.push_back(componentBase);
-		//Debug::Log("Component Added to Entity!", c);
 
 		// Run the start function on the newly created component.
 		componentBase->Start();
 		return c;
 	}
-	else
-	{
-		Debug::Log("Invalid Component type, this cannot be added onto this Entity!", this);
-		delete(c);
-		return nullptr;
-	}
+
+	// If it got here, it means the type given wasn't derived from component.
+	Debug::Log("Invalid Component type, this cannot be added onto this Entity!", this);
+	delete(c);
+	return nullptr;
 }
 
 template<class T>

@@ -1,7 +1,6 @@
 ﻿#ifndef BAMT_GAMEOBJECT
 #define BAMT_GAMEOBJECT
 
-#include "BoxCollider.h"
 #include "Entity.h"
 #include "PlayerMovement.h"
 #include "Transform.h"
@@ -20,16 +19,17 @@ class Player : public Entity
 		Vector2 initialPosition = { 100, 100 };
 
 		// RigidBody Values
-		int maxSpeed = 500;
-		int dragForce = 0;
-		Vector2 gravity = {0, 0};
+		float maxSpeed = 500;
+		float dragForce = 0;
+		float mass = 10;
+		float bounciness = 100;
 
 		// Player Movement Values
-		float movementSpeed = 1000;
+		float movementSpeed = 500000;
 
 		// RectRenderer Values
-		int rendererWidth = 20;
-		int rendererHeight = 20;
+		float rendererWidth = 20;
+		float rendererHeight = 20;
 		bool fillRect = true;
 		
 

@@ -44,6 +44,17 @@ void PlayerMovement::Update(float* timeStep)
 	{
 		_rigidBody->AddForce(VECTOR2_RIGHT, movementSpeed * *timeStep);
 	}
+	if(Input::GetKeyDown(SDLK_f))
+	{
+		if(entity->scene->gravity == _zeroGravity)
+		{
+			entity->scene->gravity = _Gravity;
+		}
+		else
+		{
+			entity->scene->gravity = _zeroGravity;
+		}
+	}
 }
 
 void PlayerMovement::Render(SDL_Renderer* renderer) {}

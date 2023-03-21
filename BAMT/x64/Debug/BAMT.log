@@ -1,14 +1,1 @@
-﻿  PinballGameLevel.cpp
-C:\BAMT\BAMT\PinballGameLevel.cpp(41,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\BAMT\BAMT\PinballGameLevel.cpp(41,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\BAMT\BAMT\Entity.h(92,35): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-C:\BAMT\BAMT\PinballGameLevel.cpp(6): message : see reference to function template instantiation 'T *Entity::AddComponent<Transform,int,int>(int &&,int &&)' being compiled
-          with
-          [
-              T=Transform
-          ]
-  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe
+﻿

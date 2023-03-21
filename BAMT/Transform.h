@@ -15,7 +15,7 @@ struct Vector2
 
 	bool operator ==(const Vector2& vector) const;
 
-	Vector2 operator -(const Vector2& vector);
+	Vector2 operator -(const Vector2& vector) const;
 };
 
 namespace VectorMath
@@ -41,8 +41,8 @@ class Transform : public Component
 		void SetX(float x) const;
 		void SetY(float y) const;
 
-		float GetX();
-		float GetY();
+		float GetX() const;
+		float GetY() const;
 
 
 		/// <summary>

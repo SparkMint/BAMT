@@ -47,7 +47,7 @@ bool Vector2::operator==(const Vector2& vector) const
 	return this->x == vector.x && this->y == vector.y;
 }
 
-Vector2 Vector2::operator-(const Vector2& vector)
+Vector2 Vector2::operator-(const Vector2& vector) const
 {
 	return {this->x - vector.x, this->y - vector.y};
 }
@@ -58,9 +58,9 @@ void Transform::SetX(float x) const { _position->x = x; }
 
 void Transform::SetY(float y) const { _position->y = y; }
 
-float Transform::GetX() { return _position->x; }
+float Transform::GetX() const { return _position->x; }
 
-float Transform::GetY() { return _position->y; }
+float Transform::GetY() const { return _position->y; }
 
 void Transform::Translate(int x, int y) const
 {

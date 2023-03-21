@@ -9,7 +9,7 @@ Entity::Entity()
 Entity::~Entity()
 {
 	// Clear all memory taken up by this entity.
-	for (Component* c : _components)
+	for (const Component* c : _components)
 	{
 		delete(c);
 	}
