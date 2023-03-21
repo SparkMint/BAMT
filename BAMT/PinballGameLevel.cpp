@@ -35,7 +35,7 @@ void PinballGameLevel::Start()
 
 	const auto thing = AddEntity<Player>();
 	thing->GetComponent<Transform>()->SetPosition(50 , 50);
-	thing->GetComponent<RigidBody>()->mass = 50;
+	thing->GetComponent<RigidBody>()->mass = 5;
 	thing->playerMovement->enabled = true;
 
 	int r = rand() & 255;

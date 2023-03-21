@@ -43,44 +43,49 @@ void Scene::HandleCollisionLogic()
 {
 	SortRigidBodies();
 
-	//TODO: Your problem. I got this working, you make it look nice.
+	//TODO: Your problem now me. I got this working, you make it look nice.
+
+	// Screw you :(
 	std::vector<RigidBody*> activeInterval;
-	for (int i = 0; i < rigidBodiesList.size(); ++i)
+	for (auto& i : rigidBodiesList)
 	{
-		rigidBodiesList[i]->collisionList.clear();
-		for (int j = 0; j < activeInterval.size(); ++j)
+		// Clear this RigidBodies collision list. As it will update here.
+		i->collisionList.clear();
+
+		for(int j = 0; j < activeInterval.size(); ++j)
 		{
-			if (rigidBodiesList[i] == activeInterval[j]) continue;
-			if (rigidBodiesList[i]->transform->GetX() - (rigidBodiesList[i]->colliderWidth * 0.5f) > activeInterval[j]->transform->GetX() + (activeInterval[j]->colliderWidth * 0.5f))
+			//if (rigidBodiesList[i] == activeInterval[j]) continue;
+			if (i->transform->GetX() - (i->colliderWidth * 0.5f) > activeInterval[j]->transform->GetX() + (activeInterval[j]->colliderWidth * 0.5f))
 			{
 				activeInterval.erase(activeInterval.begin() + j);
 				j--;
 			}
 			else
 			{
-				if (VectorMath::OverlapOnAxis(rigidBodiesList[i]->transform->GetY(), rigidBodiesList[i]->colliderHeight, activeInterval[j]->transform->GetY(), activeInterval[j]->colliderHeight))
+				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->colliderHeight, activeInterval[j]->transform->GetY(), activeInterval[j]->colliderHeight))
 				{
-					rigidBodiesList[i]->ReactToCollisions(activeInterval[j]);
-					activeInterval[j]->ReactToCollisions(rigidBodiesList[i]);
+					i->ReactToCollisions(activeInterval[j]);
+					activeInterval[j]->ReactToCollisions(i);
 
-					if (!rigidBodiesList[i]->collisionList.empty())
+					if (!i->collisionList.empty())
 					{
-						auto iterator = std::find(rigidBodiesList[i]->collisionList.begin(), rigidBodiesList[i]->collisionList.end(), activeInterval[j]);
+						auto iterator = std::find(i->collisionList.begin(), i->collisionList.end(), activeInterval[j]);
 
-						if (iterator == rigidBodiesList[i]->collisionList.end())
-							rigidBodiesList[i]->collisionList.push_back(activeInterval[j]);
+						if (iterator == i->collisionList.end())
+							i->collisionList.push_back(activeInterval[j]);
 					}
 					else
 					{
-						rigidBodiesList[i]->collisionList.push_back(activeInterval[j]);
+						i->collisionList.push_back(activeInterval[j]);
 					}
 
 					if (!activeInterval[j]->collisionList.empty())
 					{
-						auto iterator = std::find(activeInterval[j]->collisionList.begin(), activeInterval[j]->collisionList.end(), rigidBodiesList[i]);
+						auto iterator = std::find(activeInterval[j]->collisionList.begin(), activeInterval[j]->collisionList.end(),
+						                          i);
 
 						if (iterator == activeInterval[j]->collisionList.end())
-							activeInterval[j]->collisionList.push_back(rigidBodiesList[i]);
+							activeInterval[j]->collisionList.push_back(i);
 					}
 					else
 					{
@@ -89,7 +94,7 @@ void Scene::HandleCollisionLogic()
 				}
 			}
 		}
-		activeInterval.push_back(rigidBodiesList[i]);
+		activeInterval.push_back(i);
 	}
 }
 
@@ -97,7 +102,6 @@ Scene::Scene()
 {
 	Debug::Log("Scene Created.", this);
 }
-
 Scene::~Scene()
 {
 	Debug::Log("Scene Destroyed.", this);

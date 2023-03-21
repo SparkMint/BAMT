@@ -43,7 +43,7 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	const float speed = VectorMath::Magnitude(velocity);
 
 	// If we are moving, apply drag to the body. 
-	if (speed > 0) 
+	if (speed > 2) 
 	{
 		const float dragForce = drag * speed;
 		velocity.x -= (velocity.x / speed) * dragForce * *timeStep;
@@ -56,8 +56,9 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 			velocity.y = (velocity.y / speed) * maxVelocity;
 		}
 
-		velocity.x += entity->scene->gravity.x * *timeStep;
-		velocity.y += entity->scene->gravity.y * *timeStep;
+			velocity.x += entity->scene->gravity.x * *timeStep;
+			velocity.y += entity->scene->gravity.y * *timeStep;
+
 
 		// Apply the newly made velocity to the position we are going to return.
 		position.x += velocity.x * *timeStep;
@@ -95,19 +96,21 @@ void RigidBody::ReactToCollisions(const RigidBody* otherRigidBody)
 
 
 	// How far is this object in the other one? Use more force to get it out!
-	const float penetrationForce = fmax(xOverlap, yOverlap);
+	const float penetrationForce = fmax(xOverlap, yOverlap) * mass;
+	float otherRbSpeed = VectorMath::Magnitude(otherRigidBody->_velocity);
+	Vector2 displacement;
 
 	if (xOverlap < yOverlap)
 	{
 		if (transform->GetX() < otherRigidBody->transform->GetX())
 		{
 			normalForce = Vector2{ -bounciness, 0 };
-			transform->Translate(-xOverlap * .25f, 0.0f);
+			displacement = { -xOverlap, 0.0f };
 		}
 		else
 		{
 			normalForce = Vector2{ bounciness, 0 };
-			transform->Translate(xOverlap * .25f, 0.0f);
+			displacement = { xOverlap, 0.0f };
 		}
 	}
 	else
@@ -115,13 +118,14 @@ void RigidBody::ReactToCollisions(const RigidBody* otherRigidBody)
 		if (transform->GetY() < otherRigidBody->transform->GetY())
 		{
 			normalForce = Vector2{ 0, -bounciness };
-			transform->Translate(0.0f, -yOverlap * .25f);
+			displacement = { 0.0f, -yOverlap};
 		}
 		else
 		{
 			normalForce = Vector2{ 0, bounciness };
-			transform->Translate(0.0f, yOverlap * .25f);
+			displacement = { 0.0f, yOverlap};
 		}
 	}
-	AddForce(normalForce, penetrationForce);
+	AddForce(normalForce, penetrationForce + otherRbSpeed);
+	transform->Translate(displacement.x / 4, displacement.y / 4);
 }
