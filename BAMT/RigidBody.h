@@ -38,6 +38,11 @@ class RigidBody : public Component
 		bool isKinematic = false;
 
 		/// <summary>
+		/// Activates Debug Logging for this RigidBody.
+		/// </summary>
+		bool debugMode = false;
+
+		/// <summary>
 		/// Width of the collider of this object.
 		/// </summary>
 		float colliderWidth = 1.0f;
@@ -71,6 +76,11 @@ class RigidBody : public Component
 		/// Pushes this RigidBody in a specified direction.
 		/// </summary>
 		void AddForce(Vector2 direction, float force);
+
+		/// <summary>
+		/// Pushes this RigidBody in a specified direction using an Impulse Force.
+		/// </summary>
+		void AddImpulseForce(Vector2 direction, float force);
 
 		/// <summary>
 		/// Returns the Velocity of this RigidBody

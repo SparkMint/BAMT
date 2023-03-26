@@ -14,11 +14,11 @@ public:
 	RectRenderer* rectRenderer = nullptr;
 
 	// Shared Values
-	float width = .4f;
-	float height = 0.4f;
+	float width = 0;
+	float height = 0;
 
 	// RigidBody Values
-	float bounciness = 100;
+	float bounciness = 1;
 
 	// RectRenderer Values
 	bool fillRect = false;

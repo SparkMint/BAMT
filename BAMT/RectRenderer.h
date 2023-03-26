@@ -18,7 +18,7 @@ class RectRenderer : public Renderer
 		float height = 1;
 
 		Vector2 lastPosition;
-		float minimumMovement = 0.02;
+		float minimumMovement = 0.02f;
 
 
 		/// <summary>

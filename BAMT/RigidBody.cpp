@@ -58,8 +58,6 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 			velocity.y = (velocity.y / speed) * maxVelocity;
 		}
 
-		velocity.x += gravity.x * *timeStep;
-		velocity.y += gravity.y * *timeStep;
 
 		// Apply the newly made velocity to the position we are going to return.
 		position.x += velocity.x * *timeStep;
@@ -67,6 +65,8 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	}
 
 
+	velocity.x += gravity.x * *timeStep;
+	velocity.y += gravity.y * *timeStep;
 
 	// Set the new velocity to be the velocity we calculated in here.
 	_velocity = velocity;
@@ -84,6 +84,14 @@ void RigidBody::AddForce(Vector2 direction, float force)
 	// We should assume that the direction we are given is already normalized.
 	_velocity.x += direction.x * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
 	_velocity.y += direction.y * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
+}
+
+void RigidBody::AddImpulseForce(Vector2 direction, float force)
+{
+
+	// We should assume that the direction we are given is already normalized.
+	_velocity.x += direction.x * force * (_timeStep * BAMT_PHYSICS_STEPS);
+	_velocity.y += direction.y * force * (_timeStep * BAMT_PHYSICS_STEPS);
 }
 
 Vector2 RigidBody::GetVelocity() const

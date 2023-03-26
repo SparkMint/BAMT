@@ -39,12 +39,12 @@ void PhysicsTestScene::Start()
 	collisionTest3->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
 
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 20; ++i)
 	{
-		for (int j = 0; j < 10; ++j)
+		for (int j = 0; j < 20; ++j)
 		{
 			const auto thing = AddEntity<Player>();
-			thing->GetComponent<Transform>()->SetPosition(.75f + (j * .31f), .75f + (i * .31f));
+			thing->GetComponent<Transform>()->SetPosition(.75f + (j * .21f), .75f + (i * .21f));
 			thing->playerMovement->enabled = false;
 			//thing->rigidBody->isKinematic = true;
 
@@ -57,7 +57,8 @@ void PhysicsTestScene::Start()
 
 	const auto thing = AddEntity<Player>();
 	thing->GetComponent<Transform>()->SetPosition(6, 6);
-	thing->GetComponent<RigidBody>()->mass = 1;
+	//thing->GetComponent<RigidBody>()->mass = 1;
+	//thing->GetComponent<RigidBody>()->debugMode = true;
 	thing->playerMovement->enabled = true;
 
 }

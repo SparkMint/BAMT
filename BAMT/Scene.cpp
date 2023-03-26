@@ -55,7 +55,6 @@ void Scene::DetectCollisions()
 		// Clear this RigidBodies collision list. As it will update here.
 		i->collisionList.clear();
 
-
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{
 			if (i->transform->GetX() - (i->colliderWidth * 0.5f) > activeInterval[j]->transform->GetX() + (activeInterval[j]->colliderWidth * 0.5f))
@@ -74,75 +73,80 @@ void Scene::DetectCollisions()
 		activeInterval.emplace_back(i);
 	}
 
+	// Go through each pair of RigidBodies and solve each collision.
 	SolveRigidBodyCollisions(collisionPairs);
 }
 
-void Scene::SolveRigidBodyCollisions(std::vector<std::pair<RigidBody*, RigidBody*>> collisionPairs) const
+void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, RigidBody*>>& collisionPairs) const
 {
 	for (auto pair : collisionPairs)
 	{
+		// Add each object to their respective collision Lists.
 		pair.first->collisionList.emplace_back(pair.second);
 		pair.second->collisionList.emplace_back(pair.first);
 
-		Vector2 relativeVelocity = pair.second->GetVelocity() - pair.first->GetVelocity();
-
-		Vector2 collisionNormal;
+		// Get how much object one overlaps object two. We can use that to move them out the way of eachother.
 		const float xOverlap = (pair.first->colliderWidth + pair.second->colliderWidth) * 0.5f - fabs(pair.first->transform->GetX() - pair.second->transform->GetX());
 		const float yOverlap = (pair.first->colliderHeight + pair.second->colliderHeight) * 0.5f - fabs(pair.first->transform->GetY() - pair.second->transform->GetY());
 
-		// Calculate the bounce of the collision
-		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
-
+		// Calculate which direction the pair collided on.
+		// KEEP IN MIND THIS ONLY WORKS FOR BOX COLLIDERS!
+		Vector2 collisionNormal;
 		if (xOverlap < yOverlap)
 		{
-			if (pair.first->transform->GetX() < pair.second->transform->GetX())
-			{
-				collisionNormal = Vector2{ 1, 0 };
-			}
-			else
-			{
-				collisionNormal = Vector2{ -1, 0 };
-			}
+			collisionNormal = pair.first->transform->GetX() < pair.second->transform->GetX() ? Vector2{ 1, 0 } : Vector2{ -1, 0 };
 		}
 		else
 		{
-			if (pair.first->transform->GetY() < pair.second->transform->GetY())
-			{
-				collisionNormal = Vector2{ 0, 1 };
-			}
-			else
-			{
-				collisionNormal = Vector2{ 0, -1 };
-			}
+			collisionNormal = pair.first->transform->GetY() < pair.second->transform->GetY() ? Vector2{ 0, 1 } : Vector2{ 0, -1 };
 		}
 
-		const float relativeVelocityInNormalDirection = VectorMath::Dot(relativeVelocity, collisionNormal);
+		// Move the object transform to try to get the object out of whatever its colliding with.
+		const Vector2 displacement = { collisionNormal.x * xOverlap, collisionNormal.y * yOverlap };
+		if (!pair.first->isKinematic)
+		{
+			pair.first->transform->Translate(-displacement.x / 2, -displacement.y / 2);
+		}
+		if (!pair.second->isKinematic)
+		{
+			pair.second->transform->Translate(displacement.x / 2, displacement.y / 2);
+		}
 
-		// Check if the objects are moving away from each other
+		// Check if the objects are moving away from each other. If they are.
+		// Dont add force. otherwise they will pull towards each other.
+		Vector2 relativeVelocity = pair.second->GetVelocity() - pair.first->GetVelocity();
+
+		const float relativeVelocityInNormalDirection = VectorMath::Dot(collisionNormal, relativeVelocity);
 		if (relativeVelocityInNormalDirection > 0)
 		{
 			continue;
 		}
 
+		// Use the object with the least amount of bounciness for calculating the impulse force.
+		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
 
-		// Calculate the impulse force
-		const float impulseScalar = -(1.0f + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass);
+		// Calculate the impulse force using the 
+		const float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * 100;
 
-		pair.first->AddForce(collisionNormal, impulseScalar);
-		pair.second->AddForce(collisionNormal, -impulseScalar);
+		// Add the resulting forces to each object. Negate the second object so it goes in the other direction.
+		pair.first->AddForce(collisionNormal, impulseScalar * pair.first->bounciness);
+		pair.second->AddForce(collisionNormal, -impulseScalar * pair.second->bounciness);
 
-		const Vector2 displacement = {collisionNormal.x * xOverlap, collisionNormal.y * yOverlap};
-		if(!pair.first->isKinematic)
+		if (pair.first->debugMode || pair.second->debugMode)
 		{
-			pair.first->transform->Translate(-displacement.x / 2, -displacement.y / 2);
+			Debug::Log("---------------------------------");
+			Debug::Log("RIGIDBODY COLLISION DEBUG SUMMARY");
+			Debug::Log("---------------------------------");
+			Debug::Log("First object", pair.first);
+			Debug::Log("Second object", pair.second);
+
+			Debug::Log("Collision Normal: (" + std::to_string(collisionNormal.x) + ", " + std::to_string(collisionNormal.y) + ")");
+			Debug::Log("Relative Velocity: (" + std::to_string(relativeVelocity.x) + ", " + std::to_string(relativeVelocity.y) + ")");
+			Debug::Log("Bounce: " + std::to_string(bounce));
+			Debug::Log("ImpulseScalar: " + std::to_string(impulseScalar));
+			Debug::Log("Resulting Force: (" + std::to_string(collisionNormal.x * impulseScalar) + ", " + std::to_string(collisionNormal.y * impulseScalar) + ")");
+			Debug::Log("---------------------------------");
 		}
-		if(!pair.second->isKinematic)
-		{
-			pair.second->transform->Translate(displacement.x / 2, displacement.y / 2);
-		}
-
-
-
 	}
 }
 
@@ -159,21 +163,3 @@ Scene::~Scene()
 		delete(entity);
 	}
 }
-
-/*
- * 		if (!pair[0]->collisionList.empty())
-		{
-			auto iterator = std::find(pair[0]->collisionList.begin(), pair[0]->collisionList.end(), pair[1]);
-
-			if (iterator == pair[0]->collisionList.end())
-
-		}
-
-		if (!pair[1]->collisionList.empty())
-		{
-			auto iterator = std::find(pair[1]->collisionList.begin(), pair[1]->collisionList.end(), pair[0]);
-
-			if (iterator == pair[1]->collisionList.end())
-
-		}
- */

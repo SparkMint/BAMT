@@ -22,14 +22,14 @@ class Player : public Entity
 		float maxSpeed = 5;
 		float dragForce = 1;
 		float mass = 1;
-		float bounciness = 100;
+		float bounciness = .6f;
 
 		// Player Movement Values
 		float movementSpeed = 1000;
 
 		// RectRenderer Values
-		float rendererWidth = .4f;
-		float rendererHeight = 0.4f;
+		float rendererWidth = .2f;
+		float rendererHeight = .2f;
 		bool fillRect = true;
 		
 

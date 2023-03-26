@@ -60,7 +60,7 @@ class Scene
 
 		void DetectCollisions();
 
-		void SolveRigidBodyCollisions(std::vector<std::pair<RigidBody*, RigidBody*>> collisionPairs) const;
+		void SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, RigidBody*>>& collisionPairs) const;
 
 		Scene();
 		~Scene();
