@@ -40,45 +40,46 @@ class RigidBody : public Component
 		/// <summary>
 		/// Width of the collider of this object.
 		/// </summary>
-		float colliderWidth = 0;
+		float colliderWidth = 1.0f;
 
 		/// <summary>
 		/// Width of the collider of this object.
 		/// </summary>
-		float colliderHeight = 0;
+		float colliderHeight = 1.0f;
 
 		/// <summary>
 		/// How heavy this RigidBody is. Or how hard it is to move.
 		/// </summary>
-		float mass = 5;
+		float mass = 1.0f;
 
 		/// <summary>
 		/// Slows the RigidBody down.
 		/// </summary>
-		float drag = 0;
+		float drag = 1.0f;
 
 		/// <summary>
 		/// How bouncy should this object be?
 		/// </summary>
-		float bounciness = 1;
+		float bounciness = 1.0f;
 
 		/// <summary>
 		/// The maximum speed this RigidBody can move.
 		/// </summary>
-		float maxVelocity = 0;
-
-		/// <summary>
-		/// Calculates which direction the RigidBody should be pushed.
-		///	And with how much force.
-		/// </summary>
-		void ReactToCollisions(const RigidBody* otherRigidBody);
+		float maxVelocity = 1.0f;
 
 		/// <summary>
 		/// Pushes this RigidBody in a specified direction.
 		/// </summary>
 		void AddForce(Vector2 direction, float force);
 
+		/// <summary>
+		/// Returns the Velocity of this RigidBody
+		/// </summary>
+		Vector2 GetVelocity() const;
+
 		void Start() override;
 		void Update(float* timeStep) override;
+
+
 };
 #endif

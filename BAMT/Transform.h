@@ -39,6 +39,8 @@ namespace VectorMath
 
 	float Distance(const Vector2& v1, const Vector2& v2);
 
+	float Dot(const Vector2& v1, const Vector2& v2);
+
 	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2);
 }
 

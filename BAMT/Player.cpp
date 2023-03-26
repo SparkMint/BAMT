@@ -9,7 +9,7 @@ void Player::Start()
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
 	rigidBody->colliderWidth = rendererWidth;
-	rigidBody->colliderHeight = rigidBody->colliderWidth;
+	rigidBody->colliderHeight = rendererHeight;
 	rigidBody->mass = mass;
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
@@ -19,6 +19,6 @@ void Player::Start()
 	playerMovement->movementSpeed = movementSpeed;
 
 	// Renderer Setup
-	rectRenderer = AddComponent<RectRenderer>(rendererWidth, rendererWidth, fillRect);
+	rectRenderer = AddComponent<RectRenderer>(rendererWidth, rendererHeight, fillRect);
 	//rectRenderer->enabled = false;
 }

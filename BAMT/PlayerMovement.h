@@ -13,7 +13,7 @@ class PlayerMovement : public Component
 	RigidBody* _rigidBody = nullptr;
 
 	Vector2 _zeroGravity{ 0,0 };
-	Vector2 _Gravity{ 0,2 };
+	Vector2 _Gravity{ 0,3 };
 
 	public:
 		float movementSpeed;

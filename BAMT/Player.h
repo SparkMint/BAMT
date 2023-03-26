@@ -19,17 +19,17 @@ class Player : public Entity
 		Vector2 initialPosition = { 1, 1 };
 
 		// RigidBody Values
-		float maxSpeed = 10;
+		float maxSpeed = 5;
 		float dragForce = 1;
 		float mass = 1;
-		float bounciness = 1;
+		float bounciness = 100;
 
 		// Player Movement Values
 		float movementSpeed = 1000;
 
 		// RectRenderer Values
-		float rendererWidth = 0.2f;
-		float rendererHeight = 0.2f;
+		float rendererWidth = .4f;
+		float rendererHeight = 0.4f;
 		bool fillRect = true;
 		
 

@@ -1,7 +1,11 @@
-﻿  RectRenderer.cpp
+﻿  EngineManager.cpp
+  Main.cpp
 C:\BAMT\BAMT\RectRenderer.h(21,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\BAMT\BAMT\RectRenderer.cpp(27,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\RectRenderer.cpp(28,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\RectRenderer.cpp(44,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\RectRenderer.cpp(45,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PinballGame.cpp
+C:\BAMT\BAMT\RectRenderer.h(21,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  PlayerMovement.cpp
+C:\BAMT\BAMT\RectRenderer.h(21,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  RigidBody.cpp
+  Scene.cpp
+  Generating Code...
   BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

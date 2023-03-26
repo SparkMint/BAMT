@@ -43,6 +43,9 @@
     <Filter Include="ASSIGNMENT PALLET\SCENES">
       <UniqueIdentifier>{e87e5d8d-8541-4099-a4ff-3681313796f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES\TEST SCENES">
+      <UniqueIdentifier>{7f0eda26-5a67-472f-bf13-e8ee54e321d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -96,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="PinballGameLevel.cpp">
       <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTestScene.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticCollider.cpp">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +161,12 @@
     </ClInclude>
     <ClInclude Include="EngineSettings.h">
       <Filter>CORE\ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTestScene.h">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticCollider.h">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

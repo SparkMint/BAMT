@@ -58,7 +58,9 @@ class Scene
 
 		void SortRigidBodies();
 
-		void HandleCollisionLogic();
+		void DetectCollisions();
+
+		void SolveRigidBodyCollisions(std::vector<std::pair<RigidBody*, RigidBody*>> collisionPairs) const;
 
 		Scene();
 		~Scene();
