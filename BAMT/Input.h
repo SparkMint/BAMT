@@ -10,8 +10,15 @@ namespace Input
 	/// </summary>
 	void GetInputs();
 
-	bool GetKeyDown(SDL_Keycode key);
+	/// <summary>
+	/// Returns the state of the requested key.
+	/// </summary>
+	bool GetKeyHold(SDL_Keycode key);
 
-	bool CheckIfShouldQuit();
+	/// <summary>
+	/// Returns the state of the requested key.
+	///	Only returns true if it was just pressed. Not if Held.
+	/// </summary>
+	bool GetKeyDown(const SDL_Keycode key);
 }
 #endif

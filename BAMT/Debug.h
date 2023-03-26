@@ -13,8 +13,9 @@ namespace Debug
 	/// Logs information on the console.
 	/// </summary>
 	void Log(std::string output);
+	void Log(std::string output, void* pointer);
 
-	void ShowLogs(bool showLogs);
+	void ToggleLogs();
 	#pragma endregion LogDeclarations
 
 	#pragma region WarnDeclarations
@@ -22,8 +23,10 @@ namespace Debug
 	/// Logs a warning on the console.
 	/// </summary>
 	void LogWarn(std::string output);
+	void LogWarn(std::string output, void* pointer);
 
-	void ShowWarns(bool showWarnings);
+	void ToggleWarns();
+
 	#pragma endregion WarnDeclarations
 
 	#pragma region ErrorDeclarations
@@ -31,8 +34,9 @@ namespace Debug
 	/// Logs a error on the console.
 	/// </summary>
 	void LogError(std::string output);
+	void LogError(std::string output, void* pointer);
 
-	void ShowErrors(bool showErrors);
+	void ToggleErrors();
 	#pragma endregion ErrorDeclarations
 
 	#pragma region LogExtras
@@ -41,6 +45,8 @@ namespace Debug
 	/// </summary>
 	/// <returns>Format: [YEAR-MONTH-DAY HOUR:MINUTE:SECOND]</returns>
 	std::string GetTime();
+
+	std::string GetPointerAddress(void* pointer);
 
 	/// <summary>
 	/// Changes the colour of text.

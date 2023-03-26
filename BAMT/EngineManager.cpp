@@ -6,19 +6,19 @@
 #pragma region Constructors
 EngineManager::EngineManager()
 {
-	Debug::Log("Engine Instance Created!");
+	Debug::Log("Engine Created.", this);
 }
 EngineManager::~EngineManager() 
 {
-	Debug::Log("Engine Instance Destroyed!");
+	Debug::Log("Engine Destroyed.", this);
 	_isActive = false;
 }
 #pragma endregion Constructors
 
-void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullScreen, int deltaTime)
+void EngineManager::Initialize(const char* windowName, int windowWidth, int windowHeight, bool fullscreen, int deltaTime)
 {
 	const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
-
+	fullScreen = fullscreen;
 	_windowTitle = windowName;
 
 	// Create an instance of a window.
@@ -31,6 +31,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	// Create an instance of a Renderer.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
 
+	SDL_RenderSetLogicalSize(_renderer, windowWidth, windowHeight);
+
 	// Create a new TickTimer.
 	_tickTimer = new TickTimer();
 
@@ -38,11 +40,11 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Debug::Log("Delta Time = " + std::to_string(deltaTime));
 
 	// Check if the window was successfully created.
-	if (_window) Debug::Log("Engine Window Instance Created Successfully!");
+	if (_window) Debug::Log("Engine Window Instance Created Successfully.", _window);
 	else Debug::LogError("Engine Window Instance is Null!");
 	
 	// Check if the renderer was successfully created.
-	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully!");
+	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully.", _renderer);
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
 	// Create a command thread.
@@ -50,6 +52,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 
 	// Sets this GameManager to being Active.
 	_isActive = true;
+	Debug::Log("Engine Successfully Started.", this);
 }
 
 void EngineManager::RunLoop()
@@ -58,21 +61,11 @@ void EngineManager::RunLoop()
 	{
 		_tickTimer->ResetTimer();
 
-		Input::GetInputs();
-
-		// If the player has given the command to stop. Stop the engine.
-		if (Input::CheckIfShouldQuit())
-		{
-			Stop();
-			break;
-		}
+		DoInputLogic();
 
 		Update(&_timeStep);
 
-		Render();
-
-		// TODO: Implement this.
-		Clean();
+		Render(_renderer);
 
 		SetWindowTitle();
 
@@ -81,70 +74,91 @@ void EngineManager::RunLoop()
 			SDL_Delay(_deltaTime - _tickTimer->GetTicks());
 		}
 		_timeStep = _tickTimer->GetTicks() / 1000.f;
+
+		if(_timeStep > BAMT_TIMESTEP_LIMIT)
+		{
+			Debug::LogWarn("Timestep too high! Value: " + std::to_string(_timeStep) + ". Clamping to " + std::to_string(BAMT_TIMESTEP_LIMIT));
+			Debug::LogWarn("Physics and other features might not work as intended!");
+
+			_timeStep = BAMT_TIMESTEP_LIMIT;
+		}
+	}
+	// After the loop has been broken out of, clear all memory.
+	Stop();
+}
+
+void EngineManager::DoInputLogic()
+{
+	// Get all Inputs for this frame.
+	Input::GetInputs();
+
+	// If the player has given the command to stop. Stop the scene.
+	if (Input::GetKeyHold(SDL_QUIT)) { _isActive = false; }
+
+	// Fullscreen Toggle
+	if(Input::GetKeyDown(SDLK_F11))
+	{
+		fullScreen = !fullScreen;
+		const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
+		SDL_SetWindowFullscreen(_window, windowFlag);
+	}
+	// Toggle Logs
+	if (Input::GetKeyDown(SDLK_F6)){ Debug::ToggleLogs(); }
+	// Toggle Warnings
+	if (Input::GetKeyDown(SDLK_F7)){ Debug::ToggleWarns(); }
+	// Toggle Errors
+	if (Input::GetKeyDown(SDLK_F8)){ Debug::ToggleErrors(); }
+}
+
+void EngineManager::Update(float* timeStep) const
+{
+	//Debug::Log("TimeStep: " + std::to_string(*timeStep));
+	for(auto* scene : _sceneList)
+	{
+		if(scene->active || scene->alwaysActive)
+			scene->Update(timeStep);
 	}
 }
 
-void EngineManager::Render()
+void EngineManager::Render(SDL_Renderer* renderer) const
 {
 	// Sets the colour of the renderer to black.
-	SDL_SetRenderDrawColor(_renderer, 0,0,0,255);
+	SDL_SetRenderDrawColor(renderer, 0,0,0,255);
 
 	// Clears the entire screen to be this colour.
-	SDL_RenderClear(_renderer);
+	SDL_RenderClear(renderer);
 
-	// TODO: Have this run only when needed.
-	SortEntities();
-
-	for (const Entity* ent : _entityList)
+	for (const auto* scene : _sceneList)
 	{
-		if (ent->active)
-			ent->Render(_renderer);
+		if (scene->active || scene->alwaysActive)
+			scene->Render(renderer);
 	}
-	// Show the result of the Renderer stuff from before.
-	SDL_RenderPresent(_renderer);
-}
 
-void EngineManager::Clean()
-{
-	//Debug::LogWarn("GameManager's Clean Function isnt implemented yet!");
+	// Show the result of the Renderer stuff from before.
+	SDL_RenderPresent(renderer);
 }
 
 void EngineManager::Stop()
 {
-	Debug::Log("Engine Stopping...");
+	Debug::Log("Engine Stopping...", this);
+
+	for (auto* scene : _sceneList)
+	{
+		delete(scene);
+	}
 	SDL_Quit();
+	delete(_tickTimer);
+	delete(this);
 }
 
-void EngineManager::SetWindowTitle()
+void EngineManager::SetWindowTitle() const
 {
 	const int framesPerSecond = 1000 / _deltaTime - _tickTimer->GetTicks();
 	const std::string windowString = _windowTitle + " | FPS : " + std::to_string(framesPerSecond);
 	SDL_SetWindowTitle(_window, windowString.c_str());
 }
 
-bool EngineManager::IsActive() 
+bool EngineManager::IsActive() const
 {
 	return _isActive;
-}
-
-void EngineManager::RemoveEntity(Entity* ent)
-{
-	auto entity = remove(_entityList.begin(), _entityList.end(), ent);
-	delete(ent);
-	Debug::Log("Entity Destroyed!");
-}
-
-void EngineManager::SortEntities()
-{
-	std::sort(_entityList.begin(), _entityList.end(), [](const Entity* a, const Entity* b)
-	{return a->renderLayer < b->renderLayer;});
-}
-
-void EngineManager::Update(float* timeStep)
-{
-	for (Entity* ent : _entityList)
-	{
-		if (ent->active)
-			ent->Update(timeStep);
-	}
 }

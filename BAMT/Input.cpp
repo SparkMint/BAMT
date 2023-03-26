@@ -1,5 +1,7 @@
 #include "Input.h"
 
+#include <unordered_map>
+
 #include "Debug.h"
 
 namespace Input
@@ -7,28 +9,31 @@ namespace Input
 	/// <summary>
 	/// All Keys that SDL supports.
 	/// </summary>
-	bool Keys[512];
-
-	bool shouldQuit = false;
+	std::unordered_map<int, bool> _keyStatesLastFrame;
+	std::unordered_map<int, bool> _keyStates;
 
 	void GetInputs()
 	{
+		_keyStatesLastFrame = _keyStates;
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
 			{
 				case SDL_QUIT:
-					shouldQuit = true;
+					_keyStates[SDL_QUIT] = true;
+					break;
+
+				case SDL_WINDOWEVENT_MOVED:
+					_keyStates[SDL_WINDOWEVENT_MOVED] = true;
+					break;
 
 				case SDL_KEYDOWN:
-					if (event.key.keysym.sym >= 0 && event.key.keysym.sym <= 512) 
-						Keys[event.key.keysym.sym] = true;
+						_keyStates[event.key.keysym.sym] = true;
 					break;
 
 				case SDL_KEYUP:
-					if (event.key.keysym.sym >= 0 && event.key.keysym.sym <= 512)
-						Keys[event.key.keysym.sym] = false;
+						_keyStates[event.key.keysym.sym] = false;
 					break;
 
 				default: 
@@ -37,19 +42,13 @@ namespace Input
 		}
 	}
 
-	bool GetKeyDown(const SDL_Keycode key)
+	bool GetKeyHold(const SDL_Keycode key)
 	{
-		if (key >= 0 && key <= 512)
-		{
-			return Keys[key];
-		}
-		Debug::LogError("The Key: " + std::to_string(key) + " is not valid.");
-		return false;
-		
+		return _keyStates[key];
 	}
 
-	bool CheckIfShouldQuit()
+	bool GetKeyDown(const SDL_Keycode key)
 	{
-		return shouldQuit;
+		return !_keyStatesLastFrame[key] && _keyStates[key];
 	}
 }

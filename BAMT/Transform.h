@@ -3,10 +3,12 @@
 
 #define VECTOR2_UP {0, -1}
 #define VECTOR2_LEFT {-1, 0}
+#define VECTOR2_DOWN {0, 1}
+#define VECTOR2_RIGHT {1, 0}
+#define VECTOR2_ZERO {0,0}
 
 #include "Component.h"
 
-class Entity;
 class Component;
 
 struct Vector2
@@ -14,12 +16,33 @@ struct Vector2
 	float x = 0;
 	float y = 0;
 
+	bool operator ==(const Vector2& vector) const;
 
+	Vector2 operator -(const Vector2& vector) const;
 
-	Vector2 Normalize();
+	Vector2 operator *(const Vector2& vector) const;
 
-	bool operator ==(const Vector2* vector) const;
+	Vector2 operator *(const float multiplier) const;
+
+	friend Vector2 operator*(const float multiplier, const Vector2& vec);
+
+	Vector2 operator/(const float divider) const;
+
+	Vector2 operator+(const Vector2& vector) const;
 };
+
+namespace VectorMath
+{
+	Vector2 Normalize(const Vector2& vector);
+
+	float Magnitude(const Vector2& vector);
+
+	float Distance(const Vector2& v1, const Vector2& v2);
+
+	float Dot(const Vector2& v1, const Vector2& v2);
+
+	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2);
+}
 
 class Transform : public Component
 {
@@ -27,11 +50,6 @@ class Transform : public Component
 
 	public:
 		Transform(float x = 0, float y = 0);
-
-		void Start() override;
-		void Update(float* timeStep) override;
-		void Render(SDL_Renderer* renderer) override;
-
 
 		// Getter / Setter Functions
 
@@ -43,12 +61,12 @@ class Transform : public Component
 
 
 		/// <summary>
-		/// Moves this transform by X and Y.
+		/// Moves this _transform by X and Y.
 		/// </summary>
 		void Translate(int x, int y) const;
 
 		/// <summary>
-		/// Moves this transform by X and Y.
+		/// Moves this _transform by X and Y.
 		/// </summary>
 		void Translate(float x, float y) const;
 

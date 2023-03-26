@@ -1,27 +1,25 @@
 #ifndef BAMT_PLAYER_MOVEMENT
 #define BAMT_PLAYER_MOVEMENT
 
-#include "Entity.h"
-#include "Component.h"
 #include "Input.h"
+#include "Component.h"
+
 #include "Transform.h"
+#include "RigidBody.h"
 
 class PlayerMovement : public Component
 {
-	private:
-		Transform* _transform = nullptr;
+	Transform* _transform = nullptr;
+	RigidBody* _rigidBody = nullptr;
+
+	Vector2 _zeroGravity{ 0,0 };
+	Vector2 _Gravity{ 0,3 };
+
 	public:
-		float accelerationSpeed = 2000;
-		float maxSpeed = 200;
-		float drag = 500;
-		float stopThreshold = 2;
-		Vector2 velocity;
+		float movementSpeed;
 
 		void Start() override;
 		void Update(float* timeStep) override;
 		void Render(SDL_Renderer* renderer) override;
-
-		void Accelerate(const float* timeStep);
-		void DoDrag(const Vector2* previousVelocity, const float* timeStep);
 };
 #endif

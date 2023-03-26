@@ -3,6 +3,21 @@
 Entity::Entity()
 {
 	active = true;
+	Debug::Log("Entity Created.", this);
+}
+
+Entity::~Entity()
+{
+	// Clear all memory taken up by this entity.
+	for (const Component* c : _components)
+	{
+		delete(c);
+	}
+	Debug::Log("Entity Destroyed.", this);
+}
+
+void Entity::Start()
+{
 }
 
 void Entity::Update(float* timeStep) const
@@ -22,3 +37,4 @@ void Entity::Render(SDL_Renderer* renderer) const
 			c->Render(renderer);
 	}
 }
+

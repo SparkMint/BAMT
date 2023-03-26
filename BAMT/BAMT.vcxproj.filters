@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="CORE">
       <UniqueIdentifier>{a964c117-6298-431a-bdc4-2bba4f5b5683}</UniqueIdentifier>
     </Filter>
@@ -26,23 +22,29 @@
     <Filter Include="CORE\ENTITIES">
       <UniqueIdentifier>{0bef143a-4037-4396-86db-6f2bde31652f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ASSIGNMENT">
+    <Filter Include="ASSIGNMENT PALLET">
       <UniqueIdentifier>{8d150467-698b-4c95-b552-6da5216636a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ASSIGNMENT\COMPONENTS">
+    <Filter Include="ASSIGNMENT PALLET\COMPONENTS">
       <UniqueIdentifier>{7e1d7943-dd88-479d-aeb6-41bf5e7a55f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ASSIGNMENT\ENTITIES">
+    <Filter Include="ASSIGNMENT PALLET\ENTITIES">
       <UniqueIdentifier>{9ce8bfd6-a7e0-45a1-8f72-5e097968ca9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WORKSHOP">
+    <Filter Include="WORKSHOP PALLET">
       <UniqueIdentifier>{0548a9f1-861c-4dd9-a68d-09a12c59638c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WORKSHOP\COMPONENTS">
+    <Filter Include="WORKSHOP PALLET\COMPONENTS">
       <UniqueIdentifier>{30d3c45b-c202-4a9e-af90-c26c13d99ea9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WORKSHOP\ENTITIES">
+    <Filter Include="WORKSHOP PALLET\ENTITIES">
       <UniqueIdentifier>{45199b2a-c0f5-4b1d-8eb6-2ee89ad3dd4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES">
+      <UniqueIdentifier>{e87e5d8d-8541-4099-a4ff-3681313796f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES\TEST SCENES">
+      <UniqueIdentifier>{7f0eda26-5a67-472f-bf13-e8ee54e321d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,20 +79,32 @@
     <ClCompile Include="RectRenderer.cpp">
       <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
-    <ClCompile Include="CellLogic.cpp">
-      <Filter>WORKSHOP\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOfLife.cpp">
-      <Filter>WORKSHOP\ENTITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="LifeCell.cpp">
-      <Filter>WORKSHOP\ENTITIES</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
-      <Filter>ASSIGNMENT\COMPONENTS</Filter>
+      <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>ASSIGNMENT\ENTITIES</Filter>
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Colour.cpp">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>CORE\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGame.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGameLevel.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTestScene.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticCollider.cpp">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,20 +138,35 @@
     <ClInclude Include="TriRenderer.h">
       <Filter>CORE\COMPONENTS</Filter>
     </ClInclude>
-    <ClInclude Include="CellLogic.h">
-      <Filter>WORKSHOP\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOfLife.h">
-      <Filter>WORKSHOP\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeCell.h">
-      <Filter>WORKSHOP\ENTITIES</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMovement.h">
-      <Filter>ASSIGNMENT\COMPONENTS</Filter>
+      <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>ASSIGNMENT\ENTITIES</Filter>
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
+    </ClInclude>
+    <ClInclude Include="Colour.h">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>CORE\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGame.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGameLevel.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSettings.h">
+      <Filter>CORE\ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTestScene.h">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticCollider.h">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

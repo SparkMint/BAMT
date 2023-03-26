@@ -1,10 +1,14 @@
 #ifndef BAMT_ENGINE_MANAGER
 #define BAMT_ENGINE_MANAGER
 
+#define BAMT_TIMESTEP_LIMIT 0.05f
+
+#include "EngineSettings.h"
 #include "Entity.h"
 #include "SDL.h"
 #include "Debug.h"
 #include "TickTimer.h"
+#include "Scene.h"
 
 #include <vector>
 #include <algorithm>
@@ -15,10 +19,11 @@ class EngineManager
 	SDL_Renderer* _renderer = nullptr;
 	TickTimer* _tickTimer = nullptr;
 
-	std::vector<Entity*> _entityList;
+	std::vector<Scene*> _sceneList;
 
 	std::string _windowTitle;
 	bool _isActive = false;
+	bool fullScreen = false;
 	int _deltaTime = 16;
 	float _timeStep = 0;
 
@@ -26,7 +31,7 @@ class EngineManager
 		/// <summary>
 		/// Returns if the Engine is active or not.
 		/// </summary>
-		bool IsActive();
+		bool IsActive() const;
 
 		/// <summary>
 		/// Creates an SDL Window and SDL Renderer and configures them.
@@ -37,85 +42,79 @@ class EngineManager
 			int deltaTime = 16);
 
 		/// <summary>
-		/// Runs the engine loop.
+		/// Loops Through Engine Logic.
 		/// </summary>
 		void RunLoop();
 
 		/// <summary>
-		/// Calls the Update function on all Entities attached to the Engine.
+		/// Gets and runs special input functions.
 		/// </summary>
-		void Update(float* timeStep);
+		void DoInputLogic();
 
 		/// <summary>
-		/// Renders the scene.
+		/// Updates all active Scenes.
 		/// </summary>
-		void Render();
+		void Update(float* timeStep) const;
 
 		/// <summary>
-		/// Cleans any unused data from the Engine. TODO: Get this functioning.
+		/// Renders all active scenes.
 		/// </summary>
-		void Clean();
+		void Render(SDL_Renderer* renderer) const;
 
 		/// <summary>
 		/// Stops the Engine.
 		/// </summary>
 		void Stop();
 
-		void SetWindowTitle();
+		void SetWindowTitle() const;
 
-
-		// ENTITY COMPONENT SYSTEM STUFF
+		/// SCENE FACTORY DECLARATION
 		
 		/// <summary>
 		/// Creates an Entity of the specified type and adds it to the Entity List.
 		/// </summary>
-		template<class T, typename... TArgs>
-		T* AddEntity(TArgs&&... mArgs);
+		template<class T = Scene, typename... TArgs>
+		T* AddScene(TArgs&&... mArgs);
 
 		/// <summary>
 		/// Destroys a specified Entity and removes it from the Entity List.
 		/// </summary>
-		void RemoveEntity(Entity* ent);
-
-		/// <summary>
-		/// Sorts all Entities in the _entityList by its renderLayer number.
-		/// </summary>
-		void SortEntities();
-
+		void RemoveScene(Scene* scene);
 
 		//Constructor/Destructor
 		EngineManager();
 		~EngineManager();
 };
 
-// Implementation for Templates is easiest within the header file.
-// Its annoying, but its the only way I can get this to work.
+/// SCENE FACTORY IMPLEMENTATION
+// Putting it anywhere else is impossible due to the Template Stuff.
 
 template<class T, typename... TArgs>
-inline T* EngineManager::AddEntity(TArgs&&... mArgs)
+inline T* EngineManager::AddScene(TArgs&&... mArgs)
 {
-	Debug::Log("Creating Entity...");
 	// Create a new instance of this type and pass its arguments.
-	T* ent = new T(std::forward<TArgs>(mArgs)...);
+	T* scene = new T(std::forward<TArgs>(mArgs)...);
 
 	// Use Dynamic Casting to find if the type given is derived from Entity.
-	Entity* entityBase = dynamic_cast<Entity*>(ent);
-	if (entityBase != nullptr)
+	Scene* sceneBase = dynamic_cast<Scene*>(scene);
+	if (sceneBase != nullptr)
 	{
-		// Add the entity to our entity list.
-		_entityList.emplace_back(entityBase);
-
-		entityBase->engine = this;
-
-		entityBase->Start();
-
-		Debug::Log("Entity Successfully Created!");
-		return ent;
+		_sceneList.emplace_back(sceneBase);
+		sceneBase->engine = this;
+		sceneBase->Start();
+		Debug::Log("Scene Successfully Created!", scene);
+		return scene;
 	}
 
-	// If it got here, the type we got wasn't an entity type.
-	Debug::Log("Entity was not created!");
-	delete(ent);
+	Debug::LogError("This scene could not be created successfully!", scene);
+	delete(scene);
 	return nullptr;
 }
+
+inline void EngineManager::RemoveScene(Scene* scene)
+{
+	auto sceneToRemove = remove(_sceneList.begin(), _sceneList.end(), scene);
+	delete(scene);
+}
+
 #endif

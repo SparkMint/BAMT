@@ -13,6 +13,7 @@ class TickTimer
 
 	public:
 		TickTimer();
+		~TickTimer();
 
 		/// <summary>
 		/// Sets start ticks to the current time.
