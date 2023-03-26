@@ -11,6 +11,11 @@ namespace VectorMath
 		return sqrt(x + y);
 	}
 
+	float Dot(const Vector2& v1, const Vector2& v2)
+	{
+		return v1.x * v2.x + v1.y * v2.y;
+	}
+
 	Vector2 Normalize(const Vector2& vector)
 	{
 		const float magnitude = Magnitude(vector);
@@ -25,11 +30,57 @@ namespace VectorMath
 	{
 		return sqrt(vector.x * vector.x + vector.y * vector.y);
 	}
+
+	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2)
+	{
+		const auto pos1Min = pos1 - bounds1 * 0.5f;
+		const auto pos1Max = pos1 + bounds1 * 0.5f;
+
+		const auto pos2Min = pos2 - bounds2 * 0.5f;
+		const auto pos2Max = pos2 + bounds2 * 0.5f;
+
+		if(pos1Min > pos2Max || pos1Max < pos2Min)
+		{
+			return false;
+		}
+		return true;
+	}
 }
 
 bool Vector2::operator==(const Vector2& vector) const
 {
 	return this->x == vector.x && this->y == vector.y;
+}
+
+Vector2 Vector2::operator-(const Vector2& vector) const
+{
+	return {this->x - vector.x, this->y - vector.y};
+}
+
+Vector2 Vector2::operator*(const Vector2& vector) const
+{
+	return { this->x * vector.x, this->y * vector.x };
+}
+
+Vector2 Vector2::operator*(const float multiplier) const
+{
+	return { this->x * multiplier, this->y * multiplier };
+}
+
+// Implement the multiplication operator overload.
+Vector2 operator*(const float multiplier, const Vector2& vector)
+{
+	return { multiplier * vector.x, multiplier * vector.y };
+}
+
+Vector2 Vector2::operator/(const float divider) const
+{
+	return { this->x / divider, this->y / divider };
+}
+
+Vector2 Vector2::operator+(const Vector2& vector) const
+{
+	return { this->x + vector.x, this->y + vector.x };
 }
 
 Transform::Transform(float x, float y) : _position(new Vector2{ x, y }){ }

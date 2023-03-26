@@ -8,6 +8,7 @@
 #include <vector>
 
 class EngineManager;
+class Scene;
 class Component;
 
 class Entity 
@@ -22,11 +23,10 @@ class Entity
 		~Entity();
 
 		/// <summary>
-		/// Pointer to the engine this entity is attached to.
+		/// Pointer to the scene this entity is attached to.
 		/// </summary>
-		EngineManager* engine = nullptr;
-
-
+		Scene* scene = nullptr;
+		
 		/// <summary>
 		/// What Entity owns this one?
 		/// </summary>
@@ -89,7 +89,7 @@ template<class T, typename... TArgs>
 T* Entity::AddComponent(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
-	T* c = (new T(std::forward<TArgs>(mArgs)...));
+	T* c = new T(std::forward<TArgs>(mArgs)...);
 
 	// Try use Dynamic Casting to get the base component.
 	Component* componentBase = dynamic_cast<Component*>(c);
@@ -97,18 +97,16 @@ T* Entity::AddComponent(TArgs&&... mArgs)
 	{
 		componentBase->entity = this;
 		_components.push_back(componentBase);
-		//Debug::Log("Component Added to Entity!", c);
 
 		// Run the start function on the newly created component.
 		componentBase->Start();
 		return c;
 	}
-	else
-	{
-		Debug::Log("Invalid Component type, this cannot be added onto this Entity!", this);
-		delete(c);
-		return nullptr;
-	}
+
+	// If it got here, it means the type given wasn't derived from component.
+	Debug::Log("Invalid Component type, this cannot be added onto this Entity!", this);
+	delete(c);
+	return nullptr;
 }
 
 template<class T>
@@ -122,7 +120,7 @@ T* Entity::GetComponent()
 			return static_cast<T*>(c);
 		}
 	}
-	Debug::LogError("Component could not be found on this Entity!", this);
+	//Debug::LogError("Component could not be found on this Entity!", this);
 	return nullptr;
 }
 
@@ -158,27 +156,6 @@ void Entity::SetParent(T* entity)
 		Debug::LogError("Entity given was not a type of entity!", entity);
 	}
 }
-
-// old method. keeping just incase.
-/*
-template <class T>
-void Entity::SetParent(T* entity)
-{
-	Entity* entityBase = dynamic_cast<Entity*>(entity);
-
-	// If it isnt null, its a valid Entity.
-	if (entityBase != nullptr)
-	{
-		parent = entityBase;
-
-		// Tell the parent it now has a child.
-		auto entityInChildren = std::find(entityBase->children.begin(), entityBase->children.end(), this);
-
-		// If we cant find the entity in the parents children list, add it.
-		if(entityInChildren == entityBase->children.end())
-			entityBase->AddChild(this);
-	}
-}*/
 
 template <class T>
 void Entity::AddChild(T* entity)

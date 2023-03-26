@@ -5,10 +5,10 @@
 #define VECTOR2_LEFT {-1, 0}
 #define VECTOR2_DOWN {0, 1}
 #define VECTOR2_RIGHT {1, 0}
+#define VECTOR2_ZERO {0,0}
 
 #include "Component.h"
 
-class Entity;
 class Component;
 
 struct Vector2
@@ -17,6 +17,18 @@ struct Vector2
 	float y = 0;
 
 	bool operator ==(const Vector2& vector) const;
+
+	Vector2 operator -(const Vector2& vector) const;
+
+	Vector2 operator *(const Vector2& vector) const;
+
+	Vector2 operator *(const float multiplier) const;
+
+	friend Vector2 operator*(const float multiplier, const Vector2& vec);
+
+	Vector2 operator/(const float divider) const;
+
+	Vector2 operator+(const Vector2& vector) const;
 };
 
 namespace VectorMath
@@ -26,6 +38,10 @@ namespace VectorMath
 	float Magnitude(const Vector2& vector);
 
 	float Distance(const Vector2& v1, const Vector2& v2);
+
+	float Dot(const Vector2& v1, const Vector2& v2);
+
+	bool OverlapOnAxis(float pos1, float bounds1, float pos2, float bounds2);
 }
 
 class Transform : public Component

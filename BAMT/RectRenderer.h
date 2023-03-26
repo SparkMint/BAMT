@@ -14,8 +14,12 @@ class RectRenderer : public Renderer
 
 	public:
 		bool fillRect = false;
-		int width = 10;
-		int height = 10;
+		float width = 1;
+		float height = 1;
+
+		Vector2 lastPosition;
+		float minimumMovement = 0.02f;
+
 
 		/// <summary>
 		/// Constructs a rectangle with specified inputs.
@@ -23,12 +27,10 @@ class RectRenderer : public Renderer
 		/// <param name="Width">- The width of the Rectangle.</param>
 		/// <param name="Height">- The width of the Rectangle.</param>
 		/// <param name="Fill">- Should the rectangle be filled?</param>
-		RectRenderer(int Width = 0, int Height = 0, bool Fill = false);
-
-
+		RectRenderer(float Width = 0, float Height = 0, bool Fill = false);
 
 		void Start() override;
 		void Render(SDL_Renderer* renderer) override;
-		void UpdateSize(int x, int y) const;
+		void UpdateSize(float x, float y) const;
 };
 #endif

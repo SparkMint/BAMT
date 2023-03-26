@@ -40,6 +40,12 @@
     <Filter Include="WORKSHOP PALLET\ENTITIES">
       <UniqueIdentifier>{45199b2a-c0f5-4b1d-8eb6-2ee89ad3dd4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES">
+      <UniqueIdentifier>{e87e5d8d-8541-4099-a4ff-3681313796f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASSIGNMENT PALLET\SCENES\TEST SCENES">
+      <UniqueIdentifier>{7f0eda26-5a67-472f-bf13-e8ee54e321d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -73,15 +79,6 @@
     <ClCompile Include="RectRenderer.cpp">
       <Filter>CORE\COMPONENTS</Filter>
     </ClCompile>
-    <ClCompile Include="CellLogic.cpp">
-      <Filter>WORKSHOP PALLET\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOfLife.cpp">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="LifeCell.cpp">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClCompile>
@@ -93,6 +90,21 @@
     </ClCompile>
     <ClCompile Include="Colour.cpp">
       <Filter>CORE\COMPONENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>CORE\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGame.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PinballGameLevel.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTestScene.cpp">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticCollider.cpp">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,15 +138,6 @@
     <ClInclude Include="TriRenderer.h">
       <Filter>CORE\COMPONENTS</Filter>
     </ClInclude>
-    <ClInclude Include="CellLogic.h">
-      <Filter>WORKSHOP PALLET\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOfLife.h">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeCell.h">
-      <Filter>WORKSHOP PALLET\ENTITIES</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMovement.h">
       <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
     </ClInclude>
@@ -146,6 +149,24 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>CORE\COMPONENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>CORE\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGame.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="PinballGameLevel.h">
+      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSettings.h">
+      <Filter>CORE\ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTestScene.h">
+      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticCollider.h">
+      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

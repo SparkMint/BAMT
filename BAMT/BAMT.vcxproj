@@ -127,17 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CellLogic.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GameOfLife.cpp" />
-    <ClCompile Include="LifeCell.cpp" />
+    <ClCompile Include="PhysicsTestScene.cpp" />
+    <ClCompile Include="PinballGame.cpp" />
+    <ClCompile Include="PinballGameLevel.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="StaticCollider.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TickTimer.cpp" />
     <ClCompile Include="RectRenderer.cpp" />
@@ -147,18 +149,21 @@
     <ClCompile Include="TriRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CellLogic.h" />
+    <ClInclude Include="EngineSettings.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="GameOfLife.h" />
-    <ClInclude Include="LifeCell.h" />
+    <ClInclude Include="PhysicsTestScene.h" />
+    <ClInclude Include="PinballGame.h" />
+    <ClInclude Include="PinballGameLevel.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="StaticCollider.h" />
     <ClInclude Include="TickTimer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TriRenderer.h" />

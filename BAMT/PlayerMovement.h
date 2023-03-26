@@ -9,12 +9,14 @@
 
 class PlayerMovement : public Component
 {
-	private:
-		Transform* _transform = nullptr;
-		RigidBody* _rigidBody = nullptr;
-		Entity* _distanceTest = nullptr;
+	Transform* _transform = nullptr;
+	RigidBody* _rigidBody = nullptr;
+
+	Vector2 _zeroGravity{ 0,0 };
+	Vector2 _Gravity{ 0,3 };
+
 	public:
-		float accelerationSpeed = 1000;
+		float movementSpeed;
 
 		void Start() override;
 		void Update(float* timeStep) override;
