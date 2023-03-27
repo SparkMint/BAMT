@@ -1,1 +1,43 @@
-﻿
+﻿  PhysicsTestScene.cpp
+  PinballGame.cpp
+  PinballGameLevel.cpp
+  Player.cpp
+  PlayerMovement.cpp
+  StaticCollider.cpp
+  RectRenderer.cpp
+C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(23,83): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(24,83): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(39,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(40,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Renderer.cpp
+  RigidBody.cpp
+  Transform.cpp
+C:\BAMT\BAMT\Core\Components\Transform.cpp(9,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\BAMT\BAMT\Core\Components\Transform.cpp(9,17): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\BAMT\BAMT\Core\Components\Transform.cpp(10,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\BAMT\BAMT\Core\Components\Transform.cpp(10,17): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  TriRenderer.cpp
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(23,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(23,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(22,78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(26,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(26,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(25,89): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(29,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(29,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\BAMT\BAMT\Core\Components\TriRenderer.cpp(28,78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Component.cpp
+  Entity.cpp
+  Scene.cpp
+  EngineManager.cpp
+  CoordinateGrid.cpp
+  Colour.cpp
+  Debug.cpp
+C:\BAMT\BAMT\Core\Misc\Debug.cpp(132,25): warning C4312: 'reinterpret_cast': conversion from 'int' to 'void *' of greater size
+  Input.cpp
+  TickTimer.cpp
+  Generating Code...
+  Compiling...
+  Main.cpp
+  Generating Code...
+  BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

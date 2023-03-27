@@ -1,8 +1,8 @@
-#include "SDL.h"
-#include "Debug.h"
+#include <SDL.h>
 
-#include "EngineManager.h"
-#include "PinballGame.h"
+#include "Assignment/PinballGame.h"
+#include "Core/EngineManager.h"
+#include "Core/Misc/Debug.h"
 
 EngineManager* engineManager;
 

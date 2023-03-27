@@ -1,197 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="CORE">
-      <UniqueIdentifier>{a964c117-6298-431a-bdc4-2bba4f5b5683}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\ECS">
-      <UniqueIdentifier>{daa747bb-78dd-4985-af44-ac92c152319f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\ENGINE">
-      <UniqueIdentifier>{28577eb0-2313-4243-a5a0-d35097ef4dbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\DEBUG">
-      <UniqueIdentifier>{b69c9577-90e1-4aa3-b7f9-4dc0c7d0c697}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\INPUT">
-      <UniqueIdentifier>{520a7eb6-81bc-46cc-8f32-9c2c2c97125b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\COMPONENTS">
-      <UniqueIdentifier>{965fdec2-7f9d-4ee1-a19b-b3ef286b4e3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CORE\ENTITIES">
-      <UniqueIdentifier>{0bef143a-4037-4396-86db-6f2bde31652f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASSIGNMENT PALLET">
-      <UniqueIdentifier>{8d150467-698b-4c95-b552-6da5216636a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASSIGNMENT PALLET\COMPONENTS">
-      <UniqueIdentifier>{7e1d7943-dd88-479d-aeb6-41bf5e7a55f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASSIGNMENT PALLET\ENTITIES">
-      <UniqueIdentifier>{9ce8bfd6-a7e0-45a1-8f72-5e097968ca9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WORKSHOP PALLET">
-      <UniqueIdentifier>{0548a9f1-861c-4dd9-a68d-09a12c59638c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WORKSHOP PALLET\COMPONENTS">
-      <UniqueIdentifier>{30d3c45b-c202-4a9e-af90-c26c13d99ea9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WORKSHOP PALLET\ENTITIES">
-      <UniqueIdentifier>{45199b2a-c0f5-4b1d-8eb6-2ee89ad3dd4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASSIGNMENT PALLET\SCENES">
-      <UniqueIdentifier>{e87e5d8d-8541-4099-a4ff-3681313796f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASSIGNMENT PALLET\SCENES\TEST SCENES">
-      <UniqueIdentifier>{7f0eda26-5a67-472f-bf13-e8ee54e321d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RESOURCES">
-      <UniqueIdentifier>{92e5502e-47a4-4ea0-be27-61b0906c352f}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Component.cpp">
-      <Filter>CORE\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>CORE\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineManager.cpp">
-      <Filter>CORE\ENGINE</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug.cpp">
-      <Filter>CORE\DEBUG</Filter>
-    </ClCompile>
-    <ClCompile Include="TickTimer.cpp">
-      <Filter>CORE\ENGINE</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>CORE\INPUT</Filter>
-    </ClCompile>
-    <ClCompile Include="TriRenderer.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="RigidBody.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="RectRenderer.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMovement.cpp">
-      <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="Colour.cpp">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>CORE\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="PinballGame.cpp">
-      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
-    </ClCompile>
-    <ClCompile Include="PinballGameLevel.cpp">
-      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsTestScene.cpp">
-      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticCollider.cpp">
-      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="CoordinateGrid.cpp">
-      <Filter>CORE\ENTITIES</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Component.h">
-      <Filter>CORE\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>CORE\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineManager.h">
-      <Filter>CORE\ENGINE</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
-      <Filter>CORE\DEBUG</Filter>
-    </ClInclude>
-    <ClInclude Include="TickTimer.h">
-      <Filter>CORE\ENGINE</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>CORE\INPUT</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBody.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="RectRenderer.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="TriRenderer.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMovement.h">
-      <Filter>ASSIGNMENT PALLET\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="Colour.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>CORE\COMPONENTS</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>CORE\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="PinballGame.h">
-      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
-    </ClInclude>
-    <ClInclude Include="PinballGameLevel.h">
-      <Filter>ASSIGNMENT PALLET\SCENES</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineSettings.h">
-      <Filter>CORE\ENGINE</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsTestScene.h">
-      <Filter>ASSIGNMENT PALLET\SCENES\TEST SCENES</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticCollider.h">
-      <Filter>ASSIGNMENT PALLET\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="CoordinateGrid.h">
-      <Filter>CORE\ENTITIES</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>RESOURCES</Filter>
-    </ClInclude>
+    <ClCompile Include="Core\Components\RectRenderer.cpp" />
+    <ClCompile Include="Core\Components\Renderer.cpp" />
+    <ClCompile Include="Core\Components\RigidBody.cpp" />
+    <ClCompile Include="Core\Components\Transform.cpp" />
+    <ClCompile Include="Core\Components\TriRenderer.cpp" />
+    <ClCompile Include="Core\ECS\Component.cpp" />
+    <ClCompile Include="Core\ECS\Entity.cpp" />
+    <ClCompile Include="Core\ECS\Scene.cpp" />
+    <ClCompile Include="Core\Entities\CoordinateGrid.cpp" />
+    <ClCompile Include="Core\Misc\Colour.cpp" />
+    <ClCompile Include="Core\Misc\Debug.cpp" />
+    <ClCompile Include="Core\Misc\Input.cpp" />
+    <ClCompile Include="Core\Misc\TickTimer.cpp" />
+    <ClCompile Include="Core\EngineManager.cpp" />
+    <ClCompile Include="Assignment\PhysicsTestScene.cpp" />
+    <ClCompile Include="Assignment\PinballGame.cpp" />
+    <ClCompile Include="Assignment\PinballGameLevel.cpp" />
+    <ClCompile Include="Assignment\Player.cpp" />
+    <ClCompile Include="Assignment\PlayerMovement.cpp" />
+    <ClCompile Include="Assignment\StaticCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="BAMT.APS" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="BAMT.rc">
-      <Filter>RESOURCES</Filter>
-    </ResourceCompile>
+    <ClInclude Include="Core\Components\RectRenderer.h" />
+    <ClInclude Include="Core\Components\Renderer.h" />
+    <ClInclude Include="Core\Components\RigidBody.h" />
+    <ClInclude Include="Core\Components\Transform.h" />
+    <ClInclude Include="Core\Components\TriRenderer.h" />
+    <ClInclude Include="Core\ECS\Component.h" />
+    <ClInclude Include="Core\ECS\Entity.h" />
+    <ClInclude Include="Core\ECS\Scene.h" />
+    <ClInclude Include="Core\Entities\CoordinateGrid.h" />
+    <ClInclude Include="Core\Misc\Colour.h" />
+    <ClInclude Include="Core\Misc\Debug.h" />
+    <ClInclude Include="Core\Misc\Input.h" />
+    <ClInclude Include="Core\Misc\TickTimer.h" />
+    <ClInclude Include="Core\EngineManager.h" />
+    <ClInclude Include="Core\EngineSettings.h" />
+    <ClInclude Include="Assignment\PhysicsTestScene.h" />
+    <ClInclude Include="Assignment\PinballGame.h" />
+    <ClInclude Include="Assignment\PinballGameLevel.h" />
+    <ClInclude Include="Assignment\Player.h" />
+    <ClInclude Include="Assignment\PlayerMovement.h" />
+    <ClInclude Include="Assignment\StaticCollider.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\Users\Connor Thompson\Downloads\BAMT Logo.ico">
-      <Filter>RESOURCES</Filter>
-    </Image>
+    <ResourceCompile Include="BAMT.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Icons\BAMT Logo.bmp" />
+    <Image Include="Assets\Icons\Logo.png" />
+    <Image Include="Assets\Icons\TaskbarIcon.png" />
   </ItemGroup>
 </Project>

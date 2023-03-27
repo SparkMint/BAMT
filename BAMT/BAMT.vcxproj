@@ -127,60 +127,63 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Colour.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="CoordinateGrid.cpp" />
-    <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="PhysicsTestScene.cpp" />
-    <ClCompile Include="PinballGame.cpp" />
-    <ClCompile Include="PinballGameLevel.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerMovement.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="RigidBody.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="StaticCollider.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="TickTimer.cpp" />
-    <ClCompile Include="RectRenderer.cpp" />
-    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Assignment\PhysicsTestScene.cpp" />
+    <ClCompile Include="Assignment\PinballGame.cpp" />
+    <ClCompile Include="Assignment\PinballGameLevel.cpp" />
+    <ClCompile Include="Assignment\Player.cpp" />
+    <ClCompile Include="Assignment\PlayerMovement.cpp" />
+    <ClCompile Include="Assignment\StaticCollider.cpp" />
+    <ClCompile Include="Core\Components\RectRenderer.cpp" />
+    <ClCompile Include="Core\Components\Renderer.cpp" />
+    <ClCompile Include="Core\Components\RigidBody.cpp" />
+    <ClCompile Include="Core\Components\Transform.cpp" />
+    <ClCompile Include="Core\Components\TriRenderer.cpp" />
+    <ClCompile Include="Core\ECS\Component.cpp" />
+    <ClCompile Include="Core\ECS\Entity.cpp" />
+    <ClCompile Include="Core\ECS\Scene.cpp" />
+    <ClCompile Include="Core\EngineManager.cpp" />
+    <ClCompile Include="Core\Entities\CoordinateGrid.cpp" />
+    <ClCompile Include="Core\Misc\Colour.cpp" />
+    <ClCompile Include="Core\Misc\Debug.cpp" />
+    <ClCompile Include="Core\Misc\Input.cpp" />
+    <ClCompile Include="Core\Misc\TickTimer.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="EngineManager.cpp" />
-    <ClCompile Include="TriRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CoordinateGrid.h" />
-    <ClInclude Include="EngineSettings.h" />
-    <ClInclude Include="Colour.h" />
-    <ClInclude Include="Debug.h" />
-    <ClInclude Include="EngineManager.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="PhysicsTestScene.h" />
-    <ClInclude Include="PinballGame.h" />
-    <ClInclude Include="PinballGameLevel.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerMovement.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="RigidBody.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="StaticCollider.h" />
-    <ClInclude Include="TickTimer.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="TriRenderer.h" />
-    <ClInclude Include="RectRenderer.h" />
-    <ClInclude Include="Input.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="BAMT.APS" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assignment\PhysicsTestScene.h" />
+    <ClInclude Include="Assignment\PinballGame.h" />
+    <ClInclude Include="Assignment\PinballGameLevel.h" />
+    <ClInclude Include="Assignment\Player.h" />
+    <ClInclude Include="Assignment\PlayerMovement.h" />
+    <ClInclude Include="Assignment\StaticCollider.h" />
+    <ClInclude Include="Core\Components\RectRenderer.h" />
+    <ClInclude Include="Core\Components\Renderer.h" />
+    <ClInclude Include="Core\Components\RigidBody.h" />
+    <ClInclude Include="Core\Components\Transform.h" />
+    <ClInclude Include="Core\Components\TriRenderer.h" />
+    <ClInclude Include="Core\ECS\Component.h" />
+    <ClInclude Include="Core\ECS\Entity.h" />
+    <ClInclude Include="Core\ECS\Scene.h" />
+    <ClInclude Include="Core\EngineManager.h" />
+    <ClInclude Include="Core\EngineSettings.h" />
+    <ClInclude Include="Core\Entities\CoordinateGrid.h" />
+    <ClInclude Include="Core\Misc\Colour.h" />
+    <ClInclude Include="Core\Misc\Debug.h" />
+    <ClInclude Include="Core\Misc\Input.h" />
+    <ClInclude Include="Core\Misc\TickTimer.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\Users\Connor Thompson\Downloads\BAMT Logo.ico" />
+    <Image Include="Assets\Icons\BAMT Logo.bmp" />
+    <Image Include="Assets\Icons\Logo.png" />
+    <Image Include="Assets\Icons\TaskbarIcon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
