@@ -46,6 +46,9 @@
     <Filter Include="ASSIGNMENT PALLET\SCENES\TEST SCENES">
       <UniqueIdentifier>{7f0eda26-5a67-472f-bf13-e8ee54e321d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RESOURCES">
+      <UniqueIdentifier>{92e5502e-47a4-4ea0-be27-61b0906c352f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

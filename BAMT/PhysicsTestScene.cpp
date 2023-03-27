@@ -53,10 +53,10 @@ void PhysicsTestScene::Start()
 
 	for (int i = 0; i < 5; ++i)
 	{
-		for (int j = 0; j < 5; ++j)
+		for (int j = 0; j < 20; ++j)
 		{
 			const auto thing = AddEntity<Player>();
-			thing->GetComponent<Transform>()->SetPosition(.75f + (j * .21f), .75f + (i * .21f));
+			thing->GetComponent<Transform>()->SetPosition(1 + (j * .21f), 1 + (i * .21f));
 			thing->playerMovement->enabled = false;
 			//thing->rigidBody->isKinematic = true;
 
@@ -68,7 +68,7 @@ void PhysicsTestScene::Start()
 	}
 
 	const auto thing = AddEntity<Player>();
-	thing->GetComponent<Transform>()->SetPosition(6, 6);
+	thing->GetComponent<Transform>()->SetPosition(.25f, .25f);
 	//thing->GetComponent<RigidBody>()->mass = 1;
 	//thing->GetComponent<RigidBody>()->debugMode = true;
 	thing->playerMovement->enabled = true;
