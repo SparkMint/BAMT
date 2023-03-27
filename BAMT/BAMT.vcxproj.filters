@@ -177,8 +177,21 @@
     <ClInclude Include="CoordinateGrid.h">
       <Filter>CORE\ENTITIES</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>RESOURCES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BAMT.rc">
+      <Filter>RESOURCES</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Users\Connor Thompson\Downloads\BAMT Logo.ico">
+      <Filter>RESOURCES</Filter>
+    </Image>
   </ItemGroup>
 </Project>
