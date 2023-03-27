@@ -28,11 +28,6 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 		windowWidth, windowHeight,
 		windowFlag);
 
-
-	//SDL_Surface* icon = IMG_Load("Assets/Icons/TaskbarIcon.png");
-	//SDL_SetWindowIcon(_window, icon);
-	//SDL_FreeSurface(icon);
-
 	// Create an instance of a Renderer.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
 

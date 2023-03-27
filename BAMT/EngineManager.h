@@ -6,7 +6,6 @@
 #include "EngineSettings.h"
 #include "Entity.h"
 #include "SDL.h"
-#include <SDL_image.h>
 #include "Debug.h"
 #include "TickTimer.h"
 #include "Scene.h"
