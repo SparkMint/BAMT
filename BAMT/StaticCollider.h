@@ -21,7 +21,7 @@ public:
 	float bounciness = 1;
 
 	// RectRenderer Values
-	bool fillRect = false;
+	bool fillRect = true;
 
 
 	void Start() override;

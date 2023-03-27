@@ -31,7 +31,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	// Create an instance of a Renderer.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
 
-	SDL_RenderSetLogicalSize(_renderer, windowWidth, windowHeight);
+	// Forces the window to display the game in this aspect ratio.
+	SDL_RenderSetLogicalSize(_renderer, BAMT_REFERENCE_RESOLUTION_WIDTH, BAMT_REFERENCE_RESOLUTION_HEIGHT);
 
 	// Create a new TickTimer.
 	_tickTimer = new TickTimer();

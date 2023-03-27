@@ -1,5 +1,7 @@
 #include "RectRenderer.h"
 
+
+
 RectRenderer::RectRenderer(float Width, float Height, bool Fill)
 {
 	width = Width;
@@ -18,8 +20,8 @@ void RectRenderer::Start()
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->x = roundf((_transform->GetX() * scaleMultiplier - rect->w / 2) * 100) / 100;
-	rect->y = roundf((_transform->GetY() * scaleMultiplier - rect->h / 2) * 100) / 100;
+	rect->x = roundf((_transform->GetX() * BAMT_RENDERER_SCALE - rect->w / 2) * 100) / 100;
+	rect->y = roundf((_transform->GetY() * BAMT_RENDERER_SCALE - rect->h / 2) * 100) / 100;
 
 	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderDrawRect(renderer, rect);
@@ -34,6 +36,6 @@ void RectRenderer::Render(SDL_Renderer* renderer)
 
 void RectRenderer::UpdateSize(const float width, const float height) const
 {
-	rect->w = width * scaleMultiplier;
-	rect->h = height * scaleMultiplier;
+	rect->w = width * BAMT_RENDERER_SCALE;
+	rect->h = height * BAMT_RENDERER_SCALE;
 }	

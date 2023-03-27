@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "Debug.h"
 #include "Renderer.h"
+#include "EngineSettings.h"
 
 class Component;
 
@@ -16,10 +17,6 @@ class RectRenderer : public Renderer
 		bool fillRect = false;
 		float width = 1;
 		float height = 1;
-
-		Vector2 lastPosition;
-		float minimumMovement = 0.02f;
-
 
 		/// <summary>
 		/// Constructs a rectangle with specified inputs.
