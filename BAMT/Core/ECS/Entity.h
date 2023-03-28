@@ -3,13 +3,16 @@
 
 #include <vector>
 
+#include "../Components/Transform.h"
 #include "Component.h"
 #include "SDL.h"
 #include "../Misc/Debug.h"
 
 class EngineManager;
 class Scene;
+class Transform;
 class Component;
+
 
 class Entity 
 {
@@ -37,6 +40,8 @@ class Entity
 		/// </summary>
 		std::vector<Entity*> children;
 
+		Transform* transform = nullptr;
+
 		/// <summary>
 		/// Should this Entity run any logic?
 		/// </summary>
@@ -55,12 +60,12 @@ class Entity
 		/// <summary>
 		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
-		void Update(float* timeStep) const;
+		virtual void Update(float* timeStep) const;
 
 		/// <summary>
 		/// Runs Render on all Components attached to this Entity.
 		/// </summary>
-		void Render(SDL_Renderer* renderer) const;
+		virtual void Render(SDL_Renderer* renderer) const;
 
 		/// <summary>
 		/// Adds a specified Component to this Entity.

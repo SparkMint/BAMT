@@ -3,7 +3,6 @@
 void PhysicsCube::Start()
 {
 	// Transform Setup
-	transform = AddComponent<Transform>();
 	transform->SetPosition(&initialPosition);
 
 	// RigidBody Setup

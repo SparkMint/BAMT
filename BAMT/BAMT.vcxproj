@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
     <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGame.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGameLevel.cpp" />
@@ -156,6 +157,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
     <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
     <ClInclude Include="Assignment\Scenes\PinballGame.h" />
     <ClInclude Include="Assignment\Scenes\PinballGameLevel.h" />
@@ -174,6 +176,7 @@
     <ClInclude Include="Core\EngineManager.h" />
     <ClInclude Include="Core\EngineSettings.h" />
     <ClInclude Include="Core\Entities\CoordinateGrid.h" />
+    <ClInclude Include="Core\Entities\Rectangle.h" />
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />

@@ -10,7 +10,6 @@
 class PhysicsCube : public Entity
 {
 	public:
-		Transform* transform = nullptr;
 		RigidBody* rigidBody = nullptr;
 		PhysicsMovement* playerMovement = nullptr;
 		RectRenderer* rectRenderer = nullptr;

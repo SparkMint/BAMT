@@ -4,6 +4,7 @@ Entity::Entity()
 {
 	active = true;
 	Debug::Log("Entity Created.", this);
+	transform = AddComponent<Transform>();
 }
 
 Entity::~Entity()

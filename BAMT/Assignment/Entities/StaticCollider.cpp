@@ -2,9 +2,6 @@
 
 void StaticCollider::Start()
 {
-	// Transform Setup
-	transform = AddComponent<Transform>();
-
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
 	rigidBody->colliderWidth = width;
@@ -15,5 +12,4 @@ void StaticCollider::Start()
 
 	// Renderer Setup
 	rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
-	//rectRenderer->enabled = false;
 }
