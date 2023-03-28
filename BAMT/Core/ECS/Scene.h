@@ -31,12 +31,12 @@ class Scene
 		/// <summary>
 		/// Updates all active Entities.
 		/// </summary>
-		void Update(float* timeStep);
+		virtual void Update(float* timeStep);
 
 		/// <summary>
 		/// Renders all active Entities.
 		/// </summary>
-		void Render(SDL_Renderer* renderer) const;
+		virtual void Render(SDL_Renderer* renderer) const;
 
 		/// ENTITY FACTORY DECLARATION
 

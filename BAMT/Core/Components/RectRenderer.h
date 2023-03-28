@@ -28,6 +28,5 @@ class RectRenderer : public Renderer
 
 		void Start() override;
 		void Render(SDL_Renderer* renderer) override;
-		void UpdateSize(float x, float y) const;
 };
 #endif

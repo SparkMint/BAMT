@@ -54,6 +54,7 @@ void Scene::DetectCollisions()
 	{
 		// Clear this RigidBodies collision list. As it will update here.
 		i->collisionList.clear();
+		if (!i->entity->active || !i->enabled) continue;
 
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{

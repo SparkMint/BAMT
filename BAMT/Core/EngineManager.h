@@ -1,8 +1,6 @@
 #ifndef BAMT_ENGINE_MANAGER
 #define BAMT_ENGINE_MANAGER
 
-#define BAMT_TIMESTEP_LIMIT 0.05f
-
 #include "EngineSettings.h"
 #include "ECS/Entity.h"
 #include "SDL.h"
@@ -117,5 +115,4 @@ inline void EngineManager::RemoveScene(Scene* scene)
 	auto sceneToRemove = remove(_sceneList.begin(), _sceneList.end(), scene);
 	delete(scene);
 }
-
 #endif

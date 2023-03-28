@@ -127,12 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Assignment\PhysicsTestScene.cpp" />
-    <ClCompile Include="Assignment\PinballGame.cpp" />
-    <ClCompile Include="Assignment\PinballGameLevel.cpp" />
-    <ClCompile Include="Assignment\Player.cpp" />
-    <ClCompile Include="Assignment\PlayerMovement.cpp" />
-    <ClCompile Include="Assignment\StaticCollider.cpp" />
+    <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
+    <ClCompile Include="Assignment\Scenes\PinballGame.cpp" />
+    <ClCompile Include="Assignment\Scenes\PinballGameLevel.cpp" />
+    <ClCompile Include="Assignment\Entities\PhysicsCube.cpp" />
+    <ClCompile Include="Assignment\Components\PhysicsMovement.cpp" />
+    <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
+    <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Core\Components\RectRenderer.cpp" />
     <ClCompile Include="Core\Components\Renderer.cpp" />
     <ClCompile Include="Core\Components\RigidBody.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Core\Misc\Debug.cpp" />
     <ClCompile Include="Core\Misc\Input.cpp" />
     <ClCompile Include="Core\Misc\TickTimer.cpp" />
+    <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,12 +156,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assignment\PhysicsTestScene.h" />
-    <ClInclude Include="Assignment\PinballGame.h" />
-    <ClInclude Include="Assignment\PinballGameLevel.h" />
-    <ClInclude Include="Assignment\Player.h" />
-    <ClInclude Include="Assignment\PlayerMovement.h" />
-    <ClInclude Include="Assignment\StaticCollider.h" />
+    <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
+    <ClInclude Include="Assignment\Scenes\PinballGame.h" />
+    <ClInclude Include="Assignment\Scenes\PinballGameLevel.h" />
+    <ClInclude Include="Assignment\Entities\PhysicsCube.h" />
+    <ClInclude Include="Assignment\Components\PhysicsMovement.h" />
+    <ClInclude Include="Assignment\Entities\StaticCollider.h" />
+    <ClInclude Include="Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Core\Components\RectRenderer.h" />
     <ClInclude Include="Core\Components\Renderer.h" />
     <ClInclude Include="Core\Components\RigidBody.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />
     <ClInclude Include="Core\Misc\TickTimer.h" />
+    <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,5 @@
 #include "RectRenderer.h"
 
-
-
 RectRenderer::RectRenderer(float Width, float Height, bool Fill)
 {
 	width = Width;
@@ -9,7 +7,6 @@ RectRenderer::RectRenderer(float Width, float Height, bool Fill)
 	fillRect = Fill;
 
 	rect = new SDL_Rect();
-	UpdateSize(width, height);
 }
 
 void RectRenderer::Start()
@@ -20,11 +17,11 @@ void RectRenderer::Start()
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->x = roundf((_transform->GetX() * BAMT_RENDERER_SCALE - rect->w / 2) * 100) / 100;
-	rect->y = roundf((_transform->GetY() * BAMT_RENDERER_SCALE - rect->h / 2) * 100) / 100;
+	rect->w = width * BAMT_RENDERER_SCALE * _transform->scale;
+	rect->h = height * BAMT_RENDERER_SCALE * _transform->scale;
 
-	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
-	SDL_RenderDrawRect(renderer, rect);
+	rect->x = roundf((_transform->GetX() * BAMT_RENDERER_SCALE - rect->w * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
+	rect->y = roundf((_transform->GetY() * BAMT_RENDERER_SCALE - rect->h * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
 
 	if (fillRect)
 	{
@@ -32,10 +29,10 @@ void RectRenderer::Render(SDL_Renderer* renderer)
 		SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
 		SDL_RenderFillRect(renderer, rect);
 	}
+	else
+	{
+		// Only draw the outline of our shape.
+		SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
+		SDL_RenderDrawRect(renderer, rect);
+	}
 }
-
-void RectRenderer::UpdateSize(const float width, const float height) const
-{
-	rect->w = width * BAMT_RENDERER_SCALE;
-	rect->h = height * BAMT_RENDERER_SCALE;
-}	

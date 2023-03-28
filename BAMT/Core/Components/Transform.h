@@ -51,8 +51,13 @@ class Transform : public Component
 	public:
 		Transform(float x = 0, float y = 0);
 
-		// Getter / Setter Functions
 
+		/// <summary>
+		/// Used by other components like Renderer to scale them.
+		/// </summary>
+		float scale = 1;
+
+		// Getter / Setter Functions
 		void SetX(float x) const;
 		void SetY(float y) const;
 
