@@ -3,7 +3,6 @@
 #include "Assignment/Scenes/PinballGame.h"
 #include "Core/EngineManager.h"
 #include "Core/Misc/Debug.h"
-#include "Assignment/Scenes/Test/PhysicsTestScene.h"
 
 EngineManager* engineManager;
 
