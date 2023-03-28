@@ -18,6 +18,9 @@ void PinballGame::Update(float* timeStep)
 	// If the splash screen is active, check if enough time has passed.
 	if (_splashScreen->active)
 	{
+		// Skip the Splash Screen if the user presses space.
+		if(Input::GetKeyDown(SDLK_SPACE)) splashScreenCurrentSeconds = splashScreenDisplaySeconds;
+
 		if (splashScreenCurrentSeconds < splashScreenDisplaySeconds)
 		{
 			splashScreenCurrentSeconds += *timeStep;
@@ -29,6 +32,5 @@ void PinballGame::Update(float* timeStep)
 			_testScene->active = true;
 		}
 	}
-
 	Scene::Update(timeStep);
 }
