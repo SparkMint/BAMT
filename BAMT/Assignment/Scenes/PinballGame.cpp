@@ -8,6 +8,7 @@ void PinballGame::Start()
 	// Create all the scenes that we will need for this game.
 	_splashScreen = engine->AddScene<SplashScreen>();
 	_testScene = engine->AddScene<PhysicsTestScene>();
+	_gameScene = engine->AddScene<PinballGameLevel>();
 
 	// Activate the splash screen upon startup.
 	_splashScreen->active = true;
@@ -29,7 +30,7 @@ void PinballGame::Update(float* timeStep)
 		{
 			// If it has, disable splash screen, enable menu.
 			_splashScreen->active = false;
-			_testScene->active = true;
+			_gameScene->active = true;
 		}
 	}
 	Scene::Update(timeStep);

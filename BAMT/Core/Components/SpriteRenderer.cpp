@@ -27,16 +27,16 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 		SDL_QueryTexture(_texture, nullptr, nullptr, &textureWidth, &textureHeight);
 
 		// Scale down the given height and width to fit the scale of our world.
-		textureWidth /= BAMT_RENDERER_SCALE;
-		textureHeight /= BAMT_RENDERER_SCALE;
+		textureWidth /= BAMT_WORLD_SCALE;
+		textureHeight /= BAMT_WORLD_SCALE;
 
 		
 
-		_rect->w = width * textureWidth * BAMT_RENDERER_SCALE *_transform->scale;
-		_rect->h = height * textureHeight * BAMT_RENDERER_SCALE * _transform->scale;
+		_rect->w = width * textureWidth * BAMT_WORLD_SCALE *_transform->scale;
+		_rect->h = height * textureHeight * BAMT_WORLD_SCALE * _transform->scale;
 
-		_rect->x = roundf((_transform->GetX() * BAMT_RENDERER_SCALE - _rect->w * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
-		_rect->y = roundf((_transform->GetY() * BAMT_RENDERER_SCALE - _rect->h * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
+		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
+		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 
 		// Display the Sprite.
 		SDL_RenderCopy(renderer, _texture, nullptr, _rect);

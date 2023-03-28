@@ -14,7 +14,7 @@ class PinballGame : public Scene
 	float splashScreenDisplaySeconds = 5;
 	float splashScreenCurrentSeconds = 0;
 
-	//PinballGameLevel* _gameScene = nullptr;
+	PinballGameLevel* _gameScene = nullptr;
 	PhysicsTestScene* _testScene = nullptr;
 
 	public:

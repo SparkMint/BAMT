@@ -134,6 +134,7 @@
     <ClCompile Include="Assignment\Entities\PhysicsCube.cpp" />
     <ClCompile Include="Assignment\Components\PhysicsMovement.cpp" />
     <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
+    <ClCompile Include="Core\Components\LineRenderer.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Core\Components\RectRenderer.cpp" />
     <ClCompile Include="Core\Components\Renderer.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Assignment\Entities\PhysicsCube.h" />
     <ClInclude Include="Assignment\Components\PhysicsMovement.h" />
     <ClInclude Include="Assignment\Entities\StaticCollider.h" />
+    <ClInclude Include="Core\Components\LineRenderer.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Core\Components\RectRenderer.h" />
     <ClInclude Include="Core\Components\Renderer.h" />
@@ -176,7 +178,6 @@
     <ClInclude Include="Core\EngineManager.h" />
     <ClInclude Include="Core\EngineSettings.h" />
     <ClInclude Include="Core\Entities\CoordinateGrid.h" />
-    <ClInclude Include="Core\Entities\Rectangle.h" />
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />

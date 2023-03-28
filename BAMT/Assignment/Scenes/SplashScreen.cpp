@@ -8,8 +8,8 @@ void SplashScreen::Start()
 {
 	Scene::Start();
 
-	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_RENDERER_SCALE;
-	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_RENDERER_SCALE;
+	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
+	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
 	LogoEnt = AddEntity<Entity>();
 	LogoEnt->GetComponent<Transform>()->SetPosition(width / 2, -5);

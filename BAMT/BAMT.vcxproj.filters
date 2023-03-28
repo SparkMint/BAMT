@@ -25,6 +25,7 @@
     <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
+    <ClCompile Include="Core\Components\LineRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -56,7 +57,7 @@
     <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
-    <ClInclude Include="Core\Entities\Rectangle.h" />
+    <ClInclude Include="Core\Components\LineRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

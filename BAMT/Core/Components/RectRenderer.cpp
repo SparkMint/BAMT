@@ -17,11 +17,11 @@ void RectRenderer::Start()
 
 void RectRenderer::Render(SDL_Renderer* renderer)
 {
-	rect->w = width * BAMT_RENDERER_SCALE * _transform->scale;
-	rect->h = height * BAMT_RENDERER_SCALE * _transform->scale;
+	rect->w = width * BAMT_WORLD_SCALE * _transform->scale;
+	rect->h = height * BAMT_WORLD_SCALE * _transform->scale;
 
-	rect->x = roundf((_transform->GetX() * BAMT_RENDERER_SCALE - rect->w * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
-	rect->y = roundf((_transform->GetY() * BAMT_RENDERER_SCALE - rect->h * 0.5f) * BAMT_RENDERER_SCALE) / BAMT_RENDERER_SCALE;
+	rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
+	rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 
 	if (fillRect)
 	{
