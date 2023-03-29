@@ -21,7 +21,7 @@ void SplashScreen::Start()
 
 	LogoEnt->GetComponent<RigidBody>()->maxVelocity = 10;
 
-	LogoEnt->AddComponent<SpriteRenderer>(1, 1, "Assets/Icons/BAMT Splash Logo.png");
+	LogoEnt->AddComponent<SpriteRenderer>(4, 4, "Assets/Icons/BAMT Splash Logo.png");
 
 
 	// Bottom Wall

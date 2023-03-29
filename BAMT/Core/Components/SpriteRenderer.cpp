@@ -30,10 +30,8 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 		textureWidth /= BAMT_WORLD_SCALE;
 		textureHeight /= BAMT_WORLD_SCALE;
 
-		
-
-		_rect->w = width * textureWidth * BAMT_WORLD_SCALE *_transform->scale;
-		_rect->h = height * textureHeight * BAMT_WORLD_SCALE * _transform->scale;
+		_rect->w = (width * textureWidth * BAMT_WORLD_SCALE *_transform->scale) / 4;
+		_rect->h = (height * textureHeight * BAMT_WORLD_SCALE * _transform->scale) / 4;
 
 		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;

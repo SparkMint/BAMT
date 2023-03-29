@@ -3,6 +3,7 @@
 
 #include "../../../Core/ECS/Scene.h"
 #include "../../../Core/ECS/Entity.h"
+#include "../PhysicsCube.h"
 #include "../../../Core/Components/RectRenderer.h"
 #include "../../../Core/Components/LineRenderer.h"
 #include "../../../Core/Misc/Input.h"
@@ -21,14 +22,12 @@ class Slingshot : public Entity
 
 	Entity* leftPole = nullptr;
 	Entity* rightPole = nullptr;
-	Entity* box = nullptr;
+	PhysicsCube* box = nullptr;
 
 	LineRenderer* leftLine = nullptr;
 	LineRenderer* rightLine = nullptr;
 
 	public:
-
-		
 		void Start() override;
 		void Update(float* timeStep) const override;
 };

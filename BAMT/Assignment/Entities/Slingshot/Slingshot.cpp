@@ -22,18 +22,15 @@ void Slingshot::Start()
 	rightPole->transform->SetPosition(transform->GetPosition());
 	rightPole->transform->Translate(poleDistance, 0.0f);
 
-	box = scene->AddEntity<>();
-	box->AddComponent<RectRenderer>(.5f, .5f, true);
-	box->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_RED;
+	box = scene->AddEntity<PhysicsCube>();
+	box->rigidBody->maxVelocity = 50;
+	box->rigidBody->mass = 1;
+	//box->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_RED;
 
 	leftLine = AddComponent<LineRenderer>();
 	leftLine->Position1 = { leftPole->transform->GetX(), leftPole->transform->GetY() - poleHeight / 2 };
 	rightLine = AddComponent<LineRenderer>();
 	rightLine->Position1 = { rightPole->transform->GetX(), rightPole->transform->GetY() - poleHeight / 2 };
-
-
-
-
 }
 
 void Slingshot::Update(float* timeStep) const
@@ -43,8 +40,13 @@ void Slingshot::Update(float* timeStep) const
 
 	if(Input::GetMouseButtonHold(SDL_BUTTON_LEFT))
 	{
-		leftLine->Position2 = mousePos;
-		rightLine->Position2 = mousePos;
 		box->transform->SetPosition(&mousePos);
 	}
+	else 
+	{
+		Vector2 dir = Vector2{ transform->GetX() - box->transform->GetX() , transform->GetY() - box->transform->GetY() };
+		box->GetComponent<RigidBody>()->AddForce(dir, 30);
+	}
+	leftLine->Position2 = *box->transform->GetPosition();
+	rightLine->Position2 = *box->transform->GetPosition();
 }

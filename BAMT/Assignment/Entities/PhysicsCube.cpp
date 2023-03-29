@@ -19,4 +19,6 @@ void PhysicsCube::Start()
 
 	// Renderer Setup
 	rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
+
+	//spriteRend = AddComponent<SpriteRenderer>(width, height, "Assets/Icons/Logo.png");
 }
