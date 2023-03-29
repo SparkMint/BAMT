@@ -8,11 +8,10 @@ void SplashScreen::Start()
 {
 	Scene::Start();
 
-	const float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_RENDERER_SCALE;
-	const float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_RENDERER_SCALE;
+	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
+	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
 	LogoEnt = AddEntity<Entity>();
-	LogoEnt->AddComponent<Transform>();
 	LogoEnt->GetComponent<Transform>()->SetPosition(width / 2, -5);
 
 	LogoEnt->AddComponent<RigidBody>();
@@ -22,7 +21,7 @@ void SplashScreen::Start()
 
 	LogoEnt->GetComponent<RigidBody>()->maxVelocity = 10;
 
-	LogoEnt->AddComponent<SpriteRenderer>(1, 1, "Assets/Icons/BAMT Splash Logo.png");
+	LogoEnt->AddComponent<SpriteRenderer>(4, 4, "BAMT Splash Logo.png");
 
 
 	// Bottom Wall

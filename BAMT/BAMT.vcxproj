@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,12 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
     <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGame.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGameLevel.cpp" />
     <ClCompile Include="Assignment\Entities\PhysicsCube.cpp" />
     <ClCompile Include="Assignment\Components\PhysicsMovement.cpp" />
     <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
+    <ClCompile Include="Core\Components\LineRenderer.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Core\Components\RectRenderer.cpp" />
     <ClCompile Include="Core\Components\Renderer.cpp" />
@@ -147,6 +150,7 @@
     <ClCompile Include="Core\Misc\Colour.cpp" />
     <ClCompile Include="Core\Misc\Debug.cpp" />
     <ClCompile Include="Core\Misc\Input.cpp" />
+    <ClCompile Include="Core\Misc\TextureAtlas.cpp" />
     <ClCompile Include="Core\Misc\TickTimer.cpp" />
     <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -156,12 +160,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
     <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
     <ClInclude Include="Assignment\Scenes\PinballGame.h" />
     <ClInclude Include="Assignment\Scenes\PinballGameLevel.h" />
     <ClInclude Include="Assignment\Entities\PhysicsCube.h" />
     <ClInclude Include="Assignment\Components\PhysicsMovement.h" />
     <ClInclude Include="Assignment\Entities\StaticCollider.h" />
+    <ClInclude Include="Core\Components\LineRenderer.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Core\Components\RectRenderer.h" />
     <ClInclude Include="Core\Components\Renderer.h" />
@@ -177,6 +183,7 @@
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />
+    <ClInclude Include="Core\Misc\TextureAtlas.h" />
     <ClInclude Include="Core\Misc\TickTimer.h" />
     <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="resource.h" />

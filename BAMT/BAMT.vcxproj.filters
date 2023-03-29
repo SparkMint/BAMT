@@ -24,6 +24,9 @@
     <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
     <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
+    <ClCompile Include="Core\Components\LineRenderer.cpp" />
+    <ClCompile Include="Core\Misc\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -54,6 +57,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
+    <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
+    <ClInclude Include="Core\Components\LineRenderer.h" />
+    <ClInclude Include="Core\Misc\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

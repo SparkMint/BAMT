@@ -36,6 +36,11 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	// Create a new TickTimer.
 	_tickTimer = new TickTimer();
 
+	// Create a command thread.
+	textureAtlas = new TextureAtlas();
+	textureAtlas->FindSprites(textureFileRootDir, textureAtlas->png_files);
+	textureAtlas->LoadTextures(_renderer);
+
 	_deltaTime = deltaTime;
 	Debug::Log("Delta Time = " + std::to_string(deltaTime));
 
@@ -47,8 +52,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	if (_renderer) Debug::Log("Engine Renderer Instance Created Successfully.", _renderer);
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
-	// Create a command thread.
-	//Debug::CreateCommandThread();
+	// Give the input system a reference to this engine.
+	Input::SetRenderer(_renderer);
 
 	// Sets this GameManager to being Active.
 	_isActive = true;

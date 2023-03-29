@@ -1,5 +1,6 @@
 #ifndef BAMT_ENGINE_MANAGER
 #define BAMT_ENGINE_MANAGER
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 
 #include "EngineSettings.h"
 #include "ECS/Entity.h"
@@ -8,15 +9,19 @@
 #include "Misc/TickTimer.h"
 #include "ECS/Scene.h"
 #include "Misc/Input.h"
+#include <experimental/filesystem>
 
 #include <vector>
 #include <algorithm>
+
+#include "Misc/TextureAtlas.h"
 
 class EngineManager
 {
 	SDL_Window* _window = nullptr;
 	SDL_Renderer* _renderer = nullptr;
 	TickTimer* _tickTimer = nullptr;
+	std::experimental::filesystem::path textureFileRootDir = "Assets";
 
 	std::vector<Scene*> _sceneList;
 
@@ -27,6 +32,8 @@ class EngineManager
 	float _timeStep = 0;
 
 	public:
+		TextureAtlas* textureAtlas = nullptr;
+
 		/// <summary>
 		/// Returns if the Engine is active or not.
 		/// </summary>

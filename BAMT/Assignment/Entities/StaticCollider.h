@@ -9,7 +9,6 @@
 class StaticCollider : public Entity
 {
 public:
-	Transform* transform = nullptr;
 	RigidBody* rigidBody = nullptr;
 	RectRenderer* rectRenderer = nullptr;
 

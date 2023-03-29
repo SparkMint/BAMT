@@ -5,6 +5,7 @@
 #include "../Misc/Debug.h"
 
 class Entity;
+class Transform;
 
 class Component 
 {

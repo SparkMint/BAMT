@@ -3,7 +3,6 @@
 void PhysicsCube::Start()
 {
 	// Transform Setup
-	transform = AddComponent<Transform>();
 	transform->SetPosition(&initialPosition);
 
 	// RigidBody Setup
@@ -19,5 +18,7 @@ void PhysicsCube::Start()
 	playerMovement->movementSpeed = movementSpeed;
 
 	// Renderer Setup
-	rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
+	//rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
+
+	spriteRend = AddComponent<SpriteRenderer>(width, height, "Logo.png");
 }
