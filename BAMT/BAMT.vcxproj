@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +150,7 @@
     <ClCompile Include="Core\Misc\Colour.cpp" />
     <ClCompile Include="Core\Misc\Debug.cpp" />
     <ClCompile Include="Core\Misc\Input.cpp" />
+    <ClCompile Include="Core\Misc\TextureAtlas.cpp" />
     <ClCompile Include="Core\Misc\TickTimer.cpp" />
     <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -181,6 +183,7 @@
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />
+    <ClInclude Include="Core\Misc\TextureAtlas.h" />
     <ClInclude Include="Core\Misc\TickTimer.h" />
     <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="resource.h" />

@@ -18,7 +18,7 @@ void PhysicsCube::Start()
 	playerMovement->movementSpeed = movementSpeed;
 
 	// Renderer Setup
-	rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
+	//rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
 
-	//spriteRend = AddComponent<SpriteRenderer>(width, height, "Assets/Icons/Logo.png");
+	spriteRend = AddComponent<SpriteRenderer>(width, height, "Logo.png");
 }

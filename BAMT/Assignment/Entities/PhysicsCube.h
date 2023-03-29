@@ -13,8 +13,8 @@ class PhysicsCube : public Entity
 	public:
 		RigidBody* rigidBody = nullptr;
 		PhysicsMovement* playerMovement = nullptr;
-		RectRenderer* rectRenderer = nullptr;
-		//SpriteRenderer* spriteRend;
+		//RectRenderer* rectRenderer = nullptr;
+		SpriteRenderer* spriteRend;
 
 		// Transform Values
 		Vector2 initialPosition = { 1, 1 };

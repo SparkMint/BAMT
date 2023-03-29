@@ -48,7 +48,9 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	else Debug::LogError("Engine Renderer Instance is Null!");
 
 	// Create a command thread.
-	//Debug::CreateCommandThread();
+	textureAtlas = new TextureAtlas();
+	textureAtlas->FindSprites(textureFileRootDir, textureAtlas->png_files);
+	textureAtlas->LoadTextures(_renderer);
 
 	// Sets this GameManager to being Active.
 	_isActive = true;

@@ -61,7 +61,7 @@ void PhysicsTestScene::Start()
 			int r = rand() & 255;
 			int g = rand() & 255;
 			int b = rand() & 255;
-			thing->rectRenderer->colour = { r, g ,b, 255 };
+			//thing->rectRenderer->colour = { r, g ,b, 255 };
 		}
 	}
 

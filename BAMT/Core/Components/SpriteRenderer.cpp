@@ -1,10 +1,13 @@
 #include "SpriteRenderer.h"
 
+#include "../EngineManager.h"
+#include "../ECS/Scene.h"
+
 SpriteRenderer::SpriteRenderer(float Width, float Height, const char* spriteLocation)
 {
 	width = Width;
 	height = Height;
-	spriteFileLocation = spriteLocation;
+	sprite = spriteLocation;
 
 	_rect = new SDL_Rect();
 }
@@ -48,15 +51,13 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	}
 	else
 	{
-		const std::string filePathToString = spriteFileLocation;
-		Debug::Log("Loading Texture at " + filePathToString, this);
-		SDL_Surface* surface = IMG_Load(spriteFileLocation);
-		_texture = SDL_CreateTextureFromSurface(renderer, surface);
-		SDL_FreeSurface(surface);
+		const std::string filePathToString = sprite;
+		_texture = entity->scene->engine->textureAtlas->FindTexture(sprite);
 
 		if(_texture == nullptr)
 		{
-			Debug::LogError("SpriteRenderer could not load sprite successfully at path: " + filePathToString, this);
+			Debug::LogError("SpriteRenderer could not load sprite: " + filePathToString, this);
+			enabled = false;
 		}
 	}
 }

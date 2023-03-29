@@ -13,7 +13,7 @@ class SpriteRenderer : public Renderer
 		///<summary>
 		/// Location of the Sprite we want to render.
 		///</summary>
-		const char* spriteFileLocation;
+		const char* sprite;
 
 		float width = 1;
 		float height = 1;
