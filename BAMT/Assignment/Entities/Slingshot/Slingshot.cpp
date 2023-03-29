@@ -23,8 +23,9 @@ void Slingshot::Start()
 	rightPole->transform->Translate(poleDistance, 0.0f);
 
 	box = scene->AddEntity<PhysicsCube>();
-	box->rigidBody->maxVelocity = 50;
+	box->rigidBody->maxVelocity = 20;
 	box->rigidBody->mass = 1;
+	box->rigidBody->drag = 2;
 	//box->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_RED;
 
 	leftLine = AddComponent<LineRenderer>();
@@ -44,8 +45,8 @@ void Slingshot::Update(float* timeStep) const
 	}
 	else 
 	{
-		Vector2 dir = Vector2{ transform->GetX() - box->transform->GetX() , transform->GetY() - box->transform->GetY() };
-		box->GetComponent<RigidBody>()->AddForce(dir, 30);
+		Vector2 dir = Vector2{ transform->GetX() - box->transform->GetX() , (transform->GetY() - poleHeight / 2) - box->transform->GetY() };
+		box->GetComponent<RigidBody>()->AddForce(dir, 200);
 	}
 	leftLine->Position2 = *box->transform->GetPosition();
 	rightLine->Position2 = *box->transform->GetPosition();

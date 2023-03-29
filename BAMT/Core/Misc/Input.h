@@ -4,9 +4,20 @@
 #include "SDL.h"
 #include "../Components/Transform.h"
 #include "../EngineSettings.h"
+#include <unordered_map>
+
+#include "Debug.h"
+#include "../EngineManager.h"
 
 namespace Input 
 {
+	/// <summary>
+	/// Gives the input system a reference to a renderer.
+	///	Used to convert window space mouse coordinates
+	///	into logical space.
+	/// </summary>
+	void SetRenderer(SDL_Renderer* renderer);
+
 	/// <summary>
 	/// Receives Inputs.
 	/// </summary>

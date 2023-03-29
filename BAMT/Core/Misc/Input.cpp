@@ -1,9 +1,5 @@
 #include "Input.h"
 
-#include <unordered_map>
-
-#include "Debug.h"
-
 namespace Input
 {
 	/// <summary>
@@ -12,9 +8,17 @@ namespace Input
 	std::unordered_map<int, bool> _keyStatesLastFrame;
 	std::unordered_map<int, bool> _keyStates;
 
-
+	/// <summary>
+	/// All mouse buttons.
+	/// </summary>
 	std::unordered_map<int, bool> _mouseStateLastFrame;
 	std::unordered_map<int, bool> _mouseStates;
+
+	SDL_Renderer* _renderer;
+	void SetRenderer(SDL_Renderer* renderer)
+	{
+		_renderer = renderer;
+	}
 
 	void GetInputs()
 	{
@@ -81,26 +85,11 @@ namespace Input
 		int mouseX, mouseY;
 		SDL_GetMouseState(&mouseX, &mouseY);
 
-		// Get the scale between the Real and Reference Width and Height.
-		constexpr float scaleX = (float)BAMT_RESOLUTION_WIDTH / (float)BAMT_REFERENCE_RESOLUTION_WIDTH;
-		constexpr float scaleY = (float)BAMT_RESOLUTION_HEIGHT / (float)BAMT_REFERENCE_RESOLUTION_HEIGHT;
+		float localSpaceMouseX = 0;
+		float localSpaceMouseY = 0;
 
-		// Get the lowest of the two scales to use.
-		const float scale = fminf(scaleX, scaleY);
-
-		// Get the scaled width and height using that new scale.
-		const float scaledWidth = (float)BAMT_REFERENCE_RESOLUTION_WIDTH * scale;
-		const float scaledHeight = (float)BAMT_REFERENCE_RESOLUTION_HEIGHT * scale;
-
-		// Get the gap between the mouse and the position ingame to line them up properly.
-		const float gapX = ((float)BAMT_RESOLUTION_WIDTH - scaledWidth) / 1.5f;
-		const float gapY = ((float)BAMT_RESOLUTION_HEIGHT - scaledHeight) / 1.5f;
-
-		// Calculate the actual mouse position.
-		const float actualMouseX = ((float)mouseX / scale - gapX) / BAMT_WORLD_SCALE;
-		const float actualMouseY = ((float)mouseY / scale - gapY) / BAMT_WORLD_SCALE;
-
+		SDL_RenderWindowToLogical(_renderer, mouseX, mouseY, &localSpaceMouseX, &localSpaceMouseY);
 		// Return it!
-		return { actualMouseX, actualMouseY };
+		return { localSpaceMouseX / BAMT_WORLD_SCALE,  localSpaceMouseY / BAMT_WORLD_SCALE };
 	}
 }

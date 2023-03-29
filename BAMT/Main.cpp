@@ -4,7 +4,7 @@
 #include "Core/EngineManager.h"
 #include "Core/Misc/Debug.h"
 
-EngineManager* engineManager;
+extern EngineManager* engineManager;
 
 int main(int argc, char* argv[])
 {
