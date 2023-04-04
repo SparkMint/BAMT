@@ -4,7 +4,7 @@
 #include "../../../Core/EngineSettings.h"
 #include "../../../Core/ECS/Scene.h"
 #include "../../../Core/Entities/CoordinateGrid.h"
-#include "../../Entities/PhysicsCube.h"
+#include "../../Entities/Player.h"
 #include "../../Entities/StaticCollider.h"
 
 class PhysicsTestScene : public Scene

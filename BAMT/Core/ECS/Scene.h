@@ -12,6 +12,7 @@ class RigidBody;
 
 class Scene
 {
+	float _timeStep;
 	public:
 		EngineManager* engine = nullptr;
 
@@ -19,6 +20,8 @@ class Scene
 
 		std::vector<RigidBody*> rigidBodiesList;
 		Vector2 gravity {0,0};
+
+
 
 		// Determines if scene logic should run.
 		bool active = false;

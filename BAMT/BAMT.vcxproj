@@ -128,12 +128,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assignment\Components\MouseAim.cpp" />
+    <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
+    <ClCompile Include="Assignment\Components\PlayerWeapon.cpp" />
+    <ClCompile Include="Assignment\Components\Projectile.cpp" />
     <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
     <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGame.cpp" />
     <ClCompile Include="Assignment\Scenes\PinballGameLevel.cpp" />
-    <ClCompile Include="Assignment\Entities\PhysicsCube.cpp" />
-    <ClCompile Include="Assignment\Components\PhysicsMovement.cpp" />
+    <ClCompile Include="Assignment\Entities\Player.cpp" />
+    <ClCompile Include="Assignment\Components\KeyboardMovement.cpp" />
     <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
     <ClCompile Include="Core\Components\LineRenderer.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
@@ -147,6 +151,7 @@
     <ClCompile Include="Core\ECS\Scene.cpp" />
     <ClCompile Include="Core\EngineManager.cpp" />
     <ClCompile Include="Core\Entities\CoordinateGrid.cpp" />
+    <ClCompile Include="Core\Misc\BamtMath.cpp" />
     <ClCompile Include="Core\Misc\Colour.cpp" />
     <ClCompile Include="Core\Misc\Debug.cpp" />
     <ClCompile Include="Core\Misc\Input.cpp" />
@@ -160,12 +165,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment\Components\EntityPooler.h" />
+    <ClInclude Include="Assignment\Components\MouseAim.h" />
+    <ClInclude Include="Assignment\Components\PlayerWeapon.h" />
+    <ClInclude Include="Assignment\Components\Projectile.h" />
     <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
     <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
     <ClInclude Include="Assignment\Scenes\PinballGame.h" />
     <ClInclude Include="Assignment\Scenes\PinballGameLevel.h" />
-    <ClInclude Include="Assignment\Entities\PhysicsCube.h" />
-    <ClInclude Include="Assignment\Components\PhysicsMovement.h" />
+    <ClInclude Include="Assignment\Entities\Player.h" />
+    <ClInclude Include="Assignment\Components\KeyboardMovement.h" />
     <ClInclude Include="Assignment\Entities\StaticCollider.h" />
     <ClInclude Include="Core\Components\LineRenderer.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
@@ -180,6 +189,7 @@
     <ClInclude Include="Core\EngineManager.h" />
     <ClInclude Include="Core\EngineSettings.h" />
     <ClInclude Include="Core\Entities\CoordinateGrid.h" />
+    <ClInclude Include="Core\Misc\BamtMath.h" />
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />

@@ -19,7 +19,7 @@ Entity::~Entity()
 
 void Entity::Start() { }
 
-void Entity::Update(float* timeStep) const
+void Entity::Update(float* timeStep)
 {
 	for (Component* c : _components)
 	{

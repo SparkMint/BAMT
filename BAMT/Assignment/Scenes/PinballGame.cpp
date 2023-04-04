@@ -7,7 +7,6 @@ void PinballGame::Start()
 
 	// Create all the scenes that we will need for this game.
 	_splashScreen = engine->AddScene<SplashScreen>();
-	_testScene = engine->AddScene<PhysicsTestScene>();
 	_gameScene = engine->AddScene<PinballGameLevel>();
 
 	// Activate the splash screen upon startup.

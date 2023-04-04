@@ -3,7 +3,7 @@
 
 TickTimer::TickTimer()
 {
-	Debug::Log("Tick Timer Created.", this);
+	//Debug::Log("Tick Timer Created.", this);
 	startTicks = 0;
 }
 

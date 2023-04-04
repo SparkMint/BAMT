@@ -1,5 +1,8 @@
 #include "Slingshot.h"
 
+#include <algorithm>
+#include "../../../Core/Misc/BamtMath.h"
+
 constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
 constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
@@ -22,10 +25,10 @@ void Slingshot::Start()
 	rightPole->transform->SetPosition(transform->GetPosition());
 	rightPole->transform->Translate(poleDistance, 0.0f);
 
-	box = scene->AddEntity<PhysicsCube>();
-	box->rigidBody->maxVelocity = 20;
-	box->rigidBody->mass = 1;
-	box->rigidBody->drag = 2;
+	box = scene->AddEntity<Player>();
+	box->rigidBody->maxVelocity = 50;
+	box->rigidBody->mass = 2;
+	box->rigidBody->drag = 5;
 	//box->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_RED;
 
 	leftLine = AddComponent<LineRenderer>();
@@ -34,20 +37,37 @@ void Slingshot::Start()
 	rightLine->Position1 = { rightPole->transform->GetX(), rightPole->transform->GetY() - poleHeight / 2 };
 }
 
-void Slingshot::Update(float* timeStep) const
+void Slingshot::Update(float* timeStep)
 {
 	Entity::Update(timeStep);
-	Vector2 mousePos = Input::GetMousePosition();
+	const Vector2 mousePos = Input::GetMousePosition();
+
+	if(Input::GetMouseButtonDown(SDL_BUTTON_LEFT))
+	{
+		mouseDragBegin = mousePos;
+	}
+	const Vector2 mouseDragBack = mouseDragBegin - mousePos;
+
+	const Vector2 slingRestTargetPos = { transform->GetX(), transform->GetY() - poleHeight / 4 };
+
+	const Vector2 slingPullBackPos = slingRestTargetPos - mouseDragBack;
+
+	// Get the direction of the box relative to the slingshot.
+	const Vector2 slingRestingDirection = slingRestTargetPos - *box->transform->GetPosition();
+
+	const Vector2 slingToMouseDirection = slingPullBackPos - *box->transform->GetPosition();
+
 
 	if(Input::GetMouseButtonHold(SDL_BUTTON_LEFT))
 	{
-		box->transform->SetPosition(&mousePos);
+		box->GetComponent<RigidBody>()->AddForce(slingToMouseDirection, 1000);
+		box->GetComponent<RigidBody>()->drag = 10;
 	}
-	else 
+	else
 	{
-		Vector2 dir = Vector2{ transform->GetX() - box->transform->GetX() , (transform->GetY() - poleHeight / 2) - box->transform->GetY() };
-		box->GetComponent<RigidBody>()->AddForce(dir, 200);
+		box->GetComponent<RigidBody>()->AddForce(slingRestingDirection, 1000);
 	}
+
 	leftLine->Position2 = *box->transform->GetPosition();
 	rightLine->Position2 = *box->transform->GetPosition();
 }

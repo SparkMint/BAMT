@@ -1,5 +1,5 @@
-#ifndef BAMT_PINBALL_SCENEMANAGER
-#define BAMT_PINBALL_SCENEMANAGER
+#ifndef ASSIGNMENT_SCENEMANAGER
+#define ASSIGNMENT_SCENEMANAGER
 
 #include "PinballGameLevel.h"
 #include "SplashScreen.h"
@@ -15,7 +15,6 @@ class PinballGame : public Scene
 	float splashScreenCurrentSeconds = 0;
 
 	PinballGameLevel* _gameScene = nullptr;
-	PhysicsTestScene* _testScene = nullptr;
 
 	public:
 		void Start() override;

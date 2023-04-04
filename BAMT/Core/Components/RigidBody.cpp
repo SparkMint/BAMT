@@ -2,10 +2,6 @@
 
 #include "../EngineSettings.h"
 
-RigidBody::RigidBody()
-{
-}
-
 RigidBody::~RigidBody()
 {
 	// Check if the entity is already a child of the new parent.
@@ -33,7 +29,7 @@ void RigidBody::Update(float* timeStep)
 	for (int i = 0; i < BAMT_PHYSICS_STEPS; ++i)
 	{
 		// Simulate the next position for our RigidBody.
-		const Vector2 stepPosition = Simulate(&_timeStep, _velocity, *transform->GetPosition());
+		const Vector2 stepPosition = Simulate(&_timeStep, velocity, *transform->GetPosition());
 
 		transform->SetPosition(&stepPosition);
 	}
@@ -44,12 +40,16 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 	const float speed = VectorMath::Magnitude(velocity);
 	const Vector2 gravity = entity->scene->gravity;
 
+	velocity.x += gravity.x * _timeStep;
+	velocity.y += gravity.y * _timeStep;
+
 	// If we are moving, apply drag to the body. 
 	if (speed > 0) 
 	{
-		const float dragForce = drag * speed;
-		velocity.x -= (velocity.x / speed) * dragForce * *timeStep;
-		velocity.y -= (velocity.y / speed) * dragForce * *timeStep;
+		float dragForce = drag * speed;
+
+		velocity.x -= (velocity.x / speed) * dragForce * _timeStep;
+		velocity.y -= (velocity.y / speed) * dragForce * _timeStep;
 
 		// Slow us down if we are going too fast.
 		if (speed > maxVelocity)
@@ -58,18 +58,13 @@ Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 pos
 			velocity.y = (velocity.y / speed) * maxVelocity;
 		}
 
-
 		// Apply the newly made velocity to the position we are going to return.
-		position.x += velocity.x * *timeStep;
-		position.y += velocity.y * *timeStep;
+		position.x += velocity.x * _timeStep;
+		position.y += velocity.y * _timeStep;
 	}
 
-
-	velocity.x += gravity.x * *timeStep;
-	velocity.y += gravity.y * *timeStep;
-
 	// Set the new velocity to be the velocity we calculated in here.
-	_velocity = velocity;
+	velocity = velocity;
 
 	// Return the position
 	return position;
@@ -82,19 +77,6 @@ void RigidBody::AddForce(Vector2 direction, float force)
 	const float acceleration = force / mass;
 
 	// We should assume that the direction we are given is already normalized.
-	_velocity.x += direction.x * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
-	_velocity.y += direction.y * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
-}
-
-void RigidBody::AddImpulseForce(Vector2 direction, float force)
-{
-
-	// We should assume that the direction we are given is already normalized.
-	_velocity.x += direction.x * force * (_timeStep * BAMT_PHYSICS_STEPS);
-	_velocity.y += direction.y * force * (_timeStep * BAMT_PHYSICS_STEPS);
-}
-
-Vector2 RigidBody::GetVelocity() const
-{
-	return _velocity;
+	velocity.x += direction.x * acceleration * (_timeStep * BAMT_TARGET_FRAME_RATE);
+	velocity.y += direction.y * acceleration * (_timeStep * BAMT_TARGET_FRAME_RATE);
 }

@@ -1,6 +1,7 @@
 #include <SDL.h>
 
 #include "Assignment/Scenes/PinballGame.h"
+#include "Assignment/Scenes/Test/PhysicsTestScene.h"
 #include "Core/EngineManager.h"
 #include "Core/Misc/Debug.h"
 

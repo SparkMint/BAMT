@@ -6,12 +6,13 @@ void Scene::Start(){ }
 
 void Scene::Update(float* timeStep)
 {
+	_timeStep = *timeStep / BAMT_PHYSICS_STEPS;
 	for (int i = 0; i < BAMT_PHYSICS_STEPS; ++i)
 	{
 		DetectCollisions();
 	}
 
-	for (const Entity* entity : entityList)
+	for (Entity* entity : entityList)
 	{
 		if (entity->active)
 			entity->Update(timeStep);
@@ -36,7 +37,7 @@ void Scene::SortEntities()
 void Scene::SortRigidBodies()
 {
 	std::sort(rigidBodiesList.begin(), rigidBodiesList.end(), [](const RigidBody* a, const RigidBody* b)
-		{return a->transform->GetX() - a->colliderWidth * 0.5f < b->transform->GetX() - b->colliderWidth * 0.5f; });
+		{return a->transform->GetX() - a->width * 0.5f < b->transform->GetX() - b->width * 0.5f; });
 }
 
 void Scene::DetectCollisions()
@@ -56,16 +57,18 @@ void Scene::DetectCollisions()
 		i->collisionList.clear();
 		if (!i->entity->active || !i->enabled) continue;
 
+
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{
-			if (i->transform->GetX() - (i->colliderWidth * 0.5f) > activeInterval[j]->transform->GetX() + (activeInterval[j]->colliderWidth * 0.5f))
+			// For some reason, this seems to work fine, but giving it my premade OverlapOnAxis function breaks it. so yeah...
+			if (i->transform->GetX() - i->width * 0.5f > activeInterval[j]->transform->GetX() + activeInterval[j]->width * 0.5f)
 			{
 				activeInterval.erase(activeInterval.begin() + j);
 				j--;
 			}
 			else
 			{
-				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->colliderHeight, activeInterval[j]->transform->GetY(), activeInterval[j]->colliderHeight))
+				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->height, activeInterval[j]->transform->GetY(), activeInterval[j]->height))
 				{
 					collisionPairs.emplace_back(i, activeInterval[j]);
 				}
@@ -86,9 +89,11 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		pair.first->collisionList.emplace_back(pair.second);
 		pair.second->collisionList.emplace_back(pair.first);
 
+		if (pair.first->isTrigger || pair.second->isTrigger) continue;
+
 		// Get how much object one overlaps object two. We can use that to move them out the way of eachother.
-		const float xOverlap = (pair.first->colliderWidth + pair.second->colliderWidth) * 0.5f - fabs(pair.first->transform->GetX() - pair.second->transform->GetX());
-		const float yOverlap = (pair.first->colliderHeight + pair.second->colliderHeight) * 0.5f - fabs(pair.first->transform->GetY() - pair.second->transform->GetY());
+		const float xOverlap = (pair.first->width + pair.second->width) * 0.5f - fabs(pair.first->transform->GetX() - pair.second->transform->GetX());
+		const float yOverlap = (pair.first->height + pair.second->height) * 0.5f - fabs(pair.first->transform->GetY() - pair.second->transform->GetY());
 
 		// Calculate which direction the pair collided on.
 		// KEEP IN MIND THIS ONLY WORKS FOR BOX COLLIDERS!
@@ -115,7 +120,7 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 
 		// Check if the objects are moving away from each other. If they are.
 		// Dont add force. otherwise they will pull towards each other.
-		Vector2 relativeVelocity = pair.second->GetVelocity() - pair.first->GetVelocity();
+		Vector2 relativeVelocity = pair.second->velocity - pair.first->velocity;
 
 		const float relativeVelocityInNormalDirection = VectorMath::Dot(collisionNormal, relativeVelocity);
 		if (relativeVelocityInNormalDirection > 0)
@@ -126,12 +131,11 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		// Use the object with the least amount of bounciness for calculating the impulse force.
 		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
 
-		// Calculate the impulse force using the 
-		const float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * 100;
-
+		// Calculate the impulse force
+		float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * BAMT_PHYSICS_STEPS;
 		// Add the resulting forces to each object. Negate the second object so it goes in the other direction.
-		pair.first->AddForce(collisionNormal, impulseScalar * pair.first->bounciness);
-		pair.second->AddForce(collisionNormal, -impulseScalar * pair.second->bounciness);
+		pair.first->AddForce(collisionNormal, impulseScalar);
+		pair.second->AddForce(collisionNormal, -impulseScalar);
 
 		if (pair.first->debugMode || pair.second->debugMode)
 		{

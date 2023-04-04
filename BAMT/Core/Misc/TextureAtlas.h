@@ -21,7 +21,6 @@ class TextureAtlas
 {
 	std::vector<Image*> _textures;
 	public:
-		TextureAtlas();
 		~TextureAtlas();
 		std::vector<std::experimental::filesystem::path> png_files;
 		void FindSprites(const std::experimental::filesystem::path& directory, std::vector<std::experimental::filesystem::path>& png_files);

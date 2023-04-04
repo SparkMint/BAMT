@@ -5,7 +5,6 @@
 Image::Image(const std::experimental::filesystem::path& png, SDL_Renderer* renderer)
 {
     const std::string filePath = png.string();
-    Debug::Log(filePath);
     name = png.filename().string();
     texture = IMG_LoadTexture(renderer, filePath.c_str());
 }
@@ -14,10 +13,6 @@ Image::~Image()
 {
     // Free texture memory
     SDL_DestroyTexture(texture);
-}
-
-TextureAtlas::TextureAtlas()
-{
 }
 
 TextureAtlas::~TextureAtlas()
@@ -49,7 +44,7 @@ void TextureAtlas::LoadTextures(SDL_Renderer* renderer)
 {
 	for (auto png : png_files)
 	{
-        Debug::Log("Loading Sprite... Sprite Name: " + png.filename().string());
+        Debug::Log("Loading Texture... Name: " + png.filename().string());
 		auto* newTexture = new Image(png, renderer);
         _textures.push_back(newTexture);
 	}

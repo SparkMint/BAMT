@@ -2,7 +2,7 @@
 
 Component::Component()
 {
-	Debug::Log("Component Created.", this);
+	//Debug::Log("Component Created.", this);
 }
 
 Component::~Component()

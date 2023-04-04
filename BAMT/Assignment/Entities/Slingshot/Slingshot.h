@@ -3,7 +3,7 @@
 
 #include "../../../Core/ECS/Scene.h"
 #include "../../../Core/ECS/Entity.h"
-#include "../PhysicsCube.h"
+#include "../Player.h"
 #include "../../../Core/Components/RectRenderer.h"
 #include "../../../Core/Components/LineRenderer.h"
 #include "../../../Core/Misc/Input.h"
@@ -22,13 +22,20 @@ class Slingshot : public Entity
 
 	Entity* leftPole = nullptr;
 	Entity* rightPole = nullptr;
-	PhysicsCube* box = nullptr;
+	Player* box = nullptr;
 
 	LineRenderer* leftLine = nullptr;
 	LineRenderer* rightLine = nullptr;
 
+	// Where is the mouse when the player started holding down the drag button?
+	Vector2 mouseDragBegin { 0,0};
+
+	bool debugMode = true;
+
+
+
 	public:
 		void Start() override;
-		void Update(float* timeStep) const override;
+		void Update(float* timeStep) override;
 };
 #endif

@@ -8,8 +8,6 @@
 
 class RigidBody : public Component
 {
-	Vector2 _velocity;
-
 	// Stored Current timestep.
 	float _timeStep = 0;
 
@@ -19,8 +17,12 @@ class RigidBody : public Component
 	Vector2 Simulate(const float* timeStep, Vector2 velocity, Vector2 position);
 
 	public:
-		RigidBody();
 		~RigidBody();
+
+		/// <summary>
+		/// Velocity of the RigidBody. Only alter this if you know what you are doing!
+		/// </summary>
+		Vector2 velocity;
 
 		/// <summary>
 		/// Pointer to this RigidBodies transform.
@@ -37,6 +39,8 @@ class RigidBody : public Component
 		/// </summary>
 		bool isKinematic = false;
 
+		bool isTrigger = false;
+
 		/// <summary>
 		/// Activates Debug Logging for this RigidBody.
 		/// </summary>
@@ -45,12 +49,12 @@ class RigidBody : public Component
 		/// <summary>
 		/// Width of the collider of this object.
 		/// </summary>
-		float colliderWidth = 1.0f;
+		float width = 1.0f;
 
 		/// <summary>
 		/// Width of the collider of this object.
 		/// </summary>
-		float colliderHeight = 1.0f;
+		float height = 1.0f;
 
 		/// <summary>
 		/// How heavy this RigidBody is. Or how hard it is to move.
@@ -76,16 +80,6 @@ class RigidBody : public Component
 		/// Pushes this RigidBody in a specified direction.
 		/// </summary>
 		void AddForce(Vector2 direction, float force);
-
-		/// <summary>
-		/// Pushes this RigidBody in a specified direction using an Impulse Force.
-		/// </summary>
-		void AddImpulseForce(Vector2 direction, float force);
-
-		/// <summary>
-		/// Returns the Velocity of this RigidBody
-		/// </summary>
-		Vector2 GetVelocity() const;
 
 		void Start() override;
 		void Update(float* timeStep) override;

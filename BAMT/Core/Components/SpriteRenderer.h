@@ -23,7 +23,7 @@ class SpriteRenderer : public Renderer
 		/// </summary>
 		/// <param name="Width">- The width of the Sprite.</param>
 		/// <param name="Height">- The width of the Sprite.</param>
-		/// <param name="spriteLocation">Location of the sprite we want to load.</param>
+		/// <param name="projectileSprite">Location of the sprite we want to load.</param>
 		SpriteRenderer(float Width = 0, float Height = 0, const char* spriteLocation = "");
 		~SpriteRenderer();
 

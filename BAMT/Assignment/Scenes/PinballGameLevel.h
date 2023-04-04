@@ -4,13 +4,13 @@
 #include "../../Core/EngineSettings.h"
 #include "../../Core/ECS/Scene.h"
 #include "../../Core/Entities/CoordinateGrid.h"
-#include "../Entities/PhysicsCube.h"
+#include "../Entities/Player.h"
 #include "../Entities/StaticCollider.h"
 #include "../Entities/Slingshot/Slingshot.h"
 
 class PinballGameLevel : public Scene
 {
-	Slingshot* _player = nullptr;
+	Player* _player = nullptr;
 
 	public:
 		void Start() override;

@@ -4,8 +4,8 @@ void StaticCollider::Start()
 {
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
-	rigidBody->colliderWidth = width;
-	rigidBody->colliderHeight = height;
+	rigidBody->width = width;
+	rigidBody->height = height;
 	rigidBody->isKinematic = true;
 
 	rigidBody->bounciness = bounciness;

@@ -53,6 +53,11 @@ class Entity
 		int renderLayer = 0;
 
 		/// <summary>
+		/// What tag does this entity have? Used mainly for collisions.
+		/// </summary>
+		std::string tag = "Default";
+
+		/// <summary>
 		/// Used to let the entity perform initialization when created.
 		/// </summary>
 		virtual void Start();
@@ -60,7 +65,7 @@ class Entity
 		/// <summary>
 		/// Runs Update on all Components attached to this Entity.
 		/// </summary>
-		virtual void Update(float* timeStep) const;
+		virtual void Update(float* timeStep);
 
 		/// <summary>
 		/// Runs Render on all Components attached to this Entity.
