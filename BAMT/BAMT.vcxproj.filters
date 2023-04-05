@@ -29,9 +29,10 @@
     <ClCompile Include="Core\Misc\TextureAtlas.cpp" />
     <ClCompile Include="Core\Misc\BamtMath.cpp" />
     <ClCompile Include="Assignment\Components\MouseAim.cpp" />
-    <ClCompile Include="Assignment\Components\PlayerWeapon.cpp" />
+    <ClCompile Include="Assignment\Components\WeaponSystem\Weapon.cpp" />
     <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
     <ClCompile Include="Assignment\Components\Projectile.cpp" />
+    <ClCompile Include="Assignment\Components\WeaponSystem\PlayerWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,9 +68,11 @@
     <ClInclude Include="Core\Misc\TextureAtlas.h" />
     <ClInclude Include="Core\Misc\BamtMath.h" />
     <ClInclude Include="Assignment\Components\MouseAim.h" />
-    <ClInclude Include="Assignment\Components\PlayerWeapon.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\Weapon.h" />
     <ClInclude Include="Assignment\Components\Projectile.h" />
     <ClInclude Include="Assignment\Components\EntityPooler.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\PlayerWeapon.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\WeaponData.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

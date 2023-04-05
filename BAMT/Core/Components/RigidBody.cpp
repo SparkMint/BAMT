@@ -35,39 +35,50 @@ void RigidBody::Update(float* timeStep)
 	}
 }
 
-Vector2 RigidBody::Simulate(const float* timeStep, Vector2 velocity, Vector2 position)
+Vector2 RigidBody::Simulate(const float* timeStep, Vector2 vel, Vector2 position)
 {
-	const float speed = VectorMath::Magnitude(velocity);
+	const float speed = VectorMath::Magnitude(vel);
 	const Vector2 gravity = entity->scene->gravity;
 
-	velocity.x += gravity.x * _timeStep;
-	velocity.y += gravity.y * _timeStep;
+	vel.x += gravity.x * *timeStep;
+	vel.y += gravity.y * *timeStep;
 
 	// If we are moving, apply drag to the body. 
 	if (speed > 0) 
 	{
 		float dragForce = drag * speed;
 
-		velocity.x -= (velocity.x / speed) * dragForce * _timeStep;
-		velocity.y -= (velocity.y / speed) * dragForce * _timeStep;
+		vel.x -= (vel.x / speed) * dragForce * *timeStep;
+		vel.y -= (vel.y / speed) * dragForce * *timeStep;
 
 		// Slow us down if we are going too fast.
 		if (speed > maxVelocity)
 		{
-			velocity.x = (velocity.x / speed) * maxVelocity;
-			velocity.y = (velocity.y / speed) * maxVelocity;
+			vel.x = (vel.x / speed) * maxVelocity;
+			vel.y = (vel.y / speed) * maxVelocity;
 		}
 
-		// Apply the newly made velocity to the position we are going to return.
-		position.x += velocity.x * _timeStep;
-		position.y += velocity.y * _timeStep;
+		// Apply the newly made vel to the position we are going to return.
+		position.x += vel.x * *timeStep;
+		position.y += vel.y * *timeStep;
 	}
 
-	// Set the new velocity to be the velocity we calculated in here.
-	velocity = velocity;
+	// Set the new vel to be the vel we calculated in here.
+	velocity = vel;
 
 	// Return the position
 	return position;
+}
+
+void RigidBody::AddReactionForce(Vector2 direction, float force)
+{
+	// Use F = ma to get the acceleration force.
+	// Acceleration = Force / Mass
+	const float acceleration = force / mass;
+
+	// We should assume that the direction we are given is already normalized.
+	velocity.x += direction.x * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
+	velocity.y += direction.y * acceleration * (_timeStep * BAMT_PHYSICS_STEPS);
 }
 
 void RigidBody::AddForce(Vector2 direction, float force)
@@ -77,6 +88,6 @@ void RigidBody::AddForce(Vector2 direction, float force)
 	const float acceleration = force / mass;
 
 	// We should assume that the direction we are given is already normalized.
-	velocity.x += direction.x * acceleration * (_timeStep * BAMT_TARGET_FRAME_RATE);
-	velocity.y += direction.y * acceleration * (_timeStep * BAMT_TARGET_FRAME_RATE);
+	velocity.x += direction.x * acceleration;
+	velocity.y += direction.y * acceleration;
 }

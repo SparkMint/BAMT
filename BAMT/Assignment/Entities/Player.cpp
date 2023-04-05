@@ -2,6 +2,8 @@
 
 void Player::Start()
 {
+	tag = playerTag;
+
 	// Transform Setup
 	transform->SetPosition(&initialPosition);
 
@@ -13,21 +15,27 @@ void Player::Start()
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
 	rigidBody->bounciness = bounciness;
-	tag = "Player";
+
+	// Sprite Renderer Setup
+	spriteRend = AddComponent<SpriteRenderer>(width, height, "Logo.png");
+
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();
 	playerMovement->movementSpeed = movementSpeed;
 
-	// Renderer Setup
-	//rectRenderer = AddComponent<RectRenderer>(width, height, fillRect);
-
+	// Mouse Aim Setup
 	mouseAim = AddComponent<MouseAim>();
 
-	spriteRend = AddComponent<SpriteRenderer>(width, height, "Logo.png");
+	// Set up the Projectile pool
+	entityPool = AddComponent<EntityPooler>();
+	for (int i = 0; i < projectilePoolCount; ++i)
+	{
+		auto* projectile = scene->AddEntity();
+		projectile->AddComponent<Projectile>();
+		entityPool->AddEntityToPool(projectile);
+	}
 
+	// Pistol Setup
 	pistolWeapon = AddComponent<PlayerWeapon>();
-	pistolWeapon->projectileSpeed = 100;
-	pistolWeapon->projectileSize = .2f;
-	pistolWeapon->fireRate = .02f;
-	pistolWeapon->projectileSprite = pistolSprite;
+	pistolWeapon->weaponData = &pistolData;
 }

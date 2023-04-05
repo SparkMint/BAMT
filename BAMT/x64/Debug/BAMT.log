@@ -1,2 +1,21 @@
-﻿  Player.cpp
+﻿  PlayerWeapon.cpp
+  Weapon.cpp
+  Player.cpp
+  Slingshot.cpp
+  PinballGame.cpp
+  PinballGameLevel.cpp
+  SplashScreen.cpp
+C:\BAMT\BAMT\Core\ECS\Entity.h(102,34): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\BAMT\BAMT\Assignment\Scenes\SplashScreen.cpp(25): message : see reference to function template instantiation 'T *Entity::AddComponent<SpriteRenderer,int,int,const char(&)[21]>(int &&,int &&,const char (&)[21])' being compiled
+          with
+          [
+              T=SpriteRenderer
+          ]
+  PhysicsTestScene.cpp
+  Main.cpp
+  Generating Code...
   BAMT.vcxproj -> C:\BAMT\x64\Debug\BAMT.exe

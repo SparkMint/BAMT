@@ -60,12 +60,12 @@ void Slingshot::Update(float* timeStep)
 
 	if(Input::GetMouseButtonHold(SDL_BUTTON_LEFT))
 	{
-		box->GetComponent<RigidBody>()->AddForce(slingToMouseDirection, 1000);
+		box->GetComponent<RigidBody>()->AddReactionForce(slingToMouseDirection, 1000);
 		box->GetComponent<RigidBody>()->drag = 10;
 	}
 	else
 	{
-		box->GetComponent<RigidBody>()->AddForce(slingRestingDirection, 1000);
+		box->GetComponent<RigidBody>()->AddReactionForce(slingRestingDirection, 1000);
 	}
 
 	leftLine->Position2 = *box->transform->GetPosition();

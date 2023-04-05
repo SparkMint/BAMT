@@ -25,16 +25,12 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	if(_texture)
 	{
 		// Get the height and width of the texture.
-		// We will use this to prevent stretching.
+		// Was using this but keeping it incase i need it later on.
 		int textureWidth, textureHeight;
 		SDL_QueryTexture(_texture, nullptr, nullptr, &textureWidth, &textureHeight);
 
-		// Scale down the given height and width to fit the scale of our world.
-		textureWidth /= BAMT_WORLD_SCALE;
-		textureHeight /= BAMT_WORLD_SCALE;
-
-		_rect->w = (width * textureWidth * BAMT_WORLD_SCALE *_transform->scale) / 4;
-		_rect->h = (height * textureHeight * BAMT_WORLD_SCALE * _transform->scale) / 4;
+		_rect->w = (width * _transform->scale) * BAMT_WORLD_SCALE;
+		_rect->h = (height * _transform->scale) * BAMT_WORLD_SCALE;
 
 		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
@@ -51,12 +47,12 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	}
 	else
 	{
-		const std::string filePathToString = sprite;
 		_texture = entity->scene->engine->textureAtlas->FindTexture(sprite);
 
 		if(_texture == nullptr)
 		{
-			Debug::LogError("SpriteRenderer could not load sprite: " + filePathToString, this);
+			Debug::LogError("SpriteRenderer could not load sprite. Setting it to default!", this);
+			_texture = entity->scene->engine->textureAtlas->FindTexture("default.png");
 			enabled = false;
 		}
 	}

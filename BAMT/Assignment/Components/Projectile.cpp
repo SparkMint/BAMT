@@ -4,17 +4,21 @@ void Projectile::Start()
 {
 	Component::Start();
 
-	entity->tag = "Projectile";
+	// Tell this object its tag is now a projectile.
+	entity->tag = projectileTag;
 
+	// Look for a RigidBody.
 	rigidBody = entity->GetComponent<RigidBody>();
 
 	if(rigidBody == nullptr)
 	{
 		Debug::LogWarn("RigidBody not found on this projectile! Adding one now...", entity);
 		rigidBody = entity->AddComponent<RigidBody>();
-		rigidBody->maxVelocity = 100;
+
 	}
 
+	rigidBody->maxVelocity = 100;
+	rigidBody->drag = 0;
 	rigidBody->isTrigger = true;
 
 	spriteRenderer = entity->GetComponent<SpriteRenderer>();
@@ -35,7 +39,7 @@ void Projectile::Update(float* timeStep)
 	for (auto rb : rigidBody->collisionList)
 	{
 		// If we were fired by a player for example. Ignore the collision.
-		if (rb->entity->tag == tagOfWhoFiredMe || rb->entity->tag == entity->tag) continue;
+		if (rb == whoSpawnedMe || rb->entity->tag == entity->tag) continue;
 
 		// Do stuff.
 		entity->active = false;

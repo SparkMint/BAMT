@@ -130,7 +130,8 @@
   <ItemGroup>
     <ClCompile Include="Assignment\Components\MouseAim.cpp" />
     <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
-    <ClCompile Include="Assignment\Components\PlayerWeapon.cpp" />
+    <ClCompile Include="Assignment\Components\WeaponSystem\PlayerWeapon.cpp" />
+    <ClCompile Include="Assignment\Components\WeaponSystem\Weapon.cpp" />
     <ClCompile Include="Assignment\Components\Projectile.cpp" />
     <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
     <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
@@ -167,8 +168,10 @@
   <ItemGroup>
     <ClInclude Include="Assignment\Components\EntityPooler.h" />
     <ClInclude Include="Assignment\Components\MouseAim.h" />
-    <ClInclude Include="Assignment\Components\PlayerWeapon.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\PlayerWeapon.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\Weapon.h" />
     <ClInclude Include="Assignment\Components\Projectile.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\WeaponData.h" />
     <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
     <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
     <ClInclude Include="Assignment\Scenes\PinballGame.h" />

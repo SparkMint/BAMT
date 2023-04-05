@@ -14,7 +14,7 @@ class RigidBody : public Component
 	/// <summary>
 	/// Simulates the next position this RigidBody will move to.
 	/// </summary>
-	Vector2 Simulate(const float* timeStep, Vector2 velocity, Vector2 position);
+	Vector2 Simulate(const float* timeStep, Vector2 vel, Vector2 position);
 
 	public:
 		~RigidBody();
@@ -77,7 +77,12 @@ class RigidBody : public Component
 		float maxVelocity = 1.0f;
 
 		/// <summary>
-		/// Pushes this RigidBody in a specified direction.
+		/// Used by the physics engine to react to other colliders.
+		/// </summary>
+		void AddReactionForce(Vector2 direction, float force);
+
+		/// <summary>
+		/// Adds a force in a given direction.
 		/// </summary>
 		void AddForce(Vector2 direction, float force);
 

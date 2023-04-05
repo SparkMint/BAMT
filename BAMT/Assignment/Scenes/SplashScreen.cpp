@@ -18,7 +18,7 @@ void SplashScreen::Start()
 	LogoEnt->GetComponent<RigidBody>()->width = 1;
 	LogoEnt->GetComponent<RigidBody>()->height = 1;
 	LogoEnt->GetComponent<RigidBody>()->drag = 0;
-	LogoEnt->GetComponent<RigidBody>()->bounciness = 2;
+	LogoEnt->GetComponent<RigidBody>()->bounciness = 1;
 
 	LogoEnt->GetComponent<RigidBody>()->maxVelocity = 10;
 
@@ -31,7 +31,7 @@ void SplashScreen::Start()
 	Floor->GetComponent<Transform>()->SetPosition(width / 2, height / 2);
 	Floor->GetComponent<RigidBody>()->width = width;
 	Floor->GetComponent<RigidBody>()->height = .5f;
-	Floor->GetComponent<RigidBody>()->bounciness = 2;
+	Floor->GetComponent<RigidBody>()->bounciness = 1;
 	Floor->GetComponent<RectRenderer>()->enabled = false;
 
 	gravity = { 0, 15 };

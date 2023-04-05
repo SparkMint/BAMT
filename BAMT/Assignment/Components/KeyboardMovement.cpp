@@ -15,19 +15,19 @@ void KeyboardMovement::Update(float* timeStep)
 {
 	if (Input::GetKeyHold(SDLK_w))
 	{
-		_rigidBody->AddForce(VECTOR2_UP, movementSpeed * *timeStep);
+		_rigidBody->AddReactionForce(VECTOR2_UP, movementSpeed);
 	}
 	if (Input::GetKeyHold(SDLK_s))
 	{
-		_rigidBody->AddForce(VECTOR2_DOWN, movementSpeed * *timeStep);
+		_rigidBody->AddReactionForce(VECTOR2_DOWN, movementSpeed);
 	}
 	if (Input::GetKeyHold(SDLK_a))
 	{
-		_rigidBody->AddForce(VECTOR2_LEFT, movementSpeed * *timeStep);
+		_rigidBody->AddReactionForce(VECTOR2_LEFT, movementSpeed);
 	}
 	if (Input::GetKeyHold(SDLK_d))
 	{
-		_rigidBody->AddForce(VECTOR2_RIGHT, movementSpeed * *timeStep);
+		_rigidBody->AddReactionForce(VECTOR2_RIGHT, movementSpeed);
 	}
 	
 }

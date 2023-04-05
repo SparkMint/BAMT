@@ -132,10 +132,11 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
 
 		// Calculate the impulse force
-		float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * BAMT_PHYSICS_STEPS;
+		float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * 100;
 		// Add the resulting forces to each object. Negate the second object so it goes in the other direction.
-		pair.first->AddForce(collisionNormal, impulseScalar);
-		pair.second->AddForce(collisionNormal, -impulseScalar);
+
+		pair.first->AddReactionForce(collisionNormal, impulseScalar);
+		pair.second->AddReactionForce(collisionNormal, -impulseScalar);
 
 		if (pair.first->debugMode || pair.second->debugMode)
 		{
