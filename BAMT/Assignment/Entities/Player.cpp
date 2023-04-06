@@ -17,7 +17,8 @@ void Player::Start()
 	rigidBody->bounciness = bounciness;
 
 	// Sprite Renderer Setup
-	spriteRend = AddComponent<SpriteRenderer>(width, height, "Logo.png");
+	spriteRenderer = AddComponent<SpriteRenderer>(width, height, "bamt.png");
+
 
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();
@@ -36,6 +37,6 @@ void Player::Start()
 	}
 
 	// Pistol Setup
-	pistolWeapon = AddComponent<PlayerWeapon>();
-	pistolWeapon->weaponData = &pistolData;
+	weapon = AddComponent<PlayerWeapon>();
+	weapon->weaponData = &pistolData;
 }

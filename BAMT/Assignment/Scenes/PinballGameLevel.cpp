@@ -51,4 +51,14 @@ void PinballGameLevel::Start()
 	coordGrid->renderLayer = -1;
 
 	_player = AddEntity<Player>();
+
+	auto* enemyPoolEnt = AddEntity();
+	enemyPool = enemyPoolEnt->AddComponent<EntityPooler>();
+
+	for (int i = 0; i < maxEnemyCount; ++i)
+	{
+		auto* enemy = AddEntity<Enemy>();
+		enemyPool->AddEntityToPool(enemy);
+		enemy->UpdateTarget(_player);
+	}
 }

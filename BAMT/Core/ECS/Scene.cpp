@@ -60,6 +60,8 @@ void Scene::DetectCollisions()
 
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{
+			//if (i->entity->tag == activeInterval[j]->entity->tag) continue;
+
 			// For some reason, this seems to work fine, but giving it my premade OverlapOnAxis function breaks it. so yeah...
 			if (i->transform->GetX() - i->width * 0.5f > activeInterval[j]->transform->GetX() + activeInterval[j]->width * 0.5f)
 			{
@@ -111,11 +113,11 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		const Vector2 displacement = { collisionNormal.x * xOverlap, collisionNormal.y * yOverlap };
 		if (!pair.first->isKinematic)
 		{
-			pair.first->transform->Translate(-displacement.x / 2, -displacement.y / 2);
+			pair.first->transform->Translate(-displacement.x, -displacement.y);
 		}
 		if (!pair.second->isKinematic)
 		{
-			pair.second->transform->Translate(displacement.x / 2, displacement.y / 2);
+			pair.second->transform->Translate(displacement.x, displacement.y);
 		}
 
 		// Check if the objects are moving away from each other. If they are.

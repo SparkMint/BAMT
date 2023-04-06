@@ -33,6 +33,9 @@
     <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
     <ClCompile Include="Assignment\Components\Projectile.cpp" />
     <ClCompile Include="Assignment\Components\WeaponSystem\PlayerWeapon.cpp" />
+    <ClCompile Include="Assignment\Components\WeaponSystem\EnemyWeapon.cpp" />
+    <ClCompile Include="Assignment\Entities\Enemy.cpp" />
+    <ClCompile Include="Assignment\Components\EnemyMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -73,6 +76,9 @@
     <ClInclude Include="Assignment\Components\EntityPooler.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\PlayerWeapon.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\WeaponData.h" />
+    <ClInclude Include="Assignment\Entities\Enemy.h" />
+    <ClInclude Include="Assignment\Components\WeaponSystem\EnemyWeapon.h" />
+    <ClInclude Include="Assignment\Components\EnemyMovement.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

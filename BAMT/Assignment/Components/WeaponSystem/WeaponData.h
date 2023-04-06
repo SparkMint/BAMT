@@ -2,8 +2,8 @@
 #define ASSIGNMENT_WEAPON_DATA
 #include <string>
 
-#define WEAPON_DATA_PISTOL {.1f, "default.png", .2f, 10, 1, 1}
-#define WEAPON_DATA_RIFLE {.5f, "default.png", .2f, 10, 1, 1}
+#define WEAPON_DATA_PISTOL {.2f, "default.png", .2f, 10, 10, 1}
+#define WEAPON_DATA_RIFLE {.1f, "default.png", .2f, 10, 1, 1}
 
 
 /// <summary>

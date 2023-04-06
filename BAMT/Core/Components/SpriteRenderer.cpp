@@ -10,14 +10,13 @@ SpriteRenderer::SpriteRenderer(float Width, float Height, const char* spriteLoca
 	sprite = spriteLocation;
 
 	_rect = new SDL_Rect();
+	_animationRect = new SDL_Rect();
 }
 
-SpriteRenderer::~SpriteRenderer()
-= default;
-
-void SpriteRenderer::Start()
+void SpriteRenderer::Update(float* timeStep)
 {
-	Renderer::Start();
+	Renderer::Update(timeStep);
+	_timeStep = *timeStep;
 }
 
 void SpriteRenderer::Render(SDL_Renderer* renderer)
@@ -35,8 +34,41 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 
-		// Display the Sprite.
-		SDL_RenderCopy(renderer, _texture, nullptr, _rect);
+		if(animate)
+		{
+			if (time > animationSpeedSeconds)
+			{
+				time = 0;
+				// Get the width and height of the sprite from the spritesheet.
+				_animationRect->w = textureWidth / spriteSheetWidth;
+				_animationRect->h = textureHeight / spriteSheetHeight;
+
+				w++;
+				if (w > spriteSheetWidth - 1)
+				{
+					w = 0;
+					h++;
+				}
+				if (h > spriteSheetHeight - 1)
+				{
+					w = 0;
+					h = 0;
+				}
+				//Debug::Log("W = " + std::to_string(w) + " H: " + std::to_string(h));
+			}
+			else time += _timeStep;
+
+			_animationRect->x = w * _animationRect->w;
+			_animationRect->y = h * _animationRect->h;
+
+			// Display the Sprite.
+			SDL_RenderCopy(renderer, _texture, _animationRect, _rect);
+		}
+		else
+		{
+			// Display the Sprite.
+			SDL_RenderCopy(renderer, _texture, nullptr, _rect);
+		}
 
 		//Debug::Log("SPRITE RENDERER VALUES");
 		//Debug::Log("----------------------");
@@ -56,4 +88,13 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 			enabled = false;
 		}
 	}
+}
+
+void SpriteRenderer::SetSprite(const char* targetSprite)
+{
+	sprite = targetSprite;
+
+	// Reset the animation to the beginning.
+	w = 1;
+	h = 1;
 }

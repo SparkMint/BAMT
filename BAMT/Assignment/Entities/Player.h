@@ -16,7 +16,7 @@ class Player : public Entity
 
 	public:
 		RigidBody* rigidBody = nullptr;
-		SpriteRenderer* spriteRend = nullptr;
+		SpriteRenderer* spriteRenderer = nullptr;
 
 		KeyboardMovement* playerMovement = nullptr;
 		MouseAim* mouseAim = nullptr;
@@ -24,7 +24,7 @@ class Player : public Entity
 		EntityPooler* entityPool = nullptr;
 		int projectilePoolCount = 20;
 
-		PlayerWeapon* pistolWeapon = nullptr;
+		PlayerWeapon* weapon = nullptr;
 		WeaponData pistolData = WEAPON_DATA_PISTOL;
 
 		// Transform Values

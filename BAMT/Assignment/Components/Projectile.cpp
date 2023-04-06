@@ -41,7 +41,10 @@ void Projectile::Update(float* timeStep)
 		// If we were fired by a player for example. Ignore the collision.
 		if (rb == whoSpawnedMe || rb->entity->tag == entity->tag) continue;
 
+		Vector2 dir = VectorMath::Normalize(*rb->entity->transform->GetPosition() - *entity->transform->GetPosition());
+
 		// Do stuff.
+		rb->AddForce(dir, projectileKnockback);
 		entity->active = false;
 	}
 

@@ -11,6 +11,8 @@ void Weapon::Start()
 		Debug::LogWarn("No Pooler found on the player! Adding one now...", entity);
 		entityPool = entity->AddComponent<EntityPooler>();
 	}
+	WeaponData defaultData = WEAPON_DATA_PISTOL;
+	weaponData = &defaultData;
 }
 
 void Weapon::Update(float* timeStep)
@@ -41,7 +43,7 @@ void Weapon::Fire(Entity* projectileToFire, const Vector2& directionToFire)
 
 	projComponent->projectileDamage = weaponData->projectileDamage;
 	projComponent->projectileKnockback = weaponData->projectileKnockback;
-	projComponent->spriteRenderer->sprite = weaponData->projectileSprite.c_str();
+	projComponent->spriteRenderer->SetSprite(weaponData->projectileSprite.c_str());
 	projComponent->whoSpawnedMe = entity->GetComponent<RigidBody>();
 
 	projComponent->spriteRenderer->width = weaponData->projectileSize;

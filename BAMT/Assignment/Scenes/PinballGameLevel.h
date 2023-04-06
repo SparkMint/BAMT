@@ -6,11 +6,14 @@
 #include "../../Core/Entities/CoordinateGrid.h"
 #include "../Entities/Player.h"
 #include "../Entities/StaticCollider.h"
-#include "../Entities/Slingshot/Slingshot.h"
+#include "../Entities/Enemy.h"
 
 class PinballGameLevel : public Scene
 {
 	Player* _player = nullptr;
+
+	EntityPooler* enemyPool = nullptr;
+	int maxEnemyCount = 5;
 
 	public:
 		void Start() override;

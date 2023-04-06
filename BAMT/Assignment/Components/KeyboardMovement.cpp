@@ -7,7 +7,7 @@ void KeyboardMovement::Start()
 	 if (_rigidBody == nullptr)
 	 {
 		 Debug::LogError("KeyboardMovement cannot detect a RigidBody! Adding one now...", this);
-		 _rigidBody = entity->GetComponent<RigidBody>();
+		 _rigidBody = entity->AddComponent<RigidBody>();
 	 }
 }
 
@@ -29,5 +29,4 @@ void KeyboardMovement::Update(float* timeStep)
 	{
 		_rigidBody->AddReactionForce(VECTOR2_RIGHT, movementSpeed);
 	}
-	
 }
