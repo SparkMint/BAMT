@@ -36,6 +36,12 @@
     <ClCompile Include="Assignment\Components\WeaponSystem\EnemyWeapon.cpp" />
     <ClCompile Include="Assignment\Entities\Enemy.cpp" />
     <ClCompile Include="Assignment\Components\EnemyMovement.cpp" />
+    <ClCompile Include="Assignment\Components\Health.cpp" />
+    <ClCompile Include="Assignment\Components\EnemyHealth.cpp" />
+    <ClCompile Include="Assignment\Components\Powerup.cpp" />
+    <ClCompile Include="Assignment\Components\PowerupReciever.cpp" />
+    <ClCompile Include="Assignment\Components\ScoreSystem.cpp" />
+    <ClCompile Include="Assignment\Components\PlayerHealth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -79,6 +85,12 @@
     <ClInclude Include="Assignment\Entities\Enemy.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\EnemyWeapon.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />
+    <ClInclude Include="Assignment\Components\Health.h" />
+    <ClInclude Include="Assignment\Components\EnemyHealth.h" />
+    <ClInclude Include="Assignment\Components\Powerup.h" />
+    <ClInclude Include="Assignment\Components\PowerupReciever.h" />
+    <ClInclude Include="Assignment\Components\ScoreSystem.h" />
+    <ClInclude Include="Assignment\Components\PlayerHealth.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

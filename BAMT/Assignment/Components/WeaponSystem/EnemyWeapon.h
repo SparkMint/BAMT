@@ -10,7 +10,6 @@ class EnemyWeapon : public Weapon
 		/// </summary>
 		Entity* target = nullptr;
 
-		void Start() override;
 		void Update(float* timeStep) override;
 };
 #endif

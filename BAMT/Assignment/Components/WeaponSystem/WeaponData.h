@@ -2,8 +2,13 @@
 #define ASSIGNMENT_WEAPON_DATA
 #include <string>
 
-#define WEAPON_DATA_PISTOL {.2f, "default.png", .2f, 10, 10, 1}
-#define WEAPON_DATA_RIFLE {.1f, "default.png", .2f, 10, 1, 1}
+//							 RATE   |     SPRITE PATH    | SIZE | SPEED | LIFE | KNOCK | DAMAGE
+#define WEAPON_DATA_NONE    {9999   , ""                 , 0    , 0     , 0    , 0     , 0}
+#define WEAPON_DATA_PISTOL	{.1f    , "default.png"      , .2f  , 10    , 2    , 10    , 1}
+#define WEAPON_DATA_RIFLE   {.05f   , "default.png"      , .2f  , 30    , 2    , 5     , 1}
+#define WEAPON_DATA_RANGER  {1      , "default.png"      , .2f  , 10    , 2    , 5     , 1}
+#define WEAPON_DATA_ZOMBIE  {1      , "default.png"      , .1f  , 5     , .2f  , 1     , 1}
+#define WEAPON_DATA_TANK    {1      , "default.png"      , .2f  , 10    , 2    , 20    , 5}
 
 
 /// <summary>
@@ -30,6 +35,11 @@ struct WeaponData
 	/// How fast the projectile will be when fired.
 	/// </summary>
 	float projectileSpeed = 1;
+
+	/// <summary>
+	/// How long will the projectile exist within the level before it is disabled.
+	/// </summary>
+	float projectileLifeTime = 1;
 
 	/// <summary>
 	/// The amount of knock-back the projectile will apply on

@@ -3,15 +3,13 @@
 
 #include "PinballGameLevel.h"
 #include "SplashScreen.h"
-#include "../../Core/EngineManager.h"
 #include "../../Core/ECS/Scene.h"
-#include "Test/PhysicsTestScene.h"
 
 class PinballGame : public Scene
 {
 	// Splash Screen Stuff.
 	SplashScreen* _splashScreen = nullptr;
-	float splashScreenDisplaySeconds = 0;
+	float splashScreenDisplaySeconds = 5;
 	float splashScreenCurrentSeconds = 0;
 
 	PinballGameLevel* _gameScene = nullptr;

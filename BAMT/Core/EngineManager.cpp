@@ -88,11 +88,14 @@ void EngineManager::RunLoop()
 {
 	while (IsActive())
 	{
+		int flags = SDL_GetWindowFlags(_window);
+
 		_tickTimer->ResetTimer();
 
 		DoInputLogic();
 
-		Update(&_timeStep);
+		if(flags & SDL_WINDOW_INPUT_FOCUS)
+			Update(&_timeStep);
 
 		Render(_renderer);
 
@@ -172,6 +175,7 @@ void EngineManager::Stop()
 {
 	Debug::Log("Engine Stopping...", this);
 
+	// When we delete a scene, it will cascade, deleting all its contents too
 	for (auto* scene : _sceneList)
 	{
 		delete(scene);

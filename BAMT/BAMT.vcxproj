@@ -128,9 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assignment\Components\EnemyHealth.cpp" />
+    <ClCompile Include="Assignment\Components\Health.cpp" />
     <ClCompile Include="Assignment\Components\MouseAim.cpp" />
     <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
     <ClCompile Include="Assignment\Components\EnemyMovement.cpp" />
+    <ClCompile Include="Assignment\Components\PlayerHealth.cpp" />
+    <ClCompile Include="Assignment\Components\Powerup.cpp" />
+    <ClCompile Include="Assignment\Components\PowerupReciever.cpp" />
+    <ClCompile Include="Assignment\Components\ScoreSystem.cpp" />
     <ClCompile Include="Assignment\Components\WeaponSystem\EnemyWeapon.cpp" />
     <ClCompile Include="Assignment\Components\WeaponSystem\PlayerWeapon.cpp" />
     <ClCompile Include="Assignment\Components\WeaponSystem\Weapon.cpp" />
@@ -169,9 +175,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment\Components\EnemyHealth.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />
     <ClInclude Include="Assignment\Components\EntityPooler.h" />
+    <ClInclude Include="Assignment\Components\Health.h" />
     <ClInclude Include="Assignment\Components\MouseAim.h" />
+    <ClInclude Include="Assignment\Components\PlayerHealth.h" />
+    <ClInclude Include="Assignment\Components\PowerupReciever.h" />
+    <ClInclude Include="Assignment\Components\Powerup.h" />
+    <ClInclude Include="Assignment\Components\ScoreSystem.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\EnemyWeapon.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\PlayerWeapon.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\Weapon.h" />

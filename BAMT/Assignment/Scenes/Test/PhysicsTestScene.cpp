@@ -50,18 +50,28 @@ void PhysicsTestScene::Start()
 
 	AddEntity<CoordinateGrid>();
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 20; ++i)
 	{
-		for (int j = 0; j < 10; ++j)
+		for (int j = 0; j < 20; ++j)
 		{
-			const auto thing = AddEntity<Player>();
+			const auto thing = AddEntity<Entity>();
 			thing->GetComponent<Transform>()->SetPosition(2 + (j * .51f), 2 + (i * .51f));
-			thing->playerMovement->enabled = false;
+			auto* rb = thing->AddComponent<RigidBody>();
+			rb->width = .5f;
+			rb->height = .5f;
+			rb->bounciness = .2f;
+			rb->drag = 2;
+			rb->maxVelocity = 10;
+			rb->mass = 1;
+			auto* rr = thing->AddComponent<RectRenderer>();
+			rr->width = .5f;
+			rr->height = .5f;
+			rr->fillRect = true;
 
 			int r = rand() & 255;
 			int g = rand() & 255;
 			int b = rand() & 255;
-			//thing->rectRenderer->colour = { r, g ,b, 255 };
+			rr->colour = { r, g ,b, 255 };
 		}
 	}
 
@@ -70,5 +80,4 @@ void PhysicsTestScene::Start()
 	thing->playerMovement->enabled = true;
 
 	gravity = { 0, 5 };
-
 }

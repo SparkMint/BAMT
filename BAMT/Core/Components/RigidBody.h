@@ -1,6 +1,7 @@
 #ifndef BAMT_RIGID_BODY
 #define BAMT_RIGID_BODY
 
+#include "../EngineSettings.h"
 #include "../ECS/Scene.h"
 #include "../ECS/Entity.h"
 #include "../ECS/Component.h"

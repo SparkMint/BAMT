@@ -1,5 +1,4 @@
 #include "Scene.h"
-
 #include "../EngineSettings.h"
 
 void Scene::Start(){ }
@@ -42,8 +41,10 @@ void Scene::SortRigidBodies()
 
 void Scene::DetectCollisions()
 {
+	// Sort all RigidBodies by their minimum X values.
 	SortRigidBodies();
 
+	// This list is for that previously collided.
 	std::vector<RigidBody*> activeInterval;
 	activeInterval.reserve(rigidBodiesList.size());
 
@@ -51,32 +52,33 @@ void Scene::DetectCollisions()
 	std::vector<std::pair<RigidBody*, RigidBody*>> collisionPairs;
 	collisionPairs.reserve(rigidBodiesList.size() * (rigidBodiesList.size() - 1) / 2);
 
-	for (auto& i : rigidBodiesList)
+	for (auto& rb : rigidBodiesList)
 	{
 		// Clear this RigidBodies collision list. As it will update here.
-		i->collisionList.clear();
-		if (!i->entity->active || !i->enabled) continue;
+		rb->collisionList.clear();
 
+		// Make sure the entity is active.
+		if (!rb->entity->active || !rb->enabled) continue;
 
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{
-			//if (i->entity->tag == activeInterval[j]->entity->tag) continue;
-
 			// For some reason, this seems to work fine, but giving it my premade OverlapOnAxis function breaks it. so yeah...
-			if (i->transform->GetX() - i->width * 0.5f > activeInterval[j]->transform->GetX() + activeInterval[j]->width * 0.5f)
+			if (rb->transform->GetX() - rb->width * 0.5f > activeInterval[j]->transform->GetX() + activeInterval[j]->width * 0.5f)
 			{
+				// If the object isnt overlapping the X bounds of our current active interval. remove the active interval.
 				activeInterval.erase(activeInterval.begin() + j);
 				j--;
 			}
 			else
 			{
-				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->height, activeInterval[j]->transform->GetY(), activeInterval[j]->height))
+				if (VectorMath::OverlapOnAxis(rb->transform->GetY(), rb->height, activeInterval[j]->transform->GetY(), activeInterval[j]->height))
 				{
-					collisionPairs.emplace_back(i, activeInterval[j]);
+					collisionPairs.emplace_back(rb, activeInterval[j]);
 				}
 			}
 		}
-		activeInterval.emplace_back(i);
+		// Add this object to our active interval list.
+		activeInterval.emplace_back(rb);
 	}
 
 	// Go through each pair of RigidBodies and solve each collision.
@@ -111,6 +113,7 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 
 		// Move the object transform to try to get the object out of whatever its colliding with.
 		const Vector2 displacement = { collisionNormal.x * xOverlap, collisionNormal.y * yOverlap };
+
 		if (!pair.first->isKinematic)
 		{
 			pair.first->transform->Translate(-displacement.x, -displacement.y);
@@ -125,10 +128,7 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		Vector2 relativeVelocity = pair.second->velocity - pair.first->velocity;
 
 		const float relativeVelocityInNormalDirection = VectorMath::Dot(collisionNormal, relativeVelocity);
-		if (relativeVelocityInNormalDirection > 0)
-		{
-			continue;
-		}
+		if (relativeVelocityInNormalDirection > 0) continue;
 
 		// Use the object with the least amount of bounciness for calculating the impulse force.
 		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
@@ -158,10 +158,8 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 	}
 }
 
-Scene::Scene()
-{
-	Debug::Log("Scene Created.", this);
-}
+Scene::Scene() { Debug::Log("Scene Created.", this); }
+
 Scene::~Scene()
 {
 	Debug::Log("Scene Destroyed.", this);

@@ -1,12 +1,12 @@
 #ifndef ASSIGNMENT_ENEMY
 #define ASSIGNMENT_ENEMY
 
+#include "../../Core/ECS/Entity.h"
 #include "../../Core/Components/SpriteRenderer.h"
 #include "../../Core/Components/RigidBody.h"
-#include "../../Core/Components/Transform.h"
-#include "../../Core/ECS/Entity.h"
 #include "../Components/WeaponSystem/EnemyWeapon.h"
 #include "../Components/EnemyMovement.h"
+#include "../Components/EnemyHealth.h"
 
 class Enemy : public Entity
 {
@@ -17,14 +17,19 @@ class Enemy : public Entity
 
 		RigidBody* rigidBody = nullptr;
 		SpriteRenderer* spriteRenderer = nullptr;
+		std::string sprite = "default.png";
 
 		EnemyMovement* movement = nullptr;
+		EnemyHealth* health = nullptr;
+		int maxHealth = 10;
 
 		EntityPooler* entityPool = nullptr;
 		int projectilePoolCount = 1;
 
 		EnemyWeapon* weapon = nullptr;
-		WeaponData weaponData = WEAPON_DATA_PISTOL;
+		WeaponData weaponData = WEAPON_DATA_NONE;
+
+		ScoreSystem* scoreSystem = nullptr;
 
 		Vector2 initialPosition = { 5, 5 };
 
@@ -43,6 +48,7 @@ class Enemy : public Entity
 		void Start() override;
 		void Update(float* timeStep) override;
 
+		void Init();
 		void UpdateTarget(Entity* newTarget);
 };
 #endif

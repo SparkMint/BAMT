@@ -15,7 +15,6 @@ SpriteRenderer::SpriteRenderer(float Width, float Height, const char* spriteLoca
 
 void SpriteRenderer::Update(float* timeStep)
 {
-	Renderer::Update(timeStep);
 	_timeStep = *timeStep;
 }
 

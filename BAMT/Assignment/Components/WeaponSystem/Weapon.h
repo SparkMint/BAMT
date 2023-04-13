@@ -2,20 +2,16 @@
 #define ASSIGNMENT_WEAPON
 
 #include "WeaponData.h"
-#include "../../../Core/EngineManager.h"
 #include "../../../Core/Components/Transform.h"
 #include "../../../Core/ECS/Component.h"
-#include "../../../Core/Misc/Input.h"
-#include "../Projectile.h"
 #include "../EntityPooler.h"
-#include "../MouseAim.h"
+#include "../Projectile.h"
 
 class Weapon : public Component
 {
 	protected:
 		float time = 0;
 		bool canFire = false;
-
 
 	public:
 		WeaponData* weaponData = nullptr;

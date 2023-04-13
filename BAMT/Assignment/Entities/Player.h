@@ -6,7 +6,9 @@
 #include "../../Core/Components/Transform.h"
 #include "../../Core/ECS/Entity.h"
 #include "../Components/KeyboardMovement.h"
-#include "../Components/MouseAim.h"
+#include "../Components/PowerupReciever.h"
+#include "../Components/ScoreSystem.h"
+#include "../Components/PlayerHealth.h"
 #include "../Components/WeaponSystem/PlayerWeapon.h"
 
 
@@ -17,18 +19,18 @@ class Player : public Entity
 	public:
 		RigidBody* rigidBody = nullptr;
 		SpriteRenderer* spriteRenderer = nullptr;
-
 		KeyboardMovement* playerMovement = nullptr;
-		MouseAim* mouseAim = nullptr;
-
 		EntityPooler* entityPool = nullptr;
-		int projectilePoolCount = 20;
-
 		PlayerWeapon* weapon = nullptr;
-		WeaponData pistolData = WEAPON_DATA_PISTOL;
+		PlayerHealth* playerHealth = nullptr;
+		WeaponData pistolData = WEAPON_DATA_RIFLE;
+		PowerupReciever* powerupReciever = nullptr;
+		ScoreSystem* scoreSystem = nullptr;
 
 		// Transform Values
 		Vector2 initialPosition = { 1, 1 };
+
+		int projectilePoolCount = 10;
 
 		// Size Values
 		float width = .5f;
@@ -37,11 +39,11 @@ class Player : public Entity
 		// RigidBody Values
 		float maxSpeed = 10;
 		float dragForce = 5;
-		float mass = 1;
-		float bounciness = 1;
+		float mass = 2;
+		float bounciness = .2f;
 
 		// Player Movement Values
-		float movementSpeed = 50;
+		float movementSpeed = 1;
 
 		void Start() override;
 };

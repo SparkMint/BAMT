@@ -1,7 +1,5 @@
 #include "RigidBody.h"
 
-#include "../EngineSettings.h"
-
 RigidBody::~RigidBody()
 {
 	// Check if the entity is already a child of the new parent.
@@ -31,6 +29,7 @@ void RigidBody::Update(float* timeStep)
 		// Simulate the next position for our RigidBody.
 		const Vector2 stepPosition = Simulate(&_timeStep, velocity, *transform->GetPosition());
 
+		// Set the position of this object to where the resulting step was.
 		transform->SetPosition(&stepPosition);
 	}
 }

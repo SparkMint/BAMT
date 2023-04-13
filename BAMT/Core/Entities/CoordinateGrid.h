@@ -3,7 +3,7 @@
 
 #include "../ECS/Entity.h"
 #include "../ECS/Scene.h"
-#include "../Components/RectRenderer.h"
+#include "../Components/SpriteRenderer.h"
 
 class CoordinateGrid : public Entity
 {

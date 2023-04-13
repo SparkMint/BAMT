@@ -2,8 +2,6 @@
 
 void Projectile::Start()
 {
-	Component::Start();
-
 	// Tell this object its tag is now a projectile.
 	entity->tag = projectileTag;
 
@@ -14,7 +12,6 @@ void Projectile::Start()
 	{
 		Debug::LogWarn("RigidBody not found on this projectile! Adding one now...", entity);
 		rigidBody = entity->AddComponent<RigidBody>();
-
 	}
 
 	rigidBody->maxVelocity = 100;
@@ -32,19 +29,35 @@ void Projectile::Start()
 
 void Projectile::Update(float* timeStep)
 {
-	Component::Update(timeStep);
-
-	// Check for collision.
+	if(time < projectileLifetime)
+	{
+		time += *timeStep;
+	}
+	else
+	{
+		time = 0;
+		entity->active = false;
+	}
 
 	for (auto rb : rigidBody->collisionList)
 	{
 		// If we were fired by a player for example. Ignore the collision.
 		if (rb == whoSpawnedMe || rb->entity->tag == entity->tag) continue;
+		if (rb->entity->tag == "Item") continue;
 
 		Vector2 dir = VectorMath::Normalize(*rb->entity->transform->GetPosition() - *entity->transform->GetPosition());
 
 		// Do stuff.
 		rb->AddForce(dir, projectileKnockback);
+
+		auto* health = rb->entity->GetComponent<Health>();
+
+		// If an enemy hits another enemy, we dont want to damage them. only push them.
+		if(health != nullptr && rb->entity->tag != whoSpawnedMe->entity->tag)
+		{
+			health->RemoveHealth(projectileDamage);
+		}
+		time = 0;
 		entity->active = false;
 	}
 
