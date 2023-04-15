@@ -1,10 +1,10 @@
 #ifndef ASSIGNMENT_MOUSE_AIM
 #define ASSIGNMENT_MOUSE_AIM
 
-#include "../../Core/EngineManager.h"
-#include "../../Core/Components/Transform.h"
-#include "../../Core/ECS/Component.h"
-#include "../../Core/Misc/Input.h"
+#include "EngineManager.h"
+#include "Transform.h"
+#include "Component.h"
+#include "Input.h"
 
 class MouseAim : public Component
 {

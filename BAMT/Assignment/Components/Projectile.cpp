@@ -10,7 +10,6 @@ void Projectile::Start()
 
 	if(rigidBody == nullptr)
 	{
-		Debug::LogWarn("RigidBody not found on this projectile! Adding one now...", entity);
 		rigidBody = entity->AddComponent<RigidBody>();
 	}
 
@@ -22,7 +21,6 @@ void Projectile::Start()
 
 	if (spriteRenderer == nullptr)
 	{
-		Debug::LogWarn("SpriteRenderer not found on this projectile! Adding one now...", entity);
 		spriteRenderer = entity->AddComponent<SpriteRenderer>();
 	}
 }

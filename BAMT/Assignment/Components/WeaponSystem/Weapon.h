@@ -2,9 +2,9 @@
 #define ASSIGNMENT_WEAPON
 
 #include "WeaponData.h"
-#include "../../../Core/Components/Transform.h"
-#include "../../../Core/ECS/Component.h"
-#include "../EntityPooler.h"
+#include "Transform.h"
+#include "Component.h"
+#include "EntityPooler.h"
 #include "../Projectile.h"
 
 class Weapon : public Component

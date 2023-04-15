@@ -1,8 +1,7 @@
-﻿  Main.cpp
-C:\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  ScoreSystem.cpp
   Generating code
-  2 of 1325 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+  0 of 1569 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   BAMT.vcxproj -> C:\BAMT\x64\Release\BAMT.exe

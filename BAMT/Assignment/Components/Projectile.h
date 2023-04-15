@@ -1,11 +1,11 @@
 #ifndef ASSIGNMENT_PROJECTILE
 #define ASSIGNMENT_PROJECTILE
 
-#include "../../Core/Components/RigidBody.h"
-#include "../../Core/Components/SpriteRenderer.h"
-#include "../../Core/ECS/Component.h"
-#include "Health.h"
+#include "Component.h"
+#include "RigidBody.h"
+#include "SpriteRenderer.h"
 #include "ScoreSystem.h"
+#include "HealthSystem/Health.h"
 
 /// <summary>
 /// Projectiles can be fired by enemies and the player. They collide with everything

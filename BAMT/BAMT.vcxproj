@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PublicIncludeDirectories>$(ProjectDir)Core;$(ProjectDir)Core/ECS;$(ProjectDir)Core/Entities;$(ProjectDir)Core/Components;$(ProjectDir)Core/Scenes;$(ProjectDir)Core/Misc;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -118,7 +121,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Core;$(ProjectDir)Core/ECS;$(ProjectDir)Core/Entities;$(ProjectDir)Core/Components;$(ProjectDir)Core/Scenes;$(ProjectDir)Core/Misc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,12 +132,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Assignment\Components\EnemyHealth.cpp" />
-    <ClCompile Include="Assignment\Components\Health.cpp" />
+    <ClCompile Include="Assignment\Components\EnemySpawnSystem.cpp" />
+    <ClCompile Include="Assignment\Components\HealthSystem\EnemyHealth.cpp" />
+    <ClCompile Include="Assignment\Components\HealthSystem\Health.cpp" />
     <ClCompile Include="Assignment\Components\MouseAim.cpp" />
-    <ClCompile Include="Assignment\Components\EntityPooler.cpp" />
+    <ClCompile Include="Assignment\Components\TimeSystem.cpp" />
+    <ClCompile Include="Assignment\Entities\GameManager.cpp" />
+    <ClCompile Include="Core\Components\EntityPooler.cpp" />
     <ClCompile Include="Assignment\Components\EnemyMovement.cpp" />
-    <ClCompile Include="Assignment\Components\PlayerHealth.cpp" />
+    <ClCompile Include="Assignment\Components\HealthSystem\PlayerHealth.cpp" />
     <ClCompile Include="Assignment\Components\Powerup.cpp" />
     <ClCompile Include="Assignment\Components\PowerupReciever.cpp" />
     <ClCompile Include="Assignment\Components\ScoreSystem.cpp" />
@@ -142,18 +149,18 @@
     <ClCompile Include="Assignment\Components\WeaponSystem\Weapon.cpp" />
     <ClCompile Include="Assignment\Components\Projectile.cpp" />
     <ClCompile Include="Assignment\Entities\Enemy.cpp" />
-    <ClCompile Include="Assignment\Entities\Slingshot\Slingshot.cpp" />
     <ClCompile Include="Assignment\Scenes\Test\PhysicsTestScene.cpp" />
-    <ClCompile Include="Assignment\Scenes\PinballGame.cpp" />
-    <ClCompile Include="Assignment\Scenes\PinballGameLevel.cpp" />
+    <ClCompile Include="Assignment\Scenes\AssignmentGame.cpp" />
+    <ClCompile Include="Assignment\Scenes\AssignmentGameLevel.cpp" />
     <ClCompile Include="Assignment\Entities\Player.cpp" />
     <ClCompile Include="Assignment\Components\KeyboardMovement.cpp" />
-    <ClCompile Include="Assignment\Entities\StaticCollider.cpp" />
+    <ClCompile Include="Core\Entities\StaticCollider.cpp" />
     <ClCompile Include="Core\Components\LineRenderer.cpp" />
     <ClCompile Include="Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Core\Components\RectRenderer.cpp" />
     <ClCompile Include="Core\Components\Renderer.cpp" />
     <ClCompile Include="Core\Components\RigidBody.cpp" />
+    <ClCompile Include="Core\Components\TextRenderer.cpp" />
     <ClCompile Include="Core\Components\Transform.cpp" />
     <ClCompile Include="Core\Components\TriRenderer.cpp" />
     <ClCompile Include="Core\ECS\Component.cpp" />
@@ -165,7 +172,7 @@
     <ClCompile Include="Core\Misc\Colour.cpp" />
     <ClCompile Include="Core\Misc\Debug.cpp" />
     <ClCompile Include="Core\Misc\Input.cpp" />
-    <ClCompile Include="Core\Misc\TextureAtlas.cpp" />
+    <ClCompile Include="Core\Misc\AssetWarehouse.cpp" />
     <ClCompile Include="Core\Misc\TickTimer.cpp" />
     <ClCompile Include="Assignment\Scenes\SplashScreen.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -175,12 +182,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assignment\Components\EnemyHealth.h" />
+    <ClInclude Include="Assignment\Components\EnemySpawnSystem.h" />
+    <ClInclude Include="Assignment\Components\HealthSystem\EnemyHealth.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />
-    <ClInclude Include="Assignment\Components\EntityPooler.h" />
-    <ClInclude Include="Assignment\Components\Health.h" />
+    <ClInclude Include="Assignment\Components\TimeSystem.h" />
+    <ClInclude Include="Core\Components\EntityPooler.h" />
+    <ClInclude Include="Assignment\Components\HealthSystem\Health.h" />
     <ClInclude Include="Assignment\Components\MouseAim.h" />
-    <ClInclude Include="Assignment\Components\PlayerHealth.h" />
+    <ClInclude Include="Assignment\Components\HealthSystem\PlayerHealth.h" />
     <ClInclude Include="Assignment\Components\PowerupReciever.h" />
     <ClInclude Include="Assignment\Components\Powerup.h" />
     <ClInclude Include="Assignment\Components\ScoreSystem.h" />
@@ -190,18 +199,19 @@
     <ClInclude Include="Assignment\Components\Projectile.h" />
     <ClInclude Include="Assignment\Components\WeaponSystem\WeaponData.h" />
     <ClInclude Include="Assignment\Entities\Enemy.h" />
-    <ClInclude Include="Assignment\Entities\Slingshot\Slingshot.h" />
+    <ClInclude Include="Assignment\Entities\GameManager.h" />
     <ClInclude Include="Assignment\Scenes\Test\PhysicsTestScene.h" />
-    <ClInclude Include="Assignment\Scenes\PinballGame.h" />
-    <ClInclude Include="Assignment\Scenes\PinballGameLevel.h" />
+    <ClInclude Include="Assignment\Scenes\AssignmentGame.h" />
+    <ClInclude Include="Assignment\Scenes\AssignmentGameLevel.h" />
     <ClInclude Include="Assignment\Entities\Player.h" />
     <ClInclude Include="Assignment\Components\KeyboardMovement.h" />
-    <ClInclude Include="Assignment\Entities\StaticCollider.h" />
+    <ClInclude Include="Core\Entities\StaticCollider.h" />
     <ClInclude Include="Core\Components\LineRenderer.h" />
     <ClInclude Include="Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Core\Components\RectRenderer.h" />
     <ClInclude Include="Core\Components\Renderer.h" />
     <ClInclude Include="Core\Components\RigidBody.h" />
+    <ClInclude Include="Core\Components\TextRenderer.h" />
     <ClInclude Include="Core\Components\Transform.h" />
     <ClInclude Include="Core\Components\TriRenderer.h" />
     <ClInclude Include="Core\ECS\Component.h" />
@@ -214,7 +224,7 @@
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />
     <ClInclude Include="Core\Misc\Input.h" />
-    <ClInclude Include="Core\Misc\TextureAtlas.h" />
+    <ClInclude Include="Core\Misc\AssetWarehouse.h" />
     <ClInclude Include="Core\Misc\TickTimer.h" />
     <ClInclude Include="Assignment\Scenes\SplashScreen.h" />
     <ClInclude Include="resource.h" />
@@ -233,8 +243,10 @@
     <Import Project="..\packages\sdl2.2.0.5\build\native\sdl2.targets" Condition="Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" />
     <Import Project="..\packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets" Condition="Exists('..\packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets')" />
     <Import Project="..\packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets" Condition="Exists('..\packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets')" />
-    <Import Project="..\packages\sdl2.nuget.redist.2.26.4\build\native\sdl2.nuget.redist.targets" Condition="Exists('..\packages\sdl2.nuget.redist.2.26.4\build\native\sdl2.nuget.redist.targets')" />
-    <Import Project="..\packages\sdl2.nuget.2.26.4\build\native\sdl2.nuget.targets" Condition="Exists('..\packages\sdl2.nuget.2.26.4\build\native\sdl2.nuget.targets')" />
+    <Import Project="..\packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets')" />
+    <Import Project="..\packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets')" />
+    <Import Project="..\packages\sdl2.nuget.redist.2.26.5\build\native\sdl2.nuget.redist.targets" Condition="Exists('..\packages\sdl2.nuget.redist.2.26.5\build\native\sdl2.nuget.redist.targets')" />
+    <Import Project="..\packages\sdl2.nuget.2.26.5\build\native\sdl2.nuget.targets" Condition="Exists('..\packages\sdl2.nuget.2.26.5\build\native\sdl2.nuget.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -244,7 +256,9 @@
     <Error Condition="!Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.2.0.5\build\native\sdl2.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2.nuget.redist.2.26.4\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.redist.2.26.4\build\native\sdl2.nuget.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2.nuget.2.26.4\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.2.26.4\build\native\sdl2.nuget.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.nuget.redist.2.26.5\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.redist.2.26.5\build\native\sdl2.nuget.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.nuget.2.26.5\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.2.26.5\build\native\sdl2.nuget.targets'))" />
   </Target>
 </Project>

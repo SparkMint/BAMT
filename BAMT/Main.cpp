@@ -1,6 +1,6 @@
 #include <SDL.h>
 
-#include "Assignment/Scenes/PinballGame.h"
+#include "Assignment/Scenes/AssignmentGame.h"
 #include "Assignment/Scenes/Test/PhysicsTestScene.h"
 #include "Core/EngineManager.h"
 #include "Core/Misc/Debug.h"
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 	engineManager->Initialize(BAMT_WINDOW_NAME, BAMT_RESOLUTION_WIDTH, BAMT_RESOLUTION_HEIGHT, false, 1000/BAMT_TARGET_FRAME_RATE);
 
 	// GAME PALLET GOES HERE
-	auto* loadedGame = engineManager->AddScene<PinballGame>();
+	auto* loadedGame = engineManager->AddScene<AssignmentGame>();
 	loadedGame->alwaysActive = true;
 
 	engineManager->RunLoop();

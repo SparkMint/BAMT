@@ -3,6 +3,8 @@
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 
 #include "EngineSettings.h"
+#include "SDL_ttf.h"
+#include "SDL_image.h"
 #include "ECS/Entity.h"
 #include "SDL.h"
 #include "Misc/Debug.h"
@@ -14,7 +16,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "Misc/TextureAtlas.h"
+#include "Misc/AssetWarehouse.h"
 
 class EngineManager
 {
@@ -32,7 +34,7 @@ class EngineManager
 	float _timeStep = 0;
 
 	public:
-		TextureAtlas* textureAtlas = nullptr;
+		AssetWarehouse* assetWarehouse = nullptr;
 
 		/// <summary>
 		/// Returns if the Engine is active or not.

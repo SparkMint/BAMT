@@ -76,11 +76,16 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
 	T* ent = new T(std::forward<TArgs>(mArgs)...);
+	std::string className = typeid(*ent).name();
+	size_t startPos = className.find_last_of(" ") + 1;
 
 	// Use Dynamic Casting to find if the type given is derived from Entity.
 	Entity* entityBase = dynamic_cast<Entity*>(ent);
 	if (entityBase != nullptr)
 	{
+
+		Debug::Log(className.substr(startPos) + " Created.", ent);
+
 		// Add the entity to our entity list.
 		entityList.emplace_back(entityBase);
 
@@ -91,7 +96,7 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 	}
 
 	// If it got here, the type we got wasn't an entity type.
-	Debug::LogError("This entity could not be created successfully!", ent);
+	Debug::LogError(className.substr(startPos)+ " could not be created successfully!", ent);
 	delete(ent);
 	return nullptr;
 }

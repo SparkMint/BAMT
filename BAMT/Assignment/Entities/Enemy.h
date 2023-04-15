@@ -1,12 +1,12 @@
 #ifndef ASSIGNMENT_ENEMY
 #define ASSIGNMENT_ENEMY
 
-#include "../../Core/ECS/Entity.h"
-#include "../../Core/Components/SpriteRenderer.h"
-#include "../../Core/Components/RigidBody.h"
+#include "Entity.h"
+#include "SpriteRenderer.h"
+#include "RigidBody.h"
 #include "../Components/WeaponSystem/EnemyWeapon.h"
 #include "../Components/EnemyMovement.h"
-#include "../Components/EnemyHealth.h"
+#include "../Components/HealthSystem/EnemyHealth.h"
 
 class Enemy : public Entity
 {

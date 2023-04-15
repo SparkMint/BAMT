@@ -22,7 +22,7 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 {
 	if(_texture)
 	{
-		// Get the height and width of the texture.
+		// Get the height and width of the glyphAtlas.
 		// Was using this but keeping it incase i need it later on.
 		int textureWidth, textureHeight;
 		SDL_QueryTexture(_texture, nullptr, nullptr, &textureWidth, &textureHeight);
@@ -78,12 +78,12 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	}
 	else
 	{
-		_texture = entity->scene->engine->textureAtlas->FindTexture(sprite);
+		_texture = entity->scene->engine->assetWarehouse->GetTexture(sprite);
 
 		if(_texture == nullptr)
 		{
 			Debug::LogError("SpriteRenderer could not load sprite. Setting it to default!", this);
-			_texture = entity->scene->engine->textureAtlas->FindTexture("default.png");
+			_texture = entity->scene->engine->assetWarehouse->GetTexture("default.png");
 			enabled = false;
 		}
 	}

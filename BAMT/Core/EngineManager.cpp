@@ -18,6 +18,10 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 {
 	Debug::Log("ENGINE INIT STARTED! \n");
 
+	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
+	IMG_Init(IMG_INIT_PNG);
+
 	const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
 	fullScreen = fullscreen;
 	_windowTitle = windowName;
@@ -27,7 +31,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 		windowName,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		windowWidth, windowHeight,
-		windowFlag);
+		SDL_WINDOW_RESIZABLE);
 
 	// Check if the window was successfully created.
 	if (_window)
@@ -63,16 +67,22 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Debug::Log("TICK INFO");
 	Debug::Log("------------------------");
 	Debug::Log("Timer", _tickTimer);
-	Debug::Log("Delta Time: " + std::to_string(deltaTime) + "ms");
+	Debug::Log("Delta Time: " + std::to_string(_deltaTime) + "ms");
 	Debug::Log("------------------------\n");
 
-	Debug::Log("TEXTURE ATLAS");
+	Debug::Log("ASSET WAREHOUSE");
 	Debug::Log("------------------------");
 	// Create a command thread.
-	textureAtlas = new TextureAtlas();
-	textureAtlas->FindSprites(textureFileRootDir, textureAtlas->png_files);
-	textureAtlas->LoadTextures(_renderer);
+	assetWarehouse = new AssetWarehouse();
+	assetWarehouse->FindAssets(textureFileRootDir, assetWarehouse->png_files);
+
+	Debug::Log("Loading Textures...");
+	assetWarehouse->LoadTextures(_renderer);
 	Debug::Log("Textures finished Loading!");
+
+	Debug::Log("Loading Fonts...");
+	assetWarehouse->LoadFonts(_renderer);
+	Debug::Log("Fonts finished Loading!");
 	Debug::Log("------------------------\n");
 
 	// Give the input system a reference to this engine.
@@ -180,9 +190,13 @@ void EngineManager::Stop()
 	{
 		delete(scene);
 	}
+
 	SDL_Quit();
-	delete(_tickTimer);
-	delete(this);
+	IMG_Quit();
+	TTF_Quit();
+	delete _tickTimer;
+	delete assetWarehouse;
+	delete this;
 }
 
 void EngineManager::SetWindowTitle() const

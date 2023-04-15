@@ -11,6 +11,7 @@ void Scene::Update(float* timeStep)
 		DetectCollisions();
 	}
 
+	SortEntities();
 	for (Entity* entity : entityList)
 	{
 		if (entity->active)
@@ -20,6 +21,7 @@ void Scene::Update(float* timeStep)
 
 void Scene::Render(SDL_Renderer* renderer) const
 {
+
 	for (const Entity* entity : entityList)
 	{
 		if (entity->active)

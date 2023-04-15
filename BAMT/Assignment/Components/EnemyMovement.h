@@ -1,8 +1,8 @@
 #ifndef ASSIGNMENT_ENEMY_MOVEMENT
 #define ASSIGNMENT_ENEMY_MOVEMENT
 
-#include "../../Core/Components/RigidBody.h"
-#include "../../Core/ECS/Component.h"
+#include "RigidBody.h"
+#include "Component.h"
 
 class EnemyMovement : public Component
 {

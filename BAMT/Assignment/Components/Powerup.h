@@ -1,9 +1,9 @@
 #ifndef ASSIGNMENT_POWERUP
 #define ASSIGNMENT_POWERUP
 
-#include "../../Core/ECS/Component.h"
-#include "../../Core/EngineManager.h"
-#include "../../Core/Components/SpriteRenderer.h"
+#include "Component.h"
+#include "RigidBody.h"
+#include "SpriteRenderer.h"
 #include "PowerupReciever.h"
 
 enum PowerupType {speed = 0, doublePoints = 1};

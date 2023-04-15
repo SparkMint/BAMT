@@ -17,6 +17,7 @@ void PowerupReciever::Update(float* timeStep)
 	else
 	{
 		scoreSystem->doubleMultiplier = false;
+		scoreSystem->UpdateMultiplierText();
 	}
 }
 
@@ -35,7 +36,7 @@ void PowerupReciever::ApplyPowerupEffects(PowerupType effect)
 			speedTime = powerupEffectTime;
 			break;
 
-	case doublePoints:
+		case doublePoints:
 			if (scoreSystem == nullptr)
 			{
 				Debug::LogWarn("Score Multiplier cannot be applied due to there being no scoreSystem Referenced!", this);
@@ -43,6 +44,7 @@ void PowerupReciever::ApplyPowerupEffects(PowerupType effect)
 			}
 			Debug::Log("Score Multiplier Doubled!");
 			scoreSystem->doubleMultiplier = true;
+			scoreSystem->UpdateMultiplierText();
 			doublePointsTime = powerupEffectTime;
 			break;
 

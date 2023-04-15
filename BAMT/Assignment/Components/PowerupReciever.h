@@ -2,7 +2,7 @@
 #define ASSIGNMENT_POWERUP_RECIEVER
 
 #include "KeyboardMovement.h"
-#include "../../Core/ECS/Component.h"
+#include "Component.h"
 #include "Powerup.h"
 #include "ScoreSystem.h"
 

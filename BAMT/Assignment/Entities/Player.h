@@ -1,14 +1,13 @@
 ﻿#ifndef BAMT_GAMEOBJECT
 #define BAMT_GAMEOBJECT
 
-#include "../../Core/Components/SpriteRenderer.h"
-#include "../../Core/Components/RigidBody.h"
-#include "../../Core/Components/Transform.h"
-#include "../../Core/ECS/Entity.h"
+#include "SpriteRenderer.h"
+#include "RigidBody.h"
+#include "Entity.h"
 #include "../Components/KeyboardMovement.h"
 #include "../Components/PowerupReciever.h"
 #include "../Components/ScoreSystem.h"
-#include "../Components/PlayerHealth.h"
+#include "../Components/HealthSystem/PlayerHealth.h"
 #include "../Components/WeaponSystem/PlayerWeapon.h"
 
 
@@ -39,7 +38,7 @@ class Player : public Entity
 		// RigidBody Values
 		float maxSpeed = 10;
 		float dragForce = 5;
-		float mass = 2;
+		float mass = 3;
 		float bounciness = .2f;
 
 		// Player Movement Values

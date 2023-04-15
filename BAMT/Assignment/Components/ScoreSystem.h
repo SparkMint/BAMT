@@ -1,10 +1,14 @@
 #ifndef ASSIGNMENT_SCORE_SYSTEM
 #define ASSIGNMENT_SCORE_SYSTEM
 
-#include "../../Core/ECS/Component.h"
+#include "Component.h"
+#include "TextRenderer.h"
 
 class ScoreSystem : public Component
 {
+	TextRenderer* scoreText = nullptr;
+	TextRenderer* multiplierText = nullptr;
+
 	float time = 0;
 	float multiplierChangeTime = 10;
 
@@ -17,13 +21,15 @@ class ScoreSystem : public Component
 	const int highScoreMultiplier = 8;
 
 	public:
-		bool doubleMultiplier;
-		void AddScore(int scoreAmount);
 		void Start() override;
 		void Update(float* timeStep) override;
 
+		void AddScore(int scoreAmount);
+
+		bool doubleMultiplier;
 		void LowerScoreMultiplier();
 		void RaiseScoreMultiplier();
 
+		void UpdateMultiplierText();
 };
 #endif
