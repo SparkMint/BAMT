@@ -43,7 +43,9 @@ void Projectile::Update(float* timeStep)
 		if (rb == whoSpawnedMe || rb->entity->tag == entity->tag) continue;
 		if (rb->entity->tag == "Item") continue;
 
-		Vector2 dir = VectorMath::Normalize(*rb->entity->transform->GetPosition() - *entity->transform->GetPosition());
+		Debug::Log("Prev X: " + std::to_string(previousPosition.x) + " Y: " + std::to_string(previousPosition.y));
+		Debug::Log("Curr X: " + std::to_string(entity->transform->GetPosition()->x) + " Y: " + std::to_string(entity->transform->GetPosition()->y));
+		Vector2 dir = VectorMath::Normalize(*entity->transform->GetPosition() - previousPosition);
 
 		// Do stuff.
 		rb->AddForce(dir, projectileKnockback);
@@ -58,5 +60,5 @@ void Projectile::Update(float* timeStep)
 		time = 0;
 		entity->active = false;
 	}
-
+	previousPosition = *entity->transform->GetPosition();
 }

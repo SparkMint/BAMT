@@ -27,9 +27,9 @@ class Player : public Entity
 		ScoreSystem* scoreSystem = nullptr;
 
 		// Transform Values
-		Vector2 initialPosition = { 1, 1 };
+		Vector2 initialPosition = { BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE / 2, BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE / 2 };
 
-		int projectilePoolCount = 10;
+		int projectilePoolCount = 15;
 
 		// Size Values
 		float width = .5f;
@@ -40,9 +40,6 @@ class Player : public Entity
 		float dragForce = 5;
 		float mass = 3;
 		float bounciness = .2f;
-
-		// Player Movement Values
-		float movementSpeed = 1;
 
 		void Start() override;
 };

@@ -15,7 +15,7 @@ void AssignmentGame::Start()
 
 void AssignmentGame::Update(float* timeStep)
 {
-	// If the splash screen is active, check if enough time has passed.
+	// If the splash screen is active, check if enough currentTimeSeconds has passed.
 	if (_splashScreen->active)
 	{
 		// Skip the Splash Screen if the user presses space.

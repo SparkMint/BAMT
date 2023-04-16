@@ -33,9 +33,6 @@ void Player::Start()
 
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();
-	playerMovement->baseMovementSpeed = movementSpeed;
-	playerMovement->currentMovementSpeed = movementSpeed;
-	playerMovement->powerupMovementSpeed = movementSpeed * 2;
 
 	// Set up the Projectile pool
 	entityPool = AddComponent<EntityPooler>();

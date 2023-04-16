@@ -53,7 +53,7 @@ class SpriteRenderer : public Renderer
 		int spriteSheetHeight = 1;
 
 		///<summary>
-		/// How much time must pass before the next frame of animation is shown?
+		/// How much currentTimeSeconds must pass before the next frame of animation is shown?
 		///</summary>
 		float animationSpeedSeconds = 1;
 

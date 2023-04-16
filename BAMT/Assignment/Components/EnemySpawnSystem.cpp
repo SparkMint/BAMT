@@ -7,15 +7,15 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxZombieCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 2;
-		enemy->movementSpeed = 15;
+		enemy->maxHealth = 3;
+		enemy->movementSpeed = 10;
 		enemy->sprite = "enemyPlaceholder.png";
 
-		enemy->width = .4f;
-		enemy->height = .4f;
+		enemy->width = .3f;
+		enemy->height = .3f;
 
 		// RB Stuff
-		enemy->maxSpeed = 40;
+		enemy->maxSpeed = 20;
 		enemy->mass = .6f;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
@@ -29,15 +29,15 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxRangerCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 3;
-		enemy->movementSpeed = 1;
+		enemy->maxHealth = 8;
+		enemy->movementSpeed = 3;
 		enemy->sprite = "enemyPlaceholder.png";
 
 		enemy->width = .5f;
 		enemy->height = .5f;
 
 		// RB Stuff
-		enemy->maxSpeed = 40;
+		enemy->maxSpeed = 20;
 		enemy->mass = .6f;
 		enemy->dragForce = 5;
 		enemy->bounciness = .4f;
@@ -51,15 +51,15 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxTankCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 8;
-		enemy->movementSpeed = 5;
+		enemy->maxHealth = 10;
+		enemy->movementSpeed = 10;
 		enemy->sprite = "enemyPlaceholder.png";
 
 		enemy->width = .8f;
 		enemy->height = .8f;
 
 		// RB Stuff
-		enemy->maxSpeed = 40;
+		enemy->maxSpeed = 20;
 		enemy->mass = 10;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
@@ -102,13 +102,24 @@ void EnemySpawnSystem::AddSpawnPoint(Vector2 newSpawnPoint)
 	spawnPoints.push_back(newSpawnPoint);
 }
 
+void EnemySpawnSystem::DisableAllEnemies()
+{
+	for (auto enemy : enemyPool->GetPoolVector())
+	{
+		enemy->active = false;
+	}
+}
+
 void EnemySpawnSystem::SpawnEnemy() const
 {
+
 	if(spawnPoints.empty())
 	{
 		Debug::LogWarn("EnemySpawnSystem does not have any spawn points specified.");
 		return;
 	}
+	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
+	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
 	Entity* enemyBase = enemyPool->GetRandomAvaliableObject();
 

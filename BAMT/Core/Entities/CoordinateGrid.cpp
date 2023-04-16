@@ -2,6 +2,7 @@
 
 void CoordinateGrid::Start()
 {
+	Debug::Log("Hello.");
 	const auto halfGridSize = gridSize / 2;
 	for (int i = 0; i < width; ++i)
 	{

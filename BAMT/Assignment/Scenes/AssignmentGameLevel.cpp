@@ -12,7 +12,6 @@ void AssignmentGameLevel::Start()
 	collisionTest->GetComponent<Transform>()->SetPosition(-thickness / 2, height / 2);
 	collisionTest->GetComponent<RigidBody>()->width = thickness;
 	collisionTest->GetComponent<RigidBody>()->height = height;
-	collisionTest->GetComponent<RigidBody>()->isKinematic = true;
 	collisionTest->GetComponent<RectRenderer>()->width = thickness;
 	collisionTest->GetComponent<RectRenderer>()->height = height;
 	collisionTest->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
@@ -23,7 +22,6 @@ void AssignmentGameLevel::Start()
 	collisionTest1->GetComponent<Transform>()->SetPosition(width / 2, -thickness / 2);
 	collisionTest1->GetComponent<RigidBody>()->width = width;
 	collisionTest1->GetComponent<RigidBody>()->height = thickness;
-	collisionTest1->GetComponent<RigidBody>()->isKinematic = true;
 	collisionTest1->GetComponent<RectRenderer>()->width = width;
 	collisionTest1->GetComponent<RectRenderer>()->height = thickness;
 	collisionTest1->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
@@ -34,7 +32,6 @@ void AssignmentGameLevel::Start()
 	collisionTest2->GetComponent<Transform>()->SetPosition(width + thickness / 2, height / 2);
 	collisionTest2->GetComponent<RigidBody>()->width = thickness;
 	collisionTest2->GetComponent<RigidBody>()->height = height;
-	collisionTest2->GetComponent<RigidBody>()->isKinematic = true;
 	collisionTest2->GetComponent<RectRenderer>()->width = thickness;
 	collisionTest2->GetComponent<RectRenderer>()->height = height;
 	collisionTest2->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
@@ -51,10 +48,15 @@ void AssignmentGameLevel::Start()
 
 	gameManager = AddEntity<GameManager>();
 
-	gameManager->spawnSystem->AddSpawnPoint({ width / 2, height + thickness / 4 });
-	gameManager->spawnSystem->AddSpawnPoint({width + thickness / 4, height / 2});
-	gameManager->spawnSystem->AddSpawnPoint({width / 2, -thickness / 4});
-	gameManager->spawnSystem->AddSpawnPoint({ -thickness / 4, height / 2 });
+	auto* gridEnt = AddEntity<CoordinateGrid>();
+	gridEnt->renderLayer = -1;
+
+	gameManager->spawnSystem->AddSpawnPoint({ width / 2, height - 1});
+	gameManager->spawnSystem->AddSpawnPoint({width - 1, height / 2});
+	gameManager->spawnSystem->AddSpawnPoint({width / 2, 1});
+	gameManager->spawnSystem->AddSpawnPoint({ 1, height / 2 });
+
+
 }
 
 void AssignmentGameLevel::Update(float* timeStep)

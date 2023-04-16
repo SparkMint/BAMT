@@ -13,8 +13,10 @@
 /// </summary>
 class Projectile : public Component
 {
+	Vector2 previousPosition = VECTOR2_ZERO;
 		const char* projectileTag = "Projectile";
 		float time = 0;
+
 	public:
 		ScoreSystem* scoreSystem = nullptr;
 		RigidBody* rigidBody = nullptr;

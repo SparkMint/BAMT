@@ -6,10 +6,10 @@
 
 class TimeSystem : public Component
 {
-	float time = 0;
 	TextRenderer* timeText = nullptr;
 
 	public:
+		float currentTimeSeconds = 0;
 		float timeLimitSeconds = 45;
 
 		void Start() override;

@@ -41,7 +41,7 @@ namespace Debug
 
 	#pragma region LogExtras
 	/// <summary>
-	/// Returns the current time as a string.
+	/// Returns the current currentTimeSeconds as a string.
 	/// </summary>
 	/// <returns>Format: [YEAR-MONTH-DAY HOUR:MINUTE:SECOND]</returns>
 	std::string GetTime();

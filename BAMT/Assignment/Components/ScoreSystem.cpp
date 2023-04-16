@@ -9,7 +9,7 @@ void ScoreSystem::Start()
 	scoreText->width = scoreText->height = .5f;
 	scoreText->SetFont("Comfortaa.ttf");
 	scoreText->SetText("Score: 0");
-	scoreTextEnt->transform->SetPosition(1, 1);
+	scoreTextEnt->transform->SetPosition(.5f, .5f);
 	scoreTextEnt->renderLayer = 1;
 
 	auto* multiplierTextEnt = entity->scene->AddEntity();
@@ -17,7 +17,7 @@ void ScoreSystem::Start()
 	multiplierText->width = multiplierText->height = .8f;
 	multiplierText->SetFont("Comfortaa-Bold.ttf");
 	multiplierText->SetText("X1");
-	multiplierTextEnt->transform->SetPosition(1.2f, 2);
+	multiplierTextEnt->transform->SetPosition(.7f, 1.5f);
 	multiplierTextEnt->renderLayer = 1;
 }
 
@@ -78,7 +78,6 @@ void ScoreSystem::RaiseScoreMultiplier()
 	time = 0;
 	if (scoreMultiplier == noScoreMultiplier)
 	{
-
 		scoreMultiplier = lowScoreMultiplier;
 	}
 	else if (scoreMultiplier == lowScoreMultiplier)
@@ -89,7 +88,6 @@ void ScoreSystem::RaiseScoreMultiplier()
 	{
 		scoreMultiplier = highScoreMultiplier;
 	}
-
 
 	Debug::Log("Score Multiplier Raised!");
 	UpdateMultiplierText();

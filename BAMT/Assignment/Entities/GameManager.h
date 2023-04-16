@@ -13,11 +13,14 @@ class GameManager : public Entity
 		ScoreSystem* scoreSystem = nullptr;
 		EnemySpawnSystem* spawnSystem = nullptr;
 		TimeSystem* timeSystem = nullptr;
+		TextRenderer* gameOverText = nullptr;
 
 		Player* player = nullptr;
 
 
 		void Start() override;
 		void Update(float* timeStep) override;
+
+		void EndGame();
 };
 #endif
