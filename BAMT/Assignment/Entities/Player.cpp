@@ -9,13 +9,10 @@ void Player::Start()
 
 	for (auto entity : scene->entityList)
 	{
-		if (entity->tag != "ScoreSystem") continue;
-
 		auto* potentialScoreSystem = entity->GetComponent<ScoreSystem>();
 		if (potentialScoreSystem == nullptr) continue;
 
 		scoreSystem = potentialScoreSystem;
-		Debug::Log("Found Score System");
 	}
 	if (scoreSystem == nullptr) Debug::LogWarn("No scoreSystem found on the player! Score will not be counted!", this);
 
@@ -51,8 +48,25 @@ void Player::Start()
 
 	// Pistol Setup
 	weapon = AddComponent<PlayerWeapon>();
-	weapon->weaponData = &pistolData;
 
 	powerupReciever = AddComponent<PowerupReciever>();
 	powerupReciever->scoreSystem = scoreSystem;
+}
+
+void Player::Stop()
+{
+	weapon->entityPool->DisableAllEntities();
+	playerMovement->Stop();
+
+	active = false;
+}
+
+void Player::Reset()
+{
+	transform->SetPosition(&initialPosition);
+	rigidBody->velocity = VECTOR2_ZERO;
+	weapon->weaponData = &weapon->defaultWeapon;
+	playerMovement->Reset();
+
+	active = true;
 }

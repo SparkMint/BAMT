@@ -83,7 +83,7 @@ class Entity
 		/// Tries to get a Component from this Entity.
 		/// </summary>
 		template<class T>
-		T* GetComponent();
+		T* GetComponent();	  
 
 		template<class T>
 		void SetParent(T* entity);

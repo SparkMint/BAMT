@@ -2,18 +2,7 @@
 
 void GameManager::Start()
 {
-	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
-	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
-
-	auto* gameOverEnt = scene->AddEntity();
-	gameOverText = gameOverEnt->AddComponent<TextRenderer>();
-	gameOverText->SetFont("Comfortaa.ttf");
-	gameOverText->SetText("GAME OVER");
-	gameOverText->colour = BAMT_COLOUR_RED;
-	gameOverText->width = gameOverText->height = 2;
-	gameOverEnt->transform->SetPosition(width / 6, height / 2);
-	gameOverEnt->renderLayer = 1;
-	gameOverText->enabled = false;
+	uiManager = AddComponent<UIManager>();
 
 	scoreSystem = AddComponent<ScoreSystem>();
 
@@ -21,8 +10,12 @@ void GameManager::Start()
 
 	timeSystem = AddComponent<TimeSystem>();
 
+
 	player = scene->AddEntity<Player>();
+
 	spawnSystem->SetDefaultTarget(player);
+	scoreSystem->uiManager = uiManager;
+	timeSystem->uiManager = uiManager;
 
 	Entity::Start();
 }
@@ -35,11 +28,29 @@ void GameManager::Update(float* timeStep)
 	{
 		EndGame();
 	}
+
+	if(Input::GetKeyDown(SDLK_r))
+	{
+		EndGame();
+		RestartGame();
+	}
 }
 
 void GameManager::EndGame()
 {
-	player->active = false;
-	spawnSystem->DisableAllEnemies();
-	gameOverText->enabled = true;
+	player->Stop();
+	spawnSystem->Stop();
+	timeSystem->Stop();
+}
+
+void GameManager::RestartGame()
+{
+
+	player->Reset();
+
+	spawnSystem->Reset();
+
+	scoreSystem->Reset();
+
+	timeSystem->Reset();
 }

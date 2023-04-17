@@ -3,6 +3,7 @@
 void PowerupReciever::Start()
 {
 	movementSystem = entity->GetComponent<KeyboardMovement>();
+	weapon = entity->GetComponent<PlayerWeapon>();
 }
 
 void PowerupReciever::Update(float* timeStep)
@@ -17,7 +18,12 @@ void PowerupReciever::Update(float* timeStep)
 	else
 	{
 		scoreSystem->doubleMultiplier = false;
-		scoreSystem->UpdateMultiplierText();
+	}
+
+	if (weaponTime > 0) weaponTime -= *timeStep;
+	else
+	{
+		weapon->weaponData = &weapon->defaultWeapon;
 	}
 }
 
@@ -44,12 +50,22 @@ void PowerupReciever::ApplyPowerupEffects(PowerupType effect)
 			}
 			Debug::Log("Score Multiplier Doubled!");
 			scoreSystem->doubleMultiplier = true;
-			scoreSystem->UpdateMultiplierText();
 			doublePointsTime = powerupEffectTime;
+			break;
+
+		case shotgun:
+			weapon->weaponData = &shotgunData;
+			weaponTime = powerupEffectTime;
+			break;
+
+		case rifle:
+			weapon->weaponData = &rifleData;
+			weaponTime = powerupEffectTime;
 			break;
 
 		default: 
 			Debug::Log("Powerup didn't have a valid type!", this);
 			break;
+
 	}
 }

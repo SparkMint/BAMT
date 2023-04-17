@@ -6,7 +6,7 @@
 #include "SpriteRenderer.h"
 #include "PowerupReciever.h"
 
-enum PowerupType {speed = 0, doublePoints = 1};
+enum PowerupType {speed = 0, doublePoints = 1, shotgun = 2, rifle = 3};
 
 class Powerup : public Component
 {
@@ -16,7 +16,7 @@ class Powerup : public Component
 	float powerupHeight = .5f;
 
 	public:
-		PowerupType type;
+		PowerupType type = speed;
 
 		RigidBody* rigidBody = nullptr;
 		SpriteRenderer* spriteRenderer = nullptr;

@@ -6,14 +6,15 @@ void Enemy::Start()
 
 	for (auto entity : scene->entityList)
 	{
-		if (entity->tag != "ScoreSystem") continue;
-
+		auto* potentialUI = entity->GetComponent<UIManager>();
 		auto* potentialScoreSystem = entity->GetComponent<ScoreSystem>();
-		if (potentialScoreSystem == nullptr) continue;
 
-		scoreSystem = potentialScoreSystem;
+		if (potentialUI != nullptr)	uiManager = potentialUI;
+		if (potentialScoreSystem != nullptr) scoreSystem = potentialScoreSystem;
 	}
-	if (scoreSystem == nullptr) Debug::LogWarn("No scoreSystem found on the player! Score will not be counted!", this);
+
+	if (uiManager == nullptr) Debug::LogWarn("No UI was found in this scene!", this);
+	if (scoreSystem == nullptr) Debug::LogWarn("No ScoreSystem was found in this scene!", this);
 
 	// Transform Setup
 	transform->SetPosition(&initialPosition);
@@ -40,7 +41,6 @@ void Enemy::Start()
 	weapon = AddComponent<EnemyWeapon>();
 
 	health = AddComponent<EnemyHealth>(0);
-	health->scoreSystem = scoreSystem;
 }
 
 void Enemy::Init()
@@ -53,6 +53,7 @@ void Enemy::Init()
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
 	rigidBody->bounciness = bounciness;
+	rigidBody->velocity = VECTOR2_ZERO;
 
 	spriteRenderer->SetSprite(sprite.c_str());
 	spriteRenderer->height = height;
@@ -77,4 +78,17 @@ void Enemy::UpdateTarget(Entity* newTarget)
 
 	movement->target = newTarget;
 	weapon->target = newTarget;
+}
+
+void Enemy::Stop()
+{
+	weapon->entityPool->DisableAllEntities();
+	health->DisablePowerup();
+
+	active = false;
+}
+
+void Enemy::Restart()
+{
+	Init();
 }

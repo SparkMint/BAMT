@@ -20,6 +20,6 @@ class Weapon : public Component
 
 		void Start() override;
 		void Update(float* timeStep) override;
-		void Fire(Entity* projectileToFire, const Vector2& directionToFire);
+		void Fire(Vector2& directionToFire);
 };
 #endif

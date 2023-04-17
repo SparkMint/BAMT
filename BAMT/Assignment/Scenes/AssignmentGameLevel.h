@@ -13,7 +13,7 @@
 class AssignmentGameLevel : public Scene
 {
 	public:
-		GameManager* gameManager = nullptr;
+	inline static GameManager* gameManager = nullptr;
 
 		void Start() override;
 		void Update(float* timeStep) override;

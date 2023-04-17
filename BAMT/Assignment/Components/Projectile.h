@@ -5,6 +5,7 @@
 #include "RigidBody.h"
 #include "SpriteRenderer.h"
 #include "ScoreSystem.h"
+#include "TrailRenderer.h"
 #include "HealthSystem/Health.h"
 
 /// <summary>

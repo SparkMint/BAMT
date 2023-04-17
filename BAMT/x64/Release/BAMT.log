@@ -1,14 +1,12 @@
-﻿  EnemyMovement.cpp
-  EnemySpawnSystem.cpp
+﻿  EnemySpawnSystem.cpp
   EnemyHealth.cpp
   PlayerHealth.cpp
-  KeyboardMovement.cpp
-  MouseAim.cpp
   Powerup.cpp
   PowerupReciever.cpp
   Projectile.cpp
   ScoreSystem.cpp
   TimeSystem.cpp
+  UIManager.cpp
   EnemyWeapon.cpp
   PlayerWeapon.cpp
   Weapon.cpp
@@ -28,35 +26,12 @@ C:\BAMT\BAMT\Assignment\Scenes\SplashScreen.cpp(25): message : see reference to 
           [
               T=SpriteRenderer
           ]
-  Compiling...
   PhysicsTestScene.cpp
-  LineRenderer.cpp
-  RectRenderer.cpp
-C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(20,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(21,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(23,96): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\RectRenderer.cpp(24,96): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  RigidBody.cpp
-  SpriteRenderer.cpp
-C:\BAMT\BAMT\Core\Components\SpriteRenderer.cpp(30,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\SpriteRenderer.cpp(31,43): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\SpriteRenderer.cpp(33,99): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\SpriteRenderer.cpp(34,99): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  TextRenderer.cpp
-C:\BAMT\BAMT\Core\Components\TextRenderer.cpp(52,32): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\TextRenderer.cpp(53,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\TextRenderer.cpp(55,99): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\BAMT\BAMT\Core\Components\TextRenderer.cpp(56,99): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Scene.cpp
-  EngineManager.cpp
-  CoordinateGrid.cpp
-  StaticCollider.cpp
-  Input.cpp
   Main.cpp
 C:\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  4 of 1579 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 1626 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   BAMT.vcxproj -> C:\BAMT\x64\Release\BAMT.exe

@@ -33,14 +33,19 @@ void Powerup::Update(float* timeStep)
 void Powerup::UpdateType(PowerupType typeToUpdateTo)
 {
 	type = typeToUpdateTo;
-	switch (typeToUpdateTo)
+
+	switch (type)
 	{
 		case speed:
 			spriteRenderer->SetSprite("speedItem.png");
-			break;
-
+			return;
 		case doublePoints:
 			spriteRenderer->SetSprite("doublePointsItem.png");
-			break;
+			return;
+		case shotgun:
+			spriteRenderer->SetSprite("shotgunItem.png");
+			return;
+		case rifle:
+			spriteRenderer->SetSprite("rifleItem.png");
 	}
 }

@@ -8,6 +8,8 @@ class PlayerWeapon : public Weapon
 {
 	public:
 		MouseAim* mouseAim = nullptr;
+		WeaponData defaultWeapon = WEAPON_DATA_PISTOL;
+
 		void Start() override;
 		void Update(float* timeStep) override;
 };

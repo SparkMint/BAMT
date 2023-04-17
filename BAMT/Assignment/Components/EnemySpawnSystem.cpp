@@ -7,7 +7,7 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxZombieCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 3;
+		enemy->maxHealth = 2;
 		enemy->movementSpeed = 10;
 		enemy->sprite = "enemyPlaceholder.png";
 
@@ -15,7 +15,7 @@ void EnemySpawnSystem::Start()
 		enemy->height = .3f;
 
 		// RB Stuff
-		enemy->maxSpeed = 20;
+		enemy->maxSpeed = 10;
 		enemy->mass = .6f;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
@@ -29,7 +29,7 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxRangerCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 8;
+		enemy->maxHealth = 4;
 		enemy->movementSpeed = 3;
 		enemy->sprite = "enemyPlaceholder.png";
 
@@ -37,10 +37,10 @@ void EnemySpawnSystem::Start()
 		enemy->height = .5f;
 
 		// RB Stuff
-		enemy->maxSpeed = 20;
+		enemy->maxSpeed = 10;
 		enemy->mass = .6f;
 		enemy->dragForce = 5;
-		enemy->bounciness = .4f;
+		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_RANGER;
 
 		enemy->Init();
@@ -51,7 +51,7 @@ void EnemySpawnSystem::Start()
 	for (int i = 0; i < maxTankCount; ++i)
 	{
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 10;
+		enemy->maxHealth = 7;
 		enemy->movementSpeed = 10;
 		enemy->sprite = "enemyPlaceholder.png";
 
@@ -59,7 +59,7 @@ void EnemySpawnSystem::Start()
 		enemy->height = .8f;
 
 		// RB Stuff
-		enemy->maxSpeed = 20;
+		enemy->maxSpeed = 10;
 		enemy->mass = 10;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
@@ -73,6 +73,7 @@ void EnemySpawnSystem::Start()
 
 void EnemySpawnSystem::Update(float* timeStep)
 {
+
 	if (time < spawnSpeedSeconds)
 	{
 		time += *timeStep;
@@ -84,7 +85,7 @@ void EnemySpawnSystem::Update(float* timeStep)
 	}
 }
 
-void EnemySpawnSystem::SetDefaultTarget(Entity* newTarget)
+void EnemySpawnSystem::SetDefaultTarget(Entity* newTarget) const
 {
 	if (enemyPool == nullptr) return;
 
@@ -102,24 +103,35 @@ void EnemySpawnSystem::AddSpawnPoint(Vector2 newSpawnPoint)
 	spawnPoints.push_back(newSpawnPoint);
 }
 
-void EnemySpawnSystem::DisableAllEnemies()
+void EnemySpawnSystem::Stop()
 {
-	for (auto enemy : enemyPool->GetPoolVector())
+	for (auto enemyEnt : enemyPool->GetPoolVector())
 	{
-		enemy->active = false;
+		const auto enemy = dynamic_cast<Enemy*>(enemyEnt);
+		if (enemy == nullptr) return;
+		enemy->Stop();
 	}
+	enabled = false;
+}
+
+void EnemySpawnSystem::Reset()
+{
+	for (auto enemyEnt : enemyPool->GetPoolVector())
+	{
+		const auto enemy = dynamic_cast<Enemy*>(enemyEnt);
+		if (enemy == nullptr) return;
+		enemy->Restart();
+	}
+	enabled = true;
 }
 
 void EnemySpawnSystem::SpawnEnemy() const
 {
-
 	if(spawnPoints.empty())
 	{
 		Debug::LogWarn("EnemySpawnSystem does not have any spawn points specified.");
 		return;
 	}
-	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
-	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
 	Entity* enemyBase = enemyPool->GetRandomAvaliableObject();
 
@@ -129,6 +141,5 @@ void EnemySpawnSystem::SpawnEnemy() const
 
 	const int spawnPoint = rand() % spawnPoints.size();
 	enemy->transform->SetPosition(&spawnPoints[spawnPoint]);
-
 	enemy->active = true;
 }

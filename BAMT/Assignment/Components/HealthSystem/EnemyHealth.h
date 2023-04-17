@@ -3,16 +3,17 @@
 
 #include "Health.h"
 #include "../Powerup.h"
+#include "../../Entities/Enemy.h"
 
 class EnemyHealth : public Health
 {
 	public:
 		Entity* powerup = nullptr;
-		ScoreSystem* scoreSystem = nullptr;
 
 		explicit EnemyHealth(int health) : Health(health){}
 
 		void OnDead() override;
 		void Start() override;
+		void DisablePowerup();
 };
 #endif

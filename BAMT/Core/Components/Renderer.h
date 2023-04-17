@@ -6,8 +6,6 @@
 #include "Transform.h"
 #include "../Misc/Colour.h"
 
-class Transform;
-
 class Renderer : public Component
 {
 	protected:

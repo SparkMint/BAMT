@@ -45,6 +45,8 @@
     <ClCompile Include="Assignment\Components\EnemySpawnSystem.cpp" />
     <ClCompile Include="Assignment\Entities\GameManager.cpp" />
     <ClCompile Include="Assignment\Components\TimeSystem.cpp" />
+    <ClCompile Include="Core\Components\TrailRenderer.cpp" />
+    <ClCompile Include="Assignment\Components\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -97,6 +99,8 @@
     <ClInclude Include="Assignment\Entities\GameManager.h" />
     <ClInclude Include="Assignment\Components\EnemySpawnSystem.h" />
     <ClInclude Include="Assignment\Components\TimeSystem.h" />
+    <ClInclude Include="Core\Components\TrailRenderer.h" />
+    <ClInclude Include="Assignment\Components\UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

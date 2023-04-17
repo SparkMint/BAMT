@@ -34,3 +34,11 @@ std::vector<Entity*> EntityPooler::GetPoolVector()
 {
 	return entityPool;
 }
+
+void EntityPooler::DisableAllEntities() const
+{
+	for (const auto ent : entityPool)
+	{
+		ent->active = false;
+	}
+}

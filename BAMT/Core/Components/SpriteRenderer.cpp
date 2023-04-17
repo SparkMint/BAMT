@@ -78,14 +78,7 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	}
 	else
 	{
-		_texture = entity->scene->engine->assetWarehouse->GetTexture(sprite);
-
-		if(_texture == nullptr)
-		{
-			Debug::LogError("SpriteRenderer could not load sprite. Setting it to default!", this);
-			_texture = entity->scene->engine->assetWarehouse->GetTexture("default.png");
-			enabled = false;
-		}
+		SetSprite(sprite);
 	}
 }
 
@@ -96,4 +89,13 @@ void SpriteRenderer::SetSprite(const char* targetSprite)
 	// Reset the animation to the beginning.
 	w = 1;
 	h = 1;
+
+	_texture = entity->scene->engine->assetWarehouse->GetTexture(sprite);
+
+	if (_texture == nullptr)
+	{
+		Debug::LogError("SpriteRenderer could not load sprite. Setting it to default!", this);
+		_texture = entity->scene->engine->assetWarehouse->GetTexture("default.png");
+		enabled = false;
+	}
 }

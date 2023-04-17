@@ -5,8 +5,11 @@
 #include "SpriteRenderer.h"
 #include "RigidBody.h"
 #include "../Components/WeaponSystem/EnemyWeapon.h"
-#include "../Components/EnemyMovement.h"
 #include "../Components/HealthSystem/EnemyHealth.h"
+#include "../Components/EnemyMovement.h"
+#include "../Components/UIManager.h"
+
+class EnemyHealth;
 
 class Enemy : public Entity
 {
@@ -29,6 +32,7 @@ class Enemy : public Entity
 		EnemyWeapon* weapon = nullptr;
 		WeaponData weaponData = WEAPON_DATA_NONE;
 
+		UIManager* uiManager = nullptr;
 		ScoreSystem* scoreSystem = nullptr;
 
 		Vector2 initialPosition = { 5, 5 };
@@ -50,5 +54,8 @@ class Enemy : public Entity
 
 		void Init();
 		void UpdateTarget(Entity* newTarget);
+
+		void Stop();
+		void Restart();
 };
 #endif

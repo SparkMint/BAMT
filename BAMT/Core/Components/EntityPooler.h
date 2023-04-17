@@ -14,5 +14,6 @@ class EntityPooler : public Component
 		Entity* GetAvaliableObject();
 		Entity* GetRandomAvaliableObject(int attempts = 5);
 		std::vector<Entity*> GetPoolVector();
+		void DisableAllEntities() const;
 };
 #endif

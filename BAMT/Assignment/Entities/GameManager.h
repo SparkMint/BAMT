@@ -6,21 +6,23 @@
 #include "../Components/ScoreSystem.h"
 #include "../Components/TimeSystem.h"
 #include "../Components/EnemySpawnSystem.h"
+#include "../Components/UIManager.h"
 
 class GameManager : public Entity
 {
 	public:
+		UIManager* uiManager = nullptr;
+
 		ScoreSystem* scoreSystem = nullptr;
 		EnemySpawnSystem* spawnSystem = nullptr;
 		TimeSystem* timeSystem = nullptr;
-		TextRenderer* gameOverText = nullptr;
 
 		Player* player = nullptr;
-
 
 		void Start() override;
 		void Update(float* timeStep) override;
 
 		void EndGame();
+		void RestartGame();
 };
 #endif

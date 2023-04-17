@@ -14,4 +14,13 @@ namespace Math
         }
         return value;
     }
+
+    float RandomFloat(float min, float max)
+    {
+        float range = max - min;
+
+        float random = (float)rand() / (float)RAND_MAX;
+
+        return min + random * range;
+    }
 }

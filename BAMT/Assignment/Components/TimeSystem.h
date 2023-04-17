@@ -2,18 +2,20 @@
 #define ASSIGNMENT_TIME_SYSTEM
 
 #include "Component.h"
-#include "TextRenderer.h"
+#include "UIManager.h"
 
 class TimeSystem : public Component
 {
-	TextRenderer* timeText = nullptr;
-
 	public:
+		UIManager* uiManager = nullptr;
+
 		float currentTimeSeconds = 0;
 		float timeLimitSeconds = 45;
 
 		void Start() override;
 		void Update(float* timeStep) override;
-		void DisplayTime();
+
+		void Stop();
+		void Reset();
 };
 #endif

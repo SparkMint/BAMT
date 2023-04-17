@@ -55,8 +55,6 @@ void AssignmentGameLevel::Start()
 	gameManager->spawnSystem->AddSpawnPoint({width - 1, height / 2});
 	gameManager->spawnSystem->AddSpawnPoint({width / 2, 1});
 	gameManager->spawnSystem->AddSpawnPoint({ 1, height / 2 });
-
-
 }
 
 void AssignmentGameLevel::Update(float* timeStep)

@@ -3,17 +3,12 @@
 
 #include "Component.h"
 #include "TextRenderer.h"
+#include "UIManager.h"
 
 class ScoreSystem : public Component
 {
-	TextRenderer* scoreText = nullptr;
-	TextRenderer* multiplierText = nullptr;
-
 	float time = 0;
-	float multiplierChangeTime = 10;
-
-	int score = 0;
-	int scoreMultiplier = 1;
+	float multiplierChangeTime = 7;
 
 	const int noScoreMultiplier = 1;
 	const int lowScoreMultiplier = 2;
@@ -21,15 +16,23 @@ class ScoreSystem : public Component
 	const int highScoreMultiplier = 8;
 
 	public:
+		UIManager* uiManager = nullptr;
+
+		int score = 0;
+		int scoreMultiplier = 1;
+
+		bool doubleMultiplier;
+
 		void Start() override;
 		void Update(float* timeStep) override;
 
 		void AddScore(int scoreAmount);
 
-		bool doubleMultiplier;
+
 		void LowerScoreMultiplier();
 		void RaiseScoreMultiplier();
 
 		void UpdateMultiplierText();
+		void Reset();
 };
 #endif

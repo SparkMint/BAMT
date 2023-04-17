@@ -13,21 +13,22 @@ class EnemySpawnSystem : public Component
 	EntityPooler* enemyPool = nullptr;
 
 	int maxZombieCount = 20;
-	int maxRangerCount = 3;
-	int maxTankCount = 2;
+	int maxRangerCount = 5;
+	int maxTankCount = 3;
 
 	public:
 		std::vector<Vector2> spawnPoints;
 
-		float spawnSpeedSeconds = 0.6f;
+		float spawnSpeedSeconds = 0.5f;
 
 		void Start() override;
 		void Update(float* timeStep) override;
 
 		void SpawnEnemy() const;
-		void SetDefaultTarget(Entity* newTarget);
+		void SetDefaultTarget(Entity* newTarget) const;
 		void AddSpawnPoint(Vector2 newSpawnPoint);
 
-		void DisableAllEnemies();
+		void Stop();
+		void Reset();
 };
 #endif

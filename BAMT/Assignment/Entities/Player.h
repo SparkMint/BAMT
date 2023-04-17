@@ -22,7 +22,6 @@ class Player : public Entity
 		EntityPooler* entityPool = nullptr;
 		PlayerWeapon* weapon = nullptr;
 		PlayerHealth* playerHealth = nullptr;
-		WeaponData pistolData = WEAPON_DATA_RIFLE;
 		PowerupReciever* powerupReciever = nullptr;
 		ScoreSystem* scoreSystem = nullptr;
 
@@ -42,5 +41,8 @@ class Player : public Entity
 		float bounciness = .2f;
 
 		void Start() override;
+
+		void Stop();
+		void Reset();
 };
 #endif

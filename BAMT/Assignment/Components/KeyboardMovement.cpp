@@ -8,15 +8,37 @@ void KeyboardMovement::Start()
 		 Debug::LogError("KeyboardMovement cannot detect a RigidBody! Adding one now...", this);
 		 _rigidBody = entity->AddComponent<RigidBody>();
 	 }
+
+	 trailRenderer = entity->AddComponent<TrailRenderer>();
+	 trailRenderer->colour = BAMT_COLOUR_CYAN;
+	 trailRenderer->InitializeTrail(20, .25f);
+
+	 trailRenderer->ShowTrail(false);
 }
 
 void KeyboardMovement::Update(float* timeStep)
 {
-	if (Input::GetKeyHold(SDLK_w)) _rigidBody->AddForce(VECTOR2_UP, currentMovementSpeed);
+	float speed = currentMovementSpeed * 10;
 
-	if (Input::GetKeyHold(SDLK_s)) _rigidBody->AddForce(VECTOR2_DOWN, currentMovementSpeed);
+	if (Input::GetKeyHold(SDLK_w)) _rigidBody->AddForce(VECTOR2_UP, speed * *timeStep);
 
-	if (Input::GetKeyHold(SDLK_a)) _rigidBody->AddForce(VECTOR2_LEFT, currentMovementSpeed);
+	if (Input::GetKeyHold(SDLK_s)) _rigidBody->AddForce(VECTOR2_DOWN, speed * *timeStep);
 
-	if (Input::GetKeyHold(SDLK_d)) _rigidBody->AddForce(VECTOR2_RIGHT, currentMovementSpeed);
+	if (Input::GetKeyHold(SDLK_a)) _rigidBody->AddForce(VECTOR2_LEFT, speed * *timeStep);
+
+	if (Input::GetKeyHold(SDLK_d)) _rigidBody->AddForce(VECTOR2_RIGHT, speed * *timeStep);
+
+	trailRenderer->ShowTrail(currentMovementSpeed == powerupMovementSpeed);
+}
+
+void KeyboardMovement::Stop()
+{
+	trailRenderer->ShowTrail(false);
+	currentMovementSpeed = baseMovementSpeed;
+}
+
+void KeyboardMovement::Reset()
+{
+	trailRenderer->ShowTrail(false);
+	currentMovementSpeed = baseMovementSpeed;
 }
