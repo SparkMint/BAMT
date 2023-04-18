@@ -42,7 +42,9 @@ void Player::Start()
 	playerHealth->scoreSystem = scoreSystem;
 
 	// Pistol Setup
-	//weapon = AddComponent<PlayerWeapon>();
+	weapon = AddComponent<PlayerWeapon>();
+	weapon->maxProjectiles = 10;
+	weapon->Init();
 
 	powerupReciever = AddComponent<PowerupReciever>();
 	powerupReciever->scoreSystem = scoreSystem;

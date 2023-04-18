@@ -3,13 +3,13 @@
 #include <string>
 
 //							 NAME      | TYPE      | RATE   |     SPRITE PATH    | SIZE | SPEED | LIFE | KNOCK | SPREAD | DAMAGE
-#define WEAPON_DATA_NONE    {"None"	   , basic     , 9999   , ""                 , 0    , 0     , 0    , 0     , 0      , 0}
-#define WEAPON_DATA_PISTOL	{"Pistol"  , basic     , .3f    , "playerProj.png"   , .1f  , 20    , 2    , 10    , .02f   , 2}
-#define WEAPON_DATA_RIFLE   {"Rifle"   , basic     , .08f   , "playerProj.png"   , .1f  , 15    , 2    , 5     , .05f   , 1}
+#define WEAPON_DATA_NONE    {"None"	   , basic     , 9999   , "void.png"         , 0    , 0     , 0    , 0     , 0      , 0}
+#define WEAPON_DATA_PISTOL	{"Pistol"  , basic     , .2f    , "playerProj.png"   , .1f  , 10    , 2    , 10    , .02f   , 1}
+#define WEAPON_DATA_RIFLE   {"Rifle"   , basic     , .06f   , "playerProj.png"   , .1f  , 15    , 2    , 5     , .05f   , 1}
 #define WEAPON_DATA_SHOTGUN {"Shotgun" , multiShot , .3f    , "playerProj.png"   , .1f  , 10    , .5f  , 10    , .3f    , 1}
 #define WEAPON_DATA_RANGER  {"Ranger"  , basic     , 2      , "playerProj.png"   , .2f  , 3     , 5    , 3     , 0      , 1}
 #define WEAPON_DATA_ZOMBIE  {"BRAINS..", basic     , 1      , "void.png"         , .1f  , 5     , .2f  , 0     , 0      , 1}
-#define WEAPON_DATA_TANK    {"Tank"    , multiShot , 3      , "playerProj.png"   , .3f  , 2     , 5    , 10    , .5f    , 5}
+#define WEAPON_DATA_TANK    {"Tank"    , multiShot , 3      , "playerProj.png"   , .3f  , 2     , 3    , 10    , .5f    , 5}
 
 
 enum WeaponType{basic = 0, explosive = 1, multiShot = 2};

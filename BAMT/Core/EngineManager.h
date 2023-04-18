@@ -2,20 +2,19 @@
 #define BAMT_ENGINE_MANAGER
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 
-#include "EngineSettings.h"
-#include "SDL_ttf.h"
-#include "SDL_image.h"
-#include "ECS/Entity.h"
-#include "SDL.h"
-#include "Misc/Debug.h"
-#include "Misc/TickTimer.h"
-#include "ECS/Scene.h"
-#include "Misc/Input.h"
+#include <algorithm>
+#include <vector>
 #include <experimental/filesystem>
 
-#include <vector>
-#include <algorithm>
-
+#include "Debug.h"
+#include "EngineSettings.h"
+#include "Entity.h"
+#include "Input.h"
+#include "Scene.h"
+#include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
+#include "TickTimer.h"
 #include "Misc/AssetWarehouse.h"
 
 class EngineManager
@@ -23,13 +22,13 @@ class EngineManager
 	SDL_Window* _window = nullptr;
 	SDL_Renderer* _renderer = nullptr;
 	TickTimer* _tickTimer = nullptr;
-	std::experimental::filesystem::path textureFileRootDir = "Assets";
+	std::experimental::filesystem::path assetFileRootFolder = "Assets";
 
 	std::vector<Scene*> _sceneList;
 
 	std::string _windowTitle;
 	bool _isActive = false;
-	bool fullScreen = false;
+	bool _fullScreen = false;
 	int _deltaTime = 16;
 	float _timeStep = 0;
 
@@ -60,6 +59,11 @@ class EngineManager
 		void DoInputLogic();
 
 		/// <summary>
+		/// Updates the window title to contain important info.
+		/// </summary>
+		void SetWindowTitle() const;
+
+		/// <summary>
 		/// Updates all active Scenes.
 		/// </summary>
 		void Update(float* timeStep) const;
@@ -73,8 +77,6 @@ class EngineManager
 		/// Stops the Engine.
 		/// </summary>
 		void Stop();
-
-		void SetWindowTitle() const;
 
 		/// SCENE FACTORY DECLARATION
 		

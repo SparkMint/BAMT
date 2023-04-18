@@ -2,29 +2,9 @@
 
 #include "BamtMath.h"
 
-Weapon::Weapon()
-{
-
-}
-
-Weapon::Weapon(int projectiles)
-{
-	maxProjectiles = projectiles;
-}
-
-Weapon::~Weapon()
-{
-}
-
 void Weapon::Start()
 {
 	entityPool = entity->AddComponent<EntityPooler>();
-	for (int i = 0; i < maxProjectiles; ++i)
-	{
-		auto* projectile = entity->scene->AddEntity();
-		projectile->AddComponent<Projectile>();
-		entityPool->AddEntityToPool(projectile);
-	}
 	
 	WeaponData defaultData = WEAPON_DATA_PISTOL;
 	weaponData = &defaultData;
@@ -38,6 +18,16 @@ void Weapon::Update(float* timeStep)
 		canFire = false;
 	}
 	else canFire = true;
+}
+
+void Weapon::Init()
+{
+	for (int i = 0; i < maxProjectiles; ++i)
+	{
+		auto* projectile = entity->scene->AddEntity();
+		projectile->AddComponent<Projectile>();
+		entityPool->AddEntityToPool(projectile);
+	}
 }
 
 void Weapon::Fire(Vector2& directionToFire)

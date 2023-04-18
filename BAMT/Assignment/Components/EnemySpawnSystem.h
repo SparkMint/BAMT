@@ -13,8 +13,8 @@ class EnemySpawnSystem : public Component
 	EntityPooler* enemyPool = nullptr;
 
 	int maxZombieCount = 20;
-	int maxRangerCount = 5;
-	int maxTankCount = 3;
+	int maxRangerCount = 10;
+	int maxTankCount = 5;
 
 	public:
 		std::vector<Vector2> spawnPoints;

@@ -11,7 +11,7 @@ class Component
 {
 	public:
 		Component();
-		~Component();
+		virtual ~Component();
 		/// <summary>
 		/// The entity we are attached to.
 		/// </summary>

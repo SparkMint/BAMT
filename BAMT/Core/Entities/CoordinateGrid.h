@@ -7,8 +7,8 @@
 
 class CoordinateGrid : public Entity
 {
-	int width = 32;
-	int height = 18;
+	int width = 25;
+	int height = 20;
 
 	float gridSize = 1;
 

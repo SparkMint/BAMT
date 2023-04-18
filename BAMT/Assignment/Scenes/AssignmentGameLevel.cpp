@@ -51,10 +51,10 @@ void AssignmentGameLevel::Start()
 	auto* gridEnt = AddEntity<CoordinateGrid>();
 	gridEnt->renderLayer = -1;
 
-	gameManager->spawnSystem->AddSpawnPoint({ width / 2, height - 1});
-	gameManager->spawnSystem->AddSpawnPoint({width - 1, height / 2});
-	gameManager->spawnSystem->AddSpawnPoint({width / 2, 1});
-	gameManager->spawnSystem->AddSpawnPoint({ 1, height / 2 });
+	gameManager->spawnSystem->AddSpawnPoint({ width / 2, height});
+	gameManager->spawnSystem->AddSpawnPoint({width, height / 2});
+	gameManager->spawnSystem->AddSpawnPoint({width / 2, 0});
+	gameManager->spawnSystem->AddSpawnPoint({ 0, height / 2 });
 
 	auto* backgroundEnt = AddEntity();
 	backgroundEnt->renderLayer = -2;

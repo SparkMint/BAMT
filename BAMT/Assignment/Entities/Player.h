@@ -32,8 +32,6 @@ class Player : public Entity
 		Animator* animator = nullptr;
 		PlayerAnimationSystem* animationSystem = nullptr;
 
-		int projectilePoolCount = 15;
-
 		// Size Values
 		float width = .18f * 4;
 		float height = .24f * 4;

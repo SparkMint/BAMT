@@ -22,8 +22,8 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	TTF_Init();
 	IMG_Init(IMG_INIT_PNG);
 
-	const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
-	fullScreen = fullscreen;
+	const SDL_WindowFlags windowFlag = _fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
+	_fullScreen = fullscreen;
 	_windowTitle = windowName;
 
 	// Create an instance of a window.
@@ -31,7 +31,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 		windowName,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		windowWidth, windowHeight,
-		SDL_WINDOW_RESIZABLE);
+		windowFlag);
 
 	// Check if the window was successfully created.
 	if (_window)
@@ -74,7 +74,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Debug::Log("------------------------");
 	// Create a command thread.
 	assetWarehouse = new AssetWarehouse();
-	assetWarehouse->FindAssets(textureFileRootDir, assetWarehouse->png_files);
+	assetWarehouse->FindAssets(assetFileRootFolder, assetWarehouse->png_files);
 
 	Debug::Log("Loading Textures...");
 	assetWarehouse->LoadTextures(_renderer);
@@ -140,8 +140,8 @@ void EngineManager::DoInputLogic()
 	// Fullscreen Toggle
 	if(Input::GetKeyDown(SDLK_F11))
 	{
-		fullScreen = !fullScreen;
-		const SDL_WindowFlags windowFlag = fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
+		_fullScreen = !_fullScreen;
+		const SDL_WindowFlags windowFlag = _fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN;
 		SDL_SetWindowFullscreen(_window, windowFlag);
 	}
 	// Toggle Logs

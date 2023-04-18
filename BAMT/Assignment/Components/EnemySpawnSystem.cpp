@@ -26,6 +26,9 @@ void EnemySpawnSystem::Start()
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_ZOMBIE;
 
+		enemy->weapon->maxProjectiles = 1;
+		enemy->weapon->Init();
+
 		enemy->animationSystem->walkLeftAnim = walkLeft;
 		enemy->animationSystem->walkRightAnim = walkRight;
 
@@ -56,6 +59,9 @@ void EnemySpawnSystem::Start()
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_RANGER;
 
+		enemy->weapon->maxProjectiles = 3;
+		enemy->weapon->Init();
+
 		enemy->animationSystem->walkLeftAnim = walkLeft;
 		enemy->animationSystem->walkRightAnim = walkRight;
 
@@ -85,7 +91,9 @@ void EnemySpawnSystem::Start()
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_TANK;
-		enemy->projectilePoolCount = 8;
+
+		enemy->weapon->maxProjectiles = 3;
+		enemy->weapon->Init();
 
 		enemy->animationSystem->walkLeftAnim = walkLeft;
 		enemy->animationSystem->walkRightAnim = walkRight;

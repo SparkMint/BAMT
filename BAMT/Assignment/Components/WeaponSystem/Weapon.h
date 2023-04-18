@@ -14,9 +14,6 @@ class Weapon : public Component
 		bool canFire = false;
 
 	public:
-		Weapon();
-		Weapon(int projectiles);
-		~Weapon();
 
 		WeaponData* weaponData = nullptr;
 
@@ -25,6 +22,13 @@ class Weapon : public Component
 
 		void Start() override;
 		void Update(float* timeStep) override;
+
+
+		/// <summary>
+		/// Creates projectiles for the entityPool to hold.
+		/// </summary>
+		void Init();
+
 		void Fire(Vector2& directionToFire);
 };
 #endif
