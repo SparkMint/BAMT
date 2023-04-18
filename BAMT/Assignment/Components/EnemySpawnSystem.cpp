@@ -6,20 +6,28 @@ void EnemySpawnSystem::Start()
 
 	for (int i = 0; i < maxZombieCount; ++i)
 	{
+		Animation* walkRight = new Animation("zombieWalkRight.png", 4, 1, .1f);
+		Animation* walkLeft = new Animation("zombieWalkLeft.png", 4, 1, .1f);
+
 		auto* enemy = entity->scene->AddEntity<Enemy>();
 		enemy->maxHealth = 2;
-		enemy->movementSpeed = 10;
-		enemy->sprite = "enemyPlaceholder.png";
+		enemy->movementSpeed = 35;
 
-		enemy->width = .3f;
-		enemy->height = .3f;
+		enemy->width = .18f * 4;
+		enemy->height = .24f * 4;
+
+		enemy->colliderWidth = .18f * 3;
+		enemy->colliderHeight = .18f * 3;
 
 		// RB Stuff
 		enemy->maxSpeed = 10;
-		enemy->mass = .6f;
+		enemy->mass = 2;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_ZOMBIE;
+
+		enemy->animationSystem->walkLeftAnim = walkLeft;
+		enemy->animationSystem->walkRightAnim = walkRight;
 
 		enemy->Init();
 		enemyPool->AddEntityToPool(enemy);
@@ -28,20 +36,28 @@ void EnemySpawnSystem::Start()
 
 	for (int i = 0; i < maxRangerCount; ++i)
 	{
+		Animation* walkRight = new Animation("rangerWalkRight.png", 4, 1, .33f);
+		Animation* walkLeft = new Animation("rangerWalkLeft.png", 4, 1, .33f);
+
 		auto* enemy = entity->scene->AddEntity<Enemy>();
 		enemy->maxHealth = 4;
-		enemy->movementSpeed = 3;
-		enemy->sprite = "enemyPlaceholder.png";
+		enemy->movementSpeed = 5;
 
-		enemy->width = .5f;
-		enemy->height = .5f;
+		enemy->width = .25f * 4;
+		enemy->height = .33f * 4;
+
+		enemy->colliderWidth = .25f * 3;
+		enemy->colliderHeight = .33f * 3;
 
 		// RB Stuff
 		enemy->maxSpeed = 10;
-		enemy->mass = .6f;
+		enemy->mass = 1;
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_RANGER;
+
+		enemy->animationSystem->walkLeftAnim = walkLeft;
+		enemy->animationSystem->walkRightAnim = walkRight;
 
 		enemy->Init();
 		enemyPool->AddEntityToPool(enemy);
@@ -50,13 +66,18 @@ void EnemySpawnSystem::Start()
 
 	for (int i = 0; i < maxTankCount; ++i)
 	{
+		Animation* walkRight = new Animation("tankWalkRight.png", 4, 1, .33f);
+		Animation* walkLeft = new Animation("tankWalkLeft.png", 4, 1, .33f);
+
 		auto* enemy = entity->scene->AddEntity<Enemy>();
 		enemy->maxHealth = 7;
 		enemy->movementSpeed = 10;
-		enemy->sprite = "enemyPlaceholder.png";
 
-		enemy->width = .8f;
-		enemy->height = .8f;
+		enemy->width = .30f * 4;
+		enemy->height = .42f * 4;
+
+		enemy->colliderWidth = .30f * 3;
+		enemy->colliderHeight = .42f * 3;
 
 		// RB Stuff
 		enemy->maxSpeed = 10;
@@ -64,6 +85,10 @@ void EnemySpawnSystem::Start()
 		enemy->dragForce = 5;
 		enemy->bounciness = .2f;
 		enemy->weaponData = WEAPON_DATA_TANK;
+		enemy->projectilePoolCount = 8;
+
+		enemy->animationSystem->walkLeftAnim = walkLeft;
+		enemy->animationSystem->walkRightAnim = walkRight;
 
 		enemy->Init();
 		enemyPool->AddEntityToPool(enemy);

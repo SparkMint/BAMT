@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assignment\Components\EnemyAnimationSystem.cpp" />
     <ClCompile Include="Assignment\Components\EnemySpawnSystem.cpp" />
     <ClCompile Include="Assignment\Components\HealthSystem\EnemyHealth.cpp" />
     <ClCompile Include="Assignment\Components\HealthSystem\Health.cpp" />
@@ -186,6 +187,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment\Components\EnemyAnimationSystem.h" />
     <ClInclude Include="Assignment\Components\EnemySpawnSystem.h" />
     <ClInclude Include="Assignment\Components\HealthSystem\EnemyHealth.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />

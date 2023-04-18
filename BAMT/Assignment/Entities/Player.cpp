@@ -3,6 +3,7 @@
 void Player::Start()
 {
 	tag = playerTag;
+	renderLayer = 2;
 
 	// Transform Setup
 	transform->SetPosition(&initialPosition);
@@ -18,8 +19,8 @@ void Player::Start()
 
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
-	rigidBody->width = width;
-	rigidBody->height = height;
+	rigidBody->width = colliderWidth;
+	rigidBody->height = colliderHeight;
 	rigidBody->mass = mass;
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;

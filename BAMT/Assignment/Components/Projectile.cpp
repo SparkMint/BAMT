@@ -4,6 +4,7 @@ void Projectile::Start()
 {
 	// Tell this object its tag is now a projectile.
 	entity->tag = projectileTag;
+	entity->renderLayer = 1;
 
 	// Look for a RigidBody.
 	rigidBody = entity->GetComponent<RigidBody>();

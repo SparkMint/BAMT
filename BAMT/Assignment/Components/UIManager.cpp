@@ -8,7 +8,7 @@ void UIManager::Start()
 	auto* gameOverEnt = entity->scene->AddEntity();
 	gameOverText = gameOverEnt->AddComponent<TextRenderer>();
 	gameOverText->SetFont("Comfortaa.ttf");
-	gameOverText->SetText("GAME OVER");
+	gameOverText->SetText("TIME OVER");
 	gameOverText->colour = BAMT_COLOUR_RED;
 	gameOverText->width = gameOverText->height = 2;
 	gameOverEnt->transform->SetPosition(width / 6, height / 2);
@@ -21,7 +21,7 @@ void UIManager::Start()
 	weaponText->colour = BAMT_COLOUR_WHITE;
 	weaponText->width = weaponText->height = .5f;
 	weaponTextEnt->transform->SetPosition(15, .5f);
-	weaponTextEnt->renderLayer = 1;
+	weaponTextEnt->renderLayer = 5;
 
 
 	auto* scoreTextEnt = entity->scene->AddEntity();
@@ -30,7 +30,7 @@ void UIManager::Start()
 	scoreText->SetFont("Comfortaa.ttf");
 	scoreText->SetText("Score: 0");
 	scoreTextEnt->transform->SetPosition(.5f, .5f);
-	scoreTextEnt->renderLayer = 1;
+	scoreTextEnt->renderLayer = 5;
 
 	auto* multiplierTextEnt = entity->scene->AddEntity();
 	multiplierText = multiplierTextEnt->AddComponent<TextRenderer>();
@@ -38,7 +38,7 @@ void UIManager::Start()
 	multiplierText->SetFont("Comfortaa-Bold.ttf");
 	multiplierText->SetText("X1");
 	multiplierTextEnt->transform->SetPosition(.7f, 1.5f);
-	multiplierTextEnt->renderLayer = 1;
+	multiplierTextEnt->renderLayer = 5;
 
 	auto* doubleMultiplierEnt = entity->scene->AddEntity();
 	multiplierPowerupText = doubleMultiplierEnt->AddComponent<TextRenderer>();
@@ -47,7 +47,7 @@ void UIManager::Start()
 	multiplierPowerupText->SetText("DOUBLE MULTIPLIER!");
 	multiplierPowerupText->colour = BAMT_COLOUR_YELLOW;
 	doubleMultiplierEnt->transform->SetPosition(.7f, 2.5f);
-	doubleMultiplierEnt->renderLayer = 1;
+	doubleMultiplierEnt->renderLayer = 5;
 
 	auto* timeTextEnt = entity->scene->AddEntity();
 	timeText = timeTextEnt->AddComponent<TextRenderer>();
@@ -55,7 +55,7 @@ void UIManager::Start()
 	timeText->SetText("Time Remaining: 00");
 	timeText->width = timeText->height = .5f;
 	timeTextEnt->transform->SetPosition(5, .5f);
-	timeTextEnt->renderLayer = 1;
+	timeTextEnt->renderLayer = 5;
 }
 
 void UIManager::Update(float* timeStep)

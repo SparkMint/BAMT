@@ -36,8 +36,12 @@ class Player : public Entity
 		int projectilePoolCount = 15;
 
 		// Size Values
-		float width = .5f;
-		float height = .8f;
+		float width = .18f * 4;
+		float height = .24f * 4;
+
+		// Size Values
+		float colliderWidth = .18f * 3;
+		float colliderHeight = .24f * 3;
 
 		// RigidBody Values
 		float maxSpeed = 10;

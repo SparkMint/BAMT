@@ -13,7 +13,7 @@ class KeyboardMovement : public Component
 
 	public:
 		float baseMovementSpeed = 5;
-		float powerupMovementSpeed = 10;
+		float powerupMovementSpeed = 8;
 		float currentMovementSpeed = 5;
 
 		void Start() override;

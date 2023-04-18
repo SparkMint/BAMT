@@ -49,6 +49,7 @@
     <ClCompile Include="Assignment\Components\UIManager.cpp" />
     <ClCompile Include="Core\Components\Animator.cpp" />
     <ClCompile Include="Assignment\Components\PlayerAnimationSystem.cpp" />
+    <ClCompile Include="Assignment\Components\EnemyAnimationSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Assignment\Components\UIManager.h" />
     <ClInclude Include="Core\Components\Animator.h" />
     <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
+    <ClInclude Include="Assignment\Components\EnemyAnimationSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

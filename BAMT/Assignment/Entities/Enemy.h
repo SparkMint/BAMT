@@ -1,12 +1,14 @@
 #ifndef ASSIGNMENT_ENEMY
 #define ASSIGNMENT_ENEMY
 
+#include "Animator.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"
 #include "RigidBody.h"
 #include "../Components/WeaponSystem/EnemyWeapon.h"
 #include "../Components/HealthSystem/EnemyHealth.h"
 #include "../Components/EnemyMovement.h"
+#include "../Components/EnemyAnimationSystem.h"
 #include "../Components/UIManager.h"
 
 class EnemyHealth;
@@ -19,8 +21,8 @@ class Enemy : public Entity
 		Entity* target = nullptr;
 
 		RigidBody* rigidBody = nullptr;
-		SpriteRenderer* spriteRenderer = nullptr;
-		std::string sprite = "default.png";
+		Animator* animator = nullptr;
+		EnemyAnimationSystem* animationSystem = nullptr;
 
 		EnemyMovement* movement = nullptr;
 		EnemyHealth* health = nullptr;
@@ -38,8 +40,11 @@ class Enemy : public Entity
 		Vector2 initialPosition = { 5, 5 };
 
 		// Size Values
-		float width = .5f;
-		float height = .5f;
+		float width = 1;
+		float height = 1;
+
+		float colliderWidth = 1;
+		float colliderHeight = 1;
 
 		// RigidBody Values
 		float maxSpeed = 25;

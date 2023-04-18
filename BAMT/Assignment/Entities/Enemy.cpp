@@ -1,8 +1,11 @@
 #include "Enemy.h"
 
+#include "Animator.h"
+
 void Enemy::Start()
 {
 	Entity::Start();
+	renderLayer = 2;
 
 	for (auto entity : scene->entityList)
 	{
@@ -26,16 +29,12 @@ void Enemy::Start()
 	movement = AddComponent<EnemyMovement>();
 
 	// Sprite Renderer Setup
-	spriteRenderer = AddComponent<SpriteRenderer>(width, height, "default.png");
+	animator = AddComponent<Animator>();
+	animationSystem = AddComponent<EnemyAnimationSystem>();
+
 
 	// Set up the Projectile pool
 	entityPool = AddComponent<EntityPooler>();
-	for (int i = 0; i < projectilePoolCount; ++i)
-	{
-		auto* projectile = scene->AddEntity();
-		projectile->AddComponent<Projectile>();
-		entityPool->AddEntityToPool(projectile);
-	}
 
 	// Weapon Setup
 	weapon = AddComponent<EnemyWeapon>();
@@ -47,17 +46,27 @@ void Enemy::Init()
 {
 	tag = enemyTag;
 
-	rigidBody->width = width;
-	rigidBody->height = height;
+	if(entityPool->GetPoolVector().empty())
+	{
+		for (int i = 0; i < projectilePoolCount; ++i)
+		{
+			auto* projectile = scene->AddEntity();
+			projectile->AddComponent<Projectile>();
+			entityPool->AddEntityToPool(projectile);
+		}
+	}
+
+	rigidBody->width = colliderWidth;
+	rigidBody->height = colliderHeight;
 	rigidBody->mass = mass;
 	rigidBody->maxVelocity = maxSpeed;
 	rigidBody->drag = dragForce;
 	rigidBody->bounciness = bounciness;
 	rigidBody->velocity = VECTOR2_ZERO;
 
-	spriteRenderer->SetSprite(sprite.c_str());
-	spriteRenderer->height = height;
-	spriteRenderer->width = width;
+	animator->height = height;
+	animator->width = width;
+	animator->animate = true;
 
 	movement->movementSpeed = movementSpeed;
 

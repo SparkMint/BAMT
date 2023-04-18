@@ -55,6 +55,12 @@ void AssignmentGameLevel::Start()
 	gameManager->spawnSystem->AddSpawnPoint({width - 1, height / 2});
 	gameManager->spawnSystem->AddSpawnPoint({width / 2, 1});
 	gameManager->spawnSystem->AddSpawnPoint({ 1, height / 2 });
+
+	auto* backgroundEnt = AddEntity();
+	backgroundEnt->renderLayer = -2;
+	auto* backgroundRect = backgroundEnt->AddComponent<RectRenderer>(width, height, true);
+	backgroundEnt->transform->SetPosition(width / 2, height / 2);
+	backgroundRect->colour = { 20,20,20 };
 }
 
 void AssignmentGameLevel::Update(float* timeStep)
