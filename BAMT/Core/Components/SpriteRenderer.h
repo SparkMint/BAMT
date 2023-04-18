@@ -3,27 +3,23 @@
 
 #include "Renderer.h"
 #include "SDL_image.h"
+#include "EngineManager.h"
+#include "Scene.h"
 #include "../EngineSettings.h"
 
 class SpriteRenderer : public Renderer
 {
-	SDL_Texture* _texture = nullptr;
-	SDL_Rect* _rect = nullptr;
-	SDL_Rect* _animationRect = nullptr;
+	private:
+		///<summary>
+		/// Location of the Sprite we want to render.
+		///</summary>
+		const char* sprite;
 
-	int w = 1;
-	int h = 1;
-
-	float time = 0;
-	float _timeStep = 0;
-
-	///<summary>
-	/// Location of the Sprite we want to render.
-	///</summary>
-	const char* sprite;
+	protected:
+		SDL_Texture* _texture = nullptr;
+		SDL_Rect* _rect = nullptr;
 
 	public:
-
 		///<summary>
 		/// Width of the sprite when rendered.
 		///</summary>
@@ -33,29 +29,6 @@ class SpriteRenderer : public Renderer
 		/// Height of the sprite when Rendered.
 		///</summary>
 		float height = 1;
-
-
-		// ANIMATION SETTINGS
-
-		///<summary>
-		/// Determines if the sprite should be animated.
-		///</summary>
-		bool animate = false;
-
-		///<summary>
-		/// Width of the SpriteSheet
-		///</summary>
-		int spriteSheetWidth = 1;
-
-		///<summary>
-		/// Height of the SpriteSheet
-		///</summary>
-		int spriteSheetHeight = 1;
-
-		///<summary>
-		/// How much currentTimeSeconds must pass before the next frame of animation is shown?
-		///</summary>
-		float animationSpeedSeconds = 1;
 
 		/// <summary>
 		/// Constructs a rectangle with specified inputs.
@@ -69,6 +42,5 @@ class SpriteRenderer : public Renderer
 		void Render(SDL_Renderer* renderer) override;
 
 		void SetSprite(const char* targetSprite);
-
 };
 #endif

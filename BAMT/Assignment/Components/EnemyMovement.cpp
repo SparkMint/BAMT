@@ -8,7 +8,6 @@ void EnemyMovement::Start()
 
 	if (_rigidBody == nullptr)
 	{
-		Debug::LogError("KeyboardMovement cannot detect a RigidBody! Adding one now...", this);
 		_rigidBody = entity->AddComponent<RigidBody>();
 	}
 }

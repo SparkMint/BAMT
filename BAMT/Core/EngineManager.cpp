@@ -166,7 +166,7 @@ void EngineManager::Update(float* timeStep) const
 void EngineManager::Render(SDL_Renderer* renderer) const
 {
 	// Sets the colour of the renderer to black.
-	SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+	SDL_SetRenderDrawColor(renderer, 20,20,20,255);
 
 	// Clears the entire screen to be this colour.
 	SDL_RenderClear(renderer);

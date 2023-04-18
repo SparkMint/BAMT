@@ -6,30 +6,20 @@ void ScoreSystem::Start()
 
 void ScoreSystem::Update(float* timeStep)
 {
-	if(time < multiplierChangeTime)
-	{
-		time += *timeStep;
-	}
-	else
-	{
-		RaiseScoreMultiplier();
-	}
+	if(time < multiplierChangeTime)	time += *timeStep;
+	else RaiseScoreMultiplier();
 
 	int multiplier = scoreMultiplier;
 	
-	if (doubleMultiplier)
-	{
-		multiplier = multiplier * 2;
-		Debug::Log(std::to_string(multiplier));
-	}
+	if (doubleMultiplier) multiplier = multiplier * 2;
+	 
 	if (uiManager != nullptr)
 	{
 		uiManager->UpdateMultiplierPowerupUI(doubleMultiplier);
 		uiManager->UpdateMultiplierUI(multiplier);
 	}
-
 }
-
+	
 void ScoreSystem::AddScore(int scoreAmount)
 {
 	if (doubleMultiplier) score += (scoreAmount * scoreMultiplier) * 2;

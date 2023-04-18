@@ -26,7 +26,13 @@ void Player::Start()
 	rigidBody->bounciness = bounciness;
 
 	// Sprite Renderer Setup
-	spriteRenderer = AddComponent<SpriteRenderer>(width, height, "bamt.png");
+	animator = AddComponent<Animator>();
+	animator->width = width;
+	animator->height = height;
+	animator->animate = true;
+
+	animationSystem = AddComponent<PlayerAnimationSystem>();
+
 
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();

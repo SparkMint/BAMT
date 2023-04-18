@@ -84,7 +84,7 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 	if (entityBase != nullptr)
 	{
 
-		Debug::Log(className.substr(startPos) + " Created.", ent);
+		//Debug::Log(className.substr(startPos) + " Created.", ent);
 
 		// Add the entity to our entity list.
 		entityList.emplace_back(entityBase);

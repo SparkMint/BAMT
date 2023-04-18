@@ -10,7 +10,7 @@ void KeyboardMovement::Start()
 	 }
 
 	 trailRenderer = entity->AddComponent<TrailRenderer>();
-	 trailRenderer->colour = BAMT_COLOUR_CYAN;
+	 trailRenderer->colour = BAMT_COLOUR_BLUE;
 	 trailRenderer->InitializeTrail(20, .25f);
 
 	 trailRenderer->ShowTrail(false);

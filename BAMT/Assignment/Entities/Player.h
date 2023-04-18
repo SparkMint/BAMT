@@ -4,11 +4,13 @@
 #include "SpriteRenderer.h"
 #include "RigidBody.h"
 #include "Entity.h"
+#include "Animator.h"
 #include "../Components/KeyboardMovement.h"
 #include "../Components/PowerupReciever.h"
 #include "../Components/ScoreSystem.h"
 #include "../Components/HealthSystem/PlayerHealth.h"
 #include "../Components/WeaponSystem/PlayerWeapon.h"
+#include "../Components/PlayerAnimationSystem.h"
 
 
 class Player : public Entity
@@ -17,7 +19,7 @@ class Player : public Entity
 
 	public:
 		RigidBody* rigidBody = nullptr;
-		SpriteRenderer* spriteRenderer = nullptr;
+
 		KeyboardMovement* playerMovement = nullptr;
 		EntityPooler* entityPool = nullptr;
 		PlayerWeapon* weapon = nullptr;
@@ -28,11 +30,14 @@ class Player : public Entity
 		// Transform Values
 		Vector2 initialPosition = { BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE / 2, BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE / 2 };
 
+		Animator* animator = nullptr;
+		PlayerAnimationSystem* animationSystem = nullptr;
+
 		int projectilePoolCount = 15;
 
 		// Size Values
 		float width = .5f;
-		float height = .5f;
+		float height = .8f;
 
 		// RigidBody Values
 		float maxSpeed = 10;

@@ -160,7 +160,7 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 	}
 }
 
-Scene::Scene() { Debug::Log("Scene Created.", this); }
+Scene::Scene() { }
 
 Scene::~Scene()
 {

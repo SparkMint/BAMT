@@ -47,6 +47,8 @@
     <ClCompile Include="Assignment\Components\TimeSystem.cpp" />
     <ClCompile Include="Core\Components\TrailRenderer.cpp" />
     <ClCompile Include="Assignment\Components\UIManager.cpp" />
+    <ClCompile Include="Core\Components\Animator.cpp" />
+    <ClCompile Include="Assignment\Components\PlayerAnimationSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -101,6 +103,8 @@
     <ClInclude Include="Assignment\Components\TimeSystem.h" />
     <ClInclude Include="Core\Components\TrailRenderer.h" />
     <ClInclude Include="Assignment\Components\UIManager.h" />
+    <ClInclude Include="Core\Components\Animator.h" />
+    <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />
