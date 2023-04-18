@@ -1,6 +1,19 @@
 #include "Scene.h"
 #include "../EngineSettings.h"
 
+
+Scene::Scene() { }
+
+Scene::~Scene()
+{
+	Debug::Log("Scene Destroyed.", this);
+
+	for (const Entity* entity : entityList)
+	{
+		delete entity;
+	}
+}
+
 void Scene::Start(){ }
 
 void Scene::Update(float* timeStep)
@@ -157,17 +170,5 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 			Debug::Log("Resulting Force: (" + std::to_string(collisionNormal.x * impulseScalar) + ", " + std::to_string(collisionNormal.y * impulseScalar) + ")");
 			Debug::Log("---------------------------------");
 		}
-	}
-}
-
-Scene::Scene() { }
-
-Scene::~Scene()
-{
-	Debug::Log("Scene Destroyed.", this);
-
-	for (const Entity* entity : entityList)
-	{
-		delete(entity);
 	}
 }

@@ -46,16 +46,6 @@ void Enemy::Init()
 {
 	tag = enemyTag;
 
-	if(entityPool->GetPoolVector().empty())
-	{
-		for (int i = 0; i < projectilePoolCount; ++i)
-		{
-			auto* projectile = scene->AddEntity();
-			projectile->AddComponent<Projectile>();
-			entityPool->AddEntityToPool(projectile);
-		}
-	}
-
 	rigidBody->width = colliderWidth;
 	rigidBody->height = colliderHeight;
 	rigidBody->mass = mass;

@@ -2,12 +2,12 @@
 
 Component::Component()
 {
-	//Debug::Log("Component Created.", this);
+
 }
 
 Component::~Component()
 {
-	Debug::Log("Component Destroyed.", this);
+	Debug::Log("Component Deleted.", this);
 }
 
 void Component::Start()
@@ -18,5 +18,12 @@ void Component::Start()
 		enabled = false;
 	}
 }
-void Component::Update(float* timeStep) {}
+void Component::Update(float* timeStep)
+{
+	if (!entity)
+	{
+		Debug::LogError("This component does not have an entity. Disabling.", this);
+		enabled = false;
+	}
+}
 void Component::Render(SDL_Renderer* renderer) {}

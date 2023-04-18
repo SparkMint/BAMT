@@ -83,20 +83,18 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 	Entity* entityBase = dynamic_cast<Entity*>(ent);
 	if (entityBase != nullptr)
 	{
-
-		//Debug::Log(className.substr(startPos) + " Created.", ent);
-
 		// Add the entity to our entity list.
 		entityList.emplace_back(entityBase);
-
 		entityBase->scene = this;
-
 		entityBase->Start();
+
+		//Debug::Log(className.substr(startPos) + " (Entity) was created.", ent);
+
 		return ent;
 	}
 
 	// If it got here, the type we got wasn't an entity type.
-	Debug::LogError(className.substr(startPos)+ " could not be created successfully!", ent);
+	Debug::LogError(className.substr(startPos) + " (Entity) could not be created successfully. Not derived off Entity class.", ent);
 	delete(ent);
 	return nullptr;
 }

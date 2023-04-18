@@ -14,9 +14,14 @@ class Weapon : public Component
 		bool canFire = false;
 
 	public:
+		Weapon();
+		Weapon(int projectiles);
+		~Weapon();
+
 		WeaponData* weaponData = nullptr;
 
 		EntityPooler* entityPool = nullptr;
+		int maxProjectiles = 10;
 
 		void Start() override;
 		void Update(float* timeStep) override;

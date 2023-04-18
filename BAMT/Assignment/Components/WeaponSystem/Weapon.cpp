@@ -2,14 +2,30 @@
 
 #include "BamtMath.h"
 
+Weapon::Weapon()
+{
+
+}
+
+Weapon::Weapon(int projectiles)
+{
+	maxProjectiles = projectiles;
+}
+
+Weapon::~Weapon()
+{
+}
+
 void Weapon::Start()
 {
-	entityPool = entity->GetComponent<EntityPooler>();
-	if(!entityPool)
+	entityPool = entity->AddComponent<EntityPooler>();
+	for (int i = 0; i < maxProjectiles; ++i)
 	{
-		Debug::LogWarn("No Pooler found on the player! Adding one now...", entity);
-		entityPool = entity->AddComponent<EntityPooler>();
+		auto* projectile = entity->scene->AddEntity();
+		projectile->AddComponent<Projectile>();
+		entityPool->AddEntityToPool(projectile);
 	}
+	
 	WeaponData defaultData = WEAPON_DATA_PISTOL;
 	weaponData = &defaultData;
 }

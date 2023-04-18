@@ -37,23 +37,12 @@ void Player::Start()
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();
 
-	// Set up the Projectile pool
-	entityPool = AddComponent<EntityPooler>();
-	for (int i = 0; i < projectilePoolCount; ++i)
-	{
-		auto* projectile = scene->AddEntity();
-		projectile->AddComponent<Projectile>();
-		entityPool->AddEntityToPool(projectile);
-
-		if (scoreSystem == nullptr) continue;
-		projectile->GetComponent<Projectile>()->scoreSystem = scoreSystem;
-	}
 
 	playerHealth = AddComponent<PlayerHealth>();
 	playerHealth->scoreSystem = scoreSystem;
 
 	// Pistol Setup
-	weapon = AddComponent<PlayerWeapon>();
+	//weapon = AddComponent<PlayerWeapon>();
 
 	powerupReciever = AddComponent<PowerupReciever>();
 	powerupReciever->scoreSystem = scoreSystem;

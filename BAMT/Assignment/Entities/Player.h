@@ -21,7 +21,6 @@ class Player : public Entity
 		RigidBody* rigidBody = nullptr;
 
 		KeyboardMovement* playerMovement = nullptr;
-		EntityPooler* entityPool = nullptr;
 		PlayerWeapon* weapon = nullptr;
 		PlayerHealth* playerHealth = nullptr;
 		PowerupReciever* powerupReciever = nullptr;

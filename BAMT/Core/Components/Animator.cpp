@@ -20,14 +20,12 @@ Animation::~Animation()
 
 Animator::Animator()
 {
-	Renderer::Renderer();
 	_animationRect = new SDL_Rect();
 	_rect = new SDL_Rect();
 }
 
 Animator::Animator(Animation* animation)
 {
-	Renderer::Renderer();
 	_animationRect = new SDL_Rect();
 	_rect = new SDL_Rect();
 

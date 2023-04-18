@@ -154,7 +154,6 @@ void EngineManager::DoInputLogic()
 
 void EngineManager::Update(float* timeStep) const
 {
-	//Debug::Log("TimeStep: " + std::to_string(*timeStep));
 	for(auto* scene : _sceneList)
 	{
 		if (scene == nullptr) continue;

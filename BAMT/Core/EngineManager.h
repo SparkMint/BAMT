@@ -103,6 +103,9 @@ inline T* EngineManager::AddScene(TArgs&&... mArgs)
 	// Create a new instance of this type and pass its arguments.
 	T* scene = new T(std::forward<TArgs>(mArgs)...);
 
+	std::string className = typeid(*scene).name();
+	size_t startPos = className.find_last_of(" ") + 1;
+
 	// Use Dynamic Casting to find if the type given is derived from Entity.
 	Scene* sceneBase = dynamic_cast<Scene*>(scene);
 	if (sceneBase != nullptr)
@@ -110,11 +113,12 @@ inline T* EngineManager::AddScene(TArgs&&... mArgs)
 		_sceneList.emplace_back(sceneBase);
 		sceneBase->engine = this;
 		sceneBase->Start();
-		Debug::Log("Scene Successfully Created!", scene);
+
+		Debug::Log(className.substr(startPos) + " (Scene) was created.", scene);
 		return scene;
 	}
 
-	Debug::LogError("This scene could not be created successfully!", scene);
+	Debug::LogError(className.substr(startPos) + " (Scene) could not be created successfully. Not derived off Scene class.", scene);
 	delete(scene);
 	return nullptr;
 }

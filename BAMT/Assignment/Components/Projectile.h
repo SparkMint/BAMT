@@ -4,7 +4,6 @@
 #include "Component.h"
 #include "RigidBody.h"
 #include "SpriteRenderer.h"
-#include "ScoreSystem.h"
 #include "TrailRenderer.h"
 #include "HealthSystem/Health.h"
 
@@ -19,7 +18,6 @@ class Projectile : public Component
 		float time = 0;
 
 	public:
-		ScoreSystem* scoreSystem = nullptr;
 		RigidBody* rigidBody = nullptr;
 		SpriteRenderer* spriteRenderer = nullptr;
 

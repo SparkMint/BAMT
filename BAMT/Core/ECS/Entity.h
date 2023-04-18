@@ -100,6 +100,8 @@ T* Entity::AddComponent(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
 	T* c = new T(std::forward<TArgs>(mArgs)...);
+	std::string className = typeid(*c).name();
+	size_t startPos = className.find_last_of(" ") + 1;
 
 	// Try use Dynamic Casting to get the base component.
 	Component* componentBase = dynamic_cast<Component*>(c);
@@ -107,14 +109,14 @@ T* Entity::AddComponent(TArgs&&... mArgs)
 	{
 		componentBase->entity = this;
 		_components.push_back(componentBase);
-
-		// Run the start function on the newly created component.
 		componentBase->Start();
+
+		//Debug::Log(className.substr(startPos) + "(Component) was created.", c);
 		return c;
 	}
 
 	// If it got here, it means the type given wasn't derived from component.
-	Debug::Log("Invalid Component type, this cannot be added onto this Entity!", this);
+	Debug::LogError(className.substr(startPos) + " (Component) could not be created successfully. Not derived off Component class.", c);
 	delete(c);
 	return nullptr;
 }

@@ -10,7 +10,7 @@ EngineManager* engineManager;
 int main(int argc, char* argv[])
 {
 	// Generate a random seed using the currentTimeSeconds for any random stuff.
-	std::srand(std::time(0));
+	std::srand(std::time(nullptr));
 
 	// Create and initialize our Engine.
 	engineManager = new EngineManager();
