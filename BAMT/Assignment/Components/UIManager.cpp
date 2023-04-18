@@ -120,3 +120,14 @@ void UIManager::UpdateWeaponUI(WeaponData* data)
 	std::string weaponString = "Weapon: " + data->weaponName;
 	weaponText->SetText(weaponString.c_str());
 }
+
+void UIManager::Stop()
+{
+	gameOverText->enabled = true;
+}
+
+void UIManager::Reset()
+{
+	if (scoreText) UpdateScoreUI(0);
+	gameOverText->enabled = false;
+}

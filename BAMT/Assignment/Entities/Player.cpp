@@ -33,7 +33,6 @@ void Player::Start()
 
 	animationSystem = AddComponent<PlayerAnimationSystem>();
 
-
 	// Player Movement Setup
 	playerMovement = AddComponent<KeyboardMovement>();
 

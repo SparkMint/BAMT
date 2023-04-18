@@ -1,7 +1,39 @@
-﻿  KeyboardMovement.cpp
+﻿  EnemySpawnSystem.cpp
+  EnemyHealth.cpp
+  PlayerHealth.cpp
+  KeyboardMovement.cpp
+  Powerup.cpp
+  PowerupReciever.cpp
+  Projectile.cpp
+  ScoreSystem.cpp
+  TimeSystem.cpp
+  UIManager.cpp
+  EnemyWeapon.cpp
+  PlayerWeapon.cpp
+  Weapon.cpp
+  Enemy.cpp
+  GameManager.cpp
+  Player.cpp
+  AssignmentGame.cpp
+  AssignmentGameLevel.cpp
+  SplashScreen.cpp
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Core\ECS\Entity.h(102,34): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Assignment\Scenes\SplashScreen.cpp(25,68): message : see reference to function template instantiation 'T *Entity::AddComponent<SpriteRenderer,int,int,const char(&)[21]>(int &&,int &&,const char (&)[21])' being compiled
+          with
+          [
+              T=SpriteRenderer
+          ]
+  PhysicsTestScene.cpp
+  Compiling...
+  Main.cpp
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  1 of 1632 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  9 of 1634 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    41 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   BAMT.vcxproj -> C:\Users\Computing\Documents\GitHub\BAMT\x64\Release\BAMT.exe

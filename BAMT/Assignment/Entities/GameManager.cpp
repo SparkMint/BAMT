@@ -41,6 +41,7 @@ void GameManager::EndGame()
 	player->Stop();
 	spawnSystem->Stop();
 	timeSystem->Stop();
+	uiManager->Stop();
 }
 
 void GameManager::RestartGame()
@@ -53,4 +54,6 @@ void GameManager::RestartGame()
 	scoreSystem->Reset();
 
 	timeSystem->Reset();
+
+	uiManager->Reset();
 }

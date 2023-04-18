@@ -3,11 +3,8 @@
 void KeyboardMovement::Start()
 {
 	 _rigidBody = entity->GetComponent<RigidBody>();
-	 if (_rigidBody == nullptr)
-	 {
-		 Debug::LogError("KeyboardMovement cannot detect a RigidBody! Adding one now...", this);
-		 _rigidBody = entity->AddComponent<RigidBody>();
-	 }
+	 if (_rigidBody == nullptr) _rigidBody = entity->AddComponent<RigidBody>();
+
 
 	 trailRenderer = entity->AddComponent<TrailRenderer>();
 	 trailRenderer->colour = BAMT_COLOUR_BLUE;

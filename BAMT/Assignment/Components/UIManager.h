@@ -23,6 +23,9 @@ class UIManager : public Component
 		void UpdateMultiplierPowerupUI(bool active);
 		void UpdateTimeText(int time);
 		void UpdateWeaponUI(WeaponData* data);
+
+		void Stop();
+		void Reset();
 };
 
 #endif
