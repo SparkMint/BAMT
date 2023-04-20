@@ -56,6 +56,5 @@ void SpriteRenderer::SetSprite(const char* targetSprite)
 	{
 		Debug::LogError("SpriteRenderer could not load sprite. Setting it to default!", this);
 		_texture = entity->scene->engine->assetWarehouse->GetTexture("default.png");
-		enabled = false;
 	}
 }

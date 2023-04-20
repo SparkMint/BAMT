@@ -73,15 +73,47 @@ Font::~Font()
     Debug::Log("Font: " + name + " successfully destroyed.", this);
 }
 
+AudioClip::AudioClip(const std::experimental::filesystem::path& path)
+{
+    name = path.filename().string();
+    clip = Mix_LoadWAV(path.string().c_str());
+}
+
+AudioClip::~AudioClip()
+{
+    Mix_FreeChunk(clip);
+    Debug::Log("AudioClip: " + name + " successfully destroyed.", this);
+}
+
+MusicClip::MusicClip(const std::experimental::filesystem::path& path)
+{
+    name = path.filename().string();
+    music = Mix_LoadMUS(path.string().c_str());
+}
+
+MusicClip::~MusicClip()
+{
+    Mix_FreeMusic(music);
+    Debug::Log("MusicClip: " + name + " successfully destroyed.", this);
+}
+
 AssetWarehouse::~AssetWarehouse()
 {
-	for (auto tex : _textures)
+	for (const auto* tex : _textures)
 	{
-        delete(tex);
+        delete tex;
 	}
-    for(auto ttf : _fonts)
+    for(const auto* ttf : _fonts)
     {
-        delete(ttf);
+        delete ttf;
+    }
+    for(const auto* wav : _audio)
+    {
+        delete wav;
+    }
+    for (const auto* mp3 : _music)
+    {
+        delete mp3;
     }
 }
 
@@ -103,6 +135,14 @@ void AssetWarehouse::FindAssets(const std::experimental::filesystem::path& direc
         {
             // Add the TTF file to the vector
             ttf_files.push_back(file.path());
+        }
+        else if (file.path().extension() == ".wav")
+        {
+            wav_files.push_back(file.path());
+        }
+        else if (file.path().extension() == ".mp3")
+        {
+            mp3_files.push_back(file.path());
         }
     }
 }
@@ -127,6 +167,26 @@ void AssetWarehouse::LoadFonts(SDL_Renderer* renderer)
     }
 }
 
+void AssetWarehouse::LoadAudioClips()
+{
+    for (auto wav : wav_files)
+    {
+        Debug::Log("Loading AudioClip... Name: " + wav.filename().string());
+        auto* newAudioClip = new AudioClip(wav);
+        _audio.push_back(newAudioClip);
+    }
+}
+
+void AssetWarehouse::LoadMusicClips()
+{
+    for (auto mp3 : mp3_files)
+    {
+        Debug::Log("Loading MusicClip... Name: " + mp3.filename().string());
+        auto* newMusicClip = new MusicClip(mp3);
+        _music.push_back(newMusicClip);
+    }
+}
+
 SDL_Texture* AssetWarehouse::GetTexture(const char* filename) const
 {
 	for (const auto tex : _textures)
@@ -146,6 +206,30 @@ Font* AssetWarehouse::GetFont(const char* filename) const
         if (font->name == filename)
         {
             return font;
+        }
+    }
+    return nullptr;
+}
+
+Mix_Music* AssetWarehouse::GetMusic(const char* filename) const
+{
+    for (const auto music : _music)
+    {
+        if (music->name == filename)
+        {
+            return music->music;
+        }
+    }
+    return nullptr;
+}
+
+Mix_Chunk* AssetWarehouse::GetAudioClip(const char* filename) const
+{
+    for (const auto audio : _audio)
+    {
+        if (audio->name == filename)
+        {
+            return audio->clip;
         }
     }
     return nullptr;

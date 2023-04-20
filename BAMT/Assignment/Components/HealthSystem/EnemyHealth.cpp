@@ -7,6 +7,9 @@ void EnemyHealth::Start()
 	powerup = entity->scene->AddEntity();
 	powerup->AddComponent<Powerup>();
 	powerup->active = false;
+
+	audioSource = entity->AddComponent<AudioSource>();
+	audioSource->SetAudioClip(deathAudioClip);
 }
 
 void EnemyHealth::OnDead()
@@ -25,9 +28,12 @@ void EnemyHealth::OnDead()
 		auto* powerupComponent = powerup->GetComponent<Powerup>();
 		const PowerupType type = static_cast<PowerupType>(rand() % 4);
 		powerupComponent->UpdateType(type);
+		powerupComponent->audioSource->Play(powerupComponent->spawnSound);
 		powerup->transform->SetPosition(entity->transform->GetPosition());
 		powerup->active = true;
 	}
+	audioSource->Play();
+
 	entity->active = false;
 }
 

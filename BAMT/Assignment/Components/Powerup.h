@@ -5,6 +5,7 @@
 #include "RigidBody.h"
 #include "SpriteRenderer.h"
 #include "PowerupReciever.h"
+#include "AudioSource.h"
 
 enum PowerupType {speed = 0, doublePoints = 1, shotgun = 2, rifle = 3};
 
@@ -20,6 +21,9 @@ class Powerup : public Component
 
 		RigidBody* rigidBody = nullptr;
 		SpriteRenderer* spriteRenderer = nullptr;
+		AudioSource* audioSource = nullptr;
+		const char* collectionSound = "powerupCollect.wav";
+		const char* spawnSound = "powerupSpawn.wav";
 
 		void Start() override;
 		void Update(float* timeStep) override;

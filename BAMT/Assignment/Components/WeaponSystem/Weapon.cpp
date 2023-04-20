@@ -5,6 +5,7 @@
 void Weapon::Start()
 {
 	entityPool = entity->AddComponent<EntityPooler>();
+	audioSource = entity->AddComponent<AudioSource>();
 	
 	WeaponData defaultData = WEAPON_DATA_PISTOL;
 	weaponData = &defaultData;
@@ -39,6 +40,14 @@ void Weapon::Fire(Vector2& directionToFire)
 		return;
 	}
 
+	if(audioSource != nullptr)
+	{
+		if(weaponData->weaponFireSound != "")
+		{
+			audioSource->Play(weaponData->weaponFireSound.c_str());
+		}
+	}
+
 	switch(weaponData->type)
 	{
 		case basic:
@@ -51,6 +60,13 @@ void Weapon::Fire(Vector2& directionToFire)
 
 			if (projComponent == nullptr) return;
 
+			// Hard coded exception to the zombie weapon. Stops it from making collision sounds.
+			// Jank. but eh.
+			if(weaponData->weaponName == "BRAINS..")
+			{
+				projComponent->collisionSound = "";
+			}
+	
 			projComponent->projectileDamage = weaponData->projectileDamage;
 			projComponent->projectileKnockback = weaponData->projectileKnockback;
 			projComponent->spriteRenderer->SetSprite(weaponData->projectileSprite.c_str());

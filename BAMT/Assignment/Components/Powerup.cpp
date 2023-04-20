@@ -5,6 +5,7 @@ void Powerup::Start()
 	entity->tag = powerupTag;
 
 	rigidBody = entity->AddComponent<RigidBody>();
+	audioSource = entity->AddComponent<AudioSource>();
 
 	rigidBody->isTrigger = true;
 	rigidBody->isKinematic = true;
@@ -25,6 +26,7 @@ void Powerup::Update(float* timeStep)
 		{
 			// We have been collected!
 			reciever->ApplyPowerupEffects(type);
+			audioSource->Play(collectionSound);
 		}
 		entity->active = false;
 	}
@@ -33,7 +35,6 @@ void Powerup::Update(float* timeStep)
 void Powerup::UpdateType(PowerupType typeToUpdateTo)
 {
 	type = typeToUpdateTo;
-
 	switch (type)
 	{
 		case speed:

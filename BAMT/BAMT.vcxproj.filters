@@ -50,6 +50,7 @@
     <ClCompile Include="Core\Components\Animator.cpp" />
     <ClCompile Include="Assignment\Components\PlayerAnimationSystem.cpp" />
     <ClCompile Include="Assignment\Components\EnemyAnimationSystem.cpp" />
+    <ClCompile Include="Core\Components\AudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -107,6 +108,7 @@
     <ClInclude Include="Core\Components\Animator.h" />
     <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
     <ClInclude Include="Assignment\Components\EnemyAnimationSystem.h" />
+    <ClInclude Include="Core\Components\AudioSource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

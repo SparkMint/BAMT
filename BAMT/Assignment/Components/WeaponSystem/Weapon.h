@@ -1,6 +1,7 @@
 #ifndef ASSIGNMENT_WEAPON
 #define ASSIGNMENT_WEAPON
 
+#include "AudioSource.h"
 #include "WeaponData.h"
 #include "Transform.h"
 #include "Component.h"
@@ -14,8 +15,8 @@ class Weapon : public Component
 		bool canFire = false;
 
 	public:
-
 		WeaponData* weaponData = nullptr;
+		AudioSource* audioSource = nullptr;
 
 		EntityPooler* entityPool = nullptr;
 		int maxProjectiles = 10;

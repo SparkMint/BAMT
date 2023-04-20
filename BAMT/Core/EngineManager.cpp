@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "EngineManager.h"
+#include "SDL_mixer.h"
 
 
 #pragma region Constructors
@@ -21,6 +22,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 	IMG_Init(IMG_INIT_PNG);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048);
 
 	const SDL_WindowFlags windowFlag = _fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
 	_fullScreen = fullscreen;
@@ -83,6 +85,11 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Debug::Log("Loading Fonts...");
 	assetWarehouse->LoadFonts(_renderer);
 	Debug::Log("Fonts finished Loading!");
+
+	Debug::Log("Loading Audio...");
+	assetWarehouse->LoadAudioClips();
+	assetWarehouse->LoadMusicClips();
+	Debug::Log("Audio finished Loading!");
 	Debug::Log("------------------------\n");
 
 	// Give the input system a reference to this engine.
@@ -193,6 +200,7 @@ void EngineManager::Stop()
 	SDL_Quit();
 	IMG_Quit();
 	TTF_Quit();
+	Mix_Quit();
 	delete _tickTimer;
 	delete assetWarehouse;
 	delete this;

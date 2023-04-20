@@ -24,6 +24,8 @@ void Projectile::Start()
 	{
 		spriteRenderer = entity->AddComponent<SpriteRenderer>();
 	}
+
+	audioSource = entity->AddComponent<AudioSource>();
 }
 
 void Projectile::Update(float* timeStep)
@@ -57,6 +59,9 @@ void Projectile::Update(float* timeStep)
 			health->RemoveHealth(projectileDamage);
 		}
 		time = 0;
+
+		if(audioSource != nullptr && collisionSound != "") audioSource->Play(collisionSound);
+
 		entity->active = false;
 	}
 	previousPosition = *entity->transform->GetPosition();
