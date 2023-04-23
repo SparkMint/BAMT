@@ -23,7 +23,6 @@ void UIManager::Start()
 	weaponTextEnt->transform->SetPosition(15, .5f);
 	weaponTextEnt->renderLayer = 5;
 
-
 	auto* scoreTextEnt = entity->scene->AddEntity();
 	scoreText = scoreTextEnt->AddComponent<TextRenderer>();
 	scoreText->width = scoreText->height = .5f;
@@ -60,10 +59,24 @@ void UIManager::Start()
 
 void UIManager::Update(float* timeStep)
 {
+	if (scoreSystem != nullptr)
+	{
+		UpdateScoreUI(scoreSystem->score);
 
+		int multiplier = scoreSystem->scoreMultiplier;
+		if (scoreSystem->doubleMultiplier) multiplier *= 2;
+		UpdateMultiplierUI(multiplier);
+
+		UpdateMultiplierPowerupUI(scoreSystem->doubleMultiplier);
+	}
+
+	if(timeSystem != nullptr)
+	{
+		UpdateTimeUI((int)timeSystem->currentTimeSeconds);
+	}
 }
 
-void UIManager::UpdateScoreUI(int score)
+void UIManager::UpdateScoreUI(int score) const
 {
 	if (scoreText == nullptr) return;
 	std::string scoreString = "Score: " + std::to_string(score);
@@ -73,7 +86,7 @@ void UIManager::UpdateScoreUI(int score)
 void UIManager::UpdateMultiplierUI(int multiplier) const
 {
 	if (multiplierText == nullptr) return;
-	std::string multiplierString = "X" + std::to_string(multiplier);
+	const std::string multiplierString = "X" + std::to_string(multiplier);
 
 	switch(multiplier)
 	{
@@ -107,27 +120,27 @@ void UIManager::UpdateMultiplierPowerupUI(bool active)
 	multiplierPowerupText->enabled = active;
 }
 
-void UIManager::UpdateTimeText(int time)
+void UIManager::UpdateTimeUI(int time) const
 {
 	if (timeText == nullptr) return;
 	std::string timeString = "Time Remaining: " + std::to_string(time);
 	timeText->SetText(timeString.c_str());
 }
 
-void UIManager::UpdateWeaponUI(WeaponData* data)
+void UIManager::UpdateWeaponUI(WeaponData* data) const
 {
 	if (weaponText == nullptr) return;
 	std::string weaponString = "Weapon: " + data->weaponName;
 	weaponText->SetText(weaponString.c_str());
 }
 
-void UIManager::Stop()
+void UIManager::Stop() const
 {
 	gameOverText->enabled = true;
 }
 
-void UIManager::Reset()
+void UIManager::Reset() const
 {
-	if (scoreText) UpdateScoreUI(0);
+	UpdateScoreUI(0);
 	gameOverText->enabled = false;
 }

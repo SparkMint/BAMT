@@ -2,8 +2,6 @@
 #define ASSIGNMENT_SCORE_SYSTEM
 
 #include "Component.h"
-#include "TextRenderer.h"
-#include "UIManager.h"
 
 class ScoreSystem : public Component
 {
@@ -16,8 +14,6 @@ class ScoreSystem : public Component
 	const int highScoreMultiplier = 8;
 
 	public:
-		UIManager* uiManager = nullptr;
-
 		int score = 0;
 		int scoreMultiplier = 1;
 

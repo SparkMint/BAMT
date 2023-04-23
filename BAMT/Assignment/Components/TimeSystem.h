@@ -2,13 +2,10 @@
 #define ASSIGNMENT_TIME_SYSTEM
 
 #include "Component.h"
-#include "UIManager.h"
 
 class TimeSystem : public Component
 {
 	public:
-		UIManager* uiManager = nullptr;
-
 		float currentTimeSeconds = 0;
 		float timeLimitSeconds = 45;
 

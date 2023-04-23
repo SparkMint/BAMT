@@ -14,8 +14,8 @@ void GameManager::Start()
 	player = scene->AddEntity<Player>();
 
 	spawnSystem->SetDefaultTarget(player);
-	scoreSystem->uiManager = uiManager;
-	timeSystem->uiManager = uiManager;
+	uiManager->scoreSystem = scoreSystem;
+	uiManager->timeSystem = timeSystem;
 
 	Entity::Start();
 }

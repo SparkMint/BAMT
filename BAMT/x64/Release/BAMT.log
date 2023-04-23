@@ -1,7 +1,15 @@
-﻿  Powerup.cpp
+﻿  EnemySpawnSystem.cpp
+  EnemyHealth.cpp
+  UIManager.cpp
+  Enemy.cpp
+  GameManager.cpp
+  AssignmentGame.cpp
+  AssignmentGameLevel.cpp
+  Main.cpp
+C:\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  2 of 1774 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+  9 of 1774 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   BAMT.vcxproj -> C:\BAMT\x64\Release\BAMT.exe
