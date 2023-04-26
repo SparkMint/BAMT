@@ -11,6 +11,12 @@ void AssignmentGame::Start()
 
 	// Activate the splash screen upon startup.
 	_splashScreen->active = true;
+
+	AudioManager::SetVolume(0);
+
+	auto* musicTest = AddEntity();
+	auto* musicComponent = musicTest->AddComponent<MusicSource>();
+	musicComponent->Play("lightnin.mp3");
 }
 
 void AssignmentGame::Update(float* timeStep)

@@ -7,9 +7,9 @@
 #define WEAPON_DATA_PISTOL	{"Pistol"  , basic     , .2f    , "playerProj.png"	, "pistolFire.wav"  , .1f  , 10    , 2    , 10    , .02f   , 1}
 #define WEAPON_DATA_RIFLE   {"Rifle"   , basic     , .06f   , "playerProj.png"	, "rifleFire.wav"	, .1f  , 15    , 2    , 5     , .05f   , 1}
 #define WEAPON_DATA_SHOTGUN {"Shotgun" , multiShot , .3f    , "playerProj.png"	, "shotgunFire.wav"	, .1f  , 10    , .5f  , 10    , .3f    , 1}
-#define WEAPON_DATA_RANGER  {"Ranger"  , basic     , 2      , "playerProj.png"	, "rifleFire.wav"	, .2f  , 5     , 5    , 3     , 0      , 1}
-#define WEAPON_DATA_ZOMBIE  {"BRAINS..", basic     , 1      , "void.png"		, ""				, .1f  , 5     , .2f  , 0     , 0      , 1}
-#define WEAPON_DATA_TANK    {"Tank"    , multiShot , 3      , "playerProj.png"	, "shotgunFire.wav"	, .3f  , 3     , 3    , 10    , .5f    , 5}
+#define WEAPON_DATA_RANGER  {"Ranger"  , basic     , 2      , "playerProj.png"	, "rifleFire.wav"	, .2f  , 5 * 4     , 5    , 3 * 50     , 0      , 1}
+#define WEAPON_DATA_ZOMBIE  {"BRAINS..", basic     , 1      , "void.png"		, ""				, .1f  , 5 * 4    , .2f  , 0     , 0      , 1}
+#define WEAPON_DATA_TANK    {"Tank"    , multiShot , 3      , "playerProj.png"	, "shotgunFire.wav"	, .3f  , 3 * 4    , 3    , 10 * 50   , .5f    , 5}
 
 
 enum WeaponType{basic = 0, explosive = 1, multiShot = 2};

@@ -8,6 +8,7 @@
 
 #include "Debug.h"
 #include "EngineSettings.h"
+#include "AudioManager.h"
 #include "Entity.h"
 #include "Input.h"
 #include "Scene.h"

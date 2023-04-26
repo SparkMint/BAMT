@@ -4,6 +4,8 @@
 #include "AssignmentGameLevel.h"
 #include "SplashScreen.h"
 #include "../../Core/ECS/Scene.h"
+#include "AudioManager.h"
+#include "MusicSource.h"
 
 class AssignmentGame : public Scene
 {
@@ -13,6 +15,7 @@ class AssignmentGame : public Scene
 	float splashScreenCurrentSeconds = 0;
 
 	AssignmentGameLevel* _gameScene = nullptr;
+
 
 	public:
 		void Start() override;

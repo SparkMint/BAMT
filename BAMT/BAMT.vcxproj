@@ -159,6 +159,7 @@
     <ClCompile Include="Assignment\Scenes\AssignmentGameLevel.cpp" />
     <ClCompile Include="Assignment\Entities\Player.cpp" />
     <ClCompile Include="Assignment\Components\KeyboardMovement.cpp" />
+    <ClCompile Include="Core\Components\MusicSource.cpp" />
     <ClCompile Include="Core\Components\TrailRenderer.cpp" />
     <ClCompile Include="Core\Entities\StaticCollider.cpp" />
     <ClCompile Include="Core\Components\LineRenderer.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Core\ECS\Scene.cpp" />
     <ClCompile Include="Core\EngineManager.cpp" />
     <ClCompile Include="Core\Entities\CoordinateGrid.cpp" />
+    <ClCompile Include="Core\Misc\AudioManager.cpp" />
     <ClCompile Include="Core\Misc\BamtMath.cpp" />
     <ClCompile Include="Core\Misc\Colour.cpp" />
     <ClCompile Include="Core\Misc\Debug.cpp" />
@@ -218,6 +220,7 @@
     <ClInclude Include="Assignment\Scenes\AssignmentGameLevel.h" />
     <ClInclude Include="Assignment\Entities\Player.h" />
     <ClInclude Include="Assignment\Components\KeyboardMovement.h" />
+    <ClInclude Include="Core\Components\MusicSource.h" />
     <ClInclude Include="Core\Components\TrailRenderer.h" />
     <ClInclude Include="Core\Entities\StaticCollider.h" />
     <ClInclude Include="Core\Components\LineRenderer.h" />
@@ -234,6 +237,7 @@
     <ClInclude Include="Core\EngineManager.h" />
     <ClInclude Include="Core\EngineSettings.h" />
     <ClInclude Include="Core\Entities\CoordinateGrid.h" />
+    <ClInclude Include="Core\Misc\AudioManager.h" />
     <ClInclude Include="Core\Misc\BamtMath.h" />
     <ClInclude Include="Core\Misc\Colour.h" />
     <ClInclude Include="Core\Misc\Debug.h" />

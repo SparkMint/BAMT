@@ -31,7 +31,7 @@ void AudioSource::Play()
 	// Have the audio mixer automatically choose the
 	// channel it should play on. Give it the clip,
 	// and we dont want it to repeat. so set it to 0.
-	Mix_PlayChannel(-1, _audioClip, 0);
+	AudioManager::PlayClip(_audioClip);
 }
 
 void AudioSource::Play(const char* clipName)
@@ -43,6 +43,6 @@ void AudioSource::Play(const char* clipName)
 	// Have the audio mixer automatically choose the
 	// channel it should play on. Give it the clip,
 	// and we dont want it to repeat. so set it to 0.
-	Mix_PlayChannel(-1, _audioClip, 0);
+	AudioManager::PlayClip(_audioClip);
 }
 

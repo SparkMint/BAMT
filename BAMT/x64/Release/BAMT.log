@@ -1,6 +1,32 @@
-﻿  Enemy.cpp
+﻿  EnemySpawnSystem.cpp
+  EnemyHealth.cpp
+  Powerup.cpp
+  PowerupReciever.cpp
+  UIManager.cpp
+  EnemyWeapon.cpp
+  PlayerWeapon.cpp
+  Weapon.cpp
+  Enemy.cpp
+  GameManager.cpp
+  Player.cpp
+  AssignmentGame.cpp
+  AssignmentGameLevel.cpp
+  SplashScreen.cpp
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Core\ECS\Entity.h(88,42): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Assignment\Scenes\SplashScreen.cpp(25,68): message : see reference to function template instantiation 'T *Entity::AddComponent<SpriteRenderer,int,int,const char(&)[21]>(int &&,int &&,const char (&)[21])' being compiled
+          with
+          [
+              T=SpriteRenderer
+          ]
+  PhysicsTestScene.cpp
+  Main.cpp
+C:\Users\Computing\Documents\GitHub\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
   Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 1775 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 1779 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  BAMT.vcxproj -> C:\BAMT\x64\Release\BAMT.exe
+  BAMT.vcxproj -> C:\Users\Computing\Documents\GitHub\BAMT\x64\Release\BAMT.exe

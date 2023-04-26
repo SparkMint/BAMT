@@ -50,22 +50,22 @@ void PhysicsTestScene::Start()
 
 	AddEntity<CoordinateGrid>();
 
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 50; ++i)
 	{
-		for (int j = 0; j < 20; ++j)
+		for (int j = 0; j < 50; ++j)
 		{
 			const auto thing = AddEntity<Entity>();
-			thing->GetComponent<Transform>()->SetPosition(2 + (j * .51f), 2 + (i * .51f));
+			thing->GetComponent<Transform>()->SetPosition(2 + (j * .26f), 2 + (i * .26f));
 			auto* rb = thing->AddComponent<RigidBody>();
-			rb->width = .5f;
-			rb->height = .5f;
+			rb->width = .25f;
+			rb->height = .25f;
 			rb->bounciness = .2f;
 			rb->drag = 2;
 			rb->maxVelocity = 10;
 			rb->mass = 1;
 			auto* rr = thing->AddComponent<RectRenderer>();
-			rr->width = .5f;
-			rr->height = .5f;
+			rr->width = .25f;
+			rr->height = .25f;
 			rr->fillRect = true;
 
 			int r = rand() & 255;
@@ -75,9 +75,26 @@ void PhysicsTestScene::Start()
 		}
 	}
 
-	const auto thing = AddEntity<Player>();
-	thing->GetComponent<Transform>()->SetPosition(.25f, .25f);
-	thing->playerMovement->enabled = true;
+	const auto thing = AddEntity<Entity>();
+	thing->GetComponent<Transform>()->SetPosition(1,1);
+	auto* rb = thing->AddComponent<RigidBody>();
+	rb->width = .25f;
+	rb->height = .25f;
+	rb->bounciness = .2f;
+	rb->drag = 2;
+	rb->maxVelocity = 10;
+	rb->mass = 1;
+	auto* rr = thing->AddComponent<RectRenderer>();
+	rr->width = .25f;
+	rr->height = .25f;
+	rr->fillRect = true;
+
+	int r = rand() & 255;
+	int g = rand() & 255;
+	int b = rand() & 255;
+	rr->colour = { r, g ,b, 255 };
+	thing->AddComponent<KeyboardMovement>()->currentMovementSpeed = 10;
+
 
 	gravity = { 0, 5 };
 }

@@ -157,6 +157,10 @@ void EngineManager::DoInputLogic()
 	if (Input::GetKeyDown(SDLK_F7)){ Debug::ToggleWarns(); }
 	// Toggle Errors
 	if (Input::GetKeyDown(SDLK_F8)){ Debug::ToggleErrors(); }
+
+	if (Input::GetKeyHold(SDLK_UP)) { AudioManager::SetVolume(AudioManager::GetVolume() + 1); }
+	if (Input::GetKeyHold(SDLK_DOWN)) { AudioManager::SetVolume(AudioManager::GetVolume() - 1); }
+	if (Input::GetKeyDown(SDLK_m)) { AudioManager::SetVolume(0); }
 }
 
 void EngineManager::Update(float* timeStep) const

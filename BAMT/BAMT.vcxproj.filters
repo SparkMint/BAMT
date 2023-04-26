@@ -51,6 +51,8 @@
     <ClCompile Include="Assignment\Components\PlayerAnimationSystem.cpp" />
     <ClCompile Include="Assignment\Components\EnemyAnimationSystem.cpp" />
     <ClCompile Include="Core\Components\AudioSource.cpp" />
+    <ClCompile Include="Core\Misc\AudioManager.cpp" />
+    <ClCompile Include="Core\Components\MusicSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +113,8 @@
     <ClInclude Include="Core\Components\AudioSource.h" />
     <ClInclude Include="Assignment\Entities\EnemyZombie.h" />
     <ClInclude Include="Assignment\Components\EnemyData.h" />
+    <ClInclude Include="Core\Misc\AudioManager.h" />
+    <ClInclude Include="Core\Components\MusicSource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />
