@@ -4,7 +4,7 @@
 #include <vector>
 #include "Component.h"
 #include "../Entities/Enemy.h"
-#include "WeaponSystem/WeaponData.h"
+#include "EnemyData.h"
 
 class EnemySpawnSystem : public Component
 {

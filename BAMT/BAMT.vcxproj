@@ -189,12 +189,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assignment\Components\EnemyAnimationSystem.h" />
+    <ClInclude Include="Assignment\Components\EnemyData.h" />
     <ClInclude Include="Assignment\Components\EnemySpawnSystem.h" />
     <ClInclude Include="Assignment\Components\HealthSystem\EnemyHealth.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />
     <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
     <ClInclude Include="Assignment\Components\TimeSystem.h" />
     <ClInclude Include="Assignment\Components\UIManager.h" />
+    <ClInclude Include="Assignment\Entities\EnemyZombie.h" />
     <ClInclude Include="Core\Components\Animator.h" />
     <ClInclude Include="Core\Components\AudioSource.h" />
     <ClInclude Include="Core\Components\EntityPooler.h" />

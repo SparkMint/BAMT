@@ -109,6 +109,8 @@
     <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
     <ClInclude Include="Assignment\Components\EnemyAnimationSystem.h" />
     <ClInclude Include="Core\Components\AudioSource.h" />
+    <ClInclude Include="Assignment\Entities\EnemyZombie.h" />
+    <ClInclude Include="Assignment\Components\EnemyData.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

@@ -9,18 +9,10 @@ void Enemy::Start()
 
 	for (auto entity : scene->entityList)
 	{
-		auto* potentialUI = entity->GetComponent<UIManager>();
 		auto* potentialScoreSystem = entity->GetComponent<ScoreSystem>();
-
-		if (potentialUI != nullptr)	uiManager = potentialUI;
 		if (potentialScoreSystem != nullptr) scoreSystem = potentialScoreSystem;
 	}
-
-	if (uiManager == nullptr) Debug::LogWarn("No UI was found in this scene!", this);
 	if (scoreSystem == nullptr) Debug::LogWarn("No ScoreSystem was found in this scene!", this);
-
-	// Transform Setup
-	transform->SetPosition(&initialPosition);
 
 	// RigidBody Setup
 	rigidBody = AddComponent<RigidBody>();
@@ -32,10 +24,6 @@ void Enemy::Start()
 	animator = AddComponent<Animator>();
 	animationSystem = AddComponent<EnemyAnimationSystem>();
 
-
-	// Set up the Projectile pool
-	entityPool = AddComponent<EntityPooler>();
-
 	// Weapon Setup
 	weapon = AddComponent<EnemyWeapon>();
 
@@ -46,24 +34,25 @@ void Enemy::Init()
 {
 	tag = enemyTag;
 
-	rigidBody->width = colliderWidth;
-	rigidBody->height = colliderHeight;
-	rigidBody->mass = mass;
-	rigidBody->maxVelocity = maxSpeed;
-	rigidBody->drag = dragForce;
-	rigidBody->bounciness = bounciness;
+	rigidBody->width = enemyData.width;
+	rigidBody->height = enemyData.height;
+	rigidBody->mass = enemyData.weightData.mass;
+	rigidBody->maxVelocity = enemyData.weightData.maxSpeed;
+	rigidBody->drag = enemyData.weightData.drag;
+	rigidBody->bounciness = enemyData.weightData.bounciness;
 	rigidBody->velocity = VECTOR2_ZERO;
 
-	animator->height = height;
-	animator->width = width;
+	animator->width = enemyData.width;
+	animator->height = enemyData.height;
+
 	animator->animate = true;
 
-	movement->movementSpeed = movementSpeed;
+	movement->movementSpeed = enemyData.speed;
 
-	health->SetHealth(maxHealth);
-	health->maxHealth = maxHealth;
+	health->SetHealth(enemyData.health);
+	health->maxHealth = enemyData.health;
 
-	weapon->weaponData = &weaponData;
+	weapon->weaponData = &enemyData.weapon;
 }
 
 void Enemy::Update(float* timeStep)

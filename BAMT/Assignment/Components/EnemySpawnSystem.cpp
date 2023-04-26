@@ -10,22 +10,7 @@ void EnemySpawnSystem::Start()
 		Animation* walkLeft = new Animation("zombieWalkLeft.png", 4, 1, .1f);
 
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 2;
-		enemy->movementSpeed = 35;
-
-		enemy->width = .18f * 4;
-		enemy->height = .24f * 4;
-
-		enemy->colliderWidth = .18f * 3;
-		enemy->colliderHeight = .18f * 3;
-
-		// RB Stuff
-		enemy->maxSpeed = 10;
-		enemy->mass = 2;
-		enemy->dragForce = 5;
-		enemy->bounciness = .2f;
-		enemy->weaponData = WEAPON_DATA_ZOMBIE;
-
+		enemy->enemyData = ENEMY_ZOMBIE;
 		enemy->weapon->maxProjectiles = 1;
 		enemy->weapon->Init();
 
@@ -43,21 +28,7 @@ void EnemySpawnSystem::Start()
 		Animation* walkLeft = new Animation("rangerWalkLeft.png", 4, 1, .33f);
 
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 4;
-		enemy->movementSpeed = 5;
-
-		enemy->width = .25f * 4;
-		enemy->height = .33f * 4;
-
-		enemy->colliderWidth = .25f * 3;
-		enemy->colliderHeight = .33f * 3;
-
-		// RB Stuff
-		enemy->maxSpeed = 10;
-		enemy->mass = 1;
-		enemy->dragForce = 5;
-		enemy->bounciness = .2f;
-		enemy->weaponData = WEAPON_DATA_RANGER;
+		enemy->enemyData = ENEMY_RANGER;
 
 		enemy->weapon->maxProjectiles = 3;
 		enemy->weapon->Init();
@@ -76,21 +47,7 @@ void EnemySpawnSystem::Start()
 		Animation* walkLeft = new Animation("tankWalkLeft.png", 4, 1, .33f);
 
 		auto* enemy = entity->scene->AddEntity<Enemy>();
-		enemy->maxHealth = 7;
-		enemy->movementSpeed = 10;
-
-		enemy->width = .30f * 4;
-		enemy->height = .42f * 4;
-
-		enemy->colliderWidth = .30f * 3;
-		enemy->colliderHeight = .42f * 3;
-
-		// RB Stuff
-		enemy->maxSpeed = 10;
-		enemy->mass = 10;
-		enemy->dragForce = 5;
-		enemy->bounciness = .2f;
-		enemy->weaponData = WEAPON_DATA_TANK;
+		enemy->enemyData = ENEMY_TANK;
 
 		enemy->weapon->maxProjectiles = 3;
 		enemy->weapon->Init();
