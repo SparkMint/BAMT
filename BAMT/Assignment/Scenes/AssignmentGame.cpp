@@ -7,6 +7,7 @@ void AssignmentGame::Start()
 
 	// Create all the scenes that we will need for this game.
 	_splashScreen = engine->AddScene<SplashScreen>();
+	_menuScene = engine->AddScene<AssignmentMenu>();
 	_gameScene = engine->AddScene<AssignmentGameLevel>();
 
 	// Activate the splash screen upon startup.
@@ -35,7 +36,7 @@ void AssignmentGame::Update(float* timeStep)
 		{
 			// If it has, disable splash screen, enable menu.
 			_splashScreen->active = false;
-			_gameScene->active = true;
+			_menuScene->active = true;
 		}
 	}
 	Scene::Update(timeStep);

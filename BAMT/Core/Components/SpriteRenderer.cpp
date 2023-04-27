@@ -29,9 +29,12 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 
+		SDL_SetTextureColorMod(_texture, colour.r, colour.g, colour.b);
 
 		// Display the Sprite.
 		SDL_RenderCopy(renderer, _texture, nullptr, _rect);
+
+		SDL_SetTextureColorMod(_texture, 255, 255, 255);
 
 		//Debug::Log("SPRITE RENDERER VALUES");
 		//Debug::Log("----------------------");

@@ -53,6 +53,8 @@
     <ClCompile Include="Core\Components\AudioSource.cpp" />
     <ClCompile Include="Core\Misc\AudioManager.cpp" />
     <ClCompile Include="Core\Components\MusicSource.cpp" />
+    <ClCompile Include="Assignment\Scenes\AssignmentMenu.cpp" />
+    <ClCompile Include="Core\Components\Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -115,6 +117,8 @@
     <ClInclude Include="Assignment\Components\EnemyData.h" />
     <ClInclude Include="Core\Misc\AudioManager.h" />
     <ClInclude Include="Core\Components\MusicSource.h" />
+    <ClInclude Include="Assignment\Scenes\AssignmentMenu.h" />
+    <ClInclude Include="Core\Components\Button.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />
