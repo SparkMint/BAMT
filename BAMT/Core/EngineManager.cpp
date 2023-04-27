@@ -22,7 +22,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 	IMG_Init(IMG_INIT_PNG);
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 8, 2048);
 
 	const SDL_WindowFlags windowFlag = _fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
 	_fullScreen = fullscreen;
