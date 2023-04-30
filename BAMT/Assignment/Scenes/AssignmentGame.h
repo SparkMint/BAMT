@@ -3,9 +3,10 @@
 
 #include "AssignmentGameLevel.h"
 #include "SplashScreen.h"
-#include "../../Core/ECS/Scene.h"
+#include "Scene.h"
 #include "AudioManager.h"
 #include "MusicSource.h"
+#include "AssignmentMenu.h"
 
 class AssignmentGame : public Scene
 {
@@ -14,6 +15,7 @@ class AssignmentGame : public Scene
 	float splashScreenDisplaySeconds = 5;
 	float splashScreenCurrentSeconds = 0;
 
+	AssignmentMenu* _menuScene = nullptr;
 	AssignmentGameLevel* _gameScene = nullptr;
 
 

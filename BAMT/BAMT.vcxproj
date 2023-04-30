@@ -141,8 +141,10 @@
     <ClCompile Include="Assignment\Components\TimeSystem.cpp" />
     <ClCompile Include="Assignment\Components\UIManager.cpp" />
     <ClCompile Include="Assignment\Entities\GameManager.cpp" />
+    <ClCompile Include="Assignment\Scenes\AssignmentMenu.cpp" />
     <ClCompile Include="Core\Components\Animator.cpp" />
     <ClCompile Include="Core\Components\AudioSource.cpp" />
+    <ClCompile Include="Core\Components\Button.cpp" />
     <ClCompile Include="Core\Components\EntityPooler.cpp" />
     <ClCompile Include="Assignment\Components\EnemyMovement.cpp" />
     <ClCompile Include="Assignment\Components\HealthSystem\PlayerHealth.cpp" />
@@ -199,8 +201,10 @@
     <ClInclude Include="Assignment\Components\TimeSystem.h" />
     <ClInclude Include="Assignment\Components\UIManager.h" />
     <ClInclude Include="Assignment\Entities\EnemyZombie.h" />
+    <ClInclude Include="Assignment\Scenes\AssignmentMenu.h" />
     <ClInclude Include="Core\Components\Animator.h" />
     <ClInclude Include="Core\Components\AudioSource.h" />
+    <ClInclude Include="Core\Components\Button.h" />
     <ClInclude Include="Core\Components\EntityPooler.h" />
     <ClInclude Include="Assignment\Components\HealthSystem\Health.h" />
     <ClInclude Include="Assignment\Components\MouseAim.h" />

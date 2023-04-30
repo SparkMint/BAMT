@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  EnemyAnimationSystem.cpp
   EnemySpawnSystem.cpp
   EnemyHealth.cpp
@@ -58,5 +59,12 @@ C:\BAMT\BAMT\Main.cpp(13,22): warning C4244: 'argument': conversion from 'time_t
   0 of 1790 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
+=======
+﻿  Button.cpp
+  Generating code
+  1 of 1792 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    10 functions had inline decision re-evaluated but remain unchanged
+>>>>>>> ff0fa0e9cd4f3a7fa3df965232ea853b2c469e51
   Finished generating code
-  BAMT.vcxproj -> C:\BAMT\x64\Release\BAMT.exe
+  BAMT.vcxproj -> C:\Users\Computing\Documents\GitHub\BAMT\x64\Release\BAMT.exe
