@@ -21,7 +21,7 @@ namespace AudioManager
 	void PlayMusic(Mix_Music* music)
 	{
 		Mix_VolumeMusic(volume);
-		Mix_PlayMusic(music, 1);
+		Mix_PlayMusic(music, 999);
 	}
 
 

@@ -21,14 +21,15 @@ class Scene
 		std::vector<RigidBody*> rigidBodiesList;
 		Vector2 gravity {0,0};
 
-
-
 		// Determines if scene logic should run.
 		bool active = false;
 
 		// If set to true, this scene will always run no matter what.
 		bool alwaysActive = false;
 
+		/// <summary>
+		/// Called upon the creation of a scene.
+		/// </summary>
 		virtual void Start();
 
 		/// <summary>
@@ -101,7 +102,7 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 
 inline void Scene::RemoveEntity(Entity* ent)
 {
-	auto entityToRemove = remove(entityList.begin(), entityList.end(), ent);
+	auto entToRemove = remove(entityList.begin(), entityList.end(), ent);
 	delete(ent);
 }
 #endif
