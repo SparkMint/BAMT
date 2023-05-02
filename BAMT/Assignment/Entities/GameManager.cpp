@@ -27,9 +27,11 @@ void GameManager::Update(float* timeStep)
 {
 	Entity::Update(timeStep);
 
-	if(timeSystem->currentTimeSeconds <= 0)
+	if(timeSystem->currentTimeSeconds < 0 && timeSystem->currentTimeSeconds > -1)
 	{
 		EndGame();
+		timeSystem->currentTimeSeconds = -1;
+		Debug::Log("GAME OVER! End Score: " + std::to_string(scoreSystem->score));
 	}
 
 	if(Input::GetKeyDown(SDLK_r))

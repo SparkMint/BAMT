@@ -2,8 +2,6 @@
 
 void EnemyMovement::Start()
 {
-	Component::Start();
-
 	_rigidBody = entity->GetComponent<RigidBody>();
 
 	if (_rigidBody == nullptr)
@@ -14,8 +12,6 @@ void EnemyMovement::Start()
 
 void EnemyMovement::Update(float* timeStep)
 {
-	Component::Update(timeStep);
-
 	if (target == nullptr) return;
 
 	Vector2 dir = VectorMath::Normalize(*target->transform->GetPosition() - *entity->transform->GetPosition());

@@ -12,8 +12,16 @@ void ScoreSystem::Update(float* timeStep)
 	
 void ScoreSystem::AddScore(int scoreAmount)
 {
-	if (doubleMultiplier) score += (scoreAmount * scoreMultiplier) * 2;
-	else score += scoreAmount * scoreMultiplier;
+	int multiplier = scoreMultiplier;
+	if (doubleMultiplier) multiplier *= 2;
+
+	score += scoreAmount * multiplier;
+	Debug::Log("Score Added! Value: " 
+		+ std::to_string(scoreAmount) + ", Multiplier: X" 
+		+ std::to_string(multiplier) + " = " 
+		+ std::to_string(scoreAmount * multiplier));
+
+	Debug::Log("Current Player Score = " + std::to_string(score));
 }
 
 void ScoreSystem::LowerScoreMultiplier()

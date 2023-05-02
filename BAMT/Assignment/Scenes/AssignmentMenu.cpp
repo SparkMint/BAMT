@@ -12,23 +12,15 @@ void AssignmentMenu::Start()
 
 	collisionTest->GetComponent<Transform>()->SetPosition(-thickness / 2, height / 2);
 	collisionTest->width = thickness;
-	collisionTest->height = height;
+	collisionTest->height = height * 5;
 	collisionTest->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
-
-	// Top Wall
-	auto* collisionTest1 = AddEntity<StaticCollider>();
-
-	collisionTest1->GetComponent<Transform>()->SetPosition(width / 2, -thickness / 2);
-	collisionTest1->width = width;
-	collisionTest1->height = thickness;
-	collisionTest1->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	// Right Wall
 	auto* collisionTest2 = AddEntity<StaticCollider>();
 
 	collisionTest2->GetComponent<Transform>()->SetPosition(width + thickness / 2, height / 2);
 	collisionTest2->width = thickness;
-	collisionTest2->height = height;
+	collisionTest2->height = height * 5;
 	collisionTest2->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	// Bottom Wall

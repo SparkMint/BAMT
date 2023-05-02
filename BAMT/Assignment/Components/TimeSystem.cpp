@@ -19,6 +19,7 @@ void TimeSystem::Update(float* timeStep)
 	if (scoreSystem == nullptr) return;
 	if(!timeExtended && scoreSystem->score > timeExtendScoreRequirement)
 	{
+		Debug::Log("Score went over " + std::to_string(timeExtendScoreRequirement) + ". Time was extended by 15 seconds.");
 		timeExtended = true;
 		currentTimeSeconds += 15;
 	}

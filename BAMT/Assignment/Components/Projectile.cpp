@@ -56,6 +56,7 @@ void Projectile::Update(float* timeStep)
 		// If an enemy hits another enemy, we dont want to damage them. only push them.
 		if(health != nullptr && rb->entity->tag != whoSpawnedMe->entity->tag)
 		{
+			Debug::Log("Projectile Collided with a " + rb->entity->tag + "! Applying " + std::to_string(projectileDamage) + " damage!");
 			health->RemoveHealth(projectileDamage);
 		}
 		time = 0;

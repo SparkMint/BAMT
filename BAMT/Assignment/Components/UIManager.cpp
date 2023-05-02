@@ -98,8 +98,6 @@ void UIManager::Update(float* timeStep)
 		UpdateMultiplierUI(multiplier);
 
 		UpdateMultiplierPowerupUI(scoreSystem->doubleMultiplier);
-
-
 	}
 
 	if(timeSystem != nullptr)

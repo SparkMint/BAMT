@@ -25,6 +25,7 @@ void EnemyHealth::OnDead()
 	const int dropChance = rand() % 12;
 	if(dropChance == 1)
 	{
+		Debug::Log("Powerup Dropped!");
 		auto* powerupComponent = powerup->GetComponent<Powerup>();
 		const PowerupType type = static_cast<PowerupType>(rand() % 4);
 		powerupComponent->UpdateType(type);

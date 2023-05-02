@@ -54,11 +54,13 @@ void PowerupReciever::ApplyPowerupEffects(PowerupType effect)
 			break;
 
 		case shotgun:
+			Debug::Log("Shotgun Collected!");
 			weapon->weaponData = &shotgunData;
 			weaponTime = powerupEffectTime;
 			break;
 
 		case rifle:
+			Debug::Log("Rifle Collected!");
 			weapon->weaponData = &rifleData;
 			weaponTime = powerupEffectTime;
 			break;
