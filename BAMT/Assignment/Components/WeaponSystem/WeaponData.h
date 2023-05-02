@@ -4,9 +4,9 @@
 
 //							 NAME      | TYPE      | RATE   |     SPRITE PATH						| SIZE | SPEED | LIFE | KNOCK | SPREAD | DAMAGE
 #define WEAPON_DATA_NONE    {"None"	   , basic     , 9999   , "void.png"		, "pistolFire.wav"	, 0    , 0     , 0    , 0     , 0      , 0}
-#define WEAPON_DATA_PISTOL	{"Pistol"  , basic     , .2f    , "playerProj.png"	, "pistolFire.wav"  , .1f  , 10    , 2    , 10    , .02f   , 1}
-#define WEAPON_DATA_RIFLE   {"Rifle"   , basic     , .06f   , "playerProj.png"	, "rifleFire.wav"	, .1f  , 15    , 2    , 5     , .05f   , 1}
-#define WEAPON_DATA_SHOTGUN {"Shotgun" , multiShot , .3f    , "playerProj.png"	, "shotgunFire.wav"	, .1f  , 10    , .5f  , 10    , .3f    , 1}
+#define WEAPON_DATA_PISTOL	{"Pistol"  , basic     , .3f    , "playerProj.png"	, "pistolFire.wav"  , .1f  , 10    , 1    , 8     , .1f    , 2}
+#define WEAPON_DATA_RIFLE   {"Rifle"   , basic     , .08f   , "playerProj.png"	, "rifleFire.wav"	, .1f  , 15    , 2    , 15    , .05f   , 1}
+#define WEAPON_DATA_SHOTGUN {"Shotgun" , multiShot , .3f    , "playerProj.png"	, "shotgunFire.wav"	, .1f  , 12    , .5f  , 10    , .3f    , 1}
 #define WEAPON_DATA_RANGER  {"Ranger"  , basic     , 2      , "playerProj.png"	, "rifleFire.wav"	, .2f  , 5     , 5    , 3     , 0      , 1}
 #define WEAPON_DATA_ZOMBIE  {"BRAINS..", basic     , 1      , "void.png"		, ""				, .1f  , 5     , .2f  , 0     , 0      , 1}
 #define WEAPON_DATA_TANK    {"Tank"    , multiShot , 3      , "playerProj.png"	, "shotgunFire.wav"	, .3f  , 3     , 3    , 10    , .5f    , 5}

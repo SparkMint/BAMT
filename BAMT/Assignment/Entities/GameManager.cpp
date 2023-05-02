@@ -1,5 +1,6 @@
 #include "GameManager.h"
 
+
 void GameManager::Start()
 {
 	uiManager = AddComponent<UIManager>();
@@ -16,6 +17,8 @@ void GameManager::Start()
 	spawnSystem->SetDefaultTarget(player);
 	uiManager->scoreSystem = scoreSystem;
 	uiManager->timeSystem = timeSystem;
+	uiManager->playerWeapon = player->weapon;
+	uiManager->playerMovement = player->playerMovement;
 
 	Entity::Start();
 }

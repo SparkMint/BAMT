@@ -88,6 +88,10 @@ void Animator::Render(SDL_Renderer* renderer)
 		_animationRect->x = _w * _animationRect->w;
 		_animationRect->y = _h * _animationRect->h;
 	}
+	SDL_SetTextureColorMod(_texture, colour.r, colour.g, colour.b);
+
 	// Display the Sprite.
 	SDL_RenderCopy(renderer, _texture, _animationRect, _rect);
+
+	SDL_SetTextureColorMod(_texture, 255, 255, 255);
 }

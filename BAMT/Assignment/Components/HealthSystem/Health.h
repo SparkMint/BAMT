@@ -6,10 +6,15 @@
 class Health : public Component
 {
 	int currentHealth = 0;
+
+
 	public:
 		Health(int health);
 
 		void Start() override;
+		void Update(float* timeStep) override;
+
+		float painTime = 0;
 
 		int maxHealth = 1;
 

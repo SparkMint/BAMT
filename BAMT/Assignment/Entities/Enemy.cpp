@@ -51,6 +51,7 @@ void Enemy::Init()
 
 	health->SetHealth(enemyData.health);
 	health->maxHealth = enemyData.health;
+	health->painTime = 0;
 
 	weapon->weaponData = &enemyData.weapon;
 }

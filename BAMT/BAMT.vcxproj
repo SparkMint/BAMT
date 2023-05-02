@@ -137,6 +137,7 @@
     <ClCompile Include="Assignment\Components\HealthSystem\EnemyHealth.cpp" />
     <ClCompile Include="Assignment\Components\HealthSystem\Health.cpp" />
     <ClCompile Include="Assignment\Components\MouseAim.cpp" />
+    <ClCompile Include="Assignment\Components\MouseFollow.cpp" />
     <ClCompile Include="Assignment\Components\PlayerAnimationSystem.cpp" />
     <ClCompile Include="Assignment\Components\TimeSystem.cpp" />
     <ClCompile Include="Assignment\Components\UIManager.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Assignment\Components\EnemySpawnSystem.h" />
     <ClInclude Include="Assignment\Components\HealthSystem\EnemyHealth.h" />
     <ClInclude Include="Assignment\Components\EnemyMovement.h" />
+    <ClInclude Include="Assignment\Components\MouseFollow.h" />
     <ClInclude Include="Assignment\Components\PlayerAnimationSystem.h" />
     <ClInclude Include="Assignment\Components\TimeSystem.h" />
     <ClInclude Include="Assignment\Components\UIManager.h" />

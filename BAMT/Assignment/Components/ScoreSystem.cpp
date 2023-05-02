@@ -14,16 +14,12 @@ void ScoreSystem::AddScore(int scoreAmount)
 {
 	if (doubleMultiplier) score += (scoreAmount * scoreMultiplier) * 2;
 	else score += scoreAmount * scoreMultiplier;
-
-	Debug::Log("Score: " + std::to_string(score));
-	if (doubleMultiplier) Debug::Log("Multiplier was: " + std::to_string(scoreMultiplier * 2) + " with double powerup!");
-	else Debug::Log("Multiplier was: " + std::to_string(scoreMultiplier) + ".");
 }
 
 void ScoreSystem::LowerScoreMultiplier()
 {
 	time = 0;
-	if(scoreMultiplier == lowScoreMultiplier)
+	if(scoreMultiplier == lowScoreMultiplier) 
 	{
 		scoreMultiplier = noScoreMultiplier;
 	}

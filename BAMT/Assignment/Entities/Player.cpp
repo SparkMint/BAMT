@@ -43,7 +43,7 @@ void Player::Start()
 
 	// Pistol Setup
 	weapon = AddComponent<PlayerWeapon>();
-	weapon->maxProjectiles = 10;
+	weapon->maxProjectiles = 20;
 	weapon->Init();
 
 	powerupReciever = AddComponent<PowerupReciever>();

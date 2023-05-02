@@ -13,8 +13,9 @@
 class AssignmentGameLevel : public Scene
 {
 	public:
-	inline static GameManager* gameManager = nullptr;
+		inline static GameManager* gameManager = nullptr;
 
+		Colour wallColour = { 100, 100, 100, 255 };
 		void Start() override;
 		void Update(float* timeStep) override;
 };

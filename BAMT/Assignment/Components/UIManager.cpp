@@ -11,24 +11,35 @@ void UIManager::Start()
 	gameOverText->SetText("TIME OVER");
 	gameOverText->colour = BAMT_COLOUR_RED;
 	gameOverText->width = gameOverText->height = 2;
-	gameOverEnt->transform->SetPosition(width / 6, height / 2);
+	gameOverEnt->transform->SetPosition(width / 3 - 2, height / 2);
 	gameOverEnt->renderLayer = 1;
 	gameOverText->enabled = false;
+
+	auto* restartPromptEnt = entity->scene->AddEntity();
+	restartPrompt = restartPromptEnt->AddComponent<TextRenderer>();
+	restartPrompt->SetFont("Comfortaa.ttf");
+	restartPrompt->SetText("Press R to Restart!");
+	restartPrompt->colour = BAMT_COLOUR_WHITE;
+	restartPrompt->width = restartPrompt->height = 1;
+	restartPromptEnt->transform->SetPosition(width / 3 - 1, height / 2 + 3);
+	restartPromptEnt->renderLayer = 1;
+	restartPrompt->enabled = false;
 
 	auto* weaponTextEnt = entity->scene->AddEntity();
 	weaponText = weaponTextEnt->AddComponent<TextRenderer>();
 	weaponText->SetFont("Comfortaa.ttf");
-	weaponText->colour = BAMT_COLOUR_WHITE;
-	weaponText->width = weaponText->height = .5f;
-	weaponTextEnt->transform->SetPosition(15, .5f);
+	weaponText->colour = BAMT_COLOUR_RED;
+	weaponText->width = weaponText->height = .8f;
+	weaponTextEnt->transform->SetPosition(17, .5f);
 	weaponTextEnt->renderLayer = 5;
 
 	auto* scoreTextEnt = entity->scene->AddEntity();
 	scoreText = scoreTextEnt->AddComponent<TextRenderer>();
-	scoreText->width = scoreText->height = .5f;
+	scoreText->width = scoreText->height = .8f;
+	scoreText->colour = BAMT_COLOUR_YELLOW;
 	scoreText->SetFont("Comfortaa.ttf");
 	scoreText->SetText("Score: 0");
-	scoreTextEnt->transform->SetPosition(.5f, .5f);
+	scoreTextEnt->transform->SetPosition(2, .5f);
 	scoreTextEnt->renderLayer = 5;
 
 	auto* multiplierTextEnt = entity->scene->AddEntity();
@@ -36,24 +47,43 @@ void UIManager::Start()
 	multiplierText->width = multiplierText->height = .8f;
 	multiplierText->SetFont("Comfortaa-Bold.ttf");
 	multiplierText->SetText("X1");
-	multiplierTextEnt->transform->SetPosition(.7f, 1.5f);
+	multiplierTextEnt->transform->SetPosition(.5f, .5f);
 	multiplierTextEnt->renderLayer = 5;
 
 	auto* doubleMultiplierEnt = entity->scene->AddEntity();
 	multiplierPowerupText = doubleMultiplierEnt->AddComponent<TextRenderer>();
-	multiplierPowerupText->width = multiplierPowerupText->height = .5f;
+	multiplierPowerupText->width = multiplierPowerupText->height = .7f;
 	multiplierPowerupText->SetFont("Comfortaa-Bold.ttf");
 	multiplierPowerupText->SetText("DOUBLE MULTIPLIER!");
 	multiplierPowerupText->colour = BAMT_COLOUR_YELLOW;
-	doubleMultiplierEnt->transform->SetPosition(.7f, 2.5f);
+	doubleMultiplierEnt->transform->SetPosition(.5f, height - .5f);
 	doubleMultiplierEnt->renderLayer = 5;
+
+	auto* timeExtendEnt = entity->scene->AddEntity();
+	timeExtendText = timeExtendEnt->AddComponent<TextRenderer>();
+	timeExtendText->width = timeExtendText->height = .7f;
+	timeExtendText->SetFont("Comfortaa-Bold.ttf");
+	timeExtendText->SetText("TIME EXTENDED!");
+	timeExtendText->colour = BAMT_COLOUR_GREEN;
+	timeExtendEnt->transform->SetPosition(width - 8, height - .5f);
+	timeExtendEnt->renderLayer = 5;
+
+	auto* doubleSpeedEnt = entity->scene->AddEntity();
+	doubleSpeedText = doubleSpeedEnt->AddComponent<TextRenderer>();
+	doubleSpeedText->width = doubleSpeedText->height = .7f;
+	doubleSpeedText->SetFont("Comfortaa-Bold.ttf");
+	doubleSpeedText->SetText("DOUBLE SPEED!");
+	doubleSpeedText->colour = BAMT_COLOUR_BLUE;
+	doubleSpeedEnt->transform->SetPosition(width - 16, height - .5f);
+	doubleSpeedEnt->renderLayer = 5;
 
 	auto* timeTextEnt = entity->scene->AddEntity();
 	timeText = timeTextEnt->AddComponent<TextRenderer>();
 	timeText->SetFont("Comfortaa.ttf");
 	timeText->SetText("Time Remaining: 00");
-	timeText->width = timeText->height = .5f;
-	timeTextEnt->transform->SetPosition(5, .5f);
+	timeText->width = timeText->height = .8f;
+	timeText->colour = BAMT_COLOUR_GREEN;
+	timeTextEnt->transform->SetPosition(width / 2 - 4, .5f);
 	timeTextEnt->renderLayer = 5;
 }
 
@@ -68,11 +98,24 @@ void UIManager::Update(float* timeStep)
 		UpdateMultiplierUI(multiplier);
 
 		UpdateMultiplierPowerupUI(scoreSystem->doubleMultiplier);
+
+
 	}
 
 	if(timeSystem != nullptr)
 	{
 		UpdateTimeUI((int)timeSystem->currentTimeSeconds);
+		UpdateTimeExtendUI(timeSystem->timeExtended);
+	}
+
+	if(playerWeapon != nullptr)
+	{
+		UpdateWeaponUI(playerWeapon->weaponData);
+	}
+
+	if(playerMovement != nullptr)
+	{
+		UpdateSpeedUI(playerMovement->currentMovementSpeed == playerMovement->powerupMovementSpeed);
 	}
 }
 
@@ -96,19 +139,19 @@ void UIManager::UpdateMultiplierUI(int multiplier) const
 			break;
 		case 2:
 			multiplierText->colour = BAMT_COLOUR_GREEN;
-			multiplierText->width = multiplierText->height = .8f;
+			multiplierText->width = multiplierText->height = .7f;
 			break;
 		case 4:
 			multiplierText->colour = BAMT_COLOUR_YELLOW;
-			multiplierText->width = multiplierText->height = 1;
+			multiplierText->width = multiplierText->height = .75f;
 			break;
 		case 8:
 			multiplierText->colour = BAMT_COLOUR_RED;
-			multiplierText->width = multiplierText->height = 1.2f;
+			multiplierText->width = multiplierText->height = .8f;
 			break;
 		case 16:
 			multiplierText->colour = BAMT_COLOUR_CYAN;
-			multiplierText->width = multiplierText->height = 1.4f;
+			multiplierText->width = multiplierText->height = .9f;
 			break;
 	}
 
@@ -118,6 +161,16 @@ void UIManager::UpdateMultiplierUI(int multiplier) const
 void UIManager::UpdateMultiplierPowerupUI(bool active)
 {
 	multiplierPowerupText->enabled = active;
+}
+
+void UIManager::UpdateSpeedUI(bool active)
+{
+	doubleSpeedText->enabled = active;
+}
+
+void UIManager::UpdateTimeExtendUI(bool active)
+{
+	timeExtendText->enabled = active;
 }
 
 void UIManager::UpdateTimeUI(int time) const
@@ -137,10 +190,12 @@ void UIManager::UpdateWeaponUI(WeaponData* data) const
 void UIManager::Stop() const
 {
 	gameOverText->enabled = true;
+	restartPrompt->enabled = true;
 }
 
 void UIManager::Reset() const
 {
 	UpdateScoreUI(0);
 	gameOverText->enabled = false;
+	restartPrompt->enabled = false;
 }

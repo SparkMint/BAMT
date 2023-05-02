@@ -23,18 +23,32 @@ class EngineManager
 	SDL_Window* _window = nullptr;
 	SDL_Renderer* _renderer = nullptr;
 	TickTimer* _tickTimer = nullptr;
+	float _timingDisplayTime = 0;
 	std::experimental::filesystem::path assetFileRootFolder = "Assets";
 
 	std::vector<Scene*> _sceneList;
 
 	std::string _windowTitle;
-	bool _isActive = false;
+
 	bool _fullScreen = false;
 	int _deltaTime = 16;
 	float _timeStep = 0;
 
+	int _inputProcessingTime = 0;
+	int _updateProcessingTime = 0;
+	int _renderProcessingTime = 0;
+	int _framesPerSecond = 0;
+
 	public:
 		AssetWarehouse* assetWarehouse = nullptr;
+
+		bool isActive = false;
+
+		/// <summary>
+		/// How often should the frame timings be printed into
+		///	the console?
+		/// </summary>
+		float frameTimingsDisplayRate = 2;
 
 		/// <summary>
 		/// Returns if the Engine is active or not.
@@ -65,6 +79,11 @@ class EngineManager
 		void SetWindowTitle() const;
 
 		/// <summary>
+		/// Prints out frame timings and such into the console.
+		/// </summary>
+		void DisplayTimings(float timeStep);
+
+		/// <summary>
 		/// Updates all active Scenes.
 		/// </summary>
 		void Update(float* timeStep) const;
@@ -82,10 +101,13 @@ class EngineManager
 		/// SCENE FACTORY DECLARATION
 		
 		/// <summary>
-		/// Creates an Entity of the specified type and adds it to the Entity List.
+		/// Creates a Scene of the specified type and adds it to the Scene List.
 		/// </summary>
 		template<class T = Scene, typename... TArgs>
 		T* AddScene(TArgs&&... mArgs);
+
+		template<class T>
+		T* GetScene();
 
 		/// <summary>
 		/// Destroys a specified Entity and removes it from the Entity List.
@@ -123,6 +145,19 @@ inline T* EngineManager::AddScene(TArgs&&... mArgs)
 
 	Debug::LogError(className.substr(startPos) + " (Scene) could not be created successfully. Not derived off Scene class.", scene);
 	delete(scene);
+	return nullptr;
+}
+
+template<class T>
+inline T* EngineManager::GetScene()
+{
+	for (Scene* c : _sceneList)
+	{
+		if (dynamic_cast<T*>(c))
+		{
+			return static_cast<T*>(c);
+		}
+	}
 	return nullptr;
 }
 

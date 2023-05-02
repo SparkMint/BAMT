@@ -27,6 +27,7 @@ void Weapon::Init()
 	{
 		auto* projectile = entity->scene->AddEntity();
 		projectile->AddComponent<Projectile>();
+		projectile->active = false;
 		entityPool->AddEntityToPool(projectile);
 	}
 }

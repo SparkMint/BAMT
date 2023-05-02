@@ -6,55 +6,51 @@ void AssignmentGameLevel::Start()
 	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
 
 	const float thickness = 5;
-	// Left Wall
-	auto* collisionTest = AddEntity<StaticCollider>();
+	const float offset = 1;
 
-	collisionTest->GetComponent<Transform>()->SetPosition(-thickness / 2, height / 2);
-	collisionTest->GetComponent<RigidBody>()->width = thickness;
-	collisionTest->GetComponent<RigidBody>()->height = height;
-	collisionTest->GetComponent<RectRenderer>()->width = thickness;
-	collisionTest->GetComponent<RectRenderer>()->height = height;
-	collisionTest->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	// Left Wall
+	auto* leftWall = AddEntity<StaticCollider>(thickness, height / 2);
+	leftWall->GetComponent<Transform>()->SetPosition(-thickness / 2 + offset, height / 2);
+	leftWall->GetComponent<RectRenderer>()->colour = wallColour;
+
+	auto* leftWindow = AddEntity<StaticCollider>(thickness, height);
+
+	leftWindow->GetComponent<Transform>()->SetPosition(-thickness / 2, height / 2);
+	leftWindow->GetComponent<RectRenderer>()->colour = wallColour;
 
 	// Top Wall
-	auto* collisionTest1 = AddEntity<StaticCollider>();
+	auto* topWall = AddEntity<StaticCollider>(width, thickness);
 
-	collisionTest1->GetComponent<Transform>()->SetPosition(width / 2, -thickness / 2);
-	collisionTest1->GetComponent<RigidBody>()->width = width;
-	collisionTest1->GetComponent<RigidBody>()->height = thickness;
-	collisionTest1->GetComponent<RectRenderer>()->width = width;
-	collisionTest1->GetComponent<RectRenderer>()->height = thickness;
-	collisionTest1->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	topWall->GetComponent<Transform>()->SetPosition(width / 2, -thickness / 2 + offset);
+	topWall->GetComponent<RectRenderer>()->colour = wallColour;
 
 	// Right Wall
-	auto* collisionTest2 = AddEntity<StaticCollider>();
+	auto* rightWindow = AddEntity<StaticCollider>(thickness, height);
 
-	collisionTest2->GetComponent<Transform>()->SetPosition(width + thickness / 2, height / 2);
-	collisionTest2->GetComponent<RigidBody>()->width = thickness;
-	collisionTest2->GetComponent<RigidBody>()->height = height;
-	collisionTest2->GetComponent<RectRenderer>()->width = thickness;
-	collisionTest2->GetComponent<RectRenderer>()->height = height;
-	collisionTest2->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	rightWindow->GetComponent<Transform>()->SetPosition(width + thickness / 2 , height / 2);
+	rightWindow->GetComponent<RectRenderer>()->colour = wallColour;
+
+	// Right Wall
+	auto* rightWall = AddEntity<StaticCollider>(thickness, height / 2);
+
+	rightWall->GetComponent<Transform>()->SetPosition(width + thickness / 2 - offset, height / 2);
+	rightWall->GetComponent<RectRenderer>()->colour = wallColour;
 
 	// Bottom Wall
-	auto* collisionTest3 = AddEntity<StaticCollider>();
+	auto* bottomWall = AddEntity<StaticCollider>(width, thickness);
 
-	collisionTest3->GetComponent<Transform>()->SetPosition(width / 2, height + thickness / 2);
-	collisionTest3->GetComponent<RigidBody>()->width = width;
-	collisionTest3->GetComponent<RigidBody>()->height = thickness;
-	collisionTest3->GetComponent<RectRenderer>()->width = width;
-	collisionTest3->GetComponent<RectRenderer>()->height = thickness;
-	collisionTest3->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	bottomWall->GetComponent<Transform>()->SetPosition(width / 2, height + thickness / 2 - offset);
+	bottomWall->GetComponent<RectRenderer>()->colour = wallColour;
 
 	gameManager = AddEntity<GameManager>();
 
 	auto* gridEnt = AddEntity<CoordinateGrid>();
 	gridEnt->renderLayer = -1;
 
-	gameManager->spawnSystem->AddSpawnPoint({ width / 2, height});
-	gameManager->spawnSystem->AddSpawnPoint({width, height / 2});
-	gameManager->spawnSystem->AddSpawnPoint({width / 2, 0});
-	gameManager->spawnSystem->AddSpawnPoint({ 0, height / 2 });
+	gameManager->spawnSystem->AddSpawnPoint({ 0, height / 4});
+	gameManager->spawnSystem->AddSpawnPoint({width, height / 4});
+	gameManager->spawnSystem->AddSpawnPoint({0, height - height / 4});
+	gameManager->spawnSystem->AddSpawnPoint({ width, height - height / 4 });
 
 	auto* backgroundEnt = AddEntity();
 	backgroundEnt->renderLayer = -2;

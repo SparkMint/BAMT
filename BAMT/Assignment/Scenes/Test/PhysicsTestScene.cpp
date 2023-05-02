@@ -4,49 +4,39 @@ void PhysicsTestScene::Start()
 {
 	constexpr float width = BAMT_REFERENCE_RESOLUTION_WIDTH / BAMT_WORLD_SCALE;
 	constexpr float height = BAMT_REFERENCE_RESOLUTION_HEIGHT / BAMT_WORLD_SCALE;
+	const float thickness = 5;
 
-	// Left Wall
+	// Left
 	auto* collisionTest = AddEntity<StaticCollider>();
 
-	collisionTest->GetComponent<Transform>()->SetPosition(-.25, height / 2);
-	collisionTest->GetComponent<RigidBody>()->width = .5f;
-	collisionTest->GetComponent<RigidBody>()->height = height;
-	collisionTest->GetComponent<RigidBody>()->isKinematic = true;
-	collisionTest->GetComponent<RectRenderer>()->width = .5f;
-	collisionTest->GetComponent<RectRenderer>()->height = height;
-	collisionTest->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	collisionTest->GetComponent<Transform>()->SetPosition(-thickness / 2, height / 2);
+	collisionTest->width = thickness;
+	collisionTest->height = height;
+	collisionTest->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	// Top Wall
 	auto* collisionTest1 = AddEntity<StaticCollider>();
 
-	collisionTest1->GetComponent<Transform>()->SetPosition(width / 2, -.25f);
-	collisionTest1->GetComponent<RigidBody>()->width = width;
-	collisionTest1->GetComponent<RigidBody>()->height = .5f;
-	collisionTest1->GetComponent<RigidBody>()->isKinematic = true;
-	collisionTest1->GetComponent<RectRenderer>()->width = width;
-	collisionTest1->GetComponent<RectRenderer>()->height = .5f;
-	collisionTest1->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	collisionTest1->GetComponent<Transform>()->SetPosition(width / 2, -thickness / 2);
+	collisionTest1->width = width;
+	collisionTest1->height = thickness;
+	collisionTest1->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	// Right Wall
 	auto* collisionTest2 = AddEntity<StaticCollider>();
 
-	collisionTest2->GetComponent<Transform>()->SetPosition(width + .25f, height / 2);
-	collisionTest2->GetComponent<RigidBody>()->width = .5f;
-	collisionTest2->GetComponent<RigidBody>()->height = height;
-	collisionTest2->GetComponent<RigidBody>()->isKinematic = true;
-	collisionTest2->GetComponent<RectRenderer>()->width =.5f;
-	collisionTest2->GetComponent<RectRenderer>()->height = height;
-	collisionTest2->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	collisionTest2->GetComponent<Transform>()->SetPosition(width + thickness / 2, height / 2);
+	collisionTest2->width = thickness;
+	collisionTest2->height = height;
+	collisionTest2->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	// Bottom Wall
 	auto* collisionTest3 = AddEntity<StaticCollider>();
 
-	collisionTest3->GetComponent<Transform>()->SetPosition(width / 2, height + .25f);
-	collisionTest3->GetComponent<RigidBody>()->width = width;
-	collisionTest3->GetComponent<RigidBody>()->height = .5f;
-	collisionTest3->GetComponent<RectRenderer>()->width = width;
-	collisionTest3->GetComponent<RectRenderer>()->height = .5f;
-	collisionTest3->GetComponent<RectRenderer>()->colour = BAMT_COLOUR_GREEN;
+	collisionTest3->GetComponent<Transform>()->SetPosition(width / 2, height + thickness / 2);
+	collisionTest3->width = width;
+	collisionTest3->height = thickness;
+	collisionTest3->GetComponent<RectRenderer>()->colour = { 150, 150,150, 255 };
 
 	AddEntity<CoordinateGrid>();
 

@@ -8,9 +8,13 @@
 
 class EnemyAnimationSystem : public Component
 {
+	float _time = 0;
+	float _lastHealth = 0;
 	public:
 		void Start() override;
 		void Update(float* timeStep)override;
+
+		float _painTime = .2f;
 
 		Animator* animator = nullptr;
 		EnemyMovement* movementSystem;

@@ -2,33 +2,42 @@
 
 void Button::Start()
 {
-	renderer = entity->GetComponent<RectRenderer>();
+	buttonInner = entity->AddComponent<RectRenderer>();
+	
+	buttonInner->fillRect = true;
 
-	if (renderer == nullptr)
-	{
-		renderer = entity->AddComponent<RectRenderer>();
-	}
-
-	renderer->width = width;
-	renderer->height = height;
-	renderer->fillRect = true;
+	buttonBorder = entity->AddComponent<SpriteRenderer>();
+	buttonBorder->SetSprite("gridSquare.png");
 }
 
 void Button::Update(float* timeStep)
 {
-	Debug::Log("Hello");
+	buttonInner->width = width;
+	buttonInner->height = height;
+
+	buttonBorder->width = width;
+	buttonBorder->height = height;
+
 	// Get the direction of the mouse on the screen.
 	const Vector2 mousePos = Input::GetMousePosition();
 
-	if (entity->transform->GetX() - width * 0.5f > mousePos.x + 1 * 0.5f)
+	if (VectorMath::OverlapOnAxis(mousePos.x, 0, entity->transform->GetX(), width)
+	&& VectorMath::OverlapOnAxis(mousePos.y, 0, entity->transform->GetY(), height))
 	{
-		Debug::Log("Mouse Overlapped on X");
+		if (Input::GetMouseButtonDown(SDL_BUTTON_LEFT))
+		{
+			buttonInner->colour = pressedColour;
+			buttonPressed = true;
+		}
+		else
+		{
+			buttonInner->colour = highlightedColour;
+			buttonPressed = false;
+		}
 	}
-
-	if (VectorMath::OverlapOnAxis(mousePos.x, 1, entity->transform->GetX(), width)
-		&& VectorMath::OverlapOnAxis(mousePos.y, 1, entity->transform->GetY(), height))
+	else
 	{
-		renderer->colour = highlightedColour;
+		buttonInner->colour = normalColour;
+		buttonPressed = false;
 	}
-	else renderer->colour = normalColour;
 }

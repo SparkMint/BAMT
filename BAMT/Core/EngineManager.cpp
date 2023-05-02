@@ -11,7 +11,7 @@ EngineManager::EngineManager()
 EngineManager::~EngineManager() 
 {
 	Debug::Log("Engine Instance Destroyed.", this);
-	_isActive = false;
+	isActive = false;
 }
 #pragma endregion Constructors
 
@@ -44,7 +44,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 		Debug::Log("Resolution: " + std::to_string(BAMT_RESOLUTION_WIDTH) + " x " + std::to_string(BAMT_RESOLUTION_HEIGHT));
 		Debug::Log("------------------------\n");
 	}
-	else Debug::LogError("Couldn't reate a Window!\n");
+	else Debug::LogError("Couldn't create a Window!\n");
 
 	// Create an instance of a Renderer and Check if the renderer was successfully created.
 	_renderer = SDL_CreateRenderer(_window, -1, 0);
@@ -96,7 +96,7 @@ void EngineManager::Initialize(const char* windowName, int windowWidth, int wind
 	Input::SetRenderer(_renderer);
 
 	// Sets this GameManager to being Active.
-	_isActive = true;
+	isActive = true;
 
 	Debug::Log("ENGINE INIT FINISHED!\n");
 }
@@ -111,12 +111,22 @@ void EngineManager::RunLoop()
 
 		DoInputLogic();
 
+		_inputProcessingTime = _tickTimer->GetTicks();
+
 		if(flags & SDL_WINDOW_INPUT_FOCUS)
 			Update(&_timeStep);
 
+		_updateProcessingTime = _tickTimer->GetTicks() - _inputProcessingTime;
+
 		Render(_renderer);
 
+		_updateProcessingTime = _tickTimer->GetTicks() - _updateProcessingTime;
+
+		_framesPerSecond = 1000 / _deltaTime - _tickTimer->GetTicks();
+
 		SetWindowTitle();
+
+		DisplayTimings(_timeStep);
 
 		if (_tickTimer->GetTicks() < _deltaTime)
 		{
@@ -126,7 +136,7 @@ void EngineManager::RunLoop()
 
 		if(_timeStep > BAMT_TIMESTEP_LIMIT)
 		{
-			Debug::LogWarn("Timestep too high! Value: " + std::to_string(_timeStep) + ". Clamping to " + std::to_string(0));
+			Debug::LogWarn("Timestep too high! Value: " + std::to_string(_timeStep) + ".");
 			Debug::LogWarn("Physics and other features might not work as intended!");
 
 			_timeStep = 0;
@@ -142,7 +152,7 @@ void EngineManager::DoInputLogic()
 	Input::GetInputs();
 
 	// If the player has given the command to stop. Stop the scene.
-	if (Input::GetKeyHold(SDL_QUIT)) { _isActive = false; }
+	if (Input::GetKeyHold(SDL_QUIT)) { isActive = false; }
 
 	// Fullscreen Toggle
 	if(Input::GetKeyDown(SDLK_F11))
@@ -212,12 +222,27 @@ void EngineManager::Stop()
 
 void EngineManager::SetWindowTitle() const
 {
-	const int framesPerSecond = 1000 / _deltaTime - _tickTimer->GetTicks();
-	const std::string windowString = _windowTitle + " | FPS : " + std::to_string(framesPerSecond);
+	const std::string windowString = _windowTitle + " | FPS : " + std::to_string(_framesPerSecond);
 	SDL_SetWindowTitle(_window, windowString.c_str());
+}
+
+void EngineManager::DisplayTimings(float timeStep)
+{
+	if(_timingDisplayTime > 0)
+	{
+		_timingDisplayTime -= timeStep;
+	}
+	else
+	{
+		_timingDisplayTime = frameTimingsDisplayRate;
+
+		Debug::Log("Timings - Input: " + std::to_string(_inputProcessingTime) 
+			+ "ms | Update: " + std::to_string(_updateProcessingTime) 
+			+ "ms | Render: " + std::to_string(_renderProcessingTime) + "ms");
+	}
 }
 
 bool EngineManager::IsActive() const
 {
-	return _isActive;
+	return isActive;
 }

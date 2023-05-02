@@ -3,12 +3,13 @@
 
 #include "../../Core/Components/RectRenderer.h"
 #include "../../Core/Components/RigidBody.h"
-#include "../../Core/Components/Transform.h"
 #include "../../Core/ECS/Entity.h"
 
 class StaticCollider : public Entity
 {
 public:
+	StaticCollider();
+	StaticCollider(float w, float h);
 	RigidBody* rigidBody = nullptr;
 	RectRenderer* rectRenderer = nullptr;
 
@@ -20,9 +21,10 @@ public:
 	float bounciness = 1;
 
 	// RectRenderer Values
-	bool fillRect = false;
+	bool fillRect = true;
 
 
 	void Start() override;
+	void Update(float* timeStep) override;
 };
 #endif

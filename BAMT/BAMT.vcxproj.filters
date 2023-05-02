@@ -55,6 +55,7 @@
     <ClCompile Include="Core\Components\MusicSource.cpp" />
     <ClCompile Include="Assignment\Scenes\AssignmentMenu.cpp" />
     <ClCompile Include="Core\Components\Button.cpp" />
+    <ClCompile Include="Assignment\Components\MouseFollow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Core\Components\MusicSource.h" />
     <ClInclude Include="Assignment\Scenes\AssignmentMenu.h" />
     <ClInclude Include="Core\Components\Button.h" />
+    <ClInclude Include="Assignment\Components\MouseFollow.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAMT.rc" />

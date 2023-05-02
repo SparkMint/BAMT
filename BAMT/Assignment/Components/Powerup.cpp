@@ -8,7 +8,8 @@ void Powerup::Start()
 	audioSource = entity->AddComponent<AudioSource>();
 
 	rigidBody->isTrigger = true;
-	rigidBody->isKinematic = true;
+	rigidBody->drag = 0.5f;
+	rigidBody->maxVelocity = 2;
 	rigidBody->width = powerupWidth;
 	rigidBody->height = powerupHeight;
 
@@ -19,7 +20,15 @@ void Powerup::Update(float* timeStep)
 {
 	for (auto rb : rigidBody->collisionList)
 	{
+		if(rb->entity->tag == "Enemy")
+		{
+			const Vector2 pushDir = *entity->transform->GetPosition() - *rb->entity->transform->GetPosition();
+
+			rigidBody->AddForce(VectorMath::Normalize(pushDir), 1);
+		}
+
 		if (rb->entity->tag != "Player") continue;
+		
 
 		auto* reciever = rb->entity->GetComponent<PowerupReciever>();
 		if (reciever != nullptr)

@@ -1,8 +1,12 @@
 #include "TimeSystem.h"
 
+#include "Entity.h"
+
 void TimeSystem::Start()
 {
 	currentTimeSeconds = timeLimitSeconds;
+
+	scoreSystem = entity->GetComponent<ScoreSystem>();
 }
 
 void TimeSystem::Update(float* timeStep)
@@ -11,15 +15,24 @@ void TimeSystem::Update(float* timeStep)
 	{
 		currentTimeSeconds -= *timeStep;
 	}
+
+	if (scoreSystem == nullptr) return;
+	if(!timeExtended && scoreSystem->score > timeExtendScoreRequirement)
+	{
+		timeExtended = true;
+		currentTimeSeconds += 15;
+	}
 }
 
 void TimeSystem::Stop()
 {
 	enabled = false;
+	timeExtended = false;
 }
 
 void TimeSystem::Reset()
 {
 	enabled = true;
+	timeExtended = false;
 	currentTimeSeconds = timeLimitSeconds;
 }
