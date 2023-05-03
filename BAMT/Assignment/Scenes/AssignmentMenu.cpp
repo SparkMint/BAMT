@@ -56,7 +56,7 @@ void AssignmentMenu::Start()
 
 	for (int i = 0; i < 25; ++i)
 	{
-		for (int j = 0; j < 5; ++j)
+		for (int j = 0; j < 6; ++j)
 		{
 			const auto thing = AddEntity<Entity>();
 			thing->GetComponent<Transform>()->SetPosition(width / 2 - 2.5f + (j * 1.01f), -25 + (i * 1.01f));

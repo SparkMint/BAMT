@@ -24,7 +24,6 @@ namespace AudioManager
 		Mix_PlayMusic(music, 999);
 	}
 
-
 	void StopMusic() { Mix_PauseMusic(); }
 
 	void ResumeMusic() { Mix_ResumeMusic(); }
