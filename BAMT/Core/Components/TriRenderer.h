@@ -13,11 +13,6 @@ class TriRenderer : public Component
 		TriRenderer(int size = 0);
 
 		/// <summary>
-		/// Transform of the entity we are attached to.
-		/// </summary>
-		Transform* transform;
-
-		/// <summary>
 		/// Size of the Triangle.
 		/// </summary>
 		int size = 0;

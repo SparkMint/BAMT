@@ -3,7 +3,6 @@
 Entity::Entity()
 {
 	active = true;
-	Debug::Log("Entity Created.", this);
 	transform = AddComponent<Transform>();
 }
 
@@ -19,7 +18,7 @@ Entity::~Entity()
 
 void Entity::Start() { }
 
-void Entity::Update(float* timeStep) const
+void Entity::Update(float* timeStep)
 {
 	for (Component* c : _components)
 	{

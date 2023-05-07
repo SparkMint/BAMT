@@ -1,8 +1,5 @@
 #include "SpriteRenderer.h"
 
-#include "../EngineManager.h"
-#include "../ECS/Scene.h"
-
 SpriteRenderer::SpriteRenderer(float Width, float Height, const char* spriteLocation)
 {
 	width = Width;
@@ -12,35 +9,32 @@ SpriteRenderer::SpriteRenderer(float Width, float Height, const char* spriteLoca
 	_rect = new SDL_Rect();
 }
 
-SpriteRenderer::~SpriteRenderer()
-= default;
-
-void SpriteRenderer::Start()
+void SpriteRenderer::Update(float* timeStep)
 {
-	Renderer::Start();
+
 }
 
 void SpriteRenderer::Render(SDL_Renderer* renderer)
 {
 	if(_texture)
 	{
-		// Get the height and width of the texture.
-		// We will use this to prevent stretching.
+		// Get the height and width of the glyphAtlas.
+		// Was using this but keeping it incase i need it later on.
 		int textureWidth, textureHeight;
 		SDL_QueryTexture(_texture, nullptr, nullptr, &textureWidth, &textureHeight);
 
-		// Scale down the given height and width to fit the scale of our world.
-		textureWidth /= BAMT_WORLD_SCALE;
-		textureHeight /= BAMT_WORLD_SCALE;
-
-		_rect->w = (width * textureWidth * BAMT_WORLD_SCALE *_transform->scale) / 4;
-		_rect->h = (height * textureHeight * BAMT_WORLD_SCALE * _transform->scale) / 4;
+		_rect->w = (width * _transform->scale) * BAMT_WORLD_SCALE;
+		_rect->h = (height * _transform->scale) * BAMT_WORLD_SCALE;
 
 		_rect->x = roundf((_transform->GetX() * BAMT_WORLD_SCALE - _rect->w * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 		_rect->y = roundf((_transform->GetY() * BAMT_WORLD_SCALE - _rect->h * 0.5f) * BAMT_WORLD_SCALE) / BAMT_WORLD_SCALE;
 
+		SDL_SetTextureColorMod(_texture, colour.r, colour.g, colour.b);
+
 		// Display the Sprite.
 		SDL_RenderCopy(renderer, _texture, nullptr, _rect);
+
+		SDL_SetTextureColorMod(_texture, 255, 255, 255);
 
 		//Debug::Log("SPRITE RENDERER VALUES");
 		//Debug::Log("----------------------");
@@ -51,13 +45,20 @@ void SpriteRenderer::Render(SDL_Renderer* renderer)
 	}
 	else
 	{
-		const std::string filePathToString = sprite;
-		_texture = entity->scene->engine->textureAtlas->FindTexture(sprite);
+		SetSprite(sprite);
+	}
+}
 
-		if(_texture == nullptr)
-		{
-			Debug::LogError("SpriteRenderer could not load sprite: " + filePathToString, this);
-			enabled = false;
-		}
+void SpriteRenderer::SetSprite(const char* targetSprite)
+{
+	sprite = targetSprite;
+
+	_texture = entity->scene->engine->assetWarehouse->GetTexture(targetSprite);
+
+	if (_texture == nullptr)
+	{
+		std::string spriteName = sprite;
+		Debug::LogError("SpriteRenderer could not load " + spriteName+ ". Setting it to default!", this);
+		_texture = entity->scene->engine->assetWarehouse->GetTexture("default.png");
 	}
 }

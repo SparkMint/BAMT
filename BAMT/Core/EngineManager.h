@@ -2,37 +2,53 @@
 #define BAMT_ENGINE_MANAGER
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 
-#include "EngineSettings.h"
-#include "ECS/Entity.h"
-#include "SDL.h"
-#include "Misc/Debug.h"
-#include "Misc/TickTimer.h"
-#include "ECS/Scene.h"
-#include "Misc/Input.h"
+#include <algorithm>
+#include <vector>
 #include <experimental/filesystem>
 
-#include <vector>
-#include <algorithm>
-
-#include "Misc/TextureAtlas.h"
+#include "Debug.h"
+#include "EngineSettings.h"
+#include "AudioManager.h"
+#include "Entity.h"
+#include "Input.h"
+#include "Scene.h"
+#include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
+#include "TickTimer.h"
+#include "Misc/AssetWarehouse.h"
 
 class EngineManager
 {
 	SDL_Window* _window = nullptr;
 	SDL_Renderer* _renderer = nullptr;
 	TickTimer* _tickTimer = nullptr;
-	std::experimental::filesystem::path textureFileRootDir = "Assets";
+	float _timingDisplayTime = 0;
+	std::experimental::filesystem::path assetFileRootFolder = "Assets";
 
 	std::vector<Scene*> _sceneList;
 
 	std::string _windowTitle;
-	bool _isActive = false;
-	bool fullScreen = false;
+
+	bool _fullScreen = false;
 	int _deltaTime = 16;
 	float _timeStep = 0;
 
+	int _inputProcessingTime = 0;
+	int _updateProcessingTime = 0;
+	int _renderProcessingTime = 0;
+	int _framesPerSecond = 0;
+
 	public:
-		TextureAtlas* textureAtlas = nullptr;
+		AssetWarehouse* assetWarehouse = nullptr;
+
+		bool isActive = false;
+
+		/// <summary>
+		/// How often should the frame timings be printed into
+		///	the console?
+		/// </summary>
+		float frameTimingsDisplayRate = 2;
 
 		/// <summary>
 		/// Returns if the Engine is active or not.
@@ -58,6 +74,16 @@ class EngineManager
 		void DoInputLogic();
 
 		/// <summary>
+		/// Updates the window title to contain important info.
+		/// </summary>
+		void SetWindowTitle() const;
+
+		/// <summary>
+		/// Prints out frame timings and such into the console.
+		/// </summary>
+		void DisplayTimings(float timeStep);
+
+		/// <summary>
 		/// Updates all active Scenes.
 		/// </summary>
 		void Update(float* timeStep) const;
@@ -72,15 +98,16 @@ class EngineManager
 		/// </summary>
 		void Stop();
 
-		void SetWindowTitle() const;
-
 		/// SCENE FACTORY DECLARATION
 		
 		/// <summary>
-		/// Creates an Entity of the specified type and adds it to the Entity List.
+		/// Creates a Scene of the specified type and adds it to the Scene List.
 		/// </summary>
 		template<class T = Scene, typename... TArgs>
 		T* AddScene(TArgs&&... mArgs);
+
+		template<class T>
+		T* GetScene();
 
 		/// <summary>
 		/// Destroys a specified Entity and removes it from the Entity List.
@@ -101,6 +128,9 @@ inline T* EngineManager::AddScene(TArgs&&... mArgs)
 	// Create a new instance of this type and pass its arguments.
 	T* scene = new T(std::forward<TArgs>(mArgs)...);
 
+	std::string className = typeid(*scene).name();
+	size_t startPos = className.find_last_of(" ") + 1;
+
 	// Use Dynamic Casting to find if the type given is derived from Entity.
 	Scene* sceneBase = dynamic_cast<Scene*>(scene);
 	if (sceneBase != nullptr)
@@ -108,12 +138,26 @@ inline T* EngineManager::AddScene(TArgs&&... mArgs)
 		_sceneList.emplace_back(sceneBase);
 		sceneBase->engine = this;
 		sceneBase->Start();
-		Debug::Log("Scene Successfully Created!", scene);
+
+		Debug::Log(className.substr(startPos) + " (Scene) was created.", scene);
 		return scene;
 	}
 
-	Debug::LogError("This scene could not be created successfully!", scene);
+	Debug::LogError(className.substr(startPos) + " (Scene) could not be created successfully. Not derived off Scene class.", scene);
 	delete(scene);
+	return nullptr;
+}
+
+template<class T>
+inline T* EngineManager::GetScene()
+{
+	for (Scene* c : _sceneList)
+	{
+		if (dynamic_cast<T*>(c))
+		{
+			return static_cast<T*>(c);
+		}
+	}
 	return nullptr;
 }
 

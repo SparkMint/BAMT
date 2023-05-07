@@ -15,21 +15,23 @@ void SplashScreen::Start()
 	LogoEnt->GetComponent<Transform>()->SetPosition(width / 2, -5);
 
 	LogoEnt->AddComponent<RigidBody>();
-	LogoEnt->GetComponent<RigidBody>()->colliderWidth = 1;
-	LogoEnt->GetComponent<RigidBody>()->colliderHeight = 1;
+	LogoEnt->GetComponent<RigidBody>()->width = 1;
+	LogoEnt->GetComponent<RigidBody>()->height = 1;
 	LogoEnt->GetComponent<RigidBody>()->drag = 1;
+	LogoEnt->GetComponent<RigidBody>()->bounciness = 1;
 
 	LogoEnt->GetComponent<RigidBody>()->maxVelocity = 10;
 
-	LogoEnt->AddComponent<SpriteRenderer>(4, 4, "BAMT Splash Logo.png");
+	LogoEnt->AddComponent<SpriteRenderer>(5, 6, "BAMT Splash Logo.png");
 
 
 	// Bottom Wall
 	Floor = AddEntity<StaticCollider>();
 
 	Floor->GetComponent<Transform>()->SetPosition(width / 2, height / 2);
-	Floor->GetComponent<RigidBody>()->colliderWidth = width;
-	Floor->GetComponent<RigidBody>()->colliderHeight = .5f;
+	Floor->GetComponent<RigidBody>()->width = width;
+	Floor->GetComponent<RigidBody>()->height = .5f;
+	Floor->GetComponent<RigidBody>()->bounciness = 1;
 	Floor->GetComponent<RectRenderer>()->enabled = false;
 
 	gravity = { 0, 15 };

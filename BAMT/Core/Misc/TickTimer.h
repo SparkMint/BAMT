@@ -4,7 +4,7 @@
 #include"SDL.h"
 
 /// <summary>
-/// This class makes sure that Ticks are a specified time
+/// This class makes sure that Ticks are a specified currentTimeSeconds
 /// to prevent game logic acting oddly.
 /// </summary>
 class TickTimer 
@@ -16,7 +16,7 @@ class TickTimer
 		~TickTimer();
 
 		/// <summary>
-		/// Sets start ticks to the current time.
+		/// Sets start ticks to the current currentTimeSeconds.
 		/// </summary>
 		void ResetTimer();
 

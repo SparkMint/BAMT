@@ -12,6 +12,7 @@ class RigidBody;
 
 class Scene
 {
+	float _timeStep;
 	public:
 		EngineManager* engine = nullptr;
 
@@ -26,6 +27,9 @@ class Scene
 		// If set to true, this scene will always run no matter what.
 		bool alwaysActive = false;
 
+		/// <summary>
+		/// Called upon the creation of a scene.
+		/// </summary>
 		virtual void Start();
 
 		/// <summary>
@@ -73,6 +77,8 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 {
 	// Create a new instance of this type and pass its arguments.
 	T* ent = new T(std::forward<TArgs>(mArgs)...);
+	std::string className = typeid(*ent).name();
+	size_t startPos = className.find_last_of(" ") + 1;
 
 	// Use Dynamic Casting to find if the type given is derived from Entity.
 	Entity* entityBase = dynamic_cast<Entity*>(ent);
@@ -80,22 +86,23 @@ inline T* Scene::AddEntity(TArgs&&... mArgs)
 	{
 		// Add the entity to our entity list.
 		entityList.emplace_back(entityBase);
-
 		entityBase->scene = this;
-
 		entityBase->Start();
+
+		//Debug::Log(className.substr(startPos) + " (Entity) was created.", ent);
+
 		return ent;
 	}
 
 	// If it got here, the type we got wasn't an entity type.
-	Debug::LogError("This entity could not be created successfully!", ent);
+	Debug::LogError(className.substr(startPos) + " (Entity) could not be created successfully. Not derived off Entity class.", ent);
 	delete(ent);
 	return nullptr;
 }
 
 inline void Scene::RemoveEntity(Entity* ent)
 {
-	auto entityToRemove = remove(entityList.begin(), entityList.end(), ent);
+	auto entToRemove = remove(entityList.begin(), entityList.end(), ent);
 	delete(ent);
 }
 #endif

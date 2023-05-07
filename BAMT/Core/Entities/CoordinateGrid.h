@@ -3,12 +3,12 @@
 
 #include "../ECS/Entity.h"
 #include "../ECS/Scene.h"
-#include "../Components/RectRenderer.h"
+#include "../Components/SpriteRenderer.h"
 
 class CoordinateGrid : public Entity
 {
-	int width = 32;
-	int height = 18;
+	int width = 25;
+	int height = 20;
 
 	float gridSize = 1;
 

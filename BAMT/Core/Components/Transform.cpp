@@ -45,6 +45,20 @@ namespace VectorMath
 		}
 		return true;
 	}
+
+	Vector2 Rotate(Vector2& direction, float angle)
+	{
+		// Get the cos and sin of the given angle.
+		float cosAngle = cos(angle);
+		float sinAngle = sin(angle);
+
+		// Use those to rotate the vector.
+		float newX = direction.x * cosAngle - direction.y * sinAngle;
+		float newY = direction.x * sinAngle + direction.y * cosAngle;
+
+		// Return it!
+		return { newX, newY };
+	}
 }
 
 bool Vector2::operator==(const Vector2& vector) const

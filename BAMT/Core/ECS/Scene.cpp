@@ -1,17 +1,31 @@
 #include "Scene.h"
-
 #include "../EngineSettings.h"
+
+
+Scene::Scene() { }
+
+Scene::~Scene()
+{
+	Debug::Log("Scene Destroyed.", this);
+
+	for (const Entity* entity : entityList)
+	{
+		delete entity;
+	}
+}
 
 void Scene::Start(){ }
 
 void Scene::Update(float* timeStep)
 {
+	_timeStep = *timeStep / BAMT_PHYSICS_STEPS;
 	for (int i = 0; i < BAMT_PHYSICS_STEPS; ++i)
 	{
 		DetectCollisions();
 	}
 
-	for (const Entity* entity : entityList)
+	SortEntities();
+	for (Entity* entity : entityList)
 	{
 		if (entity->active)
 			entity->Update(timeStep);
@@ -20,6 +34,7 @@ void Scene::Update(float* timeStep)
 
 void Scene::Render(SDL_Renderer* renderer) const
 {
+
 	for (const Entity* entity : entityList)
 	{
 		if (entity->active)
@@ -36,13 +51,15 @@ void Scene::SortEntities()
 void Scene::SortRigidBodies()
 {
 	std::sort(rigidBodiesList.begin(), rigidBodiesList.end(), [](const RigidBody* a, const RigidBody* b)
-		{return a->transform->GetX() - a->colliderWidth * 0.5f < b->transform->GetX() - b->colliderWidth * 0.5f; });
+		{return a->transform->GetX() - a->width * 0.5f < b->transform->GetX() - b->width * 0.5f; });
 }
 
 void Scene::DetectCollisions()
 {
+	// Sort all RigidBodies by their minimum X values.
 	SortRigidBodies();
 
+	// This list is for that previously collided.
 	std::vector<RigidBody*> activeInterval;
 	activeInterval.reserve(rigidBodiesList.size());
 
@@ -50,28 +67,33 @@ void Scene::DetectCollisions()
 	std::vector<std::pair<RigidBody*, RigidBody*>> collisionPairs;
 	collisionPairs.reserve(rigidBodiesList.size() * (rigidBodiesList.size() - 1) / 2);
 
-	for (auto& i : rigidBodiesList)
+	for (auto& rb : rigidBodiesList)
 	{
 		// Clear this RigidBodies collision list. As it will update here.
-		i->collisionList.clear();
-		if (!i->entity->active || !i->enabled) continue;
+		rb->collisionList.clear();
+
+		// Make sure the entity is active.
+		if (!rb->entity->active || !rb->enabled) continue;
 
 		for(int j = 0; j < activeInterval.size(); ++j)
 		{
-			if (i->transform->GetX() - (i->colliderWidth * 0.5f) > activeInterval[j]->transform->GetX() + (activeInterval[j]->colliderWidth * 0.5f))
+			// For some reason, this seems to work fine, but giving it my premade OverlapOnAxis function breaks it. so yeah...
+			if (rb->transform->GetX() - rb->width * 0.5f > activeInterval[j]->transform->GetX() + activeInterval[j]->width * 0.5f)
 			{
+				// If the object isnt overlapping the X bounds of our current active interval. remove the active interval.
 				activeInterval.erase(activeInterval.begin() + j);
 				j--;
 			}
 			else
 			{
-				if (VectorMath::OverlapOnAxis(i->transform->GetY(), i->colliderHeight, activeInterval[j]->transform->GetY(), activeInterval[j]->colliderHeight))
+				if (VectorMath::OverlapOnAxis(rb->transform->GetY(), rb->height, activeInterval[j]->transform->GetY(), activeInterval[j]->height))
 				{
-					collisionPairs.emplace_back(i, activeInterval[j]);
+					collisionPairs.emplace_back(rb, activeInterval[j]);
 				}
 			}
 		}
-		activeInterval.emplace_back(i);
+		// Add this object to our active interval list.
+		activeInterval.emplace_back(rb);
 	}
 
 	// Go through each pair of RigidBodies and solve each collision.
@@ -86,9 +108,11 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 		pair.first->collisionList.emplace_back(pair.second);
 		pair.second->collisionList.emplace_back(pair.first);
 
+		if (pair.first->isTrigger || pair.second->isTrigger) continue;
+
 		// Get how much object one overlaps object two. We can use that to move them out the way of eachother.
-		const float xOverlap = (pair.first->colliderWidth + pair.second->colliderWidth) * 0.5f - fabs(pair.first->transform->GetX() - pair.second->transform->GetX());
-		const float yOverlap = (pair.first->colliderHeight + pair.second->colliderHeight) * 0.5f - fabs(pair.first->transform->GetY() - pair.second->transform->GetY());
+		const float xOverlap = (pair.first->width + pair.second->width) * 0.5f - fabs(pair.first->transform->GetX() - pair.second->transform->GetX());
+		const float yOverlap = (pair.first->height + pair.second->height) * 0.5f - fabs(pair.first->transform->GetY() - pair.second->transform->GetY());
 
 		// Calculate which direction the pair collided on.
 		// KEEP IN MIND THIS ONLY WORKS FOR BOX COLLIDERS!
@@ -104,34 +128,32 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 
 		// Move the object transform to try to get the object out of whatever its colliding with.
 		const Vector2 displacement = { collisionNormal.x * xOverlap, collisionNormal.y * yOverlap };
+
 		if (!pair.first->isKinematic)
 		{
-			pair.first->transform->Translate(-displacement.x / 2, -displacement.y / 2);
+			pair.first->transform->Translate(-displacement.x, -displacement.y);
 		}
 		if (!pair.second->isKinematic)
 		{
-			pair.second->transform->Translate(displacement.x / 2, displacement.y / 2);
+			pair.second->transform->Translate(displacement.x, displacement.y);
 		}
 
 		// Check if the objects are moving away from each other. If they are.
 		// Dont add force. otherwise they will pull towards each other.
-		Vector2 relativeVelocity = pair.second->GetVelocity() - pair.first->GetVelocity();
+		Vector2 relativeVelocity = pair.second->velocity - pair.first->velocity;
 
 		const float relativeVelocityInNormalDirection = VectorMath::Dot(collisionNormal, relativeVelocity);
-		if (relativeVelocityInNormalDirection > 0)
-		{
-			continue;
-		}
+		if (relativeVelocityInNormalDirection > 0) continue;
 
 		// Use the object with the least amount of bounciness for calculating the impulse force.
 		const float bounce = min(pair.first->bounciness, pair.second->bounciness);
 
-		// Calculate the impulse force using the 
-		const float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * 100;
-
+		// Calculate the impulse force
+		float impulseScalar = -(1 + bounce) * relativeVelocityInNormalDirection / (-pair.first->mass + -pair.second->mass) * 100;
 		// Add the resulting forces to each object. Negate the second object so it goes in the other direction.
-		pair.first->AddForce(collisionNormal, impulseScalar * pair.first->bounciness);
-		pair.second->AddForce(collisionNormal, -impulseScalar * pair.second->bounciness);
+
+		pair.first->AddReactionForce(collisionNormal, impulseScalar);
+		pair.second->AddReactionForce(collisionNormal, -impulseScalar);
 
 		if (pair.first->debugMode || pair.second->debugMode)
 		{
@@ -148,19 +170,5 @@ void Scene::SolveRigidBodyCollisions(const std::vector<std::pair<RigidBody*, Rig
 			Debug::Log("Resulting Force: (" + std::to_string(collisionNormal.x * impulseScalar) + ", " + std::to_string(collisionNormal.y * impulseScalar) + ")");
 			Debug::Log("---------------------------------");
 		}
-	}
-}
-
-Scene::Scene()
-{
-	Debug::Log("Scene Created.", this);
-}
-Scene::~Scene()
-{
-	Debug::Log("Scene Destroyed.", this);
-
-	for (const Entity* entity : entityList)
-	{
-		delete(entity);
 	}
 }

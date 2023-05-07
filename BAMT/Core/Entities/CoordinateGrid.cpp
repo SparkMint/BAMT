@@ -9,8 +9,7 @@ void CoordinateGrid::Start()
 		{
 			auto* gridSquare = scene->AddEntity<Entity>();
 			gridSquare->GetComponent<Transform>()->SetPosition(halfGridSize + (i * gridSize), halfGridSize + (j * gridSize));
-			gridSquare->AddComponent<RectRenderer>(gridSize - .02f, gridSize - .02f, false);
-			gridSquare->GetComponent<RectRenderer>()->colour = { 20,20,20,255 };
+			gridSquare->AddComponent<SpriteRenderer>(gridSize, gridSize, "gridSquare.png");
 			gridSquare->renderLayer = -1;
 		}
 	}
